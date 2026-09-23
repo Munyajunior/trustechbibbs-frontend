@@ -1,0 +1,343 @@
+{
+  "common": {
+    "brand": "Institut Supérieur Trustech",
+    "brandShort": "THIBBS",
+    "brandTagline": "Commerce & Sciences Biomédicales",
+    "skipToContent": "Aller au contenu principal",
+    "loading": "Chargement…",
+    "readMore": "Lire la suite",
+    "learnMore": "En savoir plus",
+    "viewAll": "Voir tout",
+    "apply": "Postuler",
+    "search": "Rechercher",
+    "close": "Fermer",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "language": "Langue",
+    "switchToFrench": "Passer en français",
+    "switchToEnglish": "Passer en anglais",
+    "backHome": "Retour à l'accueil"
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "programs": "Programmes",
+    "admissions": "Admissions",
+    "news": "Actualités",
+    "events": "Événements",
+    "contact": "Contact"
+  },
+  "home": {
+    "meta": {
+      "title": "Institut Supérieur Trustech de Commerce et Sciences Biomédicales",
+      "description": "Découvrez les programmes de commerce et de sciences biomédicales de l’Institut Supérieur Trustech à Douala, au Cameroun."
+    },
+    "hero": {
+      "eyebrow": "Admissions ouvertes pour 2026/2027",
+      "title": "Construisez la carrière dont le monde a besoin",
+      "subtitle": "Des programmes de commerce et de sciences biomédicales conçus pour préparer la première cohorte Trustech à un avenir professionnel porteur.",
+      "ctaPrimary": "Commencer ma candidature",
+      "ctaSecondary": "Découvrir les programmes"
+    },
+    "stats": {
+      "title": "Trustech en bref",
+      "intake": "Première rentrée académique",
+      "schools": "Écoles académiques",
+      "programs": "Programmes de lancement",
+      "targetCohort": "Étudiants visés en première année"
+    },
+    "programs": {
+      "title": "Programmes en vedette",
+      "subtitle": "Deux écoles, une même exigence d'excellence.",
+      "empty": "Les programmes sont en cours de mise à jour. Revenez bientôt.",
+      "unavailable": "Impossible de charger les programmes pour le moment. Veuillez réessayer plus tard."
+    },
+    "news": {
+      "title": "Dernières actualités",
+      "subtitle": "La vie du campus.",
+      "empty": "Aucun article pour le moment."
+    },
+    "events": {
+      "title": "Événements à venir",
+      "subtitle": "Journées portes ouvertes, séminaires et remises de diplômes.",
+      "empty": "Aucun événement à venir."
+    },
+    "cta": {
+      "title": "Prêt à rejoindre Trustech ?",
+      "subtitle": "Les candidatures pour la prochaine rentrée sont ouvertes. Il suffit d'environ 15 minutes pour commencer.",
+      "button": "Postuler"
+    }
+  },
+  "programs": {
+    "meta": {
+      "title": "Programmes académiques",
+      "description": "Découvrez les programmes de commerce et sciences biomédicales de l’Institut Supérieur Trustech."
+    },
+    "title": "Programmes académiques",
+    "subtitle": "Trouvez le programme à la hauteur de votre ambition.",
+    "filters": {
+      "school": "École",
+      "level": "Niveau",
+      "campus": "Campus",
+      "all": "Tous"
+    },
+    "duration": "{years, plural, one {# an} other {# ans}}",
+    "tuition": "Frais de scolarité",
+    "level": "Niveau",
+    "empty": "Aucun programme ne correspond à vos filtres.",
+    "notFound": "Ce programme est introuvable."
+  },
+  "about": {
+    "meta": {
+      "title": "À propos",
+      "description": "Notre histoire, notre mission, notre vision et notre direction à l'Institut Supérieur Trustech."
+    },
+    "title": "À propos de Trustech",
+    "subtitle": "Qui nous sommes et ce que nous défendons.",
+    "history": "Notre histoire",
+    "historyBody": "L’Institut Supérieur Trustech de Commerce et Sciences Biomédicales est un nouvel établissement privé bilingue à Douala, créé pour proposer un enseignement supérieur accessible et axé sur la technologie à la nouvelle génération de professionnels camerounais.",
+    "mission": "Notre mission",
+    "missionBody": "Aider les étudiants à développer les connaissances, les compétences pratiques et la confiance professionnelle nécessaires pour contribuer utilement dans les domaines du commerce et de la santé.",
+    "vision": "Notre vision",
+    "visionBody": "Devenir une communauté d’enseignement supérieur de confiance, reconnue pour l’apprentissage pratique, un accompagnement clair des étudiants et des liens solides avec les opportunités professionnelles.",
+    "values": "Nos valeurs",
+    "valuesBody": "Nous construisons l’établissement autour de l’attention aux étudiants, de l’intégrité, de l’apprentissage pratique, du respect des communautés bilingues et de l’amélioration continue.",
+    "nextTitle": "Construire avec notre communauté",
+    "nextBody": "Les informations détaillées sur la direction, les installations du campus et l’approbation des programmes seront tenues à jour dans le système de contenu institutionnel dès leur confirmation et leur publication."
+  },
+  "admissions": {
+    "meta": {
+      "title": "Admissions",
+      "description": "Comprenez le parcours d’admission et préparez votre candidature à Trustech."
+    },
+    "title": "Admissions",
+    "subtitle": "Préparez votre candidature grâce à des étapes claires et à un accompagnement lorsque vous en avez besoin.",
+    "howTitle": "Votre parcours de candidature",
+    "steps": {
+      "choose": {
+        "title": "Choisissez votre programme",
+        "body": "Consultez les programmes disponibles en commerce et en sciences biomédicales, puis choisissez celui qui correspond le mieux à vos objectifs."
+      },
+      "prepare": {
+        "title": "Préparez vos informations",
+        "body": "Rassemblez vos informations personnelles, votre parcours académique et les documents justificatifs demandés pour le programme choisi."
+      },
+      "submit": {
+        "title": "Soumettez et suivez votre dossier",
+        "body": "Le parcours de candidature en ligne et le suivi de statut vous guideront pendant l’examen de votre dossier et les étapes suivantes."
+      }
+    },
+    "helpTitle": "Besoin d’aide pour votre admission ?",
+    "helpBody": "Notre équipe des admissions peut vous aider à comprendre le processus et à vous préparer avant le dépôt de votre candidature.",
+    "helpCta": "Contacter les admissions",
+    "readyTitle": "Prêt à commencer ?",
+    "readyBody": "Créez un compte candidat pour préparer votre candidature en ligne et conserver vos informations au même endroit.",
+    "readyCta": "Créer un compte candidat"
+  },
+  "auth": {
+    "fullName": "Nom complet",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "submitting": "Veuillez patienter…",
+    "passwordMismatch": "Vos mots de passe ne correspondent pas.",
+    "serviceUnavailable": "Le service de comptes est indisponible. Veuillez réessayer dans quelques instants.",
+    "unexpectedError": "Nous n’avons pas pu traiter cette demande. Veuillez réessayer.",
+    "hasAccount": "Vous avez déjà un compte candidat ?",
+    "needsAccount": "Vous découvrez les admissions Trustech ?",
+    "loginLink": "Se connecter",
+    "registerLink": "Créer un compte",
+    "login": {
+      "meta": { "title": "Connexion candidat", "description": "Connectez-vous à votre compte candidat Trustech." },
+      "title": "Connexion aux admissions",
+      "subtitle": "Utilisez l’adresse e-mail et le mot de passe créés pour votre compte candidat.",
+      "submit": "Se connecter"
+    },
+    "register": {
+      "meta": { "title": "Créer un compte candidat", "description": "Créez un compte candidat Trustech pour commencer à préparer votre candidature." },
+      "title": "Créez votre compte candidat",
+      "subtitle": "Votre compte vous permet de préparer et de suivre votre candidature aux admissions.",
+      "submit": "Créer un compte"
+    }
+  },
+  "application": {
+    "meta": { "title": "Commencer la candidature", "description": "Commencez et enregistrez votre candidature aux admissions Trustech." },
+    "accountTitle": "Connectez-vous pour commencer votre candidature",
+    "accountBody": "Créez un compte candidat ou connectez-vous pour commencer un brouillon de candidature et enregistrer votre progression.",
+    "signIn": "Se connecter",
+    "createAccount": "Créer un compte",
+    "title": "Commencez votre candidature",
+    "subtitle": "Enregistrez dès maintenant les premières informations de votre candidature. Vous pourrez compléter les documents et les informations académiques lors des étapes suivantes.",
+    "personalTitle": "Vos informations",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "phone": "Numéro de téléphone principal",
+    "programmeTitle": "Votre choix de programme",
+    "programme": "Programme de premier choix",
+    "programmePlaceholder": "Choisissez un programme",
+    "intake": "Rentrée",
+    "programsUnavailable": "Les programmes sont indisponibles pour le moment. Veuillez réessayer dans quelques instants.",
+    "serviceUnavailable": "Le service de candidature est indisponible. Veuillez réessayer dans quelques instants.",
+    "unexpectedError": "Nous n’avons pas pu enregistrer votre brouillon de candidature. Veuillez réessayer.",
+    "saving": "Enregistrement du brouillon…",
+    "saveDraft": "Enregistrer et continuer",
+    "successTitle": "Votre brouillon de candidature a été créé",
+    "successBody": "Votre référence est {reference}. Conservez-la précieusement ; les prochaines étapes vous aideront à téléverser vos documents et à compléter votre candidature.",
+    "draftReference": "Référence de candidature : {reference}",
+    "academicTitle": "Ajoutez votre parcours académique",
+    "academicBody": "Indiquez un diplôme obtenu ou en cours afin de soumettre votre candidature à l’examen du personnel.",
+    "academicHistoryTitle": "Dossier académique",
+    "qualification": "Diplôme ou qualification",
+    "institution": "Établissement scolaire ou institution",
+    "completionYear": "Année d’obtention",
+    "submitting": "Soumission de la candidature…",
+    "submitApplication": "Soumettre la candidature pour examen",
+    "submittedTitle": "Votre candidature a été soumise",
+    "submittedBody": "Votre référence est {reference}. Notre équipe d’admission examinera votre candidature et mettra à jour son statut ici.",
+    "viewStatus": "Voir le statut de la candidature"
+  },
+  "tracker": {
+    "meta": { "title": "Statut de candidature", "description": "Consultez le statut et la chronologie de vos candidatures d’admission Trustech." },
+    "accountTitle": "Connectez-vous pour consulter le statut de votre candidature",
+    "accountBody": "Utilisez votre compte candidat pour consulter vos candidatures enregistrées et les mises à jour d’admission.",
+    "signIn": "Se connecter",
+    "createAccount": "Créer un compte",
+    "title": "Statut de vos candidatures",
+    "subtitle": "Consultez vos candidatures soumises et leur chronologie d’admission.",
+    "loading": "Chargement de vos candidatures…",
+    "empty": "Vous n’avez pas encore de candidature.",
+    "startApplication": "Commencer une candidature",
+    "viewTimeline": "Voir la chronologie",
+    "timelineTitle": "Chronologie du statut",
+    "close": "Fermer",
+    "serviceUnavailable": "Le service d’admission est indisponible. Veuillez réessayer dans quelques instants.",
+    "unexpectedError": "Nous n’avons pas pu charger le statut de votre candidature. Veuillez réessayer."
+  },
+  "reviewQueue": {
+    "meta": { "title": "Examen des admissions", "description": "Examinez et mettez à jour les candidatures d’admission." },
+    "accessTitle": "Accès du personnel requis",
+    "accessBody": "Connectez-vous avec un compte de registraire ou d’administrateur autorisé pour examiner les candidatures.",
+    "title": "File d’examen des admissions",
+    "subtitle": "Examinez les candidatures et enregistrez le prochain statut avec un commentaire vérifiable.",
+    "loading": "Chargement des candidatures…",
+    "empty": "Aucune candidature n’attend d’examen.",
+    "newStatus": "Nouveau statut",
+    "comment": "Commentaire d’examen (facultatif)",
+    "saving": "Enregistrement…",
+    "save": "Enregistrer la décision d’examen",
+    "serviceUnavailable": "Le service d’admission est indisponible. Veuillez réessayer dans quelques instants.",
+    "unexpectedError": "Nous n’avons pas pu mettre à jour cette candidature. Veuillez réessayer."
+  },
+  "news": {
+    "meta": {
+      "title": "Actualités",
+      "description": "Actualités et annonces de l'Institut Supérieur Trustech."
+    },
+    "title": "Actualités",
+    "subtitle": "Annonces, témoignages et nouveautés.",
+    "empty": "Aucun article pour le moment.",
+    "publishedOn": "Publié le {date}"
+  },
+  "events": {
+    "meta": {
+      "title": "Événements",
+      "description": "Événements, journées portes ouvertes et séminaires à l'Institut Supérieur Trustech."
+    },
+    "title": "Événements",
+    "subtitle": "Venez à notre rencontre.",
+    "empty": "Aucun événement à venir.",
+    "date": "Date et heure",
+    "venue": "Lieu",
+    "register": "S'inscrire",
+    "addToCalendar": "Ajouter au calendrier"
+  },
+  "contact": {
+    "meta": {
+      "title": "Nous contacter",
+      "description": "Contactez l'Institut Supérieur Trustech de Commerce et Sciences Biomédicales."
+    },
+    "title": "Nous contacter",
+    "subtitle": "Nous répondons généralement sous deux jours ouvrables.",
+    "form": {
+      "fullName": "Nom complet",
+      "email": "Adresse e-mail",
+      "phone": "Numéro de téléphone",
+      "phoneOptional": "Numéro de téléphone (facultatif)",
+      "department": "Département",
+      "subject": "Objet",
+      "message": "Message",
+      "submit": "Envoyer le message",
+      "submitting": "Envoi…",
+      "success": "Merci — votre message a bien été envoyé. Référence : {reference}",
+      "error": "Votre message n'a pas pu être envoyé. Veuillez réessayer."
+    },
+    "validation": {
+      "fullNameRequired": "Veuillez saisir votre nom complet.",
+      "emailRequired": "Veuillez saisir votre adresse e-mail.",
+      "emailInvalid": "Veuillez saisir une adresse e-mail valide.",
+      "subjectRequired": "Veuillez saisir un objet.",
+      "messageRequired": "Veuillez saisir un message.",
+      "messageTooShort": "Votre message doit contenir au moins 20 caractères."
+    }
+  },
+  "privacy": {
+    "meta": { "title": "Politique de confidentialité", "description": "La manière dont Trustech traite les informations partagées via son site et ses services d’admission." },
+    "title": "Politique de confidentialité",
+    "subtitle": "La manière dont nous traitons les informations partagées via les services numériques de Trustech.",
+    "sections": {
+      "purpose": { "title": "Informations que nous recueillons", "body": "Nous recueillons les informations que vous choisissez de fournir via les services de contact et d’admission, notamment vos coordonnées, vos informations académiques et les documents justificatifs lorsqu’une candidature les exige." },
+      "commitment": { "title": "Utilisation des informations", "body": "Les informations servent à répondre aux demandes, traiter les candidatures, fournir les services aux étudiants et respecter les obligations institutionnelles de conservation des dossiers. Nous ne les utilisons pas à d’autres fins." },
+      "yourRole": { "title": "Protection des informations", "body": "L’accès est limité au personnel et aux prestataires autorisés qui ont besoin de ces informations pour fournir le service concerné. Nous utilisons des accès par rôle, des connexions sécurisées et des contrôles opérationnels." },
+      "contact": { "title": "Vos choix", "body": "Vous pouvez demander des informations sur vos données personnelles, demander une correction ou signaler une préoccupation de confidentialité via notre page de contact. Certains dossiers peuvent devoir être conservés pendant une candidature active ou une obligation institutionnelle." }
+    },
+    "reviewNote": "Cette politique sera révisée à mesure que les services et obligations légales de Trustech évoluent. Pour une demande de confidentialité,",
+    "contactLink": "contactez Trustech"
+  },
+  "terms": {
+    "meta": { "title": "Conditions d’utilisation", "description": "Les conditions applicables à l’utilisation du site et des services numériques de Trustech." },
+    "title": "Conditions d’utilisation",
+    "subtitle": "Les conditions de base pour utiliser les services numériques de Trustech.",
+    "sections": {
+      "purpose": { "title": "Utilisation du site", "body": "Vous pouvez utiliser ce site pour découvrir Trustech, explorer les programmes et accéder aux services numériques disponibles à des fins légales, personnelles ou institutionnelles." },
+      "commitment": { "title": "Informations exactes", "body": "Lorsque vous soumettez une demande ou une candidature, vous êtes responsable de fournir des informations complètes et exactes. Trustech peut vous contacter pour clarifier ou vérifier les informations fournies." },
+      "yourRole": { "title": "Accès responsable", "body": "Ne tentez pas de perturber le site, d’obtenir un accès non autorisé, de soumettre un contenu trompeur, ou d’utiliser le compte ou les informations personnelles d’une autre personne sans autorisation." },
+      "contact": { "title": "Modifications et questions", "body": "Trustech peut mettre à jour ces conditions à mesure que ses services évoluent. Si vous avez une question sur l’utilisation du site ou d’un service numérique, contactez l’institution avant de poursuivre." }
+    },
+    "reviewNote": "Ces conditions évolueront avec la mise en service de nouveaux outils. Pour toute question,",
+    "contactLink": "contactez Trustech"
+  },
+  "accessibility": {
+    "meta": { "title": "Accessibilité", "description": "L’engagement de Trustech en faveur de services numériques accessibles." },
+    "title": "Accessibilité",
+    "subtitle": "Notre engagement pour rendre les services numériques de Trustech utilisables par davantage de personnes.",
+    "sections": {
+      "purpose": { "title": "Notre engagement", "body": "Nous cherchons à rendre le site et les futurs services aux étudiants utilisables au clavier, avec les lecteurs d’écran, une structure de contenu claire et des mises en page adaptées aux appareils courants." },
+      "commitment": { "title": "Notre conception", "body": "Nous utilisons une structure sémantique, un focus clavier visible, un texte lisible, des pages adaptées à la langue et des couleurs offrant un contraste clair. Nous testons les pages publiques sur mobile comme sur ordinateur." },
+      "yourRole": { "title": "Limites connues", "body": "En tant que nouvel établissement, certains contenus et services tiers peuvent ne pas répondre à tous les besoins d’accessibilité. Nous prioriserons les améliorations qui touchent l’admission, les informations étudiantes et les services essentiels." },
+      "contact": { "title": "Signaler un obstacle", "body": "Si une fonctionnalité est difficile à utiliser, indiquez-nous ce que vous tentiez de faire, l’appareil ou la technologie d’assistance utilisée, ainsi que la page concernée. Nous utiliserons ce retour pour améliorer le service." }
+    },
+    "reviewNote": "Vos retours sur l’accessibilité nous aident à améliorer le service. Pour signaler un obstacle,",
+    "contactLink": "contactez Trustech"
+  },
+  "footer": {
+    "tagline": "Une formation en commerce et sciences biomédicales à Douala, au Cameroun.",
+    "explore": "Explorer",
+    "connect": "Nous suivre",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "accessibility": "Accessibilité",
+    "address": "Douala, Cameroun",
+    "rights": "© {year} Institut Supérieur Trustech. Tous droits réservés."
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "subtitle": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "action": "Retour à l'accueil"
+  },
+  "error": {
+    "title": "Une erreur est survenue",
+    "subtitle": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+    "retry": "Réessayer"
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "common": {
+    "brand": "Trustech Higher Institute",
+    "brandShort": "THIBBS",
+    "brandTagline": "Business & Biomedical Sciences",
+    "skipToContent": "Skip to main content",
+    "loading": "Loading…",
+    "readMore": "Read more",
+    "learnMore": "Learn more",
+    "viewAll": "View all",
+    "apply": "Apply now",
+    "search": "Search",
+    "close": "Close",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "switchToFrench": "Switch to French",
+    "switchToEnglish": "Switch to English",
+    "backHome": "Back to homepage"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "programs": "Programs",
+    "admissions": "Admissions",
+    "news": "News",
+    "events": "Events",
+    "contact": "Contact"
+  },
+  "home": {
+    "meta": {
+      "title": "Trustech Higher Institute of Business & Biomedical Sciences",
+      "description": "Explore business and biomedical science programs at Trustech Higher Institute in Douala, Cameroon."
+    },
+    "hero": {
+      "eyebrow": "Admissions open for 2026/2027",
+      "title": "Build the career the world needs",
+      "subtitle": "Business and biomedical science programs designed to prepare the first Trustech cohort for meaningful professional futures.",
+      "ctaPrimary": "Start your application",
+      "ctaSecondary": "Explore programs"
+    },
+    "stats": {
+      "title": "Trustech at a glance",
+      "intake": "First academic intake",
+      "schools": "Academic schools",
+      "programs": "Launch programs",
+      "targetCohort": "Target first-year students"
+    },
+    "programs": {
+      "title": "Featured programs",
+      "subtitle": "Two schools, one standard of excellence.",
+      "empty": "Programs are being updated. Please check back shortly.",
+      "unavailable": "We couldn't load programs right now. Please try again later."
+    },
+    "news": {
+      "title": "Latest news",
+      "subtitle": "What's happening across the campus.",
+      "empty": "No news articles yet."
+    },
+    "events": {
+      "title": "Upcoming events",
+      "subtitle": "Open days, seminars and graduations.",
+      "empty": "No upcoming events."
+    },
+    "cta": {
+      "title": "Ready to join Trustech?",
+      "subtitle": "Applications for the next intake are open. It takes about 15 minutes to start.",
+      "button": "Apply now"
+    }
+  },
+  "programs": {
+    "meta": {
+      "title": "Academic programs",
+      "description": "Explore business and biomedical science programs at Trustech Higher Institute."
+    },
+    "title": "Academic programs",
+    "subtitle": "Find the program that fits your ambition.",
+    "filters": {
+      "school": "School",
+      "level": "Level",
+      "campus": "Campus",
+      "all": "All"
+    },
+    "duration": "{years, plural, one {# year} other {# years}}",
+    "tuition": "Tuition",
+    "level": "Level",
+    "empty": "No programs match your filters.",
+    "notFound": "That program could not be found."
+  },
+  "about": {
+    "meta": {
+      "title": "About us",
+      "description": "Our history, mission, vision and leadership at Trustech Higher Institute."
+    },
+    "title": "About Trustech",
+    "subtitle": "Who we are and what we stand for.",
+    "history": "Our history",
+    "historyBody": "Trustech Higher Institute of Business and Biomedical Sciences is a new private bilingual institution in Douala, created to offer accessible, technology-enabled higher education for Cameroon’s next generation of professionals.",
+    "mission": "Our mission",
+    "missionBody": "To help students develop the knowledge, practical capability and professional confidence needed to contribute meaningfully in business and health-related fields.",
+    "vision": "Our vision",
+    "visionBody": "To grow into a trusted higher-education community known for practical learning, clear student support and strong links to professional opportunity.",
+    "values": "Core values",
+    "valuesBody": "We are building the institution around student focus, integrity, practical learning, respect for bilingual communities and continuous improvement.",
+    "nextTitle": "Building with our community",
+    "nextBody": "Detailed information about leadership, campus facilities and programme approval will be maintained through the institutional content system as it is confirmed and published."
+  },
+  "admissions": {
+    "meta": {
+      "title": "Admissions",
+      "description": "Understand the admissions journey and prepare for a Trustech application."
+    },
+    "title": "Admissions",
+    "subtitle": "Plan your application with clear steps and support when you need it.",
+    "howTitle": "Your application journey",
+    "steps": {
+      "choose": {
+        "title": "Choose your programme",
+        "body": "Review the available Business and Biomedical Science programmes, then identify the course that best fits your goals."
+      },
+      "prepare": {
+        "title": "Prepare your information",
+        "body": "Gather your personal details, academic history and the supporting documents required for your chosen programme."
+      },
+      "submit": {
+        "title": "Submit and follow progress",
+        "body": "The online application workflow and status tracking will guide you through review and the next steps."
+      }
+    },
+    "helpTitle": "Need admissions guidance?",
+    "helpBody": "Our admissions team can help you understand the process and prepare before you submit an application.",
+    "helpCta": "Contact admissions",
+    "readyTitle": "Ready to begin?",
+    "readyBody": "Create an applicant account to prepare for the online application and keep your details in one place.",
+    "readyCta": "Create an applicant account"
+  },
+  "auth": {
+    "fullName": "Full name",
+    "email": "Email address",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "submitting": "Please wait…",
+    "passwordMismatch": "Your passwords do not match.",
+    "serviceUnavailable": "The account service is unavailable. Please try again shortly.",
+    "unexpectedError": "We could not complete that request. Please try again.",
+    "hasAccount": "Already have an applicant account?",
+    "needsAccount": "New to Trustech admissions?",
+    "loginLink": "Sign in",
+    "registerLink": "Create an account",
+    "login": {
+      "meta": { "title": "Applicant sign in", "description": "Sign in to your Trustech applicant account." },
+      "title": "Sign in to admissions",
+      "subtitle": "Use the email and password you created for your applicant account.",
+      "submit": "Sign in"
+    },
+    "register": {
+      "meta": { "title": "Create applicant account", "description": "Create a Trustech applicant account to begin preparing your admission application." },
+      "title": "Create your applicant account",
+      "subtitle": "Your account lets you prepare and follow your admissions application.",
+      "submit": "Create account"
+    }
+  },
+  "application": {
+    "meta": { "title": "Start application", "description": "Start and save your Trustech admissions application." },
+    "accountTitle": "Sign in to start your application",
+    "accountBody": "Create an applicant account or sign in to begin an application draft and save your progress.",
+    "signIn": "Sign in",
+    "createAccount": "Create an account",
+    "title": "Start your application",
+    "subtitle": "Save the first details of your application now. You can complete supporting documents and academic information in the following steps.",
+    "personalTitle": "Your details",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phone": "Primary phone number",
+    "programmeTitle": "Your programme choice",
+    "programme": "First-choice programme",
+    "programmePlaceholder": "Choose a programme",
+    "intake": "Intake",
+    "programsUnavailable": "Programmes are unavailable at the moment. Please try again shortly.",
+    "serviceUnavailable": "The application service is unavailable. Please try again shortly.",
+    "unexpectedError": "We could not save your application draft. Please try again.",
+    "saving": "Saving draft…",
+    "saveDraft": "Save and continue",
+    "successTitle": "Your application draft has been created",
+    "successBody": "Your reference is {reference}. Keep it safe; the next steps will help you upload documents and complete your application.",
+    "draftReference": "Application reference: {reference}",
+    "academicTitle": "Add your academic history",
+    "academicBody": "Provide one completed or current qualification to submit your application for staff review.",
+    "academicHistoryTitle": "Academic record",
+    "qualification": "Qualification",
+    "institution": "School or institution",
+    "completionYear": "Completion year",
+    "submitting": "Submitting application…",
+    "submitApplication": "Submit application for review",
+    "submittedTitle": "Your application has been submitted",
+    "submittedBody": "Your reference is {reference}. Our admissions team will review your application and update its status here.",
+    "viewStatus": "View application status"
+  },
+  "tracker": {
+    "meta": { "title": "Application status", "description": "Review the status and timeline of your Trustech admission applications." },
+    "accountTitle": "Sign in to view your application status",
+    "accountBody": "Use your applicant account to review saved applications and admissions updates.",
+    "signIn": "Sign in",
+    "createAccount": "Create an account",
+    "title": "Your application status",
+    "subtitle": "Review your submitted applications and their admissions timeline.",
+    "loading": "Loading your applications…",
+    "empty": "You do not have an application yet.",
+    "startApplication": "Start an application",
+    "viewTimeline": "View timeline",
+    "timelineTitle": "Status timeline",
+    "close": "Close",
+    "serviceUnavailable": "The admissions service is unavailable. Please try again shortly.",
+    "unexpectedError": "We could not load your application status. Please try again."
+  },
+  "reviewQueue": {
+    "meta": { "title": "Admissions review", "description": "Review and update admission applications." },
+    "accessTitle": "Staff access required",
+    "accessBody": "Sign in with a registrar or authorised administrator account to review applications.",
+    "title": "Admissions review queue",
+    "subtitle": "Review applications and record the next admissions status with an auditable comment.",
+    "loading": "Loading applications…",
+    "empty": "There are no applications awaiting review.",
+    "newStatus": "New status",
+    "comment": "Review comment (optional)",
+    "saving": "Saving…",
+    "save": "Save review decision",
+    "serviceUnavailable": "The admissions service is unavailable. Please try again shortly.",
+    "unexpectedError": "We could not update this application. Please try again."
+  },
+  "news": {
+    "meta": {
+      "title": "News",
+      "description": "News and announcements from Trustech Higher Institute."
+    },
+    "title": "News",
+    "subtitle": "Announcements, stories and updates.",
+    "empty": "No news articles yet.",
+    "publishedOn": "Published on {date}"
+  },
+  "events": {
+    "meta": {
+      "title": "Events",
+      "description": "Upcoming events, open days and seminars at Trustech Higher Institute."
+    },
+    "title": "Events",
+    "subtitle": "Come and meet us.",
+    "empty": "No upcoming events.",
+    "date": "Date and time",
+    "venue": "Venue",
+    "register": "Register",
+    "addToCalendar": "Add to calendar"
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact us",
+      "description": "Get in touch with Trustech Higher Institute of Business & Biomedical Sciences."
+    },
+    "title": "Contact us",
+    "subtitle": "We usually reply within two working days.",
+    "form": {
+      "fullName": "Full name",
+      "email": "Email address",
+      "phone": "Phone number",
+      "phoneOptional": "Phone number (optional)",
+      "department": "Department",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send message",
+      "submitting": "Sending…",
+      "success": "Thank you — your message has been sent. Reference: {reference}",
+      "error": "Your message could not be sent. Please try again."
+    },
+    "validation": {
+      "fullNameRequired": "Please enter your full name.",
+      "emailRequired": "Please enter your email address.",
+      "emailInvalid": "Please enter a valid email address.",
+      "subjectRequired": "Please enter a subject.",
+      "messageRequired": "Please enter a message.",
+      "messageTooShort": "Your message must be at least 20 characters."
+    }
+  },
+  "privacy": {
+    "meta": { "title": "Privacy policy", "description": "How Trustech handles information shared through its website and admissions services." },
+    "title": "Privacy policy",
+    "subtitle": "How we handle information shared through Trustech digital services.",
+    "sections": {
+      "purpose": { "title": "Information we collect", "body": "We collect the information you choose to provide through contact and admissions services, including contact details, academic information and supporting documents where an application requires them." },
+      "commitment": { "title": "How we use it", "body": "Information is used to respond to enquiries, process applications, provide student services and meet institutional record-keeping obligations. We do not use it for unrelated purposes." },
+      "yourRole": { "title": "How we protect it", "body": "Access is limited to authorised staff and service providers who need the information to deliver the relevant service. We use role-based access, secure connections and operational controls to protect records." },
+      "contact": { "title": "Your choices", "body": "You may ask about the personal information held about you, request corrections, or raise a privacy concern through our contact page. Some records may need to be retained where required for an active application or institutional obligation." }
+    },
+    "reviewNote": "This policy will be reviewed as Trustech services and legal obligations develop. For a privacy request,",
+    "contactLink": "contact Trustech"
+  },
+  "terms": {
+    "meta": { "title": "Terms of use", "description": "Terms that apply to use of the Trustech website and digital services." },
+    "title": "Terms of use",
+    "subtitle": "The basic terms for using Trustech digital services.",
+    "sections": {
+      "purpose": { "title": "Using this website", "body": "You may use this website to learn about Trustech, explore programmes and access available digital services for lawful, personal or institutional purposes." },
+      "commitment": { "title": "Accurate information", "body": "When you submit an enquiry or application, you are responsible for providing information that is complete and accurate. Trustech may contact you to clarify or verify what you provide." },
+      "yourRole": { "title": "Responsible access", "body": "Do not attempt to disrupt the website, gain unauthorised access, submit misleading content, or use another person’s account or personal information without permission." },
+      "contact": { "title": "Changes and questions", "body": "Trustech may update these terms as its services develop. If you have a question about using the site or a digital service, please contact the institution before proceeding." }
+    },
+    "reviewNote": "These terms will be maintained alongside the release of new services. For a question about them,",
+    "contactLink": "contact Trustech"
+  },
+  "accessibility": {
+    "meta": { "title": "Accessibility", "description": "Trustech’s commitment to accessible digital services." },
+    "title": "Accessibility",
+    "subtitle": "Our commitment to making Trustech digital services usable by more people.",
+    "sections": {
+      "purpose": { "title": "Our commitment", "body": "We aim to make the website and future student services usable with keyboards, screen readers, clear content structure and responsive layouts across common devices." },
+      "commitment": { "title": "How we design", "body": "We use semantic page structure, visible keyboard focus, readable text, language-aware pages and colour choices that support clear contrast. We test public pages on mobile as well as desktop." },
+      "yourRole": { "title": "Known limits", "body": "As a new institution, some content and third-party services may not yet meet every accessibility need. We will prioritise improvements that affect access to admissions, student information and essential services." },
+      "contact": { "title": "Report a barrier", "body": "If a feature is difficult to use, tell us what you were trying to do, the device or assistive technology you used, and the page involved. We will use that feedback to improve the service." }
+    },
+    "reviewNote": "Accessibility feedback helps us improve the service. To report a barrier,",
+    "contactLink": "contact Trustech"
+  },
+  "footer": {
+    "tagline": "Business and biomedical education in Douala, Cameroon.",
+    "explore": "Explore",
+    "connect": "Connect",
+    "legal": "Legal",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "accessibility": "Accessibility",
+    "address": "Douala, Cameroon",
+    "rights": "© {year} Trustech Higher Institute. All rights reserved."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "subtitle": "The page you're looking for doesn't exist or has moved.",
+    "action": "Back to homepage"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "subtitle": "An unexpected error occurred. Please try again.",
+    "retry": "Try again"
+  }
+}
