@@ -35,3 +35,17 @@ export function formatDate(iso: string, locale = "en"): string {
     timeZone: "Africa/Douala",
   }).format(date);
 }
+
+/** Format a campus event in Douala local time, not the viewer's device zone. */
+export function formatEventDateTime(iso: string, locale = "en"): string {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "—";
+  return new Intl.DateTimeFormat(locale === "fr" ? "fr-CM" : "en-CM", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Africa/Douala",
+  }).format(date);
+}

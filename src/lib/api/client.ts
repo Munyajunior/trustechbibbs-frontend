@@ -21,9 +21,9 @@ import type {
   SuccessEnvelope,
 } from "./types";
 
-/** Base URL of the backend API, e.g. http://localhost:8000/api/v1 */
+/** Base URL of the backend API, e.g. http://localhost:18000/api/v1 */
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000/api/v1";
+  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:18000/api/v1";
 
 /**
  * A backend error, carrying the bilingual payload so callers can surface the
