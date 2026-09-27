@@ -32,6 +32,7 @@ function buildSchema(t: (key: string) => string) {
       .min(1, t("emailRequired"))
       .pipe(z.email(t("emailInvalid"))),
     phone: z.string().trim().optional(),
+    department: z.string().trim().min(1, t("departmentRequired")),
     subject: z.string().trim().min(1, t("subjectRequired")),
     message: z
       .string()
@@ -57,7 +58,7 @@ export function ContactForm() {
     formState: { errors },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { full_name: "", email: "", phone: "", subject: "", message: "" },
+    defaultValues: { full_name: "", email: "", phone: "", department: "", subject: "", message: "" },
   });
 
   const mutation = useMutation({
@@ -76,7 +77,7 @@ export function ContactForm() {
     <form
       noValidate
       onSubmit={handleSubmit((values) => mutation.mutate(values))}
-      className="max-w-xl space-y-5"
+      className="contact-form space-y-5"
     >
       {/* Status region — announced to screen readers. */}
       <div aria-live="polite">
@@ -135,6 +136,24 @@ export function ContactForm() {
       </div>
 
       <div>
+        <Label htmlFor="department" required>{t("department")}</Label>
+        <select
+          id="department"
+          aria-invalid={!!errors.department || undefined}
+          aria-describedby={errors.department ? "department-error" : undefined}
+          className={`h-11 w-full rounded-md border bg-white px-3 text-sm text-gray-900 ${errors.department ? "border-error" : "border-gray-300"}`}
+          {...register("department")}
+        >
+          <option value="">{t("chooseDepartment")}</option>
+          <option value="admissions">{t("departments.admissions")}</option>
+          <option value="registrar">{t("departments.registrar")}</option>
+          <option value="finance">{t("departments.finance")}</option>
+          <option value="general">{t("departments.general")}</option>
+        </select>
+        {errors.department && <p id="department-error" className="mt-1.5 text-sm text-error">{errors.department.message}</p>}
+      </div>
+
+      <div>
         <Label htmlFor="subject" required>
           {t("subject")}
         </Label>
@@ -168,9 +187,9 @@ export function ContactForm() {
         )}
       </div>
 
-      {/* TODO(Phase 1): reCAPTCHA + department routing select + 5MB attachment. */}
+      {/* TODO(Phase 1): add spam protection and attachment support before public launch. */}
 
-      <Button type="submit" size="lg" disabled={mutation.isPending}>
+      <Button type="submit" size="lg" variant="accent" className="w-full sm:w-auto" disabled={mutation.isPending}>
         {mutation.isPending ? t("submitting") : t("submit")}
       </Button>
     </form>

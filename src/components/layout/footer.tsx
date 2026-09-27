@@ -1,4 +1,5 @@
 import { MapPin } from "lucide-react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import { Container } from "@/components/shared/container";
@@ -14,24 +15,16 @@ const EXPLORE_LINKS = [
 export function Footer() {
   const t = useTranslations("footer");
   const tn = useTranslations("nav");
-  const tc = useTranslations("common");
 
   return (
-    <footer className="mt-auto border-t border-gray-200 bg-gray-50">
+    <footer className="mt-auto border-t border-[#e7eaf0] bg-[#f8faff]">
       <Container className="py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5">
-              <span
-                aria-hidden="true"
-                className="grid size-9 place-items-center rounded-md bg-primary font-display text-sm font-bold text-white"
-              >
-                T
-              </span>
-              <span className="font-display text-sm font-semibold text-gray-900">
-                {tc("brand")}
-              </span>
+              <Image src="/images/trustech-shield.jpg" alt="" width={48} height={48} className="size-12 object-contain" />
+              <span className="font-display text-base font-bold text-primary">{t("brand")}</span>
             </div>
             <p className="mt-3 max-w-sm text-sm text-gray-600">{t("tagline")}</p>
             <p className="mt-4 flex items-center gap-1.5 text-sm text-gray-600">

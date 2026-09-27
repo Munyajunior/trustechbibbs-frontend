@@ -51,7 +51,10 @@ export function ApplicantAuthForm({ locale, mode }: ApplicantAuthFormProps) {
         },
         result.tokens.access_token,
       );
-      router.push("/admissions/application");
+      if (result.user.roles.includes("student")) router.push("/student");
+      else if (result.user.roles.some((role) => ["registrar", "admin", "super_admin"].includes(role))) router.push("/staff/admissions");
+      else if (result.user.roles.includes("editor")) router.push("/staff/content");
+      else router.push("/admissions/status");
     } catch (caught) {
       if (caught instanceof ApiError) setError(caught.localizedMessage(locale));
       else if (caught instanceof ApiUnreachableError) setError(t("serviceUnavailable"));
