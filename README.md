@@ -1,90 +1,134 @@
-# React + Vite + Hono + Cloudflare Workers
+# THIBBS Frontend — Digital Campus Platform
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/vite-react-template)
+Next.js frontend for TRUSTECH UNIVERSITY INSTITUTE OF BUSINESS MANAGEMENT AND
+BIOMEDICAL SCIENCES (internal project code: THIBBS) — the bilingual (EN/FR) public website
+and, in later phases, the student and staff portals.
 
-This template provides a minimal setup for building a React application with TypeScript and Vite, designed to run on Cloudflare Workers. It features hot module replacement, ESLint integration, and the flexibility of Workers deployments.
+Talks to the FastAPI backend in [`../trustechbibbs-backend`](../trustechbibbs-backend).
 
-![React + TypeScript + Vite + Cloudflare Workers](https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/fc7b4b62-442b-4769-641b-ad4422d74300/public)
+> **New here? Start with [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md).**
 
-<!-- dash-content-start -->
+---
 
-🚀 Supercharge your web development with this powerful stack:
+## Stack
 
-- [**React**](https://react.dev/) - A modern UI library for building interactive interfaces
-- [**Vite**](https://vite.dev/) - Lightning-fast build tooling and development server
-- [**Hono**](https://hono.dev/) - Ultralight, modern backend framework
-- [**Cloudflare Workers**](https://developers.cloudflare.com/workers/) - Edge computing platform for global deployment
+| Concern      | Choice                                    |
+| ------------ | ----------------------------------------- |
+| Framework    | Next.js 16 (App Router) + React 19        |
+| Language     | TypeScript 5                              |
+| Styling      | TailwindCSS 4 (CSS-first `@theme` tokens) |
+| Components   | Shadcn-style primitives + lucide-react    |
+| Server state | TanStack Query v5                         |
+| Client state | Zustand                                   |
+| Forms        | react-hook-form + Zod v4                  |
+| i18n         | next-intl v4 (`/en`, `/fr`)               |
+| Animation    | motion (Framer Motion)                    |
+| Testing      | Jest + React Testing Library              |
 
-### ✨ Key Features
+Design system: **Trustech Design Language (TDL v1.0)** — see
+[docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md).
 
-- 🔥 Hot Module Replacement (HMR) for rapid development
-- 📦 TypeScript support out of the box
-- 🛠️ ESLint configuration included
-- ⚡ Zero-config deployment to Cloudflare's global network
-- 🎯 API routes with Hono's elegant routing
-- 🔄 Full-stack development setup
-- 🔎 Built-in Observability to monitor your Worker
+---
 
-Get started in minutes with local development or deploy directly via the Cloudflare dashboard. Perfect for building modern, performant web applications at the edge.
-
-<!-- dash-content-end -->
-
-## Getting Started
-
-To start a new project with this template, run:
-
-```bash
-npm create cloudflare@latest -- --template=cloudflare/templates/vite-react-template
-```
-
-A live deployment of this template is available at:
-[https://react-vite-template.templates.workers.dev](https://react-vite-template.templates.workers.dev)
-
-## Development
-
-Install dependencies:
+## Quickstart
 
 ```bash
 npm install
-```
-
-Start the development server with:
-
-```bash
+cp .env.example .env.local
 npm run dev
 ```
 
-Your application will be available at [http://localhost:5173](http://localhost:5173).
+→ **http://localhost:3000** (redirects to `/en`)
 
-## Production
+The site runs with the backend down — content sections degrade to placeholders.
+For real data, start the backend on `:8000`.
 
-Build your project for production:
+> First build needs internet: `next/font` fetches Poppins/Inter/JetBrains Mono
+> from Google Fonts, then self-hosts them.
 
-```bash
-npm run build
-```
-
-Preview your build locally:
+### Docker
 
 ```bash
-npm run preview
+docker build -t thibbs-frontend .
+docker run -p 3000:3000 --env-file .env.local thibbs-frontend
 ```
 
-Deploy your project to Cloudflare Workers:
+---
 
-```bash
-npm run build && npm run deploy
+## Scripts
+
+| Command              | What it does                                |
+| -------------------- | ------------------------------------------- |
+| `npm run dev`        | Dev server with HMR                         |
+| `npm run build`      | Production build (type-checks + prerenders) |
+| `npm start`          | Serve the production build                  |
+| `npm run lint`       | ESLint                                      |
+| `npm test`           | Jest + RTL                                  |
+| `npm run test:watch` | Jest watch mode                             |
+
+Next 16 dropped the `eslint` key from `next.config.ts`, so **`build` no longer
+lints** — run `lint` as its own CI gate.
+
+---
+
+## Environment
+
+| Variable                   | Purpose                                  | Default                        |
+| -------------------------- | ---------------------------------------- | ------------------------------ |
+| `NEXT_PUBLIC_API_BASE_URL` | Backend base URL, including `/api/v1`    | `http://localhost:8000/api/v1` |
+| `NEXT_PUBLIC_SITE_URL`     | Public origin (canonical, sitemap, OG)   | `http://localhost:3000`        |
+| `NEXT_PUBLIC_ENV`          | `development` / `staging` / `production` | `development`                  |
+
+`NEXT_PUBLIC_*` is inlined into the browser bundle at build time — public, and
+baked in. Never put a secret there.
+
+---
+
+## Layout
+
+```
+src/
+  app/[locale]/     Pages (home, about, programs[/slug], news, events, contact)
+  components/       ui/ · layout/ · shared/ · features/ · providers
+  lib/api/          Typed API client — the only place that calls fetch
+  lib/              utils · fonts · json-ld · i18n-field · query-keys
+  i18n/             routing · navigation · request · deep-merge
+  messages/         en.json · fr.json
+  stores/           Zustand (client state only)
+  proxy.ts          Locale negotiation (Next 16's name for middleware)
 ```
 
-Monitor your workers:
+---
 
-```bash
-npx wrangler tail
-```
+## Documentation
 
-## Additional Resources
+| Document                                      | What's in it                                                  |
+| --------------------------------------------- | ------------------------------------------------------------- |
+| [DEVELOPMENT.md](docs/DEVELOPMENT.md)         | Setup, env, scripts, adding pages/components, troubleshooting  |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md)       | App Router, server vs client, data fetching, state boundaries  |
+| [DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md)     | Colour, type, spacing, components, a11y checklist              |
+| [I18N.md](docs/I18N.md)                       | next-intl setup, EN/FR parity, fallback, new locales           |
+| [PERFORMANCE_SEO.md](docs/PERFORMANCE_SEO.md) | Budgets, ISR, images, metadata, structured data                |
+| [CONTRIBUTING.md](CONTRIBUTING.md)            | Branches, commits, style, PR checklist                         |
 
-- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
-- [Vite Documentation](https://vitejs.dev/guide/)
-- [React Documentation](https://reactjs.org/)
-- [Hono Documentation](https://hono.dev/)
+Product specs (BRD, SRS, FRS, UAS) live in the parent directory.
+
+---
+
+## Non-negotiables
+
+- **Mobile-first**: everything works at **320px**.
+- **Bilingual**: every string in `en.json` *and* `fr.json`; French runs ~15–20% longer.
+- **WCAG 2.2 AA**: keyboard reachable, visible focus, labelled inputs, ≥4.5:1 contrast.
+- **Budget**: initial JS < 200KB, LCP < 2.5s on 3G. Server components by default.
+- **Tokens, not hex codes.**
+- Navigation imports come from `@/i18n/navigation`, never `next/link`.
+
+---
+
+## Status
+
+Phase 1 scaffold. Homepage, program catalogue + detail (with Schema.org JSON-LD),
+about, news, events and a working contact form are wired to the API client with
+graceful degradation. Pages marked `TODO(Phase 1)` still need their filters,
+calendar views, CMS content and the admissions wizard — the plumbing is in place.
