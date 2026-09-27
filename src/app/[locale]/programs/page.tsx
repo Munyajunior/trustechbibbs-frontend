@@ -1,9 +1,9 @@
+import Image from "next/image";
+import { ArrowRight, BriefcaseBusiness, Cpu, GraduationCap, HeartPulse, Landmark, Leaf, Plane } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Container } from "@/components/shared/container";
-import { PageHeader } from "@/components/shared/page-header";
-import { Badge, Card, CardContent } from "@/components/ui/card";
 import { Link } from "@/i18n/navigation";
 import { getPrograms } from "@/lib/api/public";
 import { safeFetch } from "@/lib/api/safe";
@@ -11,97 +11,110 @@ import type { Locale, Paginated, Program } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
 import { formatCurrency } from "@/lib/utils";
 
-/**
- * Program catalogue is evergreen — revalidate daily.
- * Literal required (see note in src/app/[locale]/page.tsx); mirrors
- * `REVALIDATE.static`.
- */
 export const revalidate = 86400;
-
 type PageProps = { params: Promise<{ locale: string }> };
+
+const schools = [
+  { key: "business", icon: BriefcaseBusiness, image: "/images/school-business-management.png" },
+  { key: "health", icon: HeartPulse, image: "/images/school-health.png" },
+  { key: "engineering", icon: Cpu, image: "/images/school-engineering.png" },
+  { key: "education", icon: GraduationCap, image: "/images/school-education.png" },
+  { key: "communication", icon: Landmark, image: "/images/school-communication.png" },
+  { key: "tourism", icon: Plane, image: "/images/school-tourism.png" },
+  { key: "agriculture", icon: Leaf, image: "/images/school-agriculture.png" },
+] as const;
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "programs.meta" });
-  return {
-    title: t("title"),
-    description: t("description"),
-    alternates: {
-      canonical: `/${locale}/programs`,
-      languages: { en: "/en/programs", fr: "/fr/programs" },
-    },
-  };
+  return { title: t("title"), description: t("description"), alternates: {
+    canonical: `/${locale}/programs`, languages: { en: "/en/programs", fr: "/fr/programs" },
+  } };
 }
 
 export default async function ProgramsPage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
-
   const t = await getTranslations("programs");
+  const th = await getTranslations("home.schools");
   const loc = locale as Locale;
-
   const { data } = await safeFetch<Paginated<Program>>(
-    getPrograms({ per_page: 12 }, { locale: loc }),
-    {
-      items: [],
-      pagination: {
-        page: 1,
-        per_page: 0,
-        total: 0,
-        total_pages: 0,
-        has_next: false,
-        has_previous: false,
-      },
-    },
+    getPrograms({ per_page: 100 }, { locale: loc }),
+    { items: [], pagination: { page: 1, per_page: 0, total: 0, total_pages: 0, has_next: false, has_previous: false } },
     "programs:list",
   );
 
   return (
-    <>
-      <PageHeader title={t("title")} subtitle={t("subtitle")} />
-      <Container className="py-12">
-        {/*
-          TODO(Phase 1): filter bar (school / level / campus) + autocomplete
-          search + pagination. Wire to the `search`, `sort` and `page` query
-          params already supported by getPrograms().
-        */}
-        {data.items.length > 0 ? (
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {data.items.map((program) => (
-              <li key={program.id}>
-                <Card interactive className="h-full">
-                  <CardContent className="flex h-full flex-col">
-                    <Badge tone="accent">{program.level}</Badge>
-                    <h2 className="mt-3 font-display text-lg font-semibold text-gray-900">
-                      <Link
-                        href={`/programs/${program.slug}`}
-                        className="after:absolute after:inset-0"
-                      >
-                        {localizedField(program, "name", loc)}
-                      </Link>
-                    </h2>
-                    <p className="mt-2 line-clamp-3 flex-1 text-sm text-gray-600">
-                      {localizedField(program, "description", loc)}
-                    </p>
-                    <dl className="mt-4 space-y-1 text-sm text-gray-500">
-                      <div className="flex justify-between gap-2">
-                        <dt>{t("tuition")}</dt>
-                        <dd className="font-medium text-gray-900">
-                          {formatCurrency(program.tuition_fee, program.currency, loc)}
-                        </dd>
-                      </div>
-                    </dl>
-                  </CardContent>
-                </Card>
-              </li>
+    <div className="home-editorial catalogue-page">
+      <section className="catalogue-hero" aria-labelledby="catalogue-title">
+        <Container className="catalogue-hero-inner">
+          <div className="catalogue-hero-copy">
+            <p className="home-kicker">{t("eyebrow")}</p>
+            <h1 id="catalogue-title">{t("title")}</h1>
+            <p>{t("subtitle")}</p>
+            <div className="home-actions">
+              <a className="home-button home-button-gold" href="#schools">{t("exploreSchools")}<ArrowRight aria-hidden="true" size={18} /></a>
+              <Link className="home-button home-button-outline" href="/admissions">{t("admissionsCta")}</Link>
+            </div>
+          </div>
+          <div className="catalogue-hero-visual">
+            <Image src="/images/school-engineering.png" alt="" fill priority sizes="(max-width: 700px) 100vw, 48vw" className="object-cover" />
+            <span className="catalogue-hero-stamp">{t("sevenSchools")}</span>
+          </div>
+        </Container>
+      </section>
+
+      <section className="catalogue-schools" id="schools" aria-labelledby="catalogue-schools-heading">
+        <Container>
+          <div className="home-section-heading home-section-heading-split">
+            <div><p className="home-kicker">{t("schoolsEyebrow")}</p><h2 id="catalogue-schools-heading">{t("schoolsTitle")}</h2></div>
+            <p>{t("schoolsIntro")}</p>
+          </div>
+          <div className="home-school-grid">
+            {schools.map(({ key, icon: Icon, image }, index) => (
+              <article className={`home-school-card ${index < 2 ? "home-school-card-image" : "home-school-card-compact"}`} key={key}>
+                <div className="home-school-image-wrap"><Image src={image} alt="" fill sizes={index < 2 ? "(max-width: 700px) 100vw, 50vw" : "(max-width: 700px) 100vw, 33vw"} className="object-cover" /></div>
+                <div className="home-school-copy">
+                  <span className={`home-school-icon${index % 2 ? " home-school-icon-gold" : ""}`}><Icon aria-hidden="true" size={25} strokeWidth={1.7} /></span>
+                  <h3>{th(`${key}.title`)}</h3><p>{th(`${key}.body`)}</p>
+                  <Link className="home-text-link" href="/contact">{t("enquire")}<ArrowRight aria-hidden="true" size={17} /></Link>
+                </div>
+              </article>
             ))}
-          </ul>
-        ) : (
-          <p className="rounded-lg border border-dashed border-gray-300 bg-gray-50 p-10 text-center text-sm text-gray-500">
-            {t("empty")}
-          </p>
-        )}
-      </Container>
-    </>
+          </div>
+        </Container>
+      </section>
+
+      <section className="catalogue-listing" id="catalogue" aria-labelledby="catalogue-listing-heading">
+        <Container>
+          <div className="home-section-heading home-section-heading-split">
+            <div><p className="home-kicker">{t("listingEyebrow")}</p><h2 id="catalogue-listing-heading">{t("listingTitle")}</h2></div>
+            <p>{t("listingIntro")}</p>
+          </div>
+          {data.items.length > 0 ? (
+            <>
+              <ul className="catalogue-program-grid">
+                {data.items.map((program) => (
+                  <li key={program.id}><article className="catalogue-program-card">
+                    <span className="catalogue-level">{program.level}</span>
+                    <h3><Link href={`/programs/${program.slug}`}>{localizedField(program, "name", loc)}</Link></h3>
+                    {program.school_name_en ? <p className="catalogue-program-school">{localizedField(program, "school_name", loc)}</p> : null}
+                    <p className="catalogue-program-description">{localizedField(program, "description", loc)}</p>
+                    <div className="catalogue-program-meta"><span>{t("duration", { years: program.duration_years })}</span><span>{t("tuition")}: {formatCurrency(program.tuition_fee, program.currency, loc)}</span></div>
+                    <Link className="home-text-link" href={`/programs/${program.slug}`}>{t("viewProgram")}<ArrowRight aria-hidden="true" size={17} /></Link>
+                  </article></li>
+                ))}
+              </ul>
+              {data.pagination.has_next ? <p className="catalogue-more-note">{t("moreProgramsNote")}</p> : null}
+            </>
+          ) : (
+            <div className="catalogue-empty">
+              <div><span className="catalogue-empty-rule" /><h3>{t("emptyTitle")}</h3><p>{t("emptyBody")}</p></div>
+              <Link className="home-button home-button-gold" href="/contact">{t("enquire")}<ArrowRight aria-hidden="true" size={18} /></Link>
+            </div>
+          )}
+        </Container>
+      </section>
+    </div>
   );
 }

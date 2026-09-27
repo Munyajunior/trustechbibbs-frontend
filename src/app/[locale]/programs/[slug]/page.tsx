@@ -88,7 +88,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
     timeToComplete: `P${program.duration_years}Y`,
     provider: {
       "@type": "CollegeOrUniversity",
-      name: "Trustech Higher Institute of Business and Biomedical Sciences",
+      name: "TRUSTECH UNIVERSITY INSTITUTE OF BUSINESS MANAGEMENT AND BIOMEDICAL SCIENCES",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Douala",

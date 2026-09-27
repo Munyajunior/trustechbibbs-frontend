@@ -28,6 +28,7 @@ export async function generateMetadata({
 }: Omit<LayoutProps, "children">): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "home.meta" });
+  const tc = await getTranslations({ locale, namespace: "common" });
 
   return {
     title: {
@@ -46,7 +47,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       locale: locale === "fr" ? "fr_CM" : "en_CM",
-      siteName: "Trustech Higher Institute",
+      siteName: tc("brand"),
       title: t("title"),
       description: t("description"),
     },
