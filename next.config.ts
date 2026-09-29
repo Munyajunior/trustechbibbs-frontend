@@ -6,6 +6,10 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // The parent workspace has its own lockfile; pin route discovery to this app.
+  turbopack: { root: process.cwd() },
+  // Allow verification builds to avoid a Windows-locked preview output folder.
+  ...(process.env.TRUSTECH_BUILD_DIST_DIR ? { distDir: process.env.TRUSTECH_BUILD_DIST_DIR } : {}),
 
   // Fail the production build on type errors rather than shipping them.
   // (Next 16 removed the `eslint` config key — linting is a separate
