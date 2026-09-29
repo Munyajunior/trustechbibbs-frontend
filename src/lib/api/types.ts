@@ -83,8 +83,6 @@ export interface Program {
   description_fr: string | null;
   level: ProgramLevel;
   duration_years: number;
-  tuition_fee: string; // DECIMAL serialized as string to avoid float drift
-  currency: string; // "XAF"
   school_name_en?: string | null;
   school_name_fr?: string | null;
   campus_id?: string | null;

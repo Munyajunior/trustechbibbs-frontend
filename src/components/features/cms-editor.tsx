@@ -218,7 +218,7 @@ export function CmsEditor({ locale }: CmsEditorProps) {
     ? localDateTime(selected.published_at) : "";
 
   return <div className="cms-workspace"><Container>
-    <div className="cms-heading"><div><p className="cms-eyebrow">{t("eyebrow")}</p><h1>{t("title")}</h1><p>{t("subtitle")}</p>{user?.roles.some((role) => ["admin", "super_admin"].includes(role)) && <Link className="cms-review-link" href="/staff/admissions">{t("reviewLink")}</Link>}</div><Button variant="accent" onClick={newDraft}><Plus aria-hidden="true" />{kind === "news" ? t("newNews") : t("newEvent")}</Button></div>
+    <div className="cms-heading"><div><p className="cms-eyebrow">{t("eyebrow")}</p><h1>{t("title")}</h1><p>{t("subtitle")}</p><div className="flex flex-wrap gap-5"><Link className="cms-review-link" href="/staff/programs">{t("programsLink")}</Link>{user?.roles.some((role) => ["admin", "super_admin"].includes(role)) && <Link className="cms-review-link" href="/staff/admissions">{t("reviewLink")}</Link>}</div></div><Button variant="accent" onClick={newDraft}><Plus aria-hidden="true" />{kind === "news" ? t("newNews") : t("newEvent")}</Button></div>
     <div className="cms-kind-switch" aria-label={t("title")}><button type="button" aria-pressed={kind === "news"} onClick={() => switchKind("news")}><FileText aria-hidden="true" size={19} />{t("news")}</button><button type="button" aria-pressed={kind === "events"} onClick={() => switchKind("events")}><CalendarDays aria-hidden="true" size={19} />{t("events")}</button></div>
     {error && <p className="cms-feedback cms-feedback-error" role="alert">{error}</p>}
     {notice && <p className="cms-feedback cms-feedback-success" role="status">{notice}</p>}

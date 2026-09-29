@@ -1,20 +1,24 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { LogOut, Menu, X } from "lucide-react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { Container } from "@/components/shared/container";
 import { buttonVariants } from "@/components/ui/button";
-import { Link, usePathname } from "@/i18n/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { logoutSession } from "@/lib/api/auth";
+import { ApiError } from "@/lib/api/client";
+import type { Locale } from "@/lib/api/types";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/stores/auth-store";
 
 const NAV_ITEMS = [
   { href: "/", key: "home" },
   { href: "/about", key: "about" },
+  { href: "/schools", key: "schools" },
   { href: "/programs", key: "programs" },
   { href: "/admissions", key: "admissions" },
   { href: "/news", key: "news" },
@@ -25,10 +29,15 @@ const NAV_ITEMS = [
 export function Header() {
   const t = useTranslations("nav");
   const tc = useTranslations("common");
+  const locale = useLocale() as Locale;
+  const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [signOutBusy, setSignOutBusy] = useState(false);
+  const [signOutError, setSignOutError] = useState(false);
   const user = useAuthStore((state) => state.user);
   const token = useAuthStore((state) => state.accessToken);
+  const clearSession = useAuthStore((state) => state.clearSession);
   const accountHref = !token || !user
     ? "/login"
     : user.roles.includes("student")
@@ -39,6 +48,27 @@ export function Header() {
           ? "/staff/content"
         : "/admissions/status";
   const accountLabel = token && user ? tc("myAccount") : tc("signIn");
+
+  async function handleSignOut() {
+    if (!token || signOutBusy) return;
+    setSignOutBusy(true);
+    setSignOutError(false);
+    try {
+      await logoutSession(token, locale);
+      clearSession();
+      setOpen(false);
+      router.push("/");
+    } catch (error) {
+      if (error instanceof ApiError && error.status === 401) {
+        clearSession();
+        router.push("/");
+      } else {
+        setSignOutError(true);
+      }
+    } finally {
+      setSignOutBusy(false);
+    }
+  }
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#e8e9ee] bg-white/95 backdrop-blur-md">
@@ -65,7 +95,7 @@ export function Header() {
           </Link>
 
           {/* Desktop nav */}
-          <nav aria-label="Main" className="hidden lg:block">
+          <nav aria-label="Main" className="hidden xl:block">
             <ul className="flex items-center gap-0">
               {NAV_ITEMS.map((item) => {
                 const active =
@@ -93,9 +123,10 @@ export function Header() {
           </nav>
 
           {/* Desktop actions */}
-          <div className="hidden items-center gap-2 lg:flex">
+          <div className="hidden items-center gap-2 xl:flex">
             <LanguageSwitcher />
             <Link href={accountHref} className="hidden rounded-md px-3 py-2 text-sm font-medium text-primary hover:bg-primary-subtle 2xl:block">{accountLabel}</Link>
+            {token && user && <button type="button" onClick={handleSignOut} disabled={signOutBusy} className="inline-flex items-center gap-1.5 rounded-md px-2 py-2 text-xs font-medium text-gray-600 hover:bg-primary-subtle hover:text-primary disabled:opacity-50"><LogOut aria-hidden="true" size={15} />{tc("signOut")}</button>}
             <Link
               href="/admissions"
               className={buttonVariants({ variant: "accent", size: "sm" })}
@@ -111,16 +142,17 @@ export function Header() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? tc("closeMenu") : tc("openMenu")}
-            className="grid size-11 place-items-center rounded-md text-gray-700 lg:hidden"
+            className="grid size-11 place-items-center rounded-md text-gray-700 xl:hidden"
           >
             {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
           </button>
         </div>
       </Container>
+      {signOutError && <p role="alert" className="border-t border-red-100 bg-red-50 px-4 py-2 text-center text-sm text-red-700">{tc("signOutFailed")}</p>}
 
       {/* Mobile menu */}
       {open && (
-        <div id="mobile-menu" className="border-t border-gray-200 bg-white lg:hidden">
+        <div id="mobile-menu" className="border-t border-gray-200 bg-white xl:hidden">
           <Container className="py-4">
             <nav aria-label="Mobile">
               <ul className="flex flex-col gap-1">
@@ -137,9 +169,10 @@ export function Header() {
                 ))}
               </ul>
             </nav>
-            <div className="mt-4 flex items-center justify-between gap-3 border-t border-gray-100 pt-4">
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-4">
               <LanguageSwitcher />
               <Link href={accountHref} onClick={() => setOpen(false)} className="text-sm font-semibold text-primary">{accountLabel}</Link>
+              {token && user && <button type="button" onClick={handleSignOut} disabled={signOutBusy} className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary disabled:opacity-50"><LogOut aria-hidden="true" size={16} />{tc("signOut")}</button>}
               <Link
                 href="/admissions"
                 onClick={() => setOpen(false)}

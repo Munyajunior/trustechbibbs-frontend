@@ -33,6 +33,7 @@ export function registerApplicant(payload: RegisterPayload, locale: Locale): Pro
     body: payload,
     locale,
     cache: "no-store",
+    credentials: "include",
   });
 }
 
@@ -45,5 +46,33 @@ export function loginApplicant(
     body: payload,
     locale,
     cache: "no-store",
+    credentials: "include",
+  });
+}
+
+export function refreshSession(locale: Locale): Promise<AuthResult["tokens"]> {
+  return apiRequest<AuthResult["tokens"]>("/auth/refresh", {
+    method: "POST",
+    locale,
+    cache: "no-store",
+    credentials: "include",
+  });
+}
+
+export function getCurrentUser(token: string, locale: Locale): Promise<AuthenticatedUser> {
+  return apiRequest<AuthenticatedUser>("/auth/me", {
+    token,
+    locale,
+    cache: "no-store",
+  });
+}
+
+export function logoutSession(token: string, locale: Locale): Promise<{ logged_out: boolean }> {
+  return apiRequest<{ logged_out: boolean }>("/auth/logout", {
+    method: "POST",
+    token,
+    locale,
+    cache: "no-store",
+    credentials: "include",
   });
 }

@@ -1,5 +1,6 @@
-import { apiList, apiRequest } from "./client";
+import { API_BASE_URL, ApiError, ApiUnreachableError, apiList, apiRequest } from "./client";
 import type { Locale, Paginated, Program } from "./types";
+import type { ApiErrorBody, Envelope } from "./types";
 
 export interface ApplicationDraftPayload {
   program_first_choice: string;
@@ -49,6 +50,58 @@ export interface ReviewApplicationListItem {
   program_first_choice: string;
   applicant_id: string;
   created_at: string;
+}
+
+export interface ApplicationDocument {
+  id: string;
+  kind: string;
+  filename: string;
+  content_type: string;
+  size_bytes: number;
+  uploaded_at: string;
+  has_thumbnail: boolean;
+}
+
+export function listApplicationDocuments(applicationId: string, token: string, locale: Locale): Promise<ApplicationDocument[]> {
+  return apiRequest<ApplicationDocument[]>(`/admissions/applications/${applicationId}/documents`, { token, locale, cache: "no-store" });
+}
+
+export async function uploadApplicationDocument(applicationId: string, kind: string, file: File, token: string, locale: Locale): Promise<ApplicationDocument> {
+  const body = new FormData();
+  body.append("file", file);
+  let response: Response;
+  try {
+    response = await fetch(`${API_BASE_URL.replace(/\/$/, "")}/admissions/applications/${applicationId}/documents/${kind}`, {
+      method: "PUT",
+      headers: { Authorization: `Bearer ${token}`, "Accept-Language": locale },
+      body,
+      cache: "no-store",
+    });
+  } catch (cause) {
+    throw new ApiUnreachableError(cause);
+  }
+  const payload = await response.json().catch(() => null) as Envelope<ApplicationDocument> | null;
+  if (!response.ok || !payload || !payload.success) {
+    const fallback: ApiErrorBody = { code: "UPLOAD_FAILED", message_en: "The document could not be uploaded.", message_fr: "Le document n’a pas pu être téléversé.", details: [], reference_id: "n/a" };
+    throw new ApiError(response.status, payload && !payload.success ? payload.error : fallback);
+  }
+  return payload.data;
+}
+
+export async function getApplicationDocumentPreview(applicationId: string, kind: string, token: string, locale: Locale): Promise<Blob> {
+  let response: Response;
+  try {
+    response = await fetch(`${API_BASE_URL.replace(/\/$/, "")}/admissions/applications/${applicationId}/documents/${kind}`, {
+      headers: { Authorization: `Bearer ${token}`, "Accept-Language": locale }, cache: "no-store",
+    });
+  } catch (cause) {
+    throw new ApiUnreachableError(cause);
+  }
+  if (!response.ok) {
+    const payload = await response.json().catch(() => null);
+    throw new ApiError(response.status, payload?.error ?? { code: "PREVIEW_FAILED", message_en: "Preview unavailable.", message_fr: "Aperçu indisponible.", details: [], reference_id: "n/a" });
+  }
+  return response.blob();
 }
 
 export function getApplicationPrograms(locale: Locale): Promise<Paginated<Program>> {
@@ -135,6 +188,18 @@ export function getApplicationsForReview(
     token,
     locale,
     query: { per_page: 50, status },
+    cache: "no-store",
+  });
+}
+
+export function getApplicationForReview(
+  applicationId: string,
+  token: string,
+  locale: Locale,
+): Promise<ApplicationDetail> {
+  return apiRequest<ApplicationDetail>(`/admissions/applications/${applicationId}/review`, {
+    token,
+    locale,
     cache: "no-store",
   });
 }

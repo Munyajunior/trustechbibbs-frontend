@@ -6,6 +6,7 @@ import { Container } from "@/components/shared/container";
 import { Link } from "@/i18n/navigation";
 
 const EXPLORE_LINKS = [
+  { href: "/schools", key: "schools" },
   { href: "/programs", key: "programs" },
   { href: "/about", key: "about" },
   { href: "/news", key: "news" },
