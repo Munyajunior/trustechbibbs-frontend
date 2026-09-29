@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight, BookOpenText, ClipboardList, MapPin, MessageCircleMore, Wallet } from "lucide-react";
+import { ArrowRight, BookOpenText, ClipboardList, MapPin, MessageCircleMore, Phone, Wallet } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -58,6 +58,14 @@ export default async function ContactPage({ params }: PageProps) {
               </div>)}
             </div>
             <div className="contact-location"><MapPin aria-hidden="true" size={25} strokeWidth={1.6} /><div><strong>{t("location")}</strong><p>{t("visitNote")}</p></div></div>
+            <div className="contact-phone" aria-label={t("callUs")}>
+              <Phone aria-hidden="true" size={24} strokeWidth={1.6} />
+              <div>
+                <strong>{t("callUs")}</strong>
+                <a href="tel:+237640481078">+237 640 481 078</a>
+                <a href="tel:+237675502969">+237 675 502 969</a>
+              </div>
+            </div>
           </div>
           <div className="contact-form-panel" id="contact-form">
             <p className="home-kicker">{t("formEyebrow")}</p>

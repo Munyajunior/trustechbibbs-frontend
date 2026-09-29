@@ -9,9 +9,11 @@ import { getPrograms } from "@/lib/api/public";
 import { safeFetch } from "@/lib/api/safe";
 import type { Locale, Paginated, Program } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
-import { formatCurrency } from "@/lib/utils";
 
-export const revalidate = 86400;
+// Do not freeze the empty fallback into a day-long static build if the API is
+// temporarily unavailable during deployment. Successful API reads still use
+// their own 24-hour data cache in `getPrograms`.
+export const dynamic = "force-dynamic";
 type PageProps = { params: Promise<{ locale: string }> };
 
 const schools = [
@@ -74,10 +76,10 @@ export default async function ProgramsPage({ params }: PageProps) {
             {schools.map(({ key, icon: Icon, image }, index) => (
               <article className={`home-school-card ${index < 2 ? "home-school-card-image" : "home-school-card-compact"}`} key={key}>
                 <div className="home-school-image-wrap"><Image src={image} alt="" fill sizes={index < 2 ? "(max-width: 700px) 100vw, 50vw" : "(max-width: 700px) 100vw, 33vw"} className="object-cover" /></div>
-                <div className="home-school-copy">
+                  <div className="home-school-copy">
                   <span className={`home-school-icon${index % 2 ? " home-school-icon-gold" : ""}`}><Icon aria-hidden="true" size={25} strokeWidth={1.7} /></span>
                   <h3>{th(`${key}.title`)}</h3><p>{th(`${key}.body`)}</p>
-                  <Link className="home-text-link" href="/contact">{t("enquire")}<ArrowRight aria-hidden="true" size={17} /></Link>
+                  <Link className="home-text-link" href={`/schools/${key}`}>{t("exploreSchool")}<ArrowRight aria-hidden="true" size={17} /></Link>
                 </div>
               </article>
             ))}
@@ -100,7 +102,7 @@ export default async function ProgramsPage({ params }: PageProps) {
                     <h3><Link href={`/programs/${program.slug}`}>{localizedField(program, "name", loc)}</Link></h3>
                     {program.school_name_en ? <p className="catalogue-program-school">{localizedField(program, "school_name", loc)}</p> : null}
                     <p className="catalogue-program-description">{localizedField(program, "description", loc)}</p>
-                    <div className="catalogue-program-meta"><span>{t("duration", { years: program.duration_years })}</span><span>{t("tuition")}: {formatCurrency(program.tuition_fee, program.currency, loc)}</span></div>
+                    <div className="catalogue-program-meta"><span>{t("duration", { years: program.duration_years })}</span></div>
                     <Link className="home-text-link" href={`/programs/${program.slug}`}>{t("viewProgram")}<ArrowRight aria-hidden="true" size={17} /></Link>
                   </article></li>
                 ))}

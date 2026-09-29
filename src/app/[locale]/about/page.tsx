@@ -34,7 +34,7 @@ export default async function AboutPage({ params }: PageProps) {
             <h1 id="about-title">{t("heroTitle")}</h1>
             <p>{t("heroIntro")}</p>
             <div className="home-actions">
-              <Link className="home-button home-button-gold" href="/programs">{t("schoolsCta")}<ArrowRight aria-hidden="true" size={18} /></Link>
+              <Link className="home-button home-button-gold" href="/schools">{t("schoolsCta")}<ArrowRight aria-hidden="true" size={18} /></Link>
               <Link className="home-button home-button-outline" href="/contact">{t("contactCta")}</Link>
             </div>
           </div>
@@ -90,8 +90,8 @@ export default async function AboutPage({ params }: PageProps) {
         <Container className="about-schools-inner">
           <div className="about-schools-visual"><Image src="/images/school-education.png" alt="" fill sizes="(max-width: 700px) 100vw, 42vw" className="object-cover" /></div>
           <div className="about-schools-copy"><p className="home-kicker">{t("schoolsEyebrow")}</p><h2 id="about-schools-title">{t("schoolsTitle")}</h2><p>{t("schoolsIntro")}</p>
-            <ol>{schools.map((key, index) => <li key={key}><span>{String(index + 1).padStart(2, "0")}</span>{th(`${key}.title`)}</li>)}</ol>
-            <Link className="home-text-link" href="/programs">{t("schoolsCta")}<ArrowRight aria-hidden="true" size={17} /></Link>
+            <ol>{schools.map((key, index) => <li key={key}><span>{String(index + 1).padStart(2, "0")}</span><Link href={`/schools/${key}`}>{th(`${key}.title`)}</Link></li>)}</ol>
+            <Link className="home-text-link" href="/schools">{t("schoolsCta")}<ArrowRight aria-hidden="true" size={17} /></Link>
           </div>
         </Container>
       </section>

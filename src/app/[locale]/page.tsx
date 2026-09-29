@@ -59,7 +59,7 @@ export default async function HomePage({ params }: PageProps) {
                 <div className="home-school-copy">
                   <span className={`home-school-icon${index % 2 ? " home-school-icon-gold" : ""}`}><Icon aria-hidden="true" size={25} strokeWidth={1.7} /></span>
                   <h3>{t(`schools.${key}.title`)}</h3><p>{t(`schools.${key}.body`)}</p>
-                  <Link href="/programs" className="home-text-link">{t("schools.explore")}<ArrowRight aria-hidden="true" size={17} /></Link>
+                  <Link href={`/schools/${key}`} className="home-text-link">{t("schools.explore")}<ArrowRight aria-hidden="true" size={17} /></Link>
                 </div>
               </article>
             ))}

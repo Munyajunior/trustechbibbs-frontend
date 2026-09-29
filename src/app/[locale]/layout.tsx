@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+import { AuthSessionBootstrap } from "@/components/features/auth-session-bootstrap";
 import { Providers } from "@/components/providers";
 import { SkipLink } from "@/components/shared/skip-link";
 import { routing } from "@/i18n/routing";
@@ -71,6 +72,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
       <body className="flex min-h-dvh flex-col antialiased">
         <NextIntlClientProvider>
           <Providers>
+            <AuthSessionBootstrap locale={locale} />
             <SkipLink />
             <Header />
             <main id="main-content" className="flex-1">

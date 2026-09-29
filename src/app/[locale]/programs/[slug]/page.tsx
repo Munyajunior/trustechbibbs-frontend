@@ -11,7 +11,6 @@ import { getProgram } from "@/lib/api/public";
 import type { Locale, Program } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
 import { jsonLdScript } from "@/lib/json-ld";
-import { formatCurrency } from "@/lib/utils";
 
 /** Mirrors `REVALIDATE.static`; must be a literal for Next to apply it. */
 export const revalidate = 86400;
@@ -68,7 +67,6 @@ export default async function ProgramDetailPage({ params }: PageProps) {
   setRequestLocale(locale);
 
   const t = await getTranslations("programs");
-  const tc = await getTranslations("common");
   const loc = locale as Locale;
 
   const program = await loadProgram(slug, loc);
@@ -94,11 +92,6 @@ export default async function ProgramDetailPage({ params }: PageProps) {
         addressLocality: "Douala",
         addressCountry: "CM",
       },
-    },
-    offers: {
-      "@type": "Offer",
-      price: program.tuition_fee,
-      priceCurrency: program.currency,
     },
   };
 
@@ -132,13 +125,8 @@ export default async function ProgramDetailPage({ params }: PageProps) {
             <div>
               <dt className="text-gray-500">{t("duration", { years: program.duration_years })}</dt>
             </div>
-            <div>
-              <dt className="text-gray-500">{t("tuition")}</dt>
-              <dd className="mt-0.5 font-medium text-gray-900">
-                {formatCurrency(program.tuition_fee, program.currency, loc)}
-              </dd>
-            </div>
           </dl>
+          <p className="mt-6 text-sm leading-6 text-gray-700">{t("feeContactNote")}</p>
           <Link
             href="/contact"
             className={buttonVariants({
@@ -148,7 +136,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
               className: "mt-6",
             })}
           >
-            {tc("apply")}
+            {t("askAdmissions")}
           </Link>
         </aside>
       </Container>
