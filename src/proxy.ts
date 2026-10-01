@@ -21,5 +21,5 @@ export const config = {
    * extension (images, fonts, robots.txt...). Keeping static assets out of the
    * proxy is part of the performance budget.
    */
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  matcher: ["/((?!api|site-media|_next|_vercel|.*\\..*).*)"],
 };

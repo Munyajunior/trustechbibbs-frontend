@@ -45,9 +45,11 @@ export function createProgramDraft(payload: ProgramDraftInput, token: string, lo
   });
 }
 
-export function updateProgramDraft(id: string, payload: Omit<ProgramDraftInput, "code">, token: string, locale: Locale) {
+export function updateProgramDraft(id: string, payload: ProgramDraftInput, token: string, locale: Locale) {
+  const { code: _immutableCode, ...changes } = payload;
+  void _immutableCode;
   return apiRequest<EditorProgram>(`/academic/programs/${encodeURIComponent(id)}`, {
-    ...options(token, locale), method: "PATCH", body: payload,
+    ...options(token, locale), method: "PATCH", body: changes,
   });
 }
 

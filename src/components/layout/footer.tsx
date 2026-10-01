@@ -24,7 +24,7 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5">
-              <Image src="/images/trustech-shield.jpg" alt="" width={48} height={48} className="size-12 object-contain" />
+              <Image src="/site-media/logo" unoptimized alt="" width={48} height={48} className="size-12 object-contain" />
               <span className="font-display text-base font-bold text-primary">{t("brand")}</span>
             </div>
             <p className="mt-3 max-w-sm text-sm text-gray-600">{t("tagline")}</p>

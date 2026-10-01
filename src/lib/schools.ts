@@ -1,13 +1,13 @@
 /** The seven schools confirmed by the institute, with distinct visual assets. */
 
 export const schools = [
-  { key: "engineering", image: "/images/school-engineering.png" },
-  { key: "business", image: "/images/school-business-management.png" },
-  { key: "health", image: "/images/school-health.png" },
-  { key: "education", image: "/images/school-education.png" },
-  { key: "communication", image: "/images/school-communication.png" },
-  { key: "tourism", image: "/images/school-tourism.png" },
-  { key: "agriculture", image: "/images/school-agriculture.png" },
+  { key: "engineering", image: "/site-media/school-engineering" },
+  { key: "business", image: "/site-media/school-business" },
+  { key: "health", image: "/site-media/school-health" },
+  { key: "education", image: "/site-media/school-education" },
+  { key: "communication", image: "/site-media/school-communication" },
+  { key: "tourism", image: "/site-media/school-tourism" },
+  { key: "agriculture", image: "/site-media/school-agriculture" },
 ] as const;
 
 export type SchoolKey = (typeof schools)[number]["key"];

@@ -80,7 +80,7 @@ export function Header() {
             className="flex shrink-0 items-center gap-2"
             aria-label={tc("brand")}
           >
-            <Image src="/images/trustech-shield.jpg" alt="" width={57} height={57} className="size-[52px] object-contain" priority />
+            <Image src="/site-media/logo" unoptimized alt="" width={57} height={57} className="size-[52px] object-contain" priority />
             <span className="leading-[1.02]">
               <span className="block text-[9px] font-bold tracking-[.055em] text-[#b58100] sm:text-[10px]">
                 {tc("brandType")}
