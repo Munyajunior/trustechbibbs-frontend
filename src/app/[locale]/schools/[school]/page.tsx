@@ -70,6 +70,7 @@ export default async function SchoolPage({ params }: PageProps) {
           <div className="school-hero-image">
             <Image
               src={school.image}
+              unoptimized
               alt={t(`profiles.${key}.imageAlt`)}
               fill
               priority

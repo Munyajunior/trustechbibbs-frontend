@@ -10,13 +10,13 @@ type PageProps = { params: Promise<{ locale: string }> };
 const featured = ["business", "finance", "biomedical"] as const;
 const steps = ["account", "application", "review", "decision"] as const;
 const schools = [
-  { key: "business", icon: BriefcaseBusiness, image: "/images/school-business-management.png", featured: true },
-  { key: "health", icon: HeartPulse, image: "/images/school-health.png", featured: true },
-  { key: "engineering", icon: Cpu, image: "/images/school-engineering.png", featured: false },
-  { key: "education", icon: GraduationCap, image: "/images/school-education.png", featured: false },
-  { key: "communication", icon: Landmark, image: "/images/school-communication.png", featured: false },
-  { key: "tourism", icon: Plane, image: "/images/school-tourism.png", featured: false },
-  { key: "agriculture", icon: Leaf, image: "/images/school-agriculture.png", featured: false },
+  { key: "business", icon: BriefcaseBusiness, image: "/site-media/school-business", featured: true },
+  { key: "health", icon: HeartPulse, image: "/site-media/school-health", featured: true },
+  { key: "engineering", icon: Cpu, image: "/site-media/school-engineering", featured: false },
+  { key: "education", icon: GraduationCap, image: "/site-media/school-education", featured: false },
+  { key: "communication", icon: Landmark, image: "/site-media/school-communication", featured: false },
+  { key: "tourism", icon: Plane, image: "/site-media/school-tourism", featured: false },
+  { key: "agriculture", icon: Leaf, image: "/site-media/school-agriculture", featured: false },
 ] as const;
 
 export default async function HomePage({ params }: PageProps) {
@@ -40,7 +40,7 @@ export default async function HomePage({ params }: PageProps) {
             <p className="home-hero-signoff">{t("hero.signoff")}</p>
           </div>
           <div className="home-hero-visual">
-            <Image src="/images/hero-student.png" alt={t("hero.imageAlt")} fill priority sizes="(max-width: 900px) 100vw, 55vw" className="object-cover object-center" />
+            <Image src="/site-media/hero" unoptimized alt={t("hero.imageAlt")} fill priority sizes="(max-width: 900px) 100vw, 55vw" className="object-cover object-center" />
             <p className="home-visual-caption">{t("hero.visualCaption")}</p>
           </div>
         </Container>
@@ -55,7 +55,7 @@ export default async function HomePage({ params }: PageProps) {
           <div className="home-school-grid">
             {schools.map(({ key, icon: Icon, image, featured: isFeatured }, index) => (
               <article className={`home-school-card ${isFeatured ? "home-school-card-image" : "home-school-card-compact"}`} key={key}>
-                <div className="home-school-image-wrap"><Image src={image} alt="" fill sizes={isFeatured ? "(max-width: 700px) 100vw, 50vw" : "(max-width: 700px) 100vw, 33vw"} className="object-cover" /></div>
+                <div className="home-school-image-wrap"><Image src={image} unoptimized alt="" fill sizes={isFeatured ? "(max-width: 700px) 100vw, 50vw" : "(max-width: 700px) 100vw, 33vw"} className="object-cover" /></div>
                 <div className="home-school-copy">
                   <span className={`home-school-icon${index % 2 ? " home-school-icon-gold" : ""}`}><Icon aria-hidden="true" size={25} strokeWidth={1.7} /></span>
                   <h3>{t(`schools.${key}.title`)}</h3><p>{t(`schools.${key}.body`)}</p>
@@ -76,7 +76,7 @@ export default async function HomePage({ params }: PageProps) {
           <div className="home-program-grid">
             {featured.map((key) => (
               <article className="home-program-card" key={key}>
-                <div className="home-program-image-wrap"><Image src={`/images/program-${key}.png`} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 33vw" className="object-cover" /></div>
+                <div className="home-program-image-wrap"><Image src={`/site-media/program-${key}`} unoptimized alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 33vw" className="object-cover" /></div>
                 <div className="home-program-content">
                   <h3>{t(`featured.${key}.title`)}</h3>
                   <p>{t(`featured.${key}.body`)}</p>

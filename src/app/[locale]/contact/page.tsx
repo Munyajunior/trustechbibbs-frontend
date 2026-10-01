@@ -39,7 +39,7 @@ export default async function ContactPage({ params }: PageProps) {
             <a className="home-button home-button-gold" href="#contact-form">{t("writeCta")}<ArrowRight aria-hidden="true" size={18} /></a>
           </div>
           <div className="contact-hero-image">
-            <Image src="/images/school-education.png" alt="" fill priority sizes="(max-width: 700px) 100vw, 48vw" className="object-cover" />
+            <Image src="/site-media/contact" unoptimized alt="" fill priority sizes="(max-width: 700px) 100vw, 48vw" className="object-cover" />
             <span><MapPin aria-hidden="true" size={19} />{t("location")}</span>
           </div>
         </Container>

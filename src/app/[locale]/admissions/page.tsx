@@ -46,7 +46,7 @@ export default async function AdmissionsPage({ params }: PageProps) {
             <p className="admissions-hero-note">{t("heroNote")}</p>
           </div>
           <div className="admissions-hero-visual">
-            <Image src="/images/hero-student.png" alt="" fill priority sizes="(max-width: 700px) 100vw, 48vw" className="object-cover" />
+            <Image src="/site-media/admissions" unoptimized alt="" fill priority sizes="(max-width: 700px) 100vw, 48vw" className="object-cover" />
             <div className="admissions-hero-card"><span>01—04</span><strong>{t("heroCard")}</strong></div>
           </div>
         </Container>

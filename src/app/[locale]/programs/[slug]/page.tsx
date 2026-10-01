@@ -1,10 +1,9 @@
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import { Container } from "@/components/shared/container";
-import { PageHeader } from "@/components/shared/page-header";
-import { buttonVariants } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { ApiError } from "@/lib/api/client";
 import { getProgram } from "@/lib/api/public";
@@ -72,6 +71,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
   const program = await loadProgram(slug, loc);
   const name = localizedField(program, "name", loc);
   const description = localizedField(program, "description", loc);
+  const schoolName = localizedField(program, "school_name", loc);
 
   /**
    * Schema.org structured data — required for rich snippets (SEO score > 95).
@@ -105,41 +105,54 @@ export default async function ProgramDetailPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
 
-      <PageHeader title={name} subtitle={program.code} />
-
-      <Container className="grid gap-10 py-12 lg:grid-cols-3">
-        <div className="lg:col-span-2">
-          <p className="text-gray-700">{description}</p>
-          {/*
-            TODO(Phase 1): admission requirements, career prospects, curriculum
-            outline and the downloadable brochure (program.brochure_url).
-          */}
-        </div>
-
-        <aside className="h-fit rounded-lg border border-gray-200 bg-gray-50 p-6">
-          <dl className="space-y-4 text-sm">
-            <div>
-              <dt className="text-gray-500">{t("level")}</dt>
-              <dd className="mt-0.5 font-medium text-gray-900">{program.level}</dd>
+      <div className="home-editorial program-detail-page">
+        <nav className="school-breadcrumb" aria-label={t("breadcrumbLabel")}>
+          <Container>
+            <Link href="/">{t("home")}</Link><span aria-hidden="true">/</span>
+            <Link href="/programs">{t("title")}</Link><span aria-hidden="true">/</span>
+            <span aria-current="page">{name}</span>
+          </Container>
+        </nav>
+        <section className="program-detail-hero" aria-labelledby="program-detail-title">
+          <Container className="program-detail-hero-inner">
+            <div className="program-detail-heading">
+              <p className="home-kicker">{t("detailEyebrow")}</p>
+              <h1 id="program-detail-title">{name}</h1>
+              {schoolName && <p className="program-detail-school">{schoolName}</p>}
+              <div className="home-actions">
+                <Link className="home-button home-button-gold" href="/contact">{t("askAdmissions")}<ArrowRight aria-hidden="true" size={18} /></Link>
+                <Link className="home-button home-button-outline" href="/admissions">{t("admissionsCta")}</Link>
+              </div>
             </div>
-            <div>
-              <dt className="text-gray-500">{t("duration", { years: program.duration_years })}</dt>
+            <div className="program-detail-facts" aria-label={t("atAGlance")}>
+              <p className="program-detail-facts-title">{t("atAGlance")}</p>
+              <dl>
+                <div><dt>{t("level")}</dt><dd>{program.level}</dd></div>
+                <div><dt>{t("durationLabel")}</dt><dd>{t("duration", { years: program.duration_years })}</dd></div>
+                <div><dt>{t("programCode")}</dt><dd>{program.code}</dd></div>
+              </dl>
             </div>
-          </dl>
-          <p className="mt-6 text-sm leading-6 text-gray-700">{t("feeContactNote")}</p>
-          <Link
-            href="/contact"
-            className={buttonVariants({
-              variant: "primary",
-              size: "md",
-              fullWidth: true,
-              className: "mt-6",
-            })}
-          >
-            {t("askAdmissions")}
-          </Link>
-        </aside>
-      </Container>
+          </Container>
+        </section>
+        <section className="program-detail-overview" aria-labelledby="program-overview-title">
+          <Container className="program-detail-overview-inner">
+            <div>
+              <p className="home-kicker">{t("overviewEyebrow")}</p>
+              <h2 id="program-overview-title">{t("overviewTitle")}</h2>
+              <p>{description || t("descriptionContactNote")}</p>
+            </div>
+            <aside className="program-detail-enquiry">
+              <span className="program-detail-enquiry-rule" aria-hidden="true" />
+              <h2>{t("questionsTitle")}</h2>
+              <p>{t("feeContactNote")}</p>
+              <Link className="home-text-link" href="/contact">{t("askAdmissions")}<ArrowRight aria-hidden="true" size={17} /></Link>
+            </aside>
+          </Container>
+        </section>
+        <section className="program-detail-back">
+          <Container><Link className="home-text-link" href="/programs"><ArrowLeft aria-hidden="true" size={17} />{t("backToPrograms")}</Link></Container>
+        </section>
+      </div>
     </>
   );
 }

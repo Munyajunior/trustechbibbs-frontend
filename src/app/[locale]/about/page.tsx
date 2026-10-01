@@ -39,8 +39,8 @@ export default async function AboutPage({ params }: PageProps) {
             </div>
           </div>
           <div className="about-hero-art" aria-hidden="true">
-            <div className="about-art-main"><Image src="/images/school-business-management.png" alt="" fill priority sizes="(max-width: 700px) 100vw, 35vw" className="object-cover" /></div>
-            <div className="about-art-small"><Image src="/images/school-health.png" alt="" fill sizes="(max-width: 700px) 44vw, 17vw" className="object-cover" /></div>
+            <div className="about-art-main"><Image src="/site-media/about-main" unoptimized alt="" fill priority sizes="(max-width: 700px) 100vw, 35vw" className="object-cover" /></div>
+            <div className="about-art-small"><Image src="/site-media/about-small" unoptimized alt="" fill sizes="(max-width: 700px) 44vw, 17vw" className="object-cover" /></div>
             <span className="about-art-word">{t("heroWord")}</span>
           </div>
         </Container>
@@ -88,7 +88,7 @@ export default async function AboutPage({ params }: PageProps) {
 
       <section className="about-schools" aria-labelledby="about-schools-title">
         <Container className="about-schools-inner">
-          <div className="about-schools-visual"><Image src="/images/school-education.png" alt="" fill sizes="(max-width: 700px) 100vw, 42vw" className="object-cover" /></div>
+          <div className="about-schools-visual"><Image src="/site-media/about-schools" unoptimized alt="" fill sizes="(max-width: 700px) 100vw, 42vw" className="object-cover" /></div>
           <div className="about-schools-copy"><p className="home-kicker">{t("schoolsEyebrow")}</p><h2 id="about-schools-title">{t("schoolsTitle")}</h2><p>{t("schoolsIntro")}</p>
             <ol>{schools.map((key, index) => <li key={key}><span>{String(index + 1).padStart(2, "0")}</span><Link href={`/schools/${key}`}>{th(`${key}.title`)}</Link></li>)}</ol>
             <Link className="home-text-link" href="/schools">{t("schoolsCta")}<ArrowRight aria-hidden="true" size={17} /></Link>

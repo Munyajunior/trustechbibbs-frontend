@@ -48,7 +48,7 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
             <p>{t("subtitle")}</p>
             <a className="home-button home-button-gold" href="#journal-content">{t("exploreCta")}<ArrowRight aria-hidden="true" size={18} /></a>
           </div>
-          <div className="journal-hero-visual"><Image src="/images/school-communication.png" alt="" fill priority sizes="(max-width: 700px) 100vw, 47vw" className="object-cover" /><span>{t("heroCaption")}</span></div>
+          <div className="journal-hero-visual"><Image src="/site-media/news-hero" unoptimized alt="" fill priority sizes="(max-width: 700px) 100vw, 47vw" className="object-cover" /><span>{t("heroCaption")}</span></div>
         </Container>
       </section>
 

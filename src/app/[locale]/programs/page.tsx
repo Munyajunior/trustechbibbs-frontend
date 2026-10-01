@@ -17,13 +17,13 @@ export const dynamic = "force-dynamic";
 type PageProps = { params: Promise<{ locale: string }> };
 
 const schools = [
-  { key: "business", icon: BriefcaseBusiness, image: "/images/school-business-management.png" },
-  { key: "health", icon: HeartPulse, image: "/images/school-health.png" },
-  { key: "engineering", icon: Cpu, image: "/images/school-engineering.png" },
-  { key: "education", icon: GraduationCap, image: "/images/school-education.png" },
-  { key: "communication", icon: Landmark, image: "/images/school-communication.png" },
-  { key: "tourism", icon: Plane, image: "/images/school-tourism.png" },
-  { key: "agriculture", icon: Leaf, image: "/images/school-agriculture.png" },
+  { key: "business", icon: BriefcaseBusiness, image: "/site-media/school-business" },
+  { key: "health", icon: HeartPulse, image: "/site-media/school-health" },
+  { key: "engineering", icon: Cpu, image: "/site-media/school-engineering" },
+  { key: "education", icon: GraduationCap, image: "/site-media/school-education" },
+  { key: "communication", icon: Landmark, image: "/site-media/school-communication" },
+  { key: "tourism", icon: Plane, image: "/site-media/school-tourism" },
+  { key: "agriculture", icon: Leaf, image: "/site-media/school-agriculture" },
 ] as const;
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -60,7 +60,7 @@ export default async function ProgramsPage({ params }: PageProps) {
             </div>
           </div>
           <div className="catalogue-hero-visual">
-            <Image src="/images/school-engineering.png" alt="" fill priority sizes="(max-width: 700px) 100vw, 48vw" className="object-cover" />
+            <Image src="/site-media/programs-hero" unoptimized alt="" fill priority sizes="(max-width: 700px) 100vw, 48vw" className="object-cover" />
             <span className="catalogue-hero-stamp">{t("sevenSchools")}</span>
           </div>
         </Container>
@@ -75,7 +75,7 @@ export default async function ProgramsPage({ params }: PageProps) {
           <div className="home-school-grid">
             {schools.map(({ key, icon: Icon, image }, index) => (
               <article className={`home-school-card ${index < 2 ? "home-school-card-image" : "home-school-card-compact"}`} key={key}>
-                <div className="home-school-image-wrap"><Image src={image} alt="" fill sizes={index < 2 ? "(max-width: 700px) 100vw, 50vw" : "(max-width: 700px) 100vw, 33vw"} className="object-cover" /></div>
+                <div className="home-school-image-wrap"><Image src={image} unoptimized alt="" fill sizes={index < 2 ? "(max-width: 700px) 100vw, 50vw" : "(max-width: 700px) 100vw, 33vw"} className="object-cover" /></div>
                   <div className="home-school-copy">
                   <span className={`home-school-icon${index % 2 ? " home-school-icon-gold" : ""}`}><Icon aria-hidden="true" size={25} strokeWidth={1.7} /></span>
                   <h3>{th(`${key}.title`)}</h3><p>{th(`${key}.body`)}</p>

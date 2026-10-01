@@ -52,6 +52,7 @@ export default async function SchoolsPage({ params }: PageProps) {
                 <Link className="schools-index-image" href={`/schools/${school.key}`} aria-label={names(`${school.key}.title`)}>
                   <Image
                     src={school.image}
+                    unoptimized
                     alt=""
                     fill
                     sizes="(max-width: 700px) 100vw, 44vw"

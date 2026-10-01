@@ -51,7 +51,7 @@ export default async function EventsPage({ params, searchParams }: PageProps) {
       <section className="events-hero" aria-labelledby="events-title">
         <Container className="events-hero-inner">
           <div className="events-hero-copy"><p className="home-kicker">{t("eyebrow")}</p><h1 id="events-title">{t("title")}</h1><p>{t("subtitle")}</p><a className="home-button home-button-gold" href="#events-content">{t("exploreCta")}<ArrowRight aria-hidden="true" size={18} /></a></div>
-          <div className="events-hero-visual"><Image src="/images/school-tourism.png" alt="" fill priority sizes="(max-width: 700px) 100vw, 47vw" className="object-cover" /><span>{t("heroCaption")}</span></div>
+          <div className="events-hero-visual"><Image src="/site-media/events-hero" unoptimized alt="" fill priority sizes="(max-width: 700px) 100vw, 47vw" className="object-cover" /><span>{t("heroCaption")}</span></div>
         </Container>
       </section>
 
