@@ -2,9 +2,13 @@
 .gitignore
 node_modules
 .next
+.next-*
+.swc-cache
+*.tsbuildinfo
 out
 coverage
 npm-debug.log*
+package-lock.json
 .env
 .env.*
 !.env.example

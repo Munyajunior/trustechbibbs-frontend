@@ -8,6 +8,14 @@
     "start": "next start",
     "lint": "eslint"
   },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.0.0",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.0.0",
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
     "@tanstack/react-query": "^5.101.2",
