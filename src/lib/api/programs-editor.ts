@@ -14,8 +14,15 @@ export interface EditorProgram {
   school_key: SchoolKey | null;
   description_en: string | null;
   description_fr: string | null;
+  admission_requirements_en: string | null;
+  admission_requirements_fr: string | null;
+  career_prospects_en: string | null;
+  career_prospects_fr: string | null;
+  curriculum_outline_en: string | null;
+  curriculum_outline_fr: string | null;
   published_at: string | null;
   is_active: boolean;
+  is_featured: boolean;
 }
 
 export interface ProgramDraftInput {
@@ -25,8 +32,15 @@ export interface ProgramDraftInput {
   degree_level: string;
   duration_years: number;
   school_key: SchoolKey;
+  is_featured: boolean;
   description_en: string | null;
   description_fr: string | null;
+  admission_requirements_en: string | null;
+  admission_requirements_fr: string | null;
+  career_prospects_en: string | null;
+  career_prospects_fr: string | null;
+  curriculum_outline_en: string | null;
+  curriculum_outline_fr: string | null;
 }
 
 function options(token: string, locale: Locale) {

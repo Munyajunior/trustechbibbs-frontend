@@ -31,6 +31,7 @@
     "admissions": "Admissions",
     "news": "Actualités",
     "events": "Événements",
+    "gallery": "Galerie",
     "contact": "Contact"
   },
   "home": {
@@ -46,7 +47,10 @@
       "ctaSecondary": "Découvrir les programmes",
       "signoff": "Savoir  /  Personnes  /  Un Cameroun plus prometteur",
       "imageAlt": "Une étudiante tenant ses supports de cours dans un espace lumineux",
-      "visualCaption": "Un avenir plus prometteur"
+      "visualCaption": "Un avenir plus prometteur",
+      "previous": "Bannière précédente",
+      "next": "Bannière suivante",
+      "controls": "Bannières de la page d’accueil"
     },
     "schools": {
       "eyebrow": "Nos écoles",
@@ -72,6 +76,8 @@
       "title": "Des programmes pour un monde en évolution",
       "allPrograms": "les programmes",
       "viewAll": "Voir tous les programmes",
+      "empty": "Découvrez les formations de nos sept écoles. Contactez le service des admissions pour connaître les programmes proposés actuellement.",
+      "contact": "Contacter les admissions",
       "business": { "title": "Gestion", "body": "Développez des compétences concrètes en management, entrepreneuriat et leadership responsable." },
       "finance": { "title": "Finance", "body": "Acquérez des compétences analytiques et financières pour divers parcours professionnels." },
       "biomedical": { "title": "Sciences biomédicales", "body": "Explorez la santé humaine et les sciences du vivant grâce à un apprentissage pratique." }
@@ -215,12 +221,26 @@
     "moreProgramsNote": "D’autres programmes peuvent être disponibles. Contactez les admissions pour obtenir le catalogue actuel complet.",
     "emptyTitle": "Trouvons votre voie",
     "emptyBody": "Découvrez les sept écoles ci-dessus et contactez les admissions pour connaître les programmes, les conditions d’entrée et les frais actuels.",
-    "filters": {
-      "school": "École",
-      "level": "Niveau",
-      "campus": "Campus",
-      "all": "Tous"
-    },
+  "filters": {
+    "title": "Trouver un programme",
+    "search": "Rechercher des programmes",
+    "searchPlaceholder": "Nom, code ou domaine",
+    "school": "École",
+    "level": "Niveau",
+    "campus": "Campus",
+    "all": "Tous",
+    "allSchools": "Toutes les écoles",
+    "allLevels": "Tous les niveaux",
+    "apply": "Voir les programmes",
+    "clear": "Effacer les filtres",
+    "results": "{count, plural, one {# programme} other {# programmes}}",
+    "pages": "Pages des programmes",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "page": "Page {page} sur {total}",
+    "noMatches": "Aucun programme ne correspond à ces filtres",
+    "tryAgain": "Essayez une autre recherche ou effacez les filtres pour découvrir tous les programmes publiés."
+  },
     "duration": "{years, plural, one {# an} other {# ans}}",
     "feeContactNote": "Pour connaître les frais et les conditions d’entrée actuels, contactez les admissions.",
     "askAdmissions": "Contacter les admissions",
@@ -232,6 +252,10 @@
     "programCode": "Code du programme",
     "overviewEyebrow": "Le programme",
     "overviewTitle": "Présentation du programme",
+    "requirementsTitle": "Conditions d’admission",
+    "requirementsContact": "Contactez les admissions pour connaître les conditions d’entrée actuelles de ce programme.",
+    "curriculumTitle": "Le déroulement de vos études",
+    "careersTitle": "Vos perspectives professionnelles",
     "descriptionContactNote": "Contactez les admissions pour connaître la présentation actuelle du programme et les options d’études.",
     "questionsTitle": "Une question ?",
     "backToPrograms": "Retour à tous les programmes",
@@ -257,6 +281,7 @@
     "history": "Notre histoire",
     "historyBody": "L’INSTITUT UNIVERSITAIRE TRUSTECH DE GESTION DES ENTREPRISES ET DES SCIENCES BIOMÉDICALES est établi à Douala, au Cameroun. Notre communauté académique bilingue réunit sept écoles couvrant des domaines professionnels, scientifiques, créatifs et techniques.",
     "identityBody": "Nous associons les études aux compétences pratiques pour aider chaque personne à découvrir ses forces et à contribuer dans le domaine de son choix.",
+    "leadershipCta": "Découvrir notre direction",
     "factsLabel": "Trustech en bref",
     "factSchools": "écoles académiques",
     "factLanguages": "communauté d’apprentissage bilingue",
@@ -283,6 +308,18 @@
     "finalEyebrow": "Échangeons",
     "finalTitle": "Une conversation peut ouvrir la voie.",
     "finalBody": "Notre équipe répond à vos questions sur les études, les admissions et les informations institutionnelles actuelles."
+  },
+  "leadership": {
+    "meta": { "title": "Direction et gouvernance", "description": "Découvrez les profils publiés de la direction et l’organisation de l’Institut universitaire Trustech." },
+    "back": "À propos de Trustech", "eyebrow": "À propos de notre institut", "title": "Direction et gouvernance", "intro": "Découvrez les personnes dont les profils publiés guident les activités académiques et administratives de l’institut.",
+    "searchLabel": "Rechercher une personne ou une fonction", "searchPlaceholder": "Nom, fonction ou département", "departmentLabel": "Département", "allDepartments": "Tous les départements", "results": "Profils affichés : {count}", "noResults": "Aucun profil ne correspond à ces filtres.",
+    "governanceTitle": "L’organisation de nos équipes", "governanceIntro": "Cette structure suit les profils de direction actuellement publiés.",
+    "emptyTitle": "Coordonnées de la direction", "emptyBody": "Pour obtenir les coordonnées actuelles de la direction et de la gouvernance, contactez directement l’institut.", "unavailableTitle": "Informations temporairement indisponibles", "unavailableBody": "Contactez l’institut pour obtenir les informations actuelles sur la direction.", "contactCta": "Contacter Trustech"
+  },
+  "leadershipEditor": {
+    "meta": { "title": "Atelier de la direction" }, "eyebrow": "Gestion du contenu", "title": "Annuaire de la direction", "intro": "Créez des profils bilingues vérifiés, ajoutez les photos, organisez les liens hiérarchiques et publiez uniquement les informations approuvées.", "back": "Retour au studio de contenu", "access": "Connectez-vous avec un compte éditeur pour gérer les profils de direction.", "signIn": "Se connecter", "loadError": "Impossible de charger les profils de direction.", "saveError": "Impossible d’enregistrer cette modification.",
+    "profiles": "Profils", "newProfile": "Nouveau profil", "editProfile": "Modifier le profil", "name": "Nom complet", "sortOrder": "Ordre d’affichage", "titleEn": "Fonction (anglais)", "titleFr": "Fonction (français)", "departmentEn": "Département (anglais)", "departmentFr": "Département (français)", "biographyEn": "Biographie (anglais)", "biographyFr": "Biographie (français)", "email": "Adresse publique (facultative si téléphone fourni)", "phone": "Téléphone public (facultatif si adresse fournie)", "reportsTo": "Responsable hiérarchique", "topLevel": "Direction principale", "photo": "Photo du profil", "uploadReady": "Photo téléversée. Enregistrez le brouillon pour l’utiliser.",
+    "saveDraft": "Enregistrer le brouillon", "working": "En cours…", "publish": "Publier", "unpublish": "Dépublier", "delete": "Supprimer", "deleteConfirm": "Supprimer ce profil de direction ?", "deleted": "Profil retiré de l’annuaire public.", "live": "Publié", "draft": "Brouillon", "saved": "Brouillon enregistré. Publiez-le lorsque les informations approuvées sont complètes.", "published": "Profil publié.", "unpublished": "Profil retiré de l’annuaire public.", "viewPublic": "Voir l’annuaire public", "publishHint": "La publication exige les fonctions, départements et biographies en anglais et en français, une photo téléversée et au moins une coordonnée publique approuvée. Toute modification enregistrée remet le profil en brouillon."
   },
   "admissions": {
     "meta": {
@@ -500,6 +537,7 @@
     "title": "File d’examen des admissions",
     "subtitle": "Examinez les candidatures et enregistrez le prochain statut avec un commentaire vérifiable.",
     "contentLink": "Ouvrir le studio de contenu",
+    "enquiriesLink": "Ouvrir les demandes de contact",
     "programsLink": "Ouvrir le catalogue des programmes",
     "loading": "Chargement des candidatures…",
     "empty": "Aucune candidature n’attend d’examen.",
@@ -524,6 +562,34 @@
     "serviceUnavailable": "Le service d’admission est indisponible. Veuillez réessayer dans quelques instants.",
     "unexpectedError": "Nous n’avons pas pu mettre à jour cette candidature. Veuillez réessayer."
   },
+  "enquiryInbox": {
+    "meta": { "title": "Demandes de contact", "description": "Consulter et gérer les messages du formulaire de contact de Trustech." },
+    "accessTitle": "Accès du personnel requis",
+    "accessBody": "Connectez-vous avec un compte de registraire ou d’administrateur autorisé pour consulter les demandes.",
+    "eyebrow": "Espace du personnel",
+    "title": "Demandes de contact",
+    "subtitle": "Consultez les messages reçus sur le site et suivez leur traitement.",
+    "admissionsLink": "Examen des admissions",
+    "filterLabel": "Filtrer les demandes par statut",
+    "statuses": { "ALL": "Toutes", "NEW": "Nouvelles", "IN_PROGRESS": "En cours", "RESOLVED": "Résolues" },
+    "loading": "Chargement des demandes…",
+    "empty": "Aucune demande ne correspond à cette vue.",
+    "unavailable": "Les demandes sont momentanément indisponibles. Veuillez réessayer.",
+    "view": "Lire le message",
+    "hide": "Fermer le message",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "message": "Message",
+    "updateStatus": "Mettre à jour le statut",
+    "attachment": "Pièce jointe",
+    "download": "Télécharger le fichier",
+    "downloading": "Téléchargement…",
+    "attachmentUnavailable": "La pièce jointe n’a pas pu être téléchargée. Veuillez réessayer.",
+    "pages": "Pages des demandes",
+    "previous": "Précédente",
+    "next": "Suivante",
+    "page": "Page {page} sur {total}"
+  },
   "news": {
     "meta": {
       "title": "Actualités",
@@ -537,6 +603,9 @@
     "listingEyebrow": "De notre communauté",
     "listingTitle": "Les dernières nouvelles de Trustech",
     "listingIntro": "Lisez les récits et annonces publiés par l’institut.",
+    "searchLabel": "Rechercher des articles", "searchPlaceholder": "Rechercher par titre ou sujet", "categoryLabel": "Catégorie", "allCategories": "Toutes les catégories", "filterAction": "Rechercher", "clearFilters": "Effacer les filtres",
+    "noResultsTitle": "Aucun article ne correspond à ces filtres.", "noResultsBody": "Essayez un autre sujet ou terme de recherche pour découvrir les actualités publiées.",
+    "unavailableTitle": "Les actualités sont temporairement indisponibles.", "unavailableBody": "Nous ne pouvons pas charger les derniers articles pour le moment. Veuillez réessayer plus tard ou découvrir nos écoles.",
     "featured": "À la une",
     "readStory": "Lire l’article",
     "paginationLabel": "Pages d’actualités",
@@ -567,6 +636,10 @@
     "listingEyebrow": "Dates et informations",
     "listingTitle": "Le calendrier des événements",
     "listingIntro": "Consultez les événements publiés par l’institut. Chaque page présente les horaires et le lieu lorsqu’ils sont disponibles.",
+    "searchLabel": "Rechercher des événements", "searchPlaceholder": "Rechercher par titre ou sujet", "categoryLabel": "Catégorie", "allCategories": "Toutes les catégories", "fromDate": "À partir du", "toDate": "Jusqu’au", "filterAction": "Trouver des événements", "clearFilters": "Effacer les filtres",
+    "noResultsTitle": "Aucun événement ne correspond à ces filtres.", "noResultsBody": "Essayez une autre catégorie, période ou recherche.",
+    "unavailableTitle": "Les événements sont temporairement indisponibles.", "unavailableBody": "Nous ne pouvons pas charger le calendrier pour le moment. Veuillez réessayer plus tard ou contacter notre équipe.",
+    "viewLabel": "Affichage des événements", "listView": "Liste", "calendarView": "Calendrier", "previousMonth": "Mois précédent", "nextMonth": "Mois suivant", "moreEvents": "+{count} autres", "calendarLimit": "Ce mois compte plus de 1 000 événements. Affinez votre recherche ou la catégorie pour voir toutes les dates correspondantes.",
     "viewDetails": "Voir les détails",
     "paginationLabel": "Pages des événements",
     "previous": "Précédent",
@@ -589,6 +662,19 @@
     "register": "S'inscrire",
     "addToCalendar": "Ajouter au calendrier",
     "backToEvents": "Retour aux événements"
+  },
+  "galleryEditor": {
+    "meta": { "title": "Atelier galerie" }, "eyebrow": "Gestion du contenu", "title": "Atelier galerie", "intro": "Créez des albums bilingues, téléversez des images vers R2, ajoutez des vidéos et ne publiez que le contenu approuvé.", "back": "Retour à l’atelier de contenu", "access": "Connectez-vous avec un compte éditeur pour gérer la galerie.", "signIn": "Se connecter", "loadError": "Impossible de charger la galerie.", "saveError": "Impossible d’enregistrer cette modification.",
+    "albums": "Albums", "newAlbum": "Nouvel album", "editAlbum": "Modifier l’album", "items": "Éléments de l’album", "newItem": "Nouvel élément", "editItem": "Modifier l’élément", "slug": "Identifiant d’URL", "titleEn": "Titre (anglais)", "titleFr": "Titre (français)", "descriptionEn": "Description (anglais)", "descriptionFr": "Description (français)", "sortOrder": "Ordre d’affichage", "coverImage": "Image de couverture", "mediaImage": "Photo ou panorama 2:1 (minimum 1 024 × 512)", "mediaVideo": "Téléverser une vidéo MP4 ou WebM (100 Mo maximum)", "thumbnailImage": "Miniature vidéo (facultatif)", "videoUrl": "URL YouTube ou Vimeo", "kind": "Type de média", "photo": "Photo", "hostedVideo": "Vidéo téléversée", "panorama": "Visite à 360°", "captionEn": "Légende (anglais)", "captionFr": "Légende (français)", "altEn": "Description de l’image (anglais)", "altFr": "Description de l’image (français)",
+    "saveDraft": "Enregistrer le brouillon", "working": "En cours…", "publish": "Publier", "unpublish": "Dépublier", "live": "Publié", "draft": "Brouillon", "savedDraft": "Brouillon enregistré. Publiez-le lorsque les deux langues sont complètes.", "published": "Publication réussie.", "unpublished": "Retiré de la galerie publique.", "uploadReady": "Média téléversé. Enregistrez le brouillon pour l’utiliser.", "viewPublic": "Voir l’album public", "albumPublishHint": "La publication exige une couverture et des titres et descriptions complets en anglais et en français. Toute modification enregistrée remet l’album en brouillon.", "itemPublishHint": "La publication exige une légende en anglais et en français. Les photos et panoramas nécessitent aussi une description de l’image dans les deux langues."
+  },
+  "gallery": {
+    "meta": { "title": "Galerie", "description": "Découvrez les photos, vidéos et vues panoramiques publiées par l’Institut universitaire Trustech." },
+    "eyebrow": "La vie à Trustech", "title": "Découvrez notre communauté de plus près.", "intro": "Explorez les moments et les espaces partagés par notre équipe autour du campus, de l’apprentissage et des événements.",
+    "albumsEyebrow": "La collection", "albumsTitle": "Parcourir les albums", "albumsIntro": "Chaque collection est préparée et publiée par l’équipe Trustech.", "openAlbum": "Ouvrir l’album",
+    "emptyTitle": "Aucun album publié pour le moment.", "emptyBody": "Revenez découvrir les photos et vidéos de l’institut.", "unavailableTitle": "La galerie est temporairement indisponible.", "unavailableBody": "Nous ne pouvons pas charger les albums pour le moment. Veuillez réessayer plus tard.", "aboutCta": "À propos de Trustech",
+    "backToAlbums": "Retour à la galerie", "albumEyebrow": "Depuis la galerie", "momentsEyebrow": "Dans cet album", "momentsTitle": "Explorer la collection", "albumEmptyTitle": "Aucun média n’est encore publié dans cet album.", "albumEmptyBody": "Revenez consulter les mises à jour.",
+    "viewItem": "Voir {title}", "viewerLabel": "Visionneuse de galerie", "share": "Partager", "copied": "Lien copié", "close": "Fermer la visionneuse", "previousItem": "Élément précédent", "nextItem": "Élément suivant", "panoramaLabel": "Panorama", "panoramaHint": "Faites glisser l’image ou utilisez les flèches pour regarder autour de vous. Faites défiler pour zoomer."
   },
   "contact": {
     "meta": {
@@ -631,10 +717,16 @@
       "departments": { "admissions": "Admissions", "registrar": "Dossiers académiques", "finance": "Finances", "general": "Demande générale" },
       "subject": "Objet",
       "message": "Message",
+      "attachment": "Pièce jointe (facultative)",
+      "attachmentHelp": "PDF, Word, texte, JPEG ou PNG ; 5 Mo maximum.",
+      "attachmentInvalid": "Choisissez un fichier PDF, Word, texte, JPEG ou PNG de 5 Mo maximum.",
       "submit": "Envoyer le message",
       "submitting": "Envoi…",
       "success": "Merci — votre demande a bien été reçue. Conservez cette référence : {reference}",
-      "error": "Votre message n'a pas pu être envoyé. Veuillez réessayer."
+      "error": "Votre message n'a pas pu être envoyé. Veuillez réessayer.",
+      "captchaLabel": "Vérification antispam",
+      "captchaRequired": "Veuillez terminer la vérification antispam avant l’envoi.",
+      "captchaUnavailable": "Le formulaire de contact est temporairement indisponible. Veuillez nous appeler."
     },
     "validation": {
       "fullNameRequired": "Veuillez saisir votre nom complet.",
@@ -678,7 +770,11 @@
     "page": "Page {page}",
     "fields": {
       "code": "Code du programme", "level": "Niveau du diplôme", "nameEn": "Nom anglais", "nameFr": "Nom français",
-      "school": "École", "duration": "Durée en années", "descriptionEn": "Description anglaise", "descriptionFr": "Description française"
+      "school": "École", "duration": "Durée en années", "featured": "Mettre en avant sur la page d’accueil", "featuredHelp": "Seuls les programmes publiés apparaissent dans cette sélection.", "descriptionEn": "Description anglaise", "descriptionFr": "Description française",
+      "requirementsEn": "Conditions d’admission (anglais)", "requirementsFr": "Conditions d’admission (français)",
+      "careersEn": "Débouchés professionnels (anglais)", "careersFr": "Débouchés professionnels (français)",
+      "curriculumEn": "Programme par semestre (anglais)", "curriculumFr": "Programme par semestre (français)",
+      "curriculumHelp": "Saisissez un semestre par ligne, par exemple : Semestre 1 — Matières fondamentales et travaux pratiques."
     },
     "status": { "draft": "Brouillon", "published": "Publié" }
   },
@@ -699,7 +795,19 @@
     "loadError": "Impossible de charger la médiathèque.",
     "saveError": "Impossible d'enregistrer l'image.",
     "loading": "Chargement des images…",
-    "formatHint": "PNG, JPEG ou WebP, jusqu'à 8 Mo. Les couvertures d'actualités et d'événements se gèrent dans l'atelier de contenu."
+    "formatHint": "PNG, JPEG ou WebP, jusqu'à 8 Mo. Les couvertures d'actualités et d'événements se gèrent dans l'atelier de contenu.",
+    "bannersLink": "Gérer les bannières d’accueil"
+  },
+  "bannerEditor": {
+    "eyebrow": "Espace du personnel", "title": "Bannières d’accueil", "intro": "Préparez les messages bilingues, choisissez les images et les dates d’affichage.",
+    "access": "Connectez-vous avec un compte éditeur ou administrateur pour gérer les bannières.", "signIn": "Se connecter", "back": "Retour au studio de contenu",
+    "new": "Nouvelle bannière", "records": "Bannières", "editor": "Éditeur de bannières", "editing": "Modifier la bannière", "loading": "Chargement des bannières…", "empty": "Aucune bannière configurée. Le visuel habituel reste affiché sur l’accueil.",
+    "order": "Ordre d’affichage {order}", "live": "Publiée", "draft": "Brouillon", "loadError": "Impossible de charger les bannières.", "saveError": "Impossible d’enregistrer la bannière.",
+    "titleEn": "Titre (anglais)", "titleFr": "Titre (français)", "subtitleEn": "Texte de présentation (anglais)", "subtitleFr": "Texte de présentation (français)",
+    "image": "Chemin de l’image", "upload": "Téléverser une image", "sortOrder": "Ordre d’affichage", "altEn": "Description de l’image (anglais)", "altFr": "Description de l’image (français)",
+    "ctaEn": "Libellé du bouton (anglais)", "ctaFr": "Libellé du bouton (français)", "ctaHref": "Chemin du bouton", "startsAt": "Afficher à partir du", "endsAt": "Afficher jusqu’au",
+    "publicationNote": "Utilisez une image de la médiathèque ou téléversez-en une ici. Le lien du bouton doit commencer par / et rester sur ce site. Complétez les deux langues avant publication. Toute modification remet une bannière publiée en brouillon.",
+    "working": "Traitement…", "save": "Enregistrer le brouillon", "publish": "Publier la bannière", "unpublish": "Dépublier la bannière", "saved": "Bannière enregistrée comme brouillon.", "published": "Bannière publiée.", "unpublished": "Bannière retirée de l’accueil."
   },
   "cmsEditor": {
     "meta": { "title": "Studio de contenu", "description": "Gérer les actualités et événements Trustech." },
@@ -708,6 +816,8 @@
     "subtitle": "Préparez, publiez et archivez les actualités et événements du site public.",
     "reviewLink": "Examen des admissions",
     "programsLink": "Catalogue des programmes",
+    "galleryLink": "Atelier galerie",
+    "leadershipLink": "Annuaire de la direction",
     "news": "Actualités",
     "events": "Événements",
     "newNews": "Nouvel article",

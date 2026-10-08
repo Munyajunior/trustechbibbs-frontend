@@ -31,6 +31,7 @@
     "admissions": "Admissions",
     "news": "News",
     "events": "Events",
+    "gallery": "Gallery",
     "contact": "Contact"
   },
   "home": {
@@ -46,7 +47,10 @@
       "ctaSecondary": "Explore programs",
       "signoff": "Knowledge  /  People  /  A brighter Cameroon",
       "imageAlt": "A student carrying her study materials in a bright learning space",
-      "visualCaption": "A brighter tomorrow"
+      "visualCaption": "A brighter tomorrow",
+      "previous": "Previous banner",
+      "next": "Next banner",
+      "controls": "Homepage banners"
     },
     "schools": {
       "eyebrow": "Our schools",
@@ -72,6 +76,8 @@
       "title": "Programs for a changing world",
       "allPrograms": "programs",
       "viewAll": "View all programs",
+      "empty": "Explore learning across our seven schools. Contact admissions for the current programme offerings.",
+      "contact": "Contact admissions",
       "business": { "title": "Business", "body": "Build real-world skills in management, enterprise and responsible leadership." },
       "finance": { "title": "Finance", "body": "Develop analytical and financial skills for a range of career opportunities." },
       "biomedical": { "title": "Biomedical Sciences", "body": "Explore human health and the life sciences through practical learning." }
@@ -215,12 +221,26 @@
     "moreProgramsNote": "Additional programs may be available. Contact admissions for the complete current catalogue.",
     "emptyTitle": "Let’s find your path",
     "emptyBody": "Explore the seven schools above and contact admissions for the current program list, entry requirements and fees.",
-    "filters": {
-      "school": "School",
-      "level": "Level",
-      "campus": "Campus",
-      "all": "All"
-    },
+  "filters": {
+    "title": "Find a program",
+    "search": "Search programs",
+    "searchPlaceholder": "Name, code or subject",
+    "school": "School",
+    "level": "Level",
+    "campus": "Campus",
+    "all": "All",
+    "allSchools": "All schools",
+    "allLevels": "All levels",
+    "apply": "Show programs",
+    "clear": "Clear filters",
+    "results": "{count, plural, one {# program} other {# programs}}",
+    "pages": "Program pages",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {page} of {total}",
+    "noMatches": "No programs match those filters",
+    "tryAgain": "Try another search or clear the filters to explore all published programs."
+  },
     "duration": "{years, plural, one {# year} other {# years}}",
     "feeContactNote": "For current fees and entry details, please contact admissions.",
     "askAdmissions": "Contact admissions",
@@ -232,6 +252,10 @@
     "programCode": "Program code",
     "overviewEyebrow": "The program",
     "overviewTitle": "Program overview",
+    "requirementsTitle": "Entry requirements",
+    "requirementsContact": "Ask admissions for the current entry requirements for this program.",
+    "curriculumTitle": "How your studies unfold",
+    "careersTitle": "Where this can take you",
     "descriptionContactNote": "Contact admissions for the current program description and study options.",
     "questionsTitle": "Have a question?",
     "backToPrograms": "Back to all programs",
@@ -257,6 +281,7 @@
     "history": "Our story",
     "historyBody": "TRUSTECH UNIVERSITY INSTITUTE OF BUSINESS MANAGEMENT AND BIOMEDICAL SCIENCES is based in Douala, Cameroon. Our bilingual academic community spans seven schools across professional, scientific, creative and technical fields.",
     "identityBody": "We connect study with practical capability, helping learners explore their strengths and prepare to contribute in the fields they choose.",
+    "leadershipCta": "Meet our leadership",
     "factsLabel": "Trustech at a glance",
     "factSchools": "academic schools",
     "factLanguages": "bilingual learning community",
@@ -283,6 +308,18 @@
     "finalEyebrow": "Connect with us",
     "finalTitle": "A conversation can open a path.",
     "finalBody": "Ask our team about academic options, admissions or current institutional information."
+  },
+  "leadership": {
+    "meta": { "title": "Leadership and governance", "description": "Explore the published leadership profiles and governance structure of Trustech University Institute." },
+    "back": "About Trustech", "eyebrow": "About our institute", "title": "Leadership and governance", "intro": "Meet the people whose published profiles guide the institute’s academic and administrative work.",
+    "searchLabel": "Search people and roles", "searchPlaceholder": "Name, title or department", "departmentLabel": "Department", "allDepartments": "All departments", "results": "Profiles shown: {count}", "noResults": "No profiles match those filters.",
+    "governanceTitle": "How our teams connect", "governanceIntro": "This reporting view follows the current published leadership profiles.",
+    "emptyTitle": "Leadership contact details", "emptyBody": "For current leadership and governance contacts, please reach the institute directly.", "unavailableTitle": "Leadership details are temporarily unavailable", "unavailableBody": "Please contact the institute for current leadership information.", "contactCta": "Contact Trustech"
+  },
+  "leadershipEditor": {
+    "meta": { "title": "Leadership directory studio" }, "eyebrow": "Content management", "title": "Leadership directory", "intro": "Create verified bilingual profiles, upload each photo, arrange reporting lines, and publish only approved public details.", "back": "Back to content studio", "access": "Sign in with an editor account to manage leadership profiles.", "signIn": "Sign in", "loadError": "We could not load leadership profiles.", "saveError": "We could not save this change.",
+    "profiles": "Profiles", "newProfile": "New profile", "editProfile": "Edit profile", "name": "Full name", "sortOrder": "Display order", "titleEn": "Role or title (English)", "titleFr": "Role or title (French)", "departmentEn": "Department (English)", "departmentFr": "Department (French)", "biographyEn": "Biography (English)", "biographyFr": "Biography (French)", "email": "Public email (optional if phone given)", "phone": "Public phone (optional if email given)", "reportsTo": "Reports to", "topLevel": "Top-level leadership", "photo": "Profile photo", "uploadReady": "Photo uploaded. Save the draft to use it.",
+    "saveDraft": "Save draft", "working": "Working…", "publish": "Publish", "unpublish": "Unpublish", "delete": "Delete", "deleteConfirm": "Delete this leadership profile?", "deleted": "Profile removed from the public directory.", "live": "Published", "draft": "Draft", "saved": "Draft saved. Publish when the approved details are complete.", "published": "Profile published.", "unpublished": "Profile removed from the public directory.", "viewPublic": "View public directory", "publishHint": "Publishing requires English and French roles, departments and biographies, a real uploaded photo, and at least one approved public contact. Saving changes returns the profile to draft."
   },
   "admissions": {
     "meta": {
@@ -500,6 +537,7 @@
     "title": "Admissions review queue",
     "subtitle": "Review applications and record the next admissions status with an auditable comment.",
     "contentLink": "Open content studio",
+    "enquiriesLink": "Open contact enquiries",
     "programsLink": "Open program catalogue",
     "loading": "Loading applications…",
     "empty": "There are no applications awaiting review.",
@@ -524,6 +562,34 @@
     "serviceUnavailable": "The admissions service is unavailable. Please try again shortly.",
     "unexpectedError": "We could not update this application. Please try again."
   },
+  "enquiryInbox": {
+    "meta": { "title": "Contact enquiries", "description": "Review and manage messages from the Trustech contact form." },
+    "accessTitle": "Staff access required",
+    "accessBody": "Sign in with a registrar or authorised administrator account to read contact enquiries.",
+    "eyebrow": "Staff workspace",
+    "title": "Contact enquiries",
+    "subtitle": "Read messages sent through the website and track their follow-up status.",
+    "admissionsLink": "Admissions review",
+    "filterLabel": "Filter enquiries by status",
+    "statuses": { "ALL": "All", "NEW": "New", "IN_PROGRESS": "In progress", "RESOLVED": "Resolved" },
+    "loading": "Loading enquiries…",
+    "empty": "No enquiries match this view.",
+    "unavailable": "Enquiries are unavailable right now. Please try again.",
+    "view": "Read message",
+    "hide": "Close message",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "updateStatus": "Update status",
+    "attachment": "Attachment",
+    "download": "Download file",
+    "downloading": "Downloading…",
+    "attachmentUnavailable": "The attachment could not be downloaded. Please try again.",
+    "pages": "Enquiry pages",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {page} of {total}"
+  },
   "news": {
     "meta": {
       "title": "News",
@@ -537,6 +603,9 @@
     "listingEyebrow": "From our community",
     "listingTitle": "The latest from Trustech",
     "listingIntro": "Read published stories and announcements from the institute.",
+    "searchLabel": "Search stories", "searchPlaceholder": "Search by title or topic", "categoryLabel": "Category", "allCategories": "All categories", "filterAction": "Find stories", "clearFilters": "Clear filters",
+    "noResultsTitle": "No stories match those filters.", "noResultsBody": "Try another topic or search term to explore published Trustech news.",
+    "unavailableTitle": "News is temporarily unavailable.", "unavailableBody": "We could not load the latest stories right now. Please try again later or explore our schools.",
     "featured": "Featured story",
     "readStory": "Read story",
     "paginationLabel": "News pages",
@@ -567,6 +636,10 @@
     "listingEyebrow": "Dates and details",
     "listingTitle": "The events calendar",
     "listingIntro": "Browse events published by the institute. Each event page shares the available schedule and location details.",
+    "searchLabel": "Search events", "searchPlaceholder": "Search by title or topic", "categoryLabel": "Category", "allCategories": "All categories", "fromDate": "From date", "toDate": "To date", "filterAction": "Find events", "clearFilters": "Clear filters",
+    "noResultsTitle": "No events match those filters.", "noResultsBody": "Try another category, date range or search term.",
+    "unavailableTitle": "Events are temporarily unavailable.", "unavailableBody": "We could not load the calendar right now. Please try again later or contact our team.",
+    "viewLabel": "Event view", "listView": "List", "calendarView": "Calendar", "previousMonth": "Previous month", "nextMonth": "Next month", "moreEvents": "+{count} more", "calendarLimit": "This month has more than 1,000 events. Narrow your search or category to see all matching dates.",
     "viewDetails": "View details",
     "paginationLabel": "Event pages",
     "previous": "Previous",
@@ -589,6 +662,19 @@
     "register": "Register",
     "addToCalendar": "Add to calendar",
     "backToEvents": "Back to events"
+  },
+  "galleryEditor": {
+    "meta": { "title": "Gallery studio" }, "eyebrow": "Content management", "title": "Gallery studio", "intro": "Create bilingual albums, upload images to R2, add videos and publish only approved content.", "back": "Back to content studio", "access": "Sign in with an editor account to manage the gallery.", "signIn": "Sign in", "loadError": "We could not load the gallery.", "saveError": "We could not save this change.",
+    "albums": "Albums", "newAlbum": "New album", "editAlbum": "Edit album", "items": "Album items", "newItem": "New item", "editItem": "Edit item", "slug": "URL slug", "titleEn": "Title (English)", "titleFr": "Title (French)", "descriptionEn": "Description (English)", "descriptionFr": "Description (French)", "sortOrder": "Display order", "coverImage": "Album cover image", "mediaImage": "Photo or 2:1 panorama (minimum 1024 × 512)", "mediaVideo": "Upload MP4 or WebM video (up to 100 MB)", "thumbnailImage": "Video thumbnail (optional)", "videoUrl": "YouTube or Vimeo URL", "kind": "Media type", "photo": "Photo", "hostedVideo": "Uploaded video", "panorama": "360° tour", "captionEn": "Caption (English)", "captionFr": "Caption (French)", "altEn": "Image description (English)", "altFr": "Image description (French)",
+    "saveDraft": "Save draft", "working": "Working…", "publish": "Publish", "unpublish": "Unpublish", "live": "Published", "draft": "Draft", "savedDraft": "Draft saved. Publish it when both languages are complete.", "published": "Published successfully.", "unpublished": "Removed from the public gallery.", "uploadReady": "Media uploaded. Save the draft to use it.", "viewPublic": "View public album", "albumPublishHint": "Publishing requires a cover and complete English/French titles and descriptions. Saving changes returns the album to draft.", "itemPublishHint": "Publishing requires an English/French caption. Photos and panoramas also need image descriptions in both languages."
+  },
+  "gallery": {
+    "meta": { "title": "Gallery", "description": "Explore published photos, videos and panoramic views from Trustech University Institute." },
+    "eyebrow": "Life at Trustech", "title": "A closer look at our community.", "intro": "Explore the moments and spaces shared by our team across campus life, learning and events.",
+    "albumsEyebrow": "The collection", "albumsTitle": "Browse the albums", "albumsIntro": "Each collection is curated and published by Trustech staff.", "openAlbum": "Open album",
+    "emptyTitle": "No albums are published yet.", "emptyBody": "Check back for photos and videos from the institute.", "unavailableTitle": "The gallery is temporarily unavailable.", "unavailableBody": "We could not load the albums right now. Please try again later.", "aboutCta": "About Trustech",
+    "backToAlbums": "Back to gallery", "albumEyebrow": "From the gallery", "momentsEyebrow": "Inside this album", "momentsTitle": "Explore the collection", "albumEmptyTitle": "No media is published in this album yet.", "albumEmptyBody": "Please check back for updates.",
+    "viewItem": "View {title}", "viewerLabel": "Gallery viewer", "share": "Share", "copied": "Link copied", "close": "Close viewer", "previousItem": "Previous item", "nextItem": "Next item", "panoramaLabel": "Panorama", "panoramaHint": "Drag or use arrow keys to look around. Scroll to zoom."
   },
   "contact": {
     "meta": {
@@ -631,10 +717,16 @@
       "departments": { "admissions": "Admissions", "registrar": "Academic records", "finance": "Finance", "general": "General enquiry" },
       "subject": "Subject",
       "message": "Message",
+      "attachment": "Attachment (optional)",
+      "attachmentHelp": "PDF, Word, text, JPEG or PNG; up to 5 MB.",
+      "attachmentInvalid": "Choose a PDF, Word, text, JPEG or PNG file of 5 MB or less.",
       "submit": "Send message",
       "submitting": "Sending…",
       "success": "Thank you — your enquiry has been received. Keep this reference: {reference}",
-      "error": "Your message could not be sent. Please try again."
+      "error": "Your message could not be sent. Please try again.",
+      "captchaLabel": "Anti-spam verification",
+      "captchaRequired": "Please complete the anti-spam check before sending.",
+      "captchaUnavailable": "The contact form is temporarily unavailable. Please call us instead."
     },
     "validation": {
       "fullNameRequired": "Please enter your full name.",
@@ -678,7 +770,11 @@
     "page": "Page {page}",
     "fields": {
       "code": "Program code", "level": "Award level", "nameEn": "English name", "nameFr": "French name",
-      "school": "School", "duration": "Duration in years", "descriptionEn": "English description", "descriptionFr": "French description"
+      "school": "School", "duration": "Duration in years", "featured": "Feature on the homepage", "featuredHelp": "Only published programmes appear in this selection.", "descriptionEn": "English description", "descriptionFr": "French description",
+      "requirementsEn": "Entry requirements (English)", "requirementsFr": "Entry requirements (French)",
+      "careersEn": "Career prospects (English)", "careersFr": "Career prospects (French)",
+      "curriculumEn": "Semester outline (English)", "curriculumFr": "Semester outline (French)",
+      "curriculumHelp": "Enter one semester per line, for example: Semester 1 — Core subjects and practical work."
     },
     "status": { "draft": "Draft", "published": "Published" }
   },
@@ -699,7 +795,19 @@
     "loadError": "Could not load the media library.",
     "saveError": "Could not save the image.",
     "loading": "Loading image slots…",
-    "formatHint": "PNG, JPEG or WebP, up to 8 MB. News and event covers are managed in the content studio."
+    "formatHint": "PNG, JPEG or WebP, up to 8 MB. News and event covers are managed in the content studio.",
+    "bannersLink": "Manage homepage banners"
+  },
+  "bannerEditor": {
+    "eyebrow": "Staff workspace", "title": "Homepage banners", "intro": "Prepare bilingual homepage messages, choose imagery and set their display dates.",
+    "access": "Sign in with an editor or administrator account to manage banners.", "signIn": "Sign in", "back": "Back to content studio",
+    "new": "New banner", "records": "Banner records", "editor": "Banner editor", "editing": "Edit banner", "loading": "Loading banners…", "empty": "No banners are configured. The standard homepage hero remains visible.",
+    "order": "Display order {order}", "live": "Published", "draft": "Draft", "loadError": "Could not load banners.", "saveError": "Could not save the banner.",
+    "titleEn": "Headline (English)", "titleFr": "Headline (French)", "subtitleEn": "Supporting text (English)", "subtitleFr": "Supporting text (French)",
+    "image": "Image path", "upload": "Upload banner image", "sortOrder": "Display order", "altEn": "Image description (English)", "altFr": "Image description (French)",
+    "ctaEn": "Button label (English)", "ctaFr": "Button label (French)", "ctaHref": "Button path", "startsAt": "Display from", "endsAt": "Display until",
+    "publicationNote": "Use an image from the media library or upload one here. Button paths must begin with / and stay on this site. Complete both languages before publishing. Changes to a published banner return it to draft.",
+    "working": "Working…", "save": "Save draft", "publish": "Publish banner", "unpublish": "Unpublish banner", "saved": "Banner saved as a draft.", "published": "Banner published.", "unpublished": "Banner removed from the homepage."
   },
   "cmsEditor": {
     "meta": { "title": "Content studio", "description": "Manage Trustech news and events." },
@@ -708,6 +816,8 @@
     "subtitle": "Prepare, publish and archive the stories and events shown on the public site.",
     "reviewLink": "Admissions review",
     "programsLink": "Program catalogue",
+    "galleryLink": "Gallery studio",
+    "leadershipLink": "Leadership directory",
     "news": "News",
     "events": "Events",
     "newNews": "New story",

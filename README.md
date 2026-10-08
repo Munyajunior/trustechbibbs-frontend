@@ -33,9 +33,9 @@ Design system: **Trustech Design Language (TDL v1.0)** — see
 ## Quickstart
 
 ```bash
-npm install
+pnpm install --frozen-lockfile
 cp .env.example .env.local
-npm run dev
+pnpm dev
 ```
 
 → **http://localhost:3000** (redirects to `/en`)
@@ -49,8 +49,8 @@ For real data, start the backend on `:8000`.
 ### Docker
 
 ```bash
-docker build -t thibbs-frontend .
-docker run -p 3000:3000 --env-file .env.local thibbs-frontend
+pnpm build:docker
+docker run -p 3000:3000 thibbs-frontend
 ```
 
 ---
@@ -59,12 +59,19 @@ docker run -p 3000:3000 --env-file .env.local thibbs-frontend
 
 | Command              | What it does                                |
 | -------------------- | ------------------------------------------- |
-| `npm run dev`        | Dev server with HMR                         |
-| `npm run build`      | Production build (type-checks + prerenders) |
-| `npm start`          | Serve the production build                  |
-| `npm run lint`       | ESLint                                      |
-| `npm test`           | Jest + RTL                                  |
-| `npm run test:watch` | Jest watch mode                             |
+| `pnpm dev`          | Dev server with HMR                         |
+| `pnpm build`        | Native production build                    |
+| `pnpm build:docker` | Production build in Linux Docker           |
+| `pnpm start`        | Serve the production build                 |
+| `pnpm lint`         | ESLint                                     |
+
+On Windows, native `pnpm build` can fail if the machine's security policy
+rejects SWC's native binding cache (`ERR_SWC_NATIVE_CACHE`). Use
+`pnpm build:docker` in that environment. This command builds and type-checks
+the same production application in Linux. For deployment, supply the required
+`NEXT_PUBLIC_*` values with `docker build --build-arg ...` because they are
+embedded at build time; passing them only to `docker run` does not update the
+browser bundle.
 
 Next 16 dropped the `eslint` key from `next.config.ts`, so **`build` no longer
 lints** — run `lint` as its own CI gate.
@@ -78,9 +85,13 @@ lints** — run `lint` as its own CI gate.
 | `NEXT_PUBLIC_API_BASE_URL` | Backend base URL, including `/api/v1`    | `http://localhost:8000/api/v1` |
 | `NEXT_PUBLIC_SITE_URL`     | Public origin (canonical, sitemap, OG)   | `http://localhost:3000`        |
 | `NEXT_PUBLIC_ENV`          | `development` / `staging` / `production` | `development`                  |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Public reCAPTCHA v2 checkbox key for the contact form | unset |
 
 `NEXT_PUBLIC_*` is inlined into the browser bundle at build time — public, and
 baked in. Never put a secret there.
+Set the matching reCAPTCHA secret and allowed frontend hostname in the backend
+environment. Staging and production contact forms remain unavailable until the
+site key and backend verification settings are configured.
 
 ---
 

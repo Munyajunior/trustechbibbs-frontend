@@ -23,18 +23,19 @@ RUN --mount=type=cache,id=trustech-pnpm-store,target=/root/.local/share/pnpm/sto
     && pnpm install --frozen-lockfile
 
 # ---- Build ------------------------------------------------------------------
-FROM node:22-alpine AS builder
+FROM deps AS builder
 WORKDIR /app
 
 ARG NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api/v1
 ARG NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ARG NEXT_PUBLIC_ENV=production
+ARG NEXT_PUBLIC_RECAPTCHA_SITE_KEY=
 ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL \
     NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL \
     NEXT_PUBLIC_ENV=$NEXT_PUBLIC_ENV \
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY=$NEXT_PUBLIC_RECAPTCHA_SITE_KEY \
     NEXT_TELEMETRY_DISABLED=1
 
-COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 RUN pnpm build

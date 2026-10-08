@@ -6,10 +6,16 @@
  * news/events refresh hourly, programs/about daily. See docs/PERFORMANCE_SEO.md.
  */
 
-import { apiList, apiRequest } from "./client";
+import { API_BASE_URL, ApiError, ApiUnreachableError, apiList, apiRequest } from "./client";
 import type {
+  ApiErrorBody,
   CampusEvent,
+  GalleryAlbum,
+  GalleryAlbumDetail,
+  LeadershipProfile,
   ContactSubmission,
+  Envelope,
+  HomeBanner,
   ListQuery,
   Locale,
   NewsArticle,
@@ -25,6 +31,11 @@ export const REVALIDATE = {
   dynamic: 3_600,
 } as const;
 
+/** Active homepage banners; scheduling must take effect without a static build. */
+export function getHomeBanners({ locale = "en" }: LocaleOption = {}): Promise<HomeBanner[]> {
+  return apiRequest<HomeBanner[]>("/public/banners", { locale, cache: "no-store" });
+}
+
 interface LocaleOption {
   locale?: Locale;
 }
@@ -37,6 +48,16 @@ export function getPrograms(
   return apiList<Program>("/public/programs", {
     locale,
     query: { per_page: 12, ...query },
+    next: { revalidate: REVALIDATE.static, tags: ["programs"] },
+  });
+}
+
+/** Levels represented by published programmes, for catalogue filters. */
+export function getProgramFilters(
+  { locale = "en" }: LocaleOption = {},
+): Promise<{ levels: string[] }> {
+  return apiRequest<{ levels: string[] }>("/public/programs/filters", {
+    locale,
     next: { revalidate: REVALIDATE.static, tags: ["programs"] },
   });
 }
@@ -64,6 +85,14 @@ export function getNews(
   });
 }
 
+/** Categories represented by currently published news articles. */
+export function getNewsFilters({ locale = "en" }: LocaleOption = {}): Promise<{ categories: string[] }> {
+  return apiRequest<{ categories: string[] }>("/public/news/filters", {
+    locale,
+    next: { revalidate: REVALIDATE.dynamic, tags: ["news"] },
+  });
+}
+
 /** Fetch a single news article by slug. */
 export function getNewsArticle(
   slug: string,
@@ -87,6 +116,14 @@ export function getEvents(
   });
 }
 
+/** Categories represented by published upcoming or in-progress events. */
+export function getEventFilters({ locale = "en" }: LocaleOption = {}): Promise<{ categories: string[] }> {
+  return apiRequest<{ categories: string[] }>("/public/events/filters", {
+    locale,
+    next: { revalidate: REVALIDATE.dynamic, tags: ["events"] },
+  });
+}
+
 /** Fetch one public event by slug. */
 export function getEvent(
   slug: string,
@@ -95,6 +132,31 @@ export function getEvent(
   return apiRequest<CampusEvent>(`/public/events/${encodeURIComponent(slug)}`, {
     locale,
     next: { revalidate: REVALIDATE.dynamic, tags: ["events", `event:${slug}`] },
+  });
+}
+
+/** Published gallery albums and their published media. */
+export function getGalleryAlbums({ locale = "en" }: LocaleOption = {}): Promise<GalleryAlbum[]> {
+  return apiRequest<GalleryAlbum[]>("/public/gallery", {
+    locale,
+    next: { revalidate: REVALIDATE.dynamic, tags: ["gallery"] },
+  });
+}
+
+export function getLeadershipProfiles({ locale = "en" }: LocaleOption = {}): Promise<LeadershipProfile[]> {
+  return apiRequest<LeadershipProfile[]>("/public/leadership", {
+    locale,
+    next: { revalidate: REVALIDATE.static, tags: ["leadership"] },
+  });
+}
+
+export function getGalleryAlbum(
+  slug: string,
+  { locale = "en" }: LocaleOption = {},
+): Promise<GalleryAlbumDetail> {
+  return apiRequest<GalleryAlbumDetail>(`/public/gallery/${encodeURIComponent(slug)}`, {
+    locale,
+    next: { revalidate: REVALIDATE.dynamic, tags: ["gallery", `gallery:${slug}`] },
   });
 }
 
@@ -121,4 +183,30 @@ export function submitContact(
     body: payload,
     cache: "no-store",
   });
+}
+
+/** Submit an enquiry and one private attachment in a single request. */
+export async function submitContactWithAttachment(
+  payload: ContactSubmission, file: File, { locale = "en" }: LocaleOption = {},
+): Promise<{ reference: string }> {
+  const body = new FormData();
+  body.append("payload", JSON.stringify(payload));
+  body.append("file", file);
+  let response: Response;
+  try {
+    response = await fetch(`${API_BASE_URL.replace(/\/$/, "")}/public/contact/with-attachment`, {
+      method: "POST", headers: { "Accept-Language": locale }, body, cache: "no-store",
+    });
+  } catch (cause) {
+    throw new ApiUnreachableError(cause);
+  }
+  const result = await response.json().catch(() => null) as Envelope<{ reference: string }> | null;
+  if (!response.ok || !result || !result.success) {
+    const fallback: ApiErrorBody = {
+      code: "CONTACT_FAILED", message_en: "Your message could not be sent.",
+      message_fr: "Votre message n'a pas pu être envoyé.", details: [], reference_id: "n/a",
+    };
+    throw new ApiError(response.status, result && !result.success ? result.error : fallback);
+  }
+  return result.data;
 }
