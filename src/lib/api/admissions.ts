@@ -52,6 +52,28 @@ export interface ReviewApplicationListItem {
   created_at: string;
 }
 
+export interface StudentEnrollment {
+  id: string;
+  student_id: string;
+  user_id: string;
+  source_application_id: string;
+  email_institutional: string;
+  program_id: string;
+  enrollment_year: number;
+  enrollment_status: string;
+}
+
+export interface EnrollmentSummary {
+  total_active: number;
+  by_program: Array<{
+    program_id: string | null;
+    program_code: string | null;
+    program_name_en: string | null;
+    program_name_fr: string | null;
+    active_students: number;
+  }>;
+}
+
 export interface ApplicationDocument {
   id: string;
   kind: string;
@@ -214,6 +236,27 @@ export function updateApplicationStatus(
   return apiRequest<ApplicationDetail>(`/admissions/applications/${applicationId}/status`, {
     method: "PATCH",
     body: { status, comment: comment || null },
+    token,
+    locale,
+    cache: "no-store",
+  });
+}
+
+export function enrollAdmittedApplicant(
+  applicationId: string,
+  token: string,
+  locale: Locale,
+): Promise<StudentEnrollment> {
+  return apiRequest<StudentEnrollment>(`/students/enrollments/from-application/${applicationId}`, {
+    method: "POST",
+    token,
+    locale,
+    cache: "no-store",
+  });
+}
+
+export function getEnrollmentSummary(token: string, locale: Locale): Promise<EnrollmentSummary> {
+  return apiRequest<EnrollmentSummary>("/students/enrollments/summary", {
     token,
     locale,
     cache: "no-store",
