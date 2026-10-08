@@ -6,7 +6,7 @@ import { schools } from "@/lib/schools";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 /** Static routes present for every locale. */
-const STATIC_PATHS = ["", "/about", "/schools", "/programs", ...schools.map(({ key }) => `/schools/${key}`), "/admissions", "/admissions/application", "/admissions/login", "/admissions/register", "/admissions/status", "/news", "/events", "/contact", "/privacy", "/terms", "/accessibility"];
+const STATIC_PATHS = ["", "/about", "/schools", "/programs", ...schools.map(({ key }) => `/schools/${key}`), "/admissions", "/admissions/application", "/admissions/login", "/admissions/register", "/admissions/status", "/news", "/events", "/gallery", "/contact", "/privacy", "/terms", "/accessibility"];
 
 /**
  * Sitemap with hreflang alternates.

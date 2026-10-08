@@ -49,7 +49,7 @@ export default async function AboutPage({ params }: PageProps) {
       <section className="about-identity" aria-labelledby="about-identity-title">
         <Container className="about-identity-inner">
           <div><p className="home-kicker">{t("identityEyebrow")}</p><h2 id="about-identity-title">{t("identityTitle")}</h2></div>
-          <div className="about-identity-text"><p>{t("historyBody")}</p><p>{t("identityBody")}</p></div>
+          <div className="about-identity-text"><p>{t("historyBody")}</p><p>{t("identityBody")}</p><Link className="home-text-link" href="/about/leadership">{t("leadershipCta")}<ArrowRight aria-hidden="true" size={17} /></Link></div>
         </Container>
       </section>
 

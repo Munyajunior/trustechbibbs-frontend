@@ -5,7 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Container } from "@/components/shared/container";
 import { Link } from "@/i18n/navigation";
-import { getNews } from "@/lib/api/public";
+import { getNews, getNewsFilters } from "@/lib/api/public";
 import { safeFetch } from "@/lib/api/safe";
 import type { Locale, NewsArticle, Paginated } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
@@ -13,7 +13,16 @@ import { publicMediaSrc } from "@/lib/public-media";
 import { formatDate } from "@/lib/utils";
 
 export const revalidate = 3600;
-type PageProps = { params: Promise<{ locale: string }>; searchParams: Promise<{ page?: string }> };
+type PageProps = { params: Promise<{ locale: string }>; searchParams: Promise<{ page?: string; search?: string; category?: string }> };
+
+function listingHref(page: number, search: string, category: string) {
+  const query = new URLSearchParams();
+  if (page > 1) query.set("page", String(page));
+  if (search) query.set("search", search);
+  if (category) query.set("category", category);
+  const suffix = query.toString();
+  return `/news${suffix ? `?${suffix}` : ""}`;
+}
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
@@ -25,17 +34,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function NewsPage({ params, searchParams }: PageProps) {
   const { locale } = await params;
-  const { page: rawPage } = await searchParams;
+  const { page: rawPage, search: rawSearch, category: rawCategory } = await searchParams;
   setRequestLocale(locale);
   const t = await getTranslations("news");
   const loc = locale as Locale;
   const page = Math.max(1, Math.min(1000, Number.parseInt(rawPage ?? "1", 10) || 1));
-  const { data } = await safeFetch<Paginated<NewsArticle>>(
-    getNews({ page, per_page: 9 }, { locale: loc }),
-    { items: [], pagination: { page, per_page: 9, total: 0, total_pages: 0, has_next: false, has_previous: false } },
-    "news:list",
-  );
-  const featured = page === 1 ? data.items[0] : undefined;
+  const search = typeof rawSearch === "string" ? rawSearch.trim().slice(0, 100) : "";
+  const category = typeof rawCategory === "string" ? rawCategory.trim().slice(0, 80) : "";
+  const [{ data, failed }, { data: filters }] = await Promise.all([
+    safeFetch<Paginated<NewsArticle>>(
+      getNews({ page, per_page: 12, search, category }, { locale: loc }),
+      { items: [], pagination: { page, per_page: 12, total: 0, total_pages: 0, has_next: false, has_previous: false } },
+      "news:list",
+    ),
+    safeFetch(getNewsFilters({ locale: loc }), { categories: [] }, "news:filters"),
+  ]);
+  const filtered = !!search || !!category;
+  const featured = page === 1 && !filtered ? data.items[0] : undefined;
   const articles = featured ? data.items.slice(1) : data.items;
 
   return (
@@ -55,6 +70,11 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
       <section className="journal-content" id="journal-content" aria-labelledby="journal-content-title">
         <Container>
           <div className="home-section-heading home-section-heading-split"><div><p className="home-kicker">{t("listingEyebrow")}</p><h2 id="journal-content-title">{t("listingTitle")}</h2></div><p>{t("listingIntro")}</p></div>
+          <form className="journal-filters" action={`/${locale}/news`} method="get" role="search">
+            <div><label htmlFor="news-search">{t("searchLabel")}</label><input id="news-search" type="search" name="search" defaultValue={search} maxLength={100} placeholder={t("searchPlaceholder")} /></div>
+            <div><label htmlFor="news-category">{t("categoryLabel")}</label><select id="news-category" name="category" defaultValue={category}><option value="">{t("allCategories")}</option>{filters.categories.map((item) => <option key={item} value={item}>{item}</option>)}{category && !filters.categories.includes(category) && <option value={category}>{category}</option>}</select></div>
+            <button type="submit">{t("filterAction")}</button>{filtered && <Link href="/news">{t("clearFilters")}</Link>}
+          </form>
           {data.items.length > 0 ? (
             <>
               {featured ? <Link href={`/news/${featured.slug}`} className="journal-feature">
@@ -66,12 +86,12 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
                 <div className="journal-card-copy"><time dateTime={article.published_at}>{formatDate(article.published_at, loc)}</time><h3><Link href={`/news/${article.slug}`}>{localizedField(article, "title", loc)}</Link></h3>{localizedField(article, "excerpt", loc) && <p>{localizedField(article, "excerpt", loc)}</p>}<Link className="home-text-link" href={`/news/${article.slug}`}>{t("readStory")}<ArrowUpRight aria-hidden="true" size={16} /></Link></div>
               </article>)}</div> : null}
               {(data.pagination.has_previous || data.pagination.has_next) && <nav className="journal-pagination" aria-label={t("paginationLabel")}>
-                {data.pagination.has_previous && <Link href={`/news?page=${page - 1}`}>{t("previous")}</Link>}
+                {data.pagination.has_previous && <Link href={listingHref(page - 1, search, category)}>{t("previous")}</Link>}
                 <span>{t("pageNumber", { page })}</span>
-                {data.pagination.has_next && <Link href={`/news?page=${page + 1}`}>{t("next")}</Link>}
+                {data.pagination.has_next && <Link href={listingHref(page + 1, search, category)}>{t("next")}</Link>}
               </nav>}
             </>
-          ) : <div className="journal-empty"><div className="journal-empty-icon"><Newspaper aria-hidden="true" size={35} strokeWidth={1.2} /></div><div><h3>{t("emptyTitle")}</h3><p>{t("emptyBody")}</p></div><Link className="home-button home-button-gold" href="/programs">{t("programsCta")}<ArrowRight aria-hidden="true" size={18} /></Link></div>}
+          ) : <div className="journal-empty"><div className="journal-empty-icon"><Newspaper aria-hidden="true" size={35} strokeWidth={1.2} /></div><div><h3>{failed ? t("unavailableTitle") : filtered ? t("noResultsTitle") : t("emptyTitle")}</h3><p>{failed ? t("unavailableBody") : filtered ? t("noResultsBody") : t("emptyBody")}</p></div><Link className="home-button home-button-gold" href={failed || !filtered ? "/schools" : "/news"}>{failed || !filtered ? t("programsCta") : t("clearFilters")}<ArrowRight aria-hidden="true" size={18} /></Link></div>}
         </Container>
       </section>
 

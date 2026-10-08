@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -72,6 +73,12 @@ export default async function ProgramDetailPage({ params }: PageProps) {
   const name = localizedField(program, "name", loc);
   const description = localizedField(program, "description", loc);
   const schoolName = localizedField(program, "school_name", loc);
+  const schoolKey = program.school_key && ["engineering", "business", "health", "education", "communication", "tourism", "agriculture"].includes(program.school_key)
+    ? program.school_key : null;
+  const requirements = localizedField(program, "admission_requirements", loc);
+  const careers = localizedField(program, "career_prospects", loc);
+  const semesters = localizedField(program, "curriculum_outline", loc)
+    .split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
 
   /**
    * Schema.org structured data — required for rich snippets (SEO score > 95).
@@ -110,10 +117,12 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           <Container>
             <Link href="/">{t("home")}</Link><span aria-hidden="true">/</span>
             <Link href="/programs">{t("title")}</Link><span aria-hidden="true">/</span>
+            {schoolKey && <><Link href={`/schools/${schoolKey}`}>{schoolName}</Link><span aria-hidden="true">/</span></>}
             <span aria-current="page">{name}</span>
           </Container>
         </nav>
         <section className="program-detail-hero" aria-labelledby="program-detail-title">
+          {schoolKey && <div className="program-detail-hero-image" aria-hidden="true"><Image src={`/site-media/school-${schoolKey}`} unoptimized alt="" fill priority sizes="100vw" className="object-cover" /></div>}
           <Container className="program-detail-hero-inner">
             <div className="program-detail-heading">
               <p className="home-kicker">{t("detailEyebrow")}</p>
@@ -149,6 +158,27 @@ export default async function ProgramDetailPage({ params }: PageProps) {
             </aside>
           </Container>
         </section>
+        <section className="program-detail-pathways">
+          <Container className="program-detail-pathways-inner">
+            <div className="program-detail-pathway-card">
+              <span className="program-detail-section-number">01</span>
+              <h2>{t("requirementsTitle")}</h2>
+              <p>{requirements || t("requirementsContact")}</p>
+            </div>
+            {careers && <div className="program-detail-pathway-card">
+              <span className="program-detail-section-number">02</span>
+              <h2>{t("careersTitle")}</h2>
+              <p>{careers}</p>
+            </div>}
+          </Container>
+        </section>
+        {semesters.length > 0 && <section className="program-detail-curriculum" aria-labelledby="program-curriculum-title">
+          <Container>
+            <p className="home-kicker">{t("detailEyebrow")}</p>
+            <h2 id="program-curriculum-title">{t("curriculumTitle")}</h2>
+            <ol>{semesters.map((semester, index) => <li key={`${index}-${semester}`}><span>{String(index + 1).padStart(2, "0")}</span><p>{semester}</p></li>)}</ol>
+          </Container>
+        </section>}
         <section className="program-detail-back">
           <Container><Link className="home-text-link" href="/programs"><ArrowLeft aria-hidden="true" size={17} />{t("backToPrograms")}</Link></Container>
         </section>
