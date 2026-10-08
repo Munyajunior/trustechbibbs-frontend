@@ -126,6 +126,10 @@ duplicates and both rank worse.
 `metadataBase` comes from `NEXT_PUBLIC_SITE_URL` — set it per environment or
 Open Graph URLs point at localhost.
 
+Localized routes resolve unprefixed links through `src/proxy.ts`. The locale
+layout supplies the Trustech shield as the default Open Graph and Twitter card
+image; page-specific titles and descriptions are used for link previews.
+
 ### Structured data
 
 Program detail pages emit `EducationalOccupationalProgram` JSON-LD (provider,

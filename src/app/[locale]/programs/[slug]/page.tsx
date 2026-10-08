@@ -58,7 +58,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         fr: `/fr/programs/${slug}`,
       },
     },
-    openGraph: { title: name, description: description.slice(0, 160) },
+    openGraph: {
+      title: name,
+      description: description.slice(0, 160),
+      images: [
+        {
+          url: "/images/trustech-shield.jpg",
+          width: 1273,
+          height: 1351,
+          alt: name,
+        },
+      ],
+    },
   };
 }
 

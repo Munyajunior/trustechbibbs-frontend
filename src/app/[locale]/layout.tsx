@@ -49,10 +49,19 @@ export async function generateMetadata({
       type: "website",
       locale: locale === "fr" ? "fr_CM" : "en_CM",
       siteName: tc("brand"),
-      title: t("title"),
-      description: t("description"),
+      images: [
+        {
+          url: "/images/trustech-shield.jpg",
+          width: 1273,
+          height: 1351,
+          alt: tc("brand"),
+        },
+      ],
     },
-    twitter: { card: "summary_large_image" },
+    twitter: {
+      card: "summary_large_image",
+      images: ["/images/trustech-shield.jpg"],
+    },
   };
 }
 
