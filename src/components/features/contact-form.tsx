@@ -3,13 +3,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
+import Script from "next/script";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Input, Label, Textarea } from "@/components/ui/input";
 import { ApiError, ApiUnreachableError } from "@/lib/api/client";
-import { submitContact } from "@/lib/api/public";
+import { submitContact, submitContactWithAttachment } from "@/lib/api/public";
 import type { Locale } from "@/lib/api/types";
 
 /**
@@ -43,11 +45,35 @@ function buildSchema(t: (key: string) => string) {
 }
 
 type ContactFormValues = z.infer<ReturnType<typeof buildSchema>>;
+const MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024;
+const ATTACHMENT_EXTENSIONS = new Set(["pdf", "docx", "txt", "jpg", "jpeg", "png"]);
+
+declare global {
+  interface Window {
+    grecaptcha?: {
+      render: (container: HTMLElement, options: {
+        sitekey: string;
+        callback: () => void;
+        "expired-callback": () => void;
+      }) => number;
+      getResponse: (widgetId: number) => string;
+      reset: (widgetId: number) => void;
+    };
+  }
+}
 
 export function ContactForm() {
   const t = useTranslations("contact.form");
   const tv = useTranslations("contact.validation");
   const locale = useLocale() as Locale;
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY?.trim();
+  const requiresCaptcha = ["staging", "production"].includes(process.env.NEXT_PUBLIC_ENV ?? "development");
+  const captchaContainer = useRef<HTMLDivElement>(null);
+  const captchaWidget = useRef<number | null>(null);
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
+  const [attachment, setAttachment] = useState<File | null>(null);
+  const [attachmentError, setAttachmentError] = useState<string | null>(null);
+  const [fileInputKey, setFileInputKey] = useState(0);
 
   const schema = buildSchema(tv);
 
@@ -62,9 +88,41 @@ export function ContactForm() {
   });
 
   const mutation = useMutation({
-    mutationFn: (values: ContactFormValues) => submitContact(values, { locale }),
-    onSuccess: () => reset(),
+    mutationFn: ({ values, file }: { values: ContactFormValues & { captcha_token?: string }; file: File | null }) =>
+      file ? submitContactWithAttachment(values, file, { locale }) : submitContact(values, { locale }),
+    onSuccess: () => { reset(); setAttachment(null); setAttachmentError(null); setFileInputKey((key) => key + 1); },
+    onSettled: () => {
+      if (captchaWidget.current !== null) window.grecaptcha?.reset(captchaWidget.current);
+    },
   });
+
+  function submit(values: ContactFormValues) {
+    if (attachmentError) return;
+    if (requiresCaptcha && !siteKey) {
+      setCaptchaError(t("captchaUnavailable"));
+      return;
+    }
+    const captchaToken = captchaWidget.current !== null
+      ? window.grecaptcha?.getResponse(captchaWidget.current) : undefined;
+    if (siteKey && !captchaToken) {
+      setCaptchaError(t("captchaRequired"));
+      return;
+    }
+    setCaptchaError(null);
+    mutation.mutate({ values: { ...values, captcha_token: captchaToken }, file: attachment });
+  }
+
+  function selectAttachment(file: File | null) {
+    if (!file) { setAttachment(null); setAttachmentError(null); return; }
+    const extension = file.name.split(".").pop()?.toLowerCase() ?? "";
+    if (file.size === 0 || file.size > MAX_ATTACHMENT_BYTES || !ATTACHMENT_EXTENSIONS.has(extension)) {
+      setAttachment(null);
+      setAttachmentError(t("attachmentInvalid"));
+      return;
+    }
+    setAttachment(file);
+    setAttachmentError(null);
+  }
 
   function errorMessage(): string {
     const error = mutation.error;
@@ -76,7 +134,7 @@ export function ContactForm() {
   return (
     <form
       noValidate
-      onSubmit={handleSubmit((values) => mutation.mutate(values))}
+      onSubmit={(event) => { void handleSubmit(submit)(event); }}
       className="contact-form space-y-5"
     >
       {/* Status region — announced to screen readers. */}
@@ -187,9 +245,42 @@ export function ContactForm() {
         )}
       </div>
 
-      {/* TODO(Phase 1): add spam protection and attachment support before public launch. */}
+      <div>
+        <Label htmlFor="contact_attachment">{t("attachment")}</Label>
+        <Input
+          key={fileInputKey}
+          id="contact_attachment"
+          type="file"
+          accept=".pdf,.docx,.txt,.jpg,.jpeg,.png"
+          aria-describedby="contact-attachment-help contact-attachment-error"
+          aria-invalid={!!attachmentError || undefined}
+          onChange={(event) => selectAttachment(event.target.files?.[0] ?? null)}
+        />
+        <p id="contact-attachment-help" className="mt-1.5 text-sm text-gray-600">{t("attachmentHelp")}</p>
+        {attachmentError && <p id="contact-attachment-error" role="alert" className="mt-1.5 text-sm text-error">{attachmentError}</p>}
+      </div>
 
-      <Button type="submit" size="lg" variant="accent" className="w-full sm:w-auto" disabled={mutation.isPending}>
+      {siteKey && <>
+        <div ref={captchaContainer} aria-label={t("captchaLabel")} />
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=explicit&hl=${locale}`}
+          strategy="afterInteractive"
+          onReady={() => {
+            if (captchaContainer.current && window.grecaptcha && captchaWidget.current === null) {
+              captchaWidget.current = window.grecaptcha.render(captchaContainer.current, {
+                sitekey: siteKey,
+                callback: () => setCaptchaError(null),
+                "expired-callback": () => setCaptchaError(t("captchaRequired")),
+              });
+            }
+          }}
+          onError={() => setCaptchaError(t("captchaUnavailable"))}
+        />
+      </>}
+      {requiresCaptcha && !siteKey && <p role="alert" className="text-sm text-error">{t("captchaUnavailable")}</p>}
+      {captchaError && <p role="alert" className="text-sm text-error">{captchaError}</p>}
+
+      <Button type="submit" size="lg" variant="accent" className="w-full sm:w-auto" disabled={mutation.isPending || (requiresCaptcha && !siteKey)}>
         {mutation.isPending ? t("submitting") : t("submit")}
       </Button>
     </form>

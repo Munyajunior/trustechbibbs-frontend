@@ -1,11 +1,11 @@
 "use client";
 
 import { LogOut, Menu, X } from "lucide-react";
-import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { BrandMark } from "@/components/layout/brand-mark";
 import { Container } from "@/components/shared/container";
 import { buttonVariants } from "@/components/ui/button";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
@@ -23,6 +23,7 @@ const NAV_ITEMS = [
   { href: "/admissions", key: "admissions" },
   { href: "/news", key: "news" },
   { href: "/events", key: "events" },
+  { href: "/gallery", key: "gallery" },
   { href: "/contact", key: "contact" },
 ] as const;
 
@@ -80,18 +81,7 @@ export function Header() {
             className="flex shrink-0 items-center gap-2"
             aria-label={tc("brand")}
           >
-            <Image src="/site-media/logo" unoptimized alt="" width={57} height={57} className="size-[52px] object-contain" priority />
-            <span className="leading-[1.02]">
-              <span className="block text-[9px] font-bold tracking-[.055em] text-[#b58100] sm:text-[10px]">
-                {tc("brandType")}
-              </span>
-              <span className="block text-[19px] font-extrabold tracking-[-.05em] text-primary sm:text-[23px]">
-                TRUSTECH
-              </span>
-              <span className="hidden text-[9px] font-bold tracking-[.04em] text-[#b58100] sm:block">
-                {tc("brandTagline")}
-              </span>
-            </span>
+            <BrandMark />
           </Link>
 
           {/* Desktop nav */}

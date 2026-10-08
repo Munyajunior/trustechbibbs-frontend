@@ -95,8 +95,15 @@ export function ProgramEditor({ locale }: Props) {
       degree_level: value(data, "degree_level"),
       duration_years: Number(value(data, "duration_years")),
       school_key: value(data, "school_key") as SchoolKey,
+      is_featured: data.has("is_featured"),
       description_en: value(data, "description_en") || null,
       description_fr: value(data, "description_fr") || null,
+      admission_requirements_en: value(data, "admission_requirements_en") || null,
+      admission_requirements_fr: value(data, "admission_requirements_fr") || null,
+      career_prospects_en: value(data, "career_prospects_en") || null,
+      career_prospects_fr: value(data, "career_prospects_fr") || null,
+      curriculum_outline_en: value(data, "curriculum_outline_en") || null,
+      curriculum_outline_fr: value(data, "curriculum_outline_fr") || null,
     };
     setBusy(true);
     setError(null);
@@ -168,8 +175,15 @@ export function ProgramEditor({ locale }: Props) {
             <div><Label htmlFor="program-name-fr">{t("fields.nameFr")}</Label><Input id="program-name-fr" name="name_fr" defaultValue={selected?.name_fr ?? ""} /></div>
             <div><Label htmlFor="program-school" required>{t("fields.school")}</Label><select id="program-school" name="school_key" defaultValue={selected?.school_key ?? ""} required className="h-11 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-900"><option value="">{t("chooseSchool")}</option>{schools.map(({ key }) => <option key={key} value={key}>{names(`${key}.title`)}</option>)}</select></div>
             <div><Label htmlFor="program-duration" required>{t("fields.duration")}</Label><Input id="program-duration" name="duration_years" type="number" min="1" max="8" defaultValue={selected?.duration_years ?? ""} required /></div>
+            <label className="program-editor-featured cms-field-wide"><input type="checkbox" name="is_featured" defaultChecked={selected?.is_featured ?? false} /><span><strong>{t("fields.featured")}</strong><small>{t("fields.featuredHelp")}</small></span></label>
             <div className="cms-field-wide"><Label htmlFor="program-description-en">{t("fields.descriptionEn")}</Label><Textarea id="program-description-en" name="description_en" rows={5} defaultValue={selected?.description_en ?? ""} /></div>
             <div className="cms-field-wide"><Label htmlFor="program-description-fr">{t("fields.descriptionFr")}</Label><Textarea id="program-description-fr" name="description_fr" rows={5} defaultValue={selected?.description_fr ?? ""} /></div>
+            <div className="cms-field-wide"><Label htmlFor="program-requirements-en">{t("fields.requirementsEn")}</Label><Textarea id="program-requirements-en" name="admission_requirements_en" rows={4} maxLength={5000} defaultValue={selected?.admission_requirements_en ?? ""} /></div>
+            <div className="cms-field-wide"><Label htmlFor="program-requirements-fr">{t("fields.requirementsFr")}</Label><Textarea id="program-requirements-fr" name="admission_requirements_fr" rows={4} maxLength={5000} defaultValue={selected?.admission_requirements_fr ?? ""} /></div>
+            <div className="cms-field-wide"><Label htmlFor="program-careers-en">{t("fields.careersEn")}</Label><Textarea id="program-careers-en" name="career_prospects_en" rows={4} maxLength={5000} defaultValue={selected?.career_prospects_en ?? ""} /></div>
+            <div className="cms-field-wide"><Label htmlFor="program-careers-fr">{t("fields.careersFr")}</Label><Textarea id="program-careers-fr" name="career_prospects_fr" rows={4} maxLength={5000} defaultValue={selected?.career_prospects_fr ?? ""} /></div>
+            <div className="cms-field-wide"><Label htmlFor="program-curriculum-en">{t("fields.curriculumEn")}</Label><Textarea id="program-curriculum-en" name="curriculum_outline_en" rows={5} maxLength={10000} defaultValue={selected?.curriculum_outline_en ?? ""} aria-describedby="program-curriculum-help" /><p id="program-curriculum-help" className="mt-1 text-sm text-gray-600">{t("fields.curriculumHelp")}</p></div>
+            <div className="cms-field-wide"><Label htmlFor="program-curriculum-fr">{t("fields.curriculumFr")}</Label><Textarea id="program-curriculum-fr" name="curriculum_outline_fr" rows={5} maxLength={10000} defaultValue={selected?.curriculum_outline_fr ?? ""} /></div>
           </div>
           <p className="program-editor-note">{t("publicationNote")}</p>
           <div className="cms-actions">

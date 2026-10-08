@@ -1,8 +1,8 @@
 import { MapPin } from "lucide-react";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import { Container } from "@/components/shared/container";
+import { BrandMark } from "@/components/layout/brand-mark";
 import { Link } from "@/i18n/navigation";
 
 const EXPLORE_LINKS = [
@@ -11,6 +11,7 @@ const EXPLORE_LINKS = [
   { href: "/about", key: "about" },
   { href: "/news", key: "news" },
   { href: "/events", key: "events" },
+  { href: "/gallery", key: "gallery" },
 ] as const;
 
 export function Footer() {
@@ -23,10 +24,8 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2.5">
-              <Image src="/site-media/logo" unoptimized alt="" width={48} height={48} className="size-12 object-contain" />
-              <span className="font-display text-base font-bold text-primary">{t("brand")}</span>
-            </div>
+            <BrandMark compact />
+            <p className="mt-3 max-w-sm text-sm font-semibold text-primary">{t("brand")}</p>
             <p className="mt-3 max-w-sm text-sm text-gray-600">{t("tagline")}</p>
             <p className="mt-4 flex items-center gap-1.5 text-sm text-gray-600">
               <MapPin aria-hidden="true" className="size-4 shrink-0" />

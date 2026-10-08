@@ -58,6 +58,7 @@ export function MediaLibrary({ locale }: { locale: Locale }) {
     <div className="mb-10 flex flex-wrap items-end justify-between gap-5"><div><p className="text-sm font-semibold uppercase tracking-widest text-[#b58100]">{t("eyebrow")}</p><h1 className="mt-2 font-display text-4xl font-semibold text-primary">{t("title")}</h1><p className="mt-3 max-w-2xl text-slate-600">{t("intro")}</p></div><Link href="/staff/content" className="font-semibold text-primary underline">{t("back")}</Link></div>
     {error && <p role="alert" className="mb-5 rounded-xl bg-red-50 p-4 text-red-800">{error}</p>}
     {notice && <p role="status" className="mb-5 rounded-xl bg-green-50 p-4 text-green-800">{notice}</p>}
+    <p className="mb-6"><Link href="/staff/banners" className="font-semibold text-primary underline">{t("bannersLink")}</Link></p>
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {slots.map(({ slot, custom }) => <article key={slot} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
         {/* A route-local image keeps the browser and API on their respective origins. */}
