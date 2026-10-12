@@ -20,7 +20,8 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN --mount=type=cache,id=trustech-pnpm-store,target=/root/.local/share/pnpm/store \
     pnpm config set fetch-retries 5 \
     && pnpm config set fetch-timeout 300000 \
-    && pnpm install --frozen-lockfile
+    && test -s /app/pnpm-lock.yaml \
+    && pnpm --dir /app install --frozen-lockfile --lockfile-dir /app
 
 # ---- Tests (docker build --target test .) -----------------------------------
 FROM deps AS test
