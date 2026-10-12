@@ -1,9 +1,12 @@
 import { apiRequest } from "./client";
 import type { Locale } from "./types";
+import type { CurriculumCourse } from "./academic-catalogue";
+import type { AcademicTerm } from "./academic-schedule";
 
 export interface StudentProfile {
   id: string;
   student_id: string;
+  program_id: string | null;
   first_name: string;
   last_name: string;
   date_of_birth: string | null;
@@ -42,6 +45,31 @@ export type StudentProfileUpdate = Pick<
 
 export function getMyStudentProfile(token: string, locale: Locale): Promise<StudentProfile> {
   return apiRequest<StudentProfile>("/students/me", { token, locale, cache: "no-store" });
+}
+
+export interface StudentCourseOverview {
+  student_id: string;
+  program_id: string | null;
+  level: number;
+  semester: number;
+  courses: CurriculumCourse[];
+}
+
+export function getMyCurrentCourses(token: string, locale: Locale): Promise<StudentCourseOverview> {
+  return apiRequest<StudentCourseOverview>("/students/me/courses", {
+    token, locale, cache: "no-store",
+  });
+}
+
+export interface StudentRegistrationWindow {
+  term: AcademicTerm | null;
+  phase: "NOT_SCHEDULED" | "UPCOMING" | "OPEN" | "ADD_DROP";
+}
+
+export function getMyRegistrationWindow(token: string, locale: Locale): Promise<StudentRegistrationWindow> {
+  return apiRequest<StudentRegistrationWindow>("/students/me/registration-window", {
+    token, locale, cache: "no-store",
+  });
 }
 
 export function updateMyStudentProfile(

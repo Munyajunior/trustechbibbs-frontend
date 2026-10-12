@@ -8,6 +8,7 @@ export interface AuthenticatedUser {
   full_name_fr: string | null;
   roles: string[];
   is_active: boolean;
+  must_change_password: boolean;
 }
 
 export interface AuthResult {
@@ -64,6 +65,22 @@ export function getCurrentUser(token: string, locale: Locale): Promise<Authentic
     token,
     locale,
     cache: "no-store",
+  });
+}
+
+export function changePassword(
+  currentPassword: string,
+  newPassword: string,
+  token: string,
+  locale: Locale,
+): Promise<AuthResult> {
+  return apiRequest<AuthResult>("/auth/change-password", {
+    method: "POST",
+    body: { current_password: currentPassword, new_password: newPassword },
+    token,
+    locale,
+    cache: "no-store",
+    credentials: "include",
   });
 }
 

@@ -205,11 +205,12 @@ export function getApplicationsForReview(
   token: string,
   locale: Locale,
   status?: string,
+  page = 1,
 ): Promise<Paginated<ReviewApplicationListItem>> {
   return apiList<ReviewApplicationListItem>("/admissions/applications", {
     token,
     locale,
-    query: { per_page: 50, status },
+    query: { page, per_page: 20, status },
     cache: "no-store",
   });
 }

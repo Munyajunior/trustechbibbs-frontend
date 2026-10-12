@@ -20,6 +20,7 @@ export interface AuthUser {
   email: string;
   full_name: string;
   roles: string[];
+  must_change_password?: boolean;
   preferred_locale?: Locale;
 }
 

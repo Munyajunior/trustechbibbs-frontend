@@ -12,6 +12,7 @@ export interface EditorProgram {
   degree_level: string;
   duration_years: number;
   school_key: SchoolKey | null;
+  department_id: string | null;
   description_en: string | null;
   description_fr: string | null;
   admission_requirements_en: string | null;
@@ -47,10 +48,21 @@ function options(token: string, locale: Locale) {
   return { token, locale, cache: "no-store" as const };
 }
 
-export function listEditorPrograms(token: string, locale: Locale, page = 1) {
+export function listEditorPrograms(token: string, locale: Locale, page = 1, perPage = 20) {
   return apiList<EditorProgram>("/academic/programs", {
-    ...options(token, locale), query: { page, per_page: 20 },
+    ...options(token, locale), query: { page, per_page: perPage },
   }) as Promise<Paginated<EditorProgram>>;
+}
+
+export async function listAllEditorPrograms(token: string, locale: Locale): Promise<EditorProgram[]> {
+  const records: EditorProgram[] = [];
+  let page = 1;
+  for (;;) {
+    const result = await listEditorPrograms(token, locale, page, 100);
+    records.push(...result.items);
+    if (!result.pagination.has_next) return records;
+    page += 1;
+  }
 }
 
 export function createProgramDraft(payload: ProgramDraftInput, token: string, locale: Locale) {
