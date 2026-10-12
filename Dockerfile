@@ -22,6 +22,11 @@ RUN --mount=type=cache,id=trustech-pnpm-store,target=/root/.local/share/pnpm/sto
     && pnpm config set fetch-timeout 300000 \
     && pnpm install --frozen-lockfile
 
+# ---- Tests (docker build --target test .) -----------------------------------
+FROM deps AS test
+COPY . .
+RUN pnpm exec jest --runInBand
+
 # ---- Build ------------------------------------------------------------------
 FROM deps AS builder
 WORKDIR /app

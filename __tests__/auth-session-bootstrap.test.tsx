@@ -24,6 +24,7 @@ test("restores identity and a fresh access token from the refresh cookie", async
     full_name_fr: null,
     roles: ["applicant"],
     is_active: true,
+    must_change_password: false,
   });
 
   render(<AuthSessionBootstrap locale="en" />);
