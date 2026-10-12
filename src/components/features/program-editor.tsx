@@ -149,7 +149,7 @@ export function ProgramEditor({ locale }: Props) {
 
   return <div className="cms-workspace"><Container>
     <div className="cms-heading">
-      <div><p className="cms-eyebrow">{t("eyebrow")}</p><h1>{t("title")}</h1><p>{t("subtitle")}</p><Link className="cms-review-link" href="/staff/content">{t("contentStudio")}</Link></div>
+      <div><p className="cms-eyebrow">{t("eyebrow")}</p><h1>{t("title")}</h1><p>{t("subtitle")}</p><Link className="cms-review-link" href="/staff/content">{t("contentStudio")}</Link>{canPublish && <Link className="cms-review-link ml-4" href="/staff/courses">{t("coursesLink")}</Link>}</div>
       <Button variant="accent" onClick={() => selectRecord(null)}><Plus aria-hidden="true" />{t("newDraft")}</Button>
     </div>
     {error && <p role="alert" className="cms-feedback cms-feedback-error">{error}</p>}

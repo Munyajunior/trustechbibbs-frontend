@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { BrandMark } from "@/components/layout/brand-mark";
+import { NotificationBell } from "@/components/layout/notification-bell";
 import { Container } from "@/components/shared/container";
 import { buttonVariants } from "@/components/ui/button";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
@@ -30,6 +31,7 @@ const NAV_ITEMS = [
 export function Header() {
   const t = useTranslations("nav");
   const tc = useTranslations("common");
+  const ts = useTranslations("staffDashboard");
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
@@ -43,10 +45,8 @@ export function Header() {
     ? "/login"
     : user.roles.includes("student")
       ? "/student"
-      : user.roles.some((role) => ["registrar", "admin", "super_admin"].includes(role))
-        ? "/staff/admissions"
-        : user.roles.includes("editor")
-          ? "/staff/content"
+      : user.roles.some((role) => ["registrar", "admin", "super_admin", "department_head", "editor"].includes(role))
+        ? "/staff"
         : "/admissions/status";
   const accountLabel = token && user ? tc("myAccount") : tc("signIn");
 
@@ -70,6 +70,8 @@ export function Header() {
       setSignOutBusy(false);
     }
   }
+
+  if (pathname.startsWith("/staff")) return <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur-md"><div className="mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-3 px-4 sm:px-7"><Link href="/staff" aria-label={ts("workspace")}><BrandMark compact /></Link><div className="flex items-center gap-3"><span className="hidden text-xs font-bold uppercase tracking-[.16em] text-slate-500 sm:block">{ts("workspace")}</span><LanguageSwitcher /><NotificationBell /><Link href="/" className="hidden text-xs font-semibold text-primary hover:underline sm:block">{ts("viewSite")}</Link>{token && user && <button type="button" onClick={handleSignOut} disabled={signOutBusy} className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"><LogOut aria-hidden="true" size={15} />{tc("signOut")}</button>}</div></div>{signOutError && <p role="alert" className="border-t border-red-100 bg-red-50 px-4 py-2 text-center text-sm text-red-700">{tc("signOutFailed")}</p>}</header>;
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#e8e9ee] bg-white/95 backdrop-blur-md">
@@ -115,6 +117,7 @@ export function Header() {
           {/* Desktop actions */}
           <div className="hidden items-center gap-2 xl:flex">
             <LanguageSwitcher />
+            <NotificationBell />
             <Link href={accountHref} className="hidden rounded-md px-3 py-2 text-sm font-medium text-primary hover:bg-primary-subtle 2xl:block">{accountLabel}</Link>
             {token && user && <button type="button" onClick={handleSignOut} disabled={signOutBusy} className="inline-flex items-center gap-1.5 rounded-md px-2 py-2 text-xs font-medium text-gray-600 hover:bg-primary-subtle hover:text-primary disabled:opacity-50"><LogOut aria-hidden="true" size={15} />{tc("signOut")}</button>}
             <Link
@@ -126,6 +129,7 @@ export function Header() {
           </div>
 
           {/* Mobile trigger */}
+          <div className="ml-auto xl:hidden"><NotificationBell /></div>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}

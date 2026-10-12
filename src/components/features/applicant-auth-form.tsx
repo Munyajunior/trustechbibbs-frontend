@@ -47,13 +47,13 @@ export function ApplicantAuthForm({ locale, mode }: ApplicantAuthFormProps) {
           email: result.user.email,
           full_name: result.user.full_name_en,
           roles: result.user.roles,
+          must_change_password: result.user.must_change_password,
           preferred_locale: locale,
         },
         result.tokens.access_token,
       );
       if (result.user.roles.includes("student")) router.push("/student");
-      else if (result.user.roles.some((role) => ["registrar", "admin", "super_admin"].includes(role))) router.push("/staff/admissions");
-      else if (result.user.roles.includes("editor")) router.push("/staff/content");
+      else if (result.user.roles.some((role) => ["registrar", "admin", "super_admin", "department_head", "editor"].includes(role))) router.push("/staff");
       else router.push("/admissions/status");
     } catch (caught) {
       if (caught instanceof ApiError) setError(caught.localizedMessage(locale));

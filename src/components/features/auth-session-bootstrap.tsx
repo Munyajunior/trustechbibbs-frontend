@@ -23,6 +23,7 @@ export function AuthSessionBootstrap({ locale }: { locale: Locale }) {
               email: user.email,
               full_name: user.full_name_en,
               roles: user.roles,
+              must_change_password: user.must_change_password,
               preferred_locale: locale,
             },
             tokens.access_token,

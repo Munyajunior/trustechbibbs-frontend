@@ -12,11 +12,12 @@ import {
   type ApplicationDetail, type ApplicationDocument, type EnrollmentSummary, type ReviewApplicationListItem, type StudentEnrollment,
 } from "@/lib/api/admissions";
 import { ApiError } from "@/lib/api/client";
-import type { Locale } from "@/lib/api/types";
+import type { Locale, Pagination } from "@/lib/api/types";
 import { useAuthStore } from "@/stores/auth-store";
 
 type Dossier = { detail: ApplicationDetail; documents: ApplicationDocument[] };
 const REVIEW_STATUSES = ["UNDER_REVIEW", "SHORTLISTED", "INTERVIEW", "ADMITTED", "REJECTED"] as const;
+const QUEUE_STATUSES = ["SUBMITTED", ...REVIEW_STATUSES, "WITHDRAWN", "EXPIRED"] as const;
 const FINAL_STATUSES = new Set(["ADMITTED", "REJECTED", "WITHDRAWN", "EXPIRED"]);
 
 export function AdmissionsReviewQueue({ locale }: { locale: Locale }) {
@@ -26,6 +27,10 @@ export function AdmissionsReviewQueue({ locale }: { locale: Locale }) {
   const token = useAuthStore((state) => state.accessToken);
   const reviewer = user?.roles.some((role) => ["registrar", "admin", "super_admin"].includes(role));
   const [applications, setApplications] = useState<ReviewApplicationListItem[]>([]);
+  const [pagination, setPagination] = useState<Pagination | null>(null);
+  const [page, setPage] = useState(1);
+  const [statusFilter, setStatusFilter] = useState("");
+  const [refreshKey, setRefreshKey] = useState(0);
   const [dossiers, setDossiers] = useState<Record<string, Dossier>>({});
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [loadingId, setLoadingId] = useState<string | null>(null);
@@ -40,15 +45,36 @@ export function AdmissionsReviewQueue({ locale }: { locale: Locale }) {
   useEffect(() => {
     if (!token || !reviewer) return;
     let active = true;
-    getApplicationsForReview(token, locale)
-      .then((result) => { if (active) setApplications(result.items); })
+    getApplicationsForReview(token, locale, statusFilter || undefined, page)
+      .then((result) => { if (active) { setApplications(result.items); setPagination(result.pagination); } })
       .catch((caught) => { if (active) setError(caught instanceof ApiError ? caught.localizedMessage(locale) : t("serviceUnavailable")); })
       .finally(() => { if (active) setIsLoading(false); });
+    return () => { active = false; };
+  }, [token, reviewer, locale, t, statusFilter, page, refreshKey]);
+
+  useEffect(() => {
+    if (!token || !reviewer) return;
+    let active = true;
     getEnrollmentSummary(token, locale)
       .then((result) => { if (active) setSummary(result); })
       .catch(() => { /* Review queue remains usable if reporting is unavailable. */ });
     return () => { active = false; };
   }, [token, reviewer, locale, t]);
+
+  function changeFilter(value: string) {
+    setStatusFilter(value);
+    setPage(1);
+    setExpandedId(null);
+    setIsLoading(true);
+    setError(null);
+  }
+
+  function changePage(value: number) {
+    setPage(value);
+    setExpandedId(null);
+    setIsLoading(true);
+    setError(null);
+  }
 
   async function toggleDossier(application: ReviewApplicationListItem) {
     if (!token) return;
@@ -94,6 +120,7 @@ export function AdmissionsReviewQueue({ locale }: { locale: Locale }) {
       const updated = await updateApplicationStatus(application.id, String(formData.get("status")), String(formData.get("comment") ?? ""), token, locale);
       setApplications((current) => current.map((item) => item.id === application.id ? { ...item, status: updated.status } : item));
       setDossiers((current) => ({ ...current, [application.id]: { ...current[application.id], detail: updated } }));
+      setRefreshKey((current) => current + 1);
     } catch (caught) {
       setError(caught instanceof ApiError ? caught.localizedMessage(locale) : t("unexpectedError"));
     } finally { setSavingId(null); }
@@ -115,8 +142,12 @@ export function AdmissionsReviewQueue({ locale }: { locale: Locale }) {
   if (!user || !token || !reviewer) return <section className="mx-auto max-w-xl rounded-xl border border-gray-200 bg-white p-8 text-center"><h1 className="font-display text-2xl font-semibold">{t("accessTitle")}</h1><p className="mt-3 text-gray-600">{t("accessBody")}</p></section>;
 
   return <section className="space-y-6">
-    <div><h1 className="font-display text-3xl font-semibold text-gray-900">{t("title")}</h1><p className="mt-2 text-gray-600">{t("subtitle")}</p><div className="flex flex-wrap gap-5"><Link href="/staff/enquiries" className="mt-3 inline-block text-sm font-semibold text-primary underline">{t("enquiriesLink")}</Link><Link href="/staff/programs" className="mt-3 inline-block text-sm font-semibold text-primary underline">{t("programsLink")}</Link>{user.roles.some((role) => ["admin", "super_admin"].includes(role)) && <Link href="/staff/content" className="mt-3 inline-block text-sm font-semibold text-primary underline">{t("contentLink")}</Link>}</div></div>
+    <div><h1 className="font-display text-3xl font-semibold text-gray-900">{t("title")}</h1><p className="mt-2 text-gray-600">{t("subtitle")}</p><div className="flex flex-wrap gap-5"><Link href="/staff/enquiries" className="mt-3 inline-block text-sm font-semibold text-primary underline">{t("enquiriesLink")}</Link><Link href="/staff/programs" className="mt-3 inline-block text-sm font-semibold text-primary underline">{t("programsLink")}</Link>{user.roles.some((role) => ["admin", "super_admin"].includes(role)) && <><Link href="/staff/content" className="mt-3 inline-block text-sm font-semibold text-primary underline">{t("contentLink")}</Link><Link href="/staff/audit" className="mt-3 inline-block text-sm font-semibold text-primary underline">{t("auditLink")}</Link></>}</div></div>
     {summary && <section className="rounded-2xl border border-primary-light bg-primary-subtle p-5"><h2 className="font-display text-lg font-semibold text-primary">{t("enrollmentSummaryTitle")}</h2><p className="mt-1 text-sm text-gray-700">{t("enrollmentTotal", { count: summary.total_active })}</p>{summary.by_program.length > 0 && <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-3">{summary.by_program.map((item) => <li key={item.program_id ?? "unassigned"} className="rounded-lg bg-white px-3 py-2"><span>{(locale === "fr" ? item.program_name_fr : item.program_name_en) || item.program_name_en || item.program_code || t("unassignedProgram")}</span><strong className="ml-2 text-primary">{item.active_students}</strong></li>)}</ul>}</section>}
+    <div className="flex flex-wrap items-end justify-between gap-4 rounded-2xl border border-gray-200 bg-white p-5">
+      <div className="w-full max-w-xs"><Label htmlFor="review-status-filter">{t("filterLabel")}</Label><select id="review-status-filter" value={statusFilter} onChange={(event) => changeFilter(event.target.value)} className="mt-1 h-11 w-full rounded-md border border-gray-300 bg-white px-3 text-sm"><option value="">{t("allStatuses")}</option>{QUEUE_STATUSES.map((status) => <option key={status} value={status}>{t(`statuses.${status}`)}</option>)}</select></div>
+      {pagination && <p className="text-sm text-gray-600" aria-live="polite">{t("results", { count: pagination.total })}</p>}
+    </div>
     {error && <p role="alert" className="rounded-md bg-error-light px-4 py-3 text-sm text-error">{error}</p>}
     {isLoading ? <p className="text-gray-600">{t("loading")}</p> : applications.length === 0 ? <p className="rounded-xl border border-dashed border-gray-300 bg-gray-50 p-8 text-center text-gray-600">{t("empty")}</p> :
       <div className="grid gap-5">{applications.map((application) => {
@@ -131,11 +162,13 @@ export function AdmissionsReviewQueue({ locale }: { locale: Locale }) {
                 <section className="rounded-xl bg-white p-4"><h2 className="font-display text-lg font-semibold">{t("academicHistory")}</h2>{dossier.detail.academic_history.length === 0 ? <p className="mt-3 text-sm text-gray-600">{t("noAcademicHistory")}</p> : <ul className="mt-3 space-y-3 text-sm">{dossier.detail.academic_history.map((record, index) => <li key={index} className="border-l-2 border-primary pl-3"><p className="font-medium">{String(record.qualification ?? "—")}</p><p>{String(record.institution ?? "—")} · {String(record.completion_year ?? "—")}</p></li>)}</ul>}</section>
               </div>
               <section className="rounded-xl bg-white p-4"><h2 className="font-display text-lg font-semibold">{t("documentsTitle")}</h2>{dossier.documents.length === 0 ? <p className="mt-3 text-sm text-gray-600">{t("noDocuments")}</p> : <ul className="mt-3 divide-y divide-gray-100">{dossier.documents.map((item) => <li key={item.id} className="flex flex-wrap items-center justify-between gap-3 py-3 text-sm"><div><p className="font-medium">{documentName(item.kind)}</p><p className="text-gray-600">{item.filename} · {Math.ceil(item.size_bytes / 1024)} KB</p></div><button type="button" className="font-semibold text-primary underline disabled:opacity-50" disabled={previewing === `${application.id}:${item.kind}`} onClick={() => void preview(application.id, item.kind)}>{t("previewDocument")}</button></li>)}</ul>}</section>
+              <section className="rounded-xl bg-white p-4"><h2 className="font-display text-lg font-semibold">{t("historyTitle")}</h2><ol className="mt-3 space-y-3 border-l-2 border-primary-light pl-4">{dossier.detail.status_history.map((entry) => <li key={`${entry.status}-${entry.changed_at}`} className="text-sm"><p className="font-semibold text-gray-900">{t(`statuses.${entry.status}`)}</p><p className="text-gray-600">{new Intl.DateTimeFormat(locale === "fr" ? "fr-CM" : "en-CM", { dateStyle: "medium", timeStyle: "short" }).format(new Date(entry.changed_at))}</p>{entry.comment && <p className="mt-1 whitespace-pre-wrap text-gray-700">{entry.comment}</p>}</li>)}</ol></section>
               {!FINAL_STATUSES.has(application.status) && <form action={(data) => saveDecision(application, data)} className="grid gap-4 rounded-xl border border-primary-light bg-white p-4 md:grid-cols-[1fr_2fr_auto] md:items-end"><div><Label htmlFor={`status-${application.id}`}>{t("newStatus")}</Label><select id={`status-${application.id}`} name="status" defaultValue={application.status === "SUBMITTED" ? "UNDER_REVIEW" : application.status} className="mt-1 h-11 w-full rounded-md border border-gray-300 bg-white px-3 text-sm">{REVIEW_STATUSES.map((status) => <option key={status} value={status}>{t(`statuses.${status}`)}</option>)}</select></div><div><Label htmlFor={`comment-${application.id}`}>{t("comment")}</Label><Textarea id={`comment-${application.id}`} name="comment" maxLength={2000} /></div><Button type="submit" disabled={savingId === application.id}>{savingId === application.id ? t("saving") : t("save")}</Button></form>}
               {application.status === "ADMITTED" && <section className="rounded-xl border border-primary-light bg-white p-4"><h2 className="font-display text-lg font-semibold">{t("enrollTitle")}</h2><p className="mt-2 text-sm text-gray-600">{t("enrollDescription")}</p>{enrollments[application.id] ? <p className="mt-3 rounded-md bg-primary-subtle p-3 text-sm text-primary" role="status">{t("enrolled", { studentId: enrollments[application.id].student_id })}</p> : <Button type="button" className="mt-4" disabled={enrollingId === application.id} onClick={() => void enroll(application)}>{enrollingId === application.id ? t("enrolling") : t("enrollAction")}</Button>}</section>}
             </>}
           </div>}
         </article>;
       })}</div>}
+    {pagination && pagination.total_pages > 1 && <nav aria-label={t("pages")} className="flex items-center justify-between gap-4 rounded-xl border border-gray-200 bg-white px-5 py-3"><Button type="button" variant="outline" disabled={!pagination.has_previous || isLoading} onClick={() => changePage(page - 1)}>{t("previous")}</Button><span className="text-sm text-gray-700">{t("page", { page: pagination.page, total: pagination.total_pages })}</span><Button type="button" variant="outline" disabled={!pagination.has_next || isLoading} onClick={() => changePage(page + 1)}>{t("next")}</Button></nav>}
   </section>;
 }
