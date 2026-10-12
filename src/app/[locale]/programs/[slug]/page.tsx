@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/shared/container";
 import { Link } from "@/i18n/navigation";
 import { ApiError } from "@/lib/api/client";
+import { getPublicCurriculum } from "@/lib/api/academic-catalogue";
 import { getProgram } from "@/lib/api/public";
 import type { Locale, Program } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
@@ -81,6 +82,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
   const loc = locale as Locale;
 
   const program = await loadProgram(slug, loc);
+  const curriculum = await getPublicCurriculum(slug, loc).catch(() => []);
   const name = localizedField(program, "name", loc);
   const description = localizedField(program, "description", loc);
   const schoolName = localizedField(program, "school_name", loc);
@@ -183,11 +185,11 @@ export default async function ProgramDetailPage({ params }: PageProps) {
             </div>}
           </Container>
         </section>
-        {semesters.length > 0 && <section className="program-detail-curriculum" aria-labelledby="program-curriculum-title">
+        {(curriculum.length > 0 || semesters.length > 0) && <section className="program-detail-curriculum" aria-labelledby="program-curriculum-title">
           <Container>
             <p className="home-kicker">{t("detailEyebrow")}</p>
             <h2 id="program-curriculum-title">{t("curriculumTitle")}</h2>
-            <ol>{semesters.map((semester, index) => <li key={`${index}-${semester}`}><span>{String(index + 1).padStart(2, "0")}</span><p>{semester}</p></li>)}</ol>
+            {curriculum.length > 0 ? <ol>{curriculum.map((item) => <li key={item.course.id}><span>{item.course.course_code}</span><p>{loc === "fr" ? item.course.name_fr || item.course.name_en : item.course.name_en}<small className="block text-sm opacity-70">{t("coursePlacement", { level: item.placement.level, semester: item.placement.semester, credits: item.course.credits })}</small></p></li>)}</ol> : <ol>{semesters.map((semester, index) => <li key={`${index}-${semester}`}><span>{String(index + 1).padStart(2, "0")}</span><p>{semester}</p></li>)}</ol>}
           </Container>
         </section>}
         <section className="program-detail-back">
