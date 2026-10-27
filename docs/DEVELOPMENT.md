@@ -6,8 +6,8 @@
 
 | Tool   | Version | Notes                              |
 | ------ | ------- | ---------------------------------- |
-| Node   | ≥ 20    | Developed against Node 23          |
-| npm    | ≥ 10    | Lockfile is npm — don't mix in pnpm/yarn |
+| Node   | 22 LTS  | Matches the production Docker image |
+| pnpm   | 12.0.0 | Use the committed `pnpm-lock.yaml`; do not generate an npm lockfile |
 | Docker | latest  | Only if you want the backend locally |
 | Git    | latest  |                                    |
 
@@ -25,9 +25,9 @@ Behind a restrictive proxy/CI sandbox, allowlist `fonts.googleapis.com` and
 git clone <repo-url>
 cd trustechbibbs-frontend
 
-npm install
+pnpm install --frozen-lockfile
 cp .env.example .env.local     # defaults work as-is
-npm run dev
+pnpm dev
 ```
 
 Open **http://localhost:3000** — you'll be redirected to `/en`.
@@ -43,15 +43,15 @@ start the backend (see `../trustechbibbs-backend/README.md`) — it listens on
 
 | Command          | What it does                                  |
 | ---------------- | --------------------------------------------- |
-| `npm run dev`    | Dev server, HMR, on :3000                     |
-| `npm run build`  | Production build (type-checks + prerenders)   |
-| `npm start`      | Serve the production build                    |
-| `npm run lint`   | ESLint                                        |
-| `npm test`       | Jest + React Testing Library                  |
-| `npm run test:watch` | Jest in watch mode                        |
+| `pnpm dev`      | Dev server, HMR, on :3000                     |
+| `pnpm build`    | Production build (type-checks + prerenders)   |
+| `pnpm start`    | Serve the production build                    |
+| `pnpm lint`     | ESLint                                        |
+| `pnpm exec jest --runInBand` | Jest + React Testing Library     |
+| `pnpm exec jest --watch` | Jest in watch mode                 |
 
 CI must run `lint`, `test` and `build`. Next 16 removed the `eslint` key from
-`next.config.ts`, so **the build no longer lints** — `npm run lint` is a separate
+`next.config.ts`, so **the build no longer lints** — `pnpm lint` is a separate
 gate now. `build` still type-checks and fails on type errors.
 
 ---
@@ -117,7 +117,7 @@ conventions (cva variants + the `cn` helper), no generator dependency.
 Add a real Shadcn component when you want one:
 
 ```bash
-npx shadcn@latest add dialog
+pnpm dlx shadcn@latest add dialog
 ```
 
 Then reconcile it with the design system: swap its default palette for our

@@ -1,6 +1,6 @@
 # THIBBS Frontend — Digital Campus Platform
 
-Next.js frontend for TRUSTECH UNIVERSITY INSTITUTE OF BUSINESS MANAGEMENT AND
+Next.js frontend for TRUSTECH HIGHER INSTITUTE OF BUSINESS MANAGEMENT AND
 BIOMEDICAL SCIENCES (internal project code: THIBBS) — the bilingual (EN/FR) public website
 and, in later phases, the student and staff portals.
 

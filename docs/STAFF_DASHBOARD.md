@@ -14,6 +14,13 @@ status counts and active students by program. A failed source displays an
 unavailable value and a retry control; it is never interpreted as zero. The
 queue and quick actions navigate to existing workflows.
 
+Editors and administrators see publication counts for news and events split by
+draft, scheduled, and published state. The role-protected
+`GET /api/v1/cms/editor-summary` endpoint counts all non-deleted records,
+including archived records in the total metric but excluding them from active
+publication cards. Shortcuts also lead directly to the media library, homepage
+banners, gallery, and leadership directory.
+
 The refreshed command centre puts actionable queues above reference metrics,
 then shows status distribution, top enrolled programs, and recent submitted
 applications. Counts are role-scoped and show a last-refreshed time. The
@@ -28,4 +35,8 @@ Current limitations: the dashboard is an operational overview, not a historical
 analytics warehouse. Status bars are current counts rather than a cohort
 conversion funnel. Finance, HR, library and LMS navigation will be added when
 those modules have usable role-authorized pages and APIs. Comprehensive
-end-to-end and visual testing is deferred by the current user instruction.
+end-to-end and visual testing is deferred by the current user instruction. The
+production Docker image builds successfully and the English/French home,
+staff, and schools entry routes returned 200 in a healthy container during the
+October 2026 smoke check; this is not a substitute for authenticated workflow
+testing.

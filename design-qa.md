@@ -18,7 +18,7 @@ No actionable P0, P1, or P2 visual mismatch remains in the selected homepage com
 - Spacing/layout rhythm: the header, hero and school section align closely in the focused crop. Full-page sections are taller than the image concept to retain real readable text and touch targets. No desktop or mobile horizontal overflow was observed.
 - Colors/tokens: gold, deep blue, pale blue, white and subtle borders retain the brand balance and sufficient foreground contrast. Gold is consistently reserved for primary action and selected accents.
 - Image quality/assets: the user-supplied shield appears in header and footer; the hero, seven different school images and three program images are sharp, relevant illustrative raster assets with no empty placeholders. These generated school images are editorial illustrations, not claims about actual campus facilities. The source's translucent geometric planes are not reproduced; see P3 follow-up.
-- Copy/content: the selected headline, "Programs for a changing world", and "Your future in four steps" are present. All seven schools and the full official English institute name are present. The French footer translates the full name as "Institut universitaire Trustech de gestion des entreprises et des sciences biomédicales." Supporting copy avoids unverified claims about tuition, accreditation or outcomes.
+- Copy/content: the selected headline, "Programs for a changing world", and "Your future in four steps" are present. All seven schools and the full official English institute name are present. The French footer uses "Institut supérieur de gestion et de science biomedical." Supporting copy avoids unverified claims about tuition, accreditation or outcomes.
 
 **Interaction and responsive checks**
 

@@ -15,8 +15,5 @@ package-lock.json
 docs
 README.md
 CONTRIBUTING.md
-__tests__
-jest.config.ts
-jest.setup.ts
 Dockerfile
 .dockerignore

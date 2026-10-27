@@ -13,12 +13,12 @@ const nextConfig: NextConfig = {
 
   // Fail the production build on type errors rather than shipping them.
   // (Next 16 removed the `eslint` config key — linting is a separate
-  // `npm run lint` step, enforced in CI.)
+  // `pnpm lint` step, enforced in CI.)
   typescript: { ignoreBuildErrors: false },
 
   images: {
-    // Media is served from MinIO in dev and S3/CDN in production.
-    // Add the production bucket/CDN host here before go-live.
+    // Dynamic site media uses the same-origin /site-media proxy backed by R2.
+    // Keep this localhost allowance for development-only direct media URLs.
     remotePatterns: [
       { protocol: "http", hostname: "localhost", port: "9000", pathname: "/**" },
     ],
