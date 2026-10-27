@@ -15,6 +15,12 @@ const EXPLORE_LINKS = [
   { href: "/events", key: "events" },
   { href: "/gallery", key: "gallery" },
 ] as const;
+const COMMUNITY_LINKS = [
+  { href: "/research", key: "research" },
+  { href: "/careers", key: "careers" },
+  { href: "/alumni", key: "alumni" },
+  { href: "/partnerships", key: "partnerships" },
+] as const;
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -26,7 +32,7 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t border-[#e7eaf0] bg-[#f8faff]">
       <Container className="py-12">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-2">
             <BrandMark compact />
@@ -54,6 +60,15 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="font-display text-sm font-semibold text-gray-900">{t("community")}</h2>
+            <ul className="mt-3 space-y-2">
+              {COMMUNITY_LINKS.map((item) => <li key={item.key}>
+                <Link href={item.href} className="text-sm text-gray-600 hover:text-primary">{tn(item.key)}</Link>
+              </li>)}
             </ul>
           </div>
 

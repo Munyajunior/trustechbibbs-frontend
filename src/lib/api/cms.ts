@@ -39,6 +39,22 @@ function editorOptions(token: string, locale: Locale) {
   return { token, locale, cache: "no-store" as const };
 }
 
+export interface PublicationCounts {
+  draft: number;
+  scheduled: number;
+  published: number;
+  archived: number;
+}
+
+export interface EditorPublicationSummary {
+  news: PublicationCounts;
+  events: PublicationCounts;
+}
+
+export function getEditorPublicationSummary(token: string, locale: Locale): Promise<EditorPublicationSummary> {
+  return apiRequest<EditorPublicationSummary>("/cms/editor-summary", editorOptions(token, locale));
+}
+
 export function listEditorNews(token: string, locale: Locale, page = 1): Promise<Paginated<EditorNewsArticle>> {
   return apiList<EditorNewsArticle>("/cms/news", {
     ...editorOptions(token, locale), query: { page, per_page: 20 },

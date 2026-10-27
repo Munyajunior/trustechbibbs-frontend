@@ -54,7 +54,7 @@ export function AcademicScheduleEditor({ locale }: { locale: Locale }) {
   }, [token, authorized, locale, t]);
 
   useEffect(() => {
-    if (!token || !termId) { setSections([]); return; }
+    if (!token || !termId) return;
     let active = true;
     listSections(termId, token, locale)
       .then((rows) => { if (active) setSections(rows); })
@@ -63,7 +63,7 @@ export function AcademicScheduleEditor({ locale }: { locale: Locale }) {
   }, [termId, token, locale, t]);
 
   useEffect(() => {
-    if (!token || !sectionId) { setMeetings([]); return; }
+    if (!token || !sectionId) return;
     let active = true;
     listMeetings(sectionId, token, locale)
       .then((rows) => { if (active) setMeetings(rows); })
@@ -98,7 +98,8 @@ export function AcademicScheduleEditor({ locale }: { locale: Locale }) {
         : await createTerm(payload, token, locale);
       setTerms((current) => current.some((row) => row.id === saved.id)
         ? current.map((row) => row.id === saved.id ? saved : row) : [saved, ...current]);
-      setTermId(saved.id); setEditingTerm(null); form.reset(); setNotice(t("termSaved"));
+      setTermId(saved.id); setSections([]); setSectionId(""); setMeetings([]);
+      setEditingTerm(null); form.reset(); setNotice(t("termSaved"));
     } catch (caught) { fail(caught); } finally { setBusy(false); }
   }
 
@@ -127,7 +128,7 @@ export function AcademicScheduleEditor({ locale }: { locale: Locale }) {
         delivery_mode: field(data, "delivery_mode") as CourseSection["delivery_mode"],
         is_published: false,
       }, token, locale);
-      setSections((current) => [...current, saved]); setSectionId(saved.id); form.reset();
+      setSections((current) => [...current, saved]); setSectionId(saved.id); setMeetings([]); form.reset();
       setNotice(t("sectionSaved"));
     } catch (caught) { fail(caught); } finally { setBusy(false); }
   }
@@ -188,9 +189,9 @@ export function AcademicScheduleEditor({ locale }: { locale: Locale }) {
           <div className="flex items-end gap-3 sm:col-span-2"><Button type="submit" disabled={busy}>{t("saveTerm")}</Button>{editingTerm && <Button type="button" variant="outline" onClick={() => setEditingTerm(null)}>{t("cancel")}</Button>}</div>
         </form><p className="mt-3 text-xs text-gray-600">{t("timezoneNote")}</p>
       </section>
-      <section className="rounded-2xl border border-gray-200 bg-white p-5"><h2 className="font-display text-xl font-semibold">{t("terms")}</h2>{terms.length === 0 ? <p className="mt-3 text-gray-600">{t("noTerms")}</p> : <ul className="mt-3 divide-y divide-gray-100">{terms.map((term) => <li key={term.id} className="flex flex-wrap items-center justify-between gap-3 py-3"><div><p className="font-semibold">{term.academic_year} · {t("semester")} {term.semester}</p><p className="text-sm text-gray-600">{t(term.is_published ? "published" : "draft")} · {t("creditRange", { min: term.min_credits, max: term.max_credits })}</p></div><div className="flex gap-2"><Button type="button" variant="outline" onClick={() => { setTermId(term.id); setSectionId(""); }}>{t("open")}</Button><Button type="button" variant="outline" onClick={() => setEditingTerm(term)}>{t("edit")}</Button><Button type="button" variant="ghost" disabled={busy} onClick={() => void toggleTerm(term)}>{t(term.is_published ? "unpublish" : "publish")}</Button></div></li>)}</ul>}</section>
+      <section className="rounded-2xl border border-gray-200 bg-white p-5"><h2 className="font-display text-xl font-semibold">{t("terms")}</h2>{terms.length === 0 ? <p className="mt-3 text-gray-600">{t("noTerms")}</p> : <ul className="mt-3 divide-y divide-gray-100">{terms.map((term) => <li key={term.id} className="flex flex-wrap items-center justify-between gap-3 py-3"><div><p className="font-semibold">{term.academic_year} · {t("semester")} {term.semester}</p><p className="text-sm text-gray-600">{t(term.is_published ? "published" : "draft")} · {t("creditRange", { min: term.min_credits, max: term.max_credits })}</p></div><div className="flex gap-2"><Button type="button" variant="outline" onClick={() => { setTermId(term.id); setSections([]); setSectionId(""); setMeetings([]); }}>{t("open")}</Button><Button type="button" variant="outline" onClick={() => setEditingTerm(term)}>{t("edit")}</Button><Button type="button" variant="ghost" disabled={busy} onClick={() => void toggleTerm(term)}>{t(term.is_published ? "unpublish" : "publish")}</Button></div></li>)}</ul>}</section>
       {selectedTerm && <section className="rounded-2xl border border-gray-200 bg-white p-5"><h2 className="font-display text-xl font-semibold">{t("sectionsTitle", { year: selectedTerm.academic_year, semester: selectedTerm.semester })}</h2><form onSubmit={(event) => void saveSection(event)} className="mt-4 grid gap-4 md:grid-cols-3 lg:grid-cols-6"><div className="lg:col-span-2"><Label htmlFor="section-course">{t("course")}</Label><select id="section-course" name="course_id" required className="h-11 w-full rounded-md border border-gray-300 bg-white px-3"><option value="">{t("selectCourse")}</option>{courses.filter((course) => course.status === "ACTIVE").map((course) => <option key={course.id} value={course.id}>{courseName(course.id)}</option>)}</select></div><div><Label htmlFor="section-code">{t("sectionCode")}</Label><Input id="section-code" name="code" required maxLength={20} placeholder="A" /></div><div><Label htmlFor="section-capacity">{t("capacity")}</Label><Input id="section-capacity" name="capacity" type="number" min={1} max={1000} required defaultValue={30} /></div><div><Label htmlFor="section-lecturer">{t("lecturer")}</Label><Input id="section-lecturer" name="lecturer_name" /></div><div><Label htmlFor="section-mode">{t("mode")}</Label><select id="section-mode" name="delivery_mode" className="h-11 w-full rounded-md border border-gray-300 bg-white px-3"><option value="ON_CAMPUS">{t("modes.ON_CAMPUS")}</option><option value="ONLINE">{t("modes.ONLINE")}</option><option value="HYBRID">{t("modes.HYBRID")}</option></select></div><Button type="submit" disabled={busy} className="md:col-span-3 lg:col-span-6">{t("addSection")}</Button></form>
-        {sections.length === 0 ? <p className="mt-5 text-gray-600">{t("noSections")}</p> : <ul className="mt-5 divide-y divide-gray-100">{sections.map((section) => <li key={section.id} className="flex flex-wrap items-center justify-between gap-3 py-3"><div><p className="font-semibold">{courseName(section.course_id)} · {section.code}</p><p className="text-sm text-gray-600">{t("capacityCount", { count: section.capacity })} · {t(section.is_published ? "published" : "draft")}</p></div><div className="flex gap-2"><Button type="button" variant="outline" onClick={() => setSectionId(section.id)}>{t("meetings")}</Button><Button type="button" variant="ghost" disabled={busy} onClick={() => void toggleSection(section)}>{t(section.is_published ? "unpublish" : "publish")}</Button></div></li>)}</ul>}
+        {sections.length === 0 ? <p className="mt-5 text-gray-600">{t("noSections")}</p> : <ul className="mt-5 divide-y divide-gray-100">{sections.map((section) => <li key={section.id} className="flex flex-wrap items-center justify-between gap-3 py-3"><div><p className="font-semibold">{courseName(section.course_id)} · {section.code}</p><p className="text-sm text-gray-600">{t("capacityCount", { count: section.capacity })} · {t(section.is_published ? "published" : "draft")}</p></div><div className="flex gap-2"><Button type="button" variant="outline" onClick={() => { setSectionId(section.id); setMeetings([]); }}>{t("meetings")}</Button><Button type="button" variant="ghost" disabled={busy} onClick={() => void toggleSection(section)}>{t(section.is_published ? "unpublish" : "publish")}</Button></div></li>)}</ul>}
       </section>}
       {selectedSection && <section className="rounded-2xl border border-gray-200 bg-white p-5"><h2 className="font-display text-xl font-semibold">{t("meetingTitle", { section: selectedSection.code })}</h2><form onSubmit={(event) => void saveMeeting(event)} className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:items-end"><div><Label htmlFor="meeting-day">{t("day")}</Label><select id="meeting-day" name="day_of_week" className="h-11 w-full rounded-md border border-gray-300 bg-white px-3">{[1, 2, 3, 4, 5, 6, 7].map((day) => <option key={day} value={day}>{t(`days.${day}`)}</option>)}</select></div><div><Label htmlFor="meeting-start">{t("startTime")}</Label><Input id="meeting-start" name="starts_at" type="time" required /></div><div><Label htmlFor="meeting-end">{t("endTime")}</Label><Input id="meeting-end" name="ends_at" type="time" required /></div><div><Label htmlFor="meeting-venue">{t("venue")}</Label><Input id="meeting-venue" name="venue_name" /></div><Button type="submit" disabled={busy}>{t("addMeeting")}</Button></form>{meetings.length === 0 ? <p className="mt-4 text-gray-600">{t("noMeetings")}</p> : <ul className="mt-4 divide-y divide-gray-100">{meetings.map((meeting) => <li key={meeting.id} className="flex items-center justify-between gap-3 py-3"><span>{t(`days.${meeting.day_of_week}`)} · {meeting.starts_at.slice(0, 5)}–{meeting.ends_at.slice(0, 5)}{meeting.venue_name ? ` · ${meeting.venue_name}` : ""}</span><Button type="button" variant="outline" disabled={busy} onClick={() => void deleteMeeting(meeting.id)}>{t("remove")}</Button></li>)}</ul>}</section>}
     </>}

@@ -84,6 +84,31 @@ export function changePassword(
   });
 }
 
+export function requestPasswordReset(
+  email: string,
+  locale: Locale,
+): Promise<{ accepted: boolean }> {
+  return apiRequest<{ accepted: boolean }>("/auth/password-reset/request", {
+    method: "POST",
+    body: { email, locale },
+    locale,
+    cache: "no-store",
+  });
+}
+
+export function confirmPasswordReset(
+  token: string,
+  newPassword: string,
+  locale: Locale,
+): Promise<{ password_reset: boolean }> {
+  return apiRequest<{ password_reset: boolean }>("/auth/password-reset/confirm", {
+    method: "POST",
+    body: { token, new_password: newPassword },
+    locale,
+    cache: "no-store",
+  });
+}
+
 export function logoutSession(token: string, locale: Locale): Promise<{ logged_out: boolean }> {
   return apiRequest<{ logged_out: boolean }>("/auth/logout", {
     method: "POST",

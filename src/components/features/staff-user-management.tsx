@@ -15,6 +15,7 @@ import {
   type StaffCreatePayload,
 } from "@/lib/api/user-management";
 import type { Locale, Paginated } from "@/lib/api/types";
+import { isValidStaffPassword } from "@/lib/staff-password-policy";
 import { useAuthStore } from "@/stores/auth-store";
 
 const staffRoles: ManagedStaffRole[] = ["editor", "registrar", "department_head", "admin"];
@@ -90,6 +91,11 @@ export function StaffUserManagement({ locale }: { locale: Locale }) {
   async function createAccount(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!token || busy) return;
+    if (!isValidStaffPassword(createForm.password)) {
+      setError(t("passwordInvalid"));
+      setMessage(null);
+      return;
+    }
     setBusy(true);
     setError(null);
     setMessage(null);

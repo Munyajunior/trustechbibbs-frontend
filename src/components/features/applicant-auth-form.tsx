@@ -98,6 +98,7 @@ export function ApplicantAuthForm({ locale, mode }: ApplicantAuthFormProps) {
       <Button type="submit" size="lg" fullWidth disabled={isSubmitting}>
         {isSubmitting ? t("submitting") : t(`${mode}.submit`)}
       </Button>
+      {!isRegister && <p className="text-center text-sm"><Link href="/forgot-password" className="font-semibold text-primary underline underline-offset-2">{t("forgotPassword")}</Link></p>}
       <p className="text-center text-sm text-gray-600">
         {isRegister ? t("hasAccount") : t("needsAccount")} {" "}
         <Link href={isRegister ? "/admissions/login" : "/admissions/register"} className="font-semibold text-primary underline underline-offset-2">

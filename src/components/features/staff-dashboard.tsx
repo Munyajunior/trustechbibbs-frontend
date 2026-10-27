@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
   ArrowRight, BarChart3, BookOpen, CalendarDays, CheckCircle2, ClipboardList,
-  FileCheck2, FileText, GraduationCap, Images, Inbox, RefreshCw, ShieldCheck,
+  FileCheck2, FileText, GraduationCap, Image, Images, Inbox, Megaphone, RefreshCw, ShieldCheck,
   Users, type LucideIcon,
 } from "lucide-react";
 
 import { Link } from "@/i18n/navigation";
 import { listCourses } from "@/lib/api/academic-catalogue";
 import { getApplicationsForReview, getEnrollmentSummary, type ReviewApplicationListItem } from "@/lib/api/admissions";
-import { listEditorEvents, listEditorNews } from "@/lib/api/cms";
+import { getEditorPublicationSummary, type EditorPublicationSummary } from "@/lib/api/cms";
 import { listEnquiries } from "@/lib/api/enquiries";
 import { listEditorPrograms } from "@/lib/api/programs-editor";
 import { listStaffTranscriptRequests } from "@/lib/api/transcripts";
@@ -27,6 +27,7 @@ type DashboardData = {
   courses: number | null;
   news: number | null;
   events: number | null;
+  publication: EditorPublicationSummary | null;
   applications: ReviewApplicationListItem[];
   pipeline: Record<string, number | null>;
   byProgram: Array<{ id: string; name: string; count: number }>;
@@ -38,7 +39,7 @@ type Metric = Action & { value: number | null; tone: "blue" | "gold" | "violet" 
 const pipelineStages = ["SUBMITTED", "UNDER_REVIEW", "SHORTLISTED", "INTERVIEW", "ADMITTED"] as const;
 const empty: DashboardData = {
   submitted: null, students: null, enquiries: null, transcripts: null, programs: null,
-  courses: null, news: null, events: null, applications: [], pipeline: {}, byProgram: [],
+  courses: null, news: null, events: null, publication: null, applications: [], pipeline: {}, byProgram: [],
 };
 
 export function StaffDashboard({ locale }: { locale: Locale }) {
@@ -74,7 +75,7 @@ export function StaffDashboard({ locale }: { locale: Locale }) {
     }
     if (canPrograms) calls.push(listEditorPrograms(token, locale, 1, 1));
     if (canCourses) calls.push(listCourses(token, locale, 1, undefined, 1));
-    if (canEdit) calls.push(listEditorNews(token, locale), listEditorEvents(token, locale));
+    if (canEdit) calls.push(getEditorPublicationSummary(token, locale));
 
     Promise.allSettled(calls).then((results) => {
       if (!active) return;
@@ -107,8 +108,9 @@ export function StaffDashboard({ locale }: { locale: Locale }) {
       if (canPrograms) next.programs = read<Awaited<ReturnType<typeof listEditorPrograms>>>()?.pagination.total ?? null;
       if (canCourses) next.courses = read<Awaited<ReturnType<typeof listCourses>>>()?.pagination.total ?? null;
       if (canEdit) {
-        next.news = read<Awaited<ReturnType<typeof listEditorNews>>>()?.pagination.total ?? null;
-        next.events = read<Awaited<ReturnType<typeof listEditorEvents>>>()?.pagination.total ?? null;
+        next.publication = read<EditorPublicationSummary>();
+        next.news = next.publication ? Object.values(next.publication.news).reduce((sum, count) => sum + count, 0) : null;
+        next.events = next.publication ? Object.values(next.publication.events).reduce((sum, count) => sum + count, 0) : null;
       }
       setData(next);
       setPartial(results.some((result) => result.status === "rejected"));
@@ -128,6 +130,9 @@ export function StaffDashboard({ locale }: { locale: Locale }) {
     canReview && { key: "schedule", href: "/staff/scheduling", icon: CalendarDays },
     canEdit && { key: "publish", href: "/staff/content", icon: FileText },
     canEdit && { key: "gallery", href: "/staff/gallery", icon: Images },
+    canEdit && { key: "media", href: "/staff/media", icon: Image },
+    canEdit && { key: "banners", href: "/staff/banners", icon: Megaphone },
+    canEdit && { key: "leadership", href: "/staff/leadership", icon: Users },
     canAudit && { key: "staffUsers", href: "/staff/users", icon: Users },
     canAudit && { key: "audit", href: "/staff/audit", icon: ShieldCheck },
   ].filter((action): action is Action => !!action);
@@ -200,6 +205,18 @@ export function StaffDashboard({ locale }: { locale: Locale }) {
             <div className="h-2.5 overflow-hidden rounded-full bg-slate-100" role="img" aria-label={`${program.name}: ${program.count}`}><div className="h-full rounded-full bg-gradient-to-r from-[#edb91e] to-[#f8d968] transition-[width] duration-500" style={{ width: `${(program.count / maxProgram) * 100}%` }} /></div>
           </div>)}</div> : <div className="mt-7 flex min-h-48 items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-6 text-center text-sm text-slate-600">{loading ? t("loading") : data.students === null ? t("unavailable") : t("noStudentData")}</div>}
         </div>
+      </section>}
+
+      {canEdit && <section aria-labelledby="staff-publication-heading" className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm sm:p-7">
+        <SectionHeading eyebrow={t("websitePulse")} title={t("publicationOverview")} id="staff-publication-heading" description={t("publicationNote")} />
+        <div className="mt-5 grid gap-4 lg:grid-cols-2">{(["news", "events"] as const).map((kind) => {
+          const counts = data.publication?.[kind];
+          return <Link key={kind} href="/staff/content" className="group rounded-2xl border border-slate-200 bg-[#f8faff] p-5 transition hover:border-blue-200 hover:bg-white hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+            <div className="flex items-center justify-between gap-3"><h3 className="font-display text-lg font-semibold text-slate-900">{t(`publication.${kind}`)}</h3><ArrowRight className="size-4 text-slate-400 group-hover:text-primary" aria-hidden="true" /></div>
+            <div className="mt-5 grid grid-cols-3 gap-2">{(["draft", "scheduled", "published"] as const).map((status) => <div key={status} className="rounded-xl bg-white p-3 text-center shadow-sm"><p className="text-xl font-semibold tabular-nums text-[#123ca8]">{valueText(counts?.[status] ?? null)}</p><p className="mt-1 text-xs text-slate-600">{t(`publication.${status}`)}</p></div>)}</div>
+          </Link>;
+        })}</div>
+        <p className="mt-4 text-xs text-slate-500">{t("publicationArchiveNote")}</p>
       </section>}
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1.4fr)_minmax(300px,1fr)]">
