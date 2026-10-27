@@ -572,6 +572,18 @@
 .admissions-assistance-icon { display: grid; place-items: center; width: 68px; height: 68px; border-radius: 50%; background: #e8ebfa; color: var(--home-blue); }
 .admissions-assistance h2 { margin-top: 8px; font-size: 30px; }
 .admissions-assistance p:not(.home-kicker) { max-width: 600px; margin-top: 7px; color: #536178; font-size: 14px; line-height: 1.55; }
+.admissions-faq { padding: 84px 0; background: #fff; }
+.admissions-faq-inner { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: clamp(35px, 6vw, 90px); }
+.admissions-faq h2 { max-width: 390px; margin-top: 13px; font-size: clamp(36px, 3.7vw, 52px); line-height: 1.08; }
+.admissions-faq-intro { max-width: 390px; margin: 17px 0 24px; color: #536178; font-size: 15px; line-height: 1.65; }
+.admissions-faq-list { border-top: 1px solid #dce5f4; }
+.admissions-faq-list details { border-bottom: 1px solid #dce5f4; }
+.admissions-faq-list summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 21px 2px; color: var(--home-ink); font-size: 17px; font-weight: 700; line-height: 1.35; list-style: none; cursor: pointer; }
+.admissions-faq-list summary::-webkit-details-marker { display: none; }
+.admissions-faq-list summary::after { flex: none; content: "+"; color: var(--home-blue); font-size: 26px; font-weight: 400; line-height: 1; }
+.admissions-faq-list details[open] summary::after { content: "−"; }
+.admissions-faq-list summary:focus-visible { border-radius: 4px; outline: 3px solid var(--home-gold); outline-offset: 2px; }
+.admissions-faq-list details p { max-width: 650px; padding: 0 32px 22px 2px; color: #536178; font-size: 15px; line-height: 1.65; }
 .admissions-final { padding: 78px 0 84px; background: #112447; color: #fff; }
 .admissions-final-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
 .admissions-final .home-kicker { color: #f2ca4c; }
@@ -593,6 +605,8 @@
   .admissions-process, .admissions-prepare, .admissions-final { padding: 58px 0; }
   .admissions-prepare-inner { grid-template-columns: 1fr; gap: 30px; }
   .admissions-assistance-inner { grid-template-columns: 1fr; gap: 18px; }
+  .admissions-faq { padding: 58px 0; }
+  .admissions-faq-inner { grid-template-columns: 1fr; gap: 30px; }
   .admissions-final-inner { align-items: flex-start; flex-direction: column; }
 }
 @media (max-width: 440px) {
@@ -602,7 +616,67 @@
   .admissions-final-actions, .admissions-final-actions .home-button { width: 100%; }
 }
 
-/* Institutional story page: image-led, but factual claims stay deliberately modest. */
+/* Research, careers, alumni and partnerships pages. */
+.institutional-page { --institutional-accent: #d8ad13; color: #13264a; }
+.institutional-page-research { --institutional-accent: #3585a0; }
+.institutional-page-careers { --institutional-accent: #c9951a; }
+.institutional-page-alumni { --institutional-accent: #6d67a8; }
+.institutional-page-partnerships { --institutional-accent: #579075; }
+.institutional-hero { overflow: hidden; background: linear-gradient(135deg, #fffdf7, #eef3ff); }
+.institutional-hero-grid { display: grid; grid-template-columns: 52% 48%; min-height: 570px; }
+.institutional-hero-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 70px clamp(24px, 5vw, 76px) 65px 0; }
+.institutional-kicker { display: inline-flex; align-items: center; gap: 12px; color: #415575; font-size: 11px; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
+.institutional-kicker span { display: block; width: 36px; height: 2px; background: var(--institutional-accent); }
+.institutional-hero h1 { max-width: 670px; margin-top: 28px; font-family: Georgia, serif; font-size: clamp(52px, 5.7vw, 82px); font-weight: 700; line-height: 1.04; letter-spacing: -.045em; }
+.institutional-lead { max-width: 570px; margin-top: 28px; color: #4c5d76; font-size: 18px; line-height: 1.7; }
+.institutional-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.institutional-button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 13px; padding: 11px 20px; border: 1px solid #15368b; border-radius: 5px; font-size: 14px; font-weight: 750; transition: transform .2s ease, box-shadow .2s ease; }
+.institutional-button:hover { transform: translateY(-2px); box-shadow: 0 10px 25px #102b5c2a; }
+.institutional-button:focus-visible { outline: 3px solid #f0c330; outline-offset: 3px; }
+.institutional-button-primary { background: #edbd17; border-color: #edbd17; color: #101e3e; }
+.institutional-button-secondary { background: #fff; color: #173991; }
+.institutional-button-light { border-color: #e5c449; background: #edbd17; color: #101e3e; }
+.institutional-hero-footnote { max-width: 560px; margin-top: 42px; color: #66738b; font-size: 12px; line-height: 1.55; }
+.institutional-hero-image { position: relative; min-height: 570px; margin-right: calc((min(100vw, 1280px) - 100vw) / 2); overflow: hidden; background: #d7e1f3; }
+.institutional-hero-image::after { position: absolute; inset: 40% 0 0; content: ""; background: linear-gradient(transparent, #0b255b85); }
+.institutional-image-label { position: absolute; right: 28px; bottom: 30px; z-index: 1; display: grid; gap: 8px; max-width: 290px; padding: 19px 23px; border-top: 4px solid var(--institutional-accent); background: #fffdf5f2; box-shadow: 0 15px 30px #132d5c5c; transform: rotate(-2deg); }
+.institutional-image-label span { color: #173991; font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.institutional-image-label strong { color: #13264a; font-family: Georgia, serif; font-size: 23px; font-style: italic; font-weight: 400; line-height: 1.18; }
+.institutional-focus { padding: 92px 0 100px; background: #fff; }
+.institutional-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 70px; align-items: end; }
+.institutional-heading .institutional-kicker { grid-column: 1 / -1; }
+.institutional-heading h2 { max-width: 680px; font-family: Georgia, serif; font-size: clamp(38px, 4vw, 58px); line-height: 1.08; letter-spacing: -.035em; }
+.institutional-heading > p:last-child { max-width: 540px; color: #56657c; font-size: 16px; line-height: 1.65; }
+.institutional-focus-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 42px; }
+.institutional-focus-grid article { min-height: 245px; padding: 27px 27px 30px; border: 1px solid #e2e9f4; border-top: 3px solid var(--institutional-accent); border-radius: 7px; background: linear-gradient(160deg, #fff, #f7f9ff); box-shadow: 0 18px 35px #112b6310; }
+.institutional-card-index { color: #9aaac3; font-family: Georgia, serif; font-size: 39px; line-height: 1; }
+.institutional-focus-grid h3 { margin-top: 24px; font-size: 23px; line-height: 1.2; }
+.institutional-focus-grid p { margin-top: 12px; color: #56657c; font-size: 14px; line-height: 1.6; }
+.institutional-contact { padding: 74px 0; background: #10244a; color: #fff; }
+.institutional-contact-inner { display: flex; align-items: center; justify-content: space-between; gap: 35px; }
+.institutional-contact .institutional-kicker { color: #f0d56d; }
+.institutional-contact h2 { margin-top: 17px; font-family: Georgia, serif; font-size: clamp(38px, 4vw, 54px); line-height: 1.1; }
+.institutional-contact p:last-child { max-width: 640px; margin-top: 15px; color: #d5e0f2; font-size: 15px; line-height: 1.6; }
+.institutional-contact .institutional-button { flex: none; }
+@media (max-width: 850px) {
+  .institutional-hero-grid { grid-template-columns: 1fr; }
+  .institutional-hero-copy { padding: 62px 0 50px; }
+  .institutional-hero-image { min-height: 420px; margin: 0; }
+  .institutional-heading { grid-template-columns: 1fr; }
+  .institutional-focus-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .institutional-hero h1 { font-size: clamp(48px, 13vw, 66px); }
+  .institutional-lead { font-size: 16px; }
+  .institutional-hero-image { min-height: 330px; }
+  .institutional-image-label { right: 16px; bottom: 16px; max-width: 235px; padding: 15px; }
+  .institutional-image-label strong { font-size: 19px; }
+  .institutional-focus { padding: 68px 0; }
+  .institutional-focus-grid { grid-template-columns: 1fr; }
+  .institutional-focus-grid article { min-height: 0; }
+  .institutional-contact-inner { align-items: flex-start; flex-direction: column; }
+  .institutional-actions, .institutional-actions .institutional-button { width: 100%; }
+}
 .about-hero { overflow: hidden; background: #fffdf8; }
 .about-hero-inner { display: grid; grid-template-columns: 52% 48%; min-height: 610px; }
 .about-hero-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 68px 55px 72px 0; }

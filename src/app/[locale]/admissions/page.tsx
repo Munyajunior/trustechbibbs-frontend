@@ -25,6 +25,7 @@ const steps = [
 ] as const;
 
 const checklist = ["program", "personal", "academic", "intake"] as const;
+const faqItems = ["save", "documents", "fees", "status", "help"] as const;
 
 export default async function AdmissionsPage({ params }: PageProps) {
   const { locale } = await params;
@@ -91,6 +92,25 @@ export default async function AdmissionsPage({ params }: PageProps) {
           <div className="admissions-assistance-icon"><LifeBuoy aria-hidden="true" size={32} strokeWidth={1.5} /></div>
           <div><p className="home-kicker">{t("supportEyebrow")}</p><h2 id="admissions-help-title">{t("helpTitle")}</h2><p>{t("helpBody")}</p></div>
           <Link className="home-button home-button-outline" href="/contact">{t("helpCta")}<ArrowRight aria-hidden="true" size={18} /></Link>
+        </Container>
+      </section>
+
+      <section className="admissions-faq" aria-labelledby="admissions-faq-title">
+        <Container className="admissions-faq-inner">
+          <div>
+            <p className="home-kicker">{t("faqEyebrow")}</p>
+            <h2 id="admissions-faq-title">{t("faqTitle")}</h2>
+            <p className="admissions-faq-intro">{t("faqIntro")}</p>
+            <Link className="home-text-link" href="/contact">{t("helpCta")}<ArrowRight aria-hidden="true" size={17} /></Link>
+          </div>
+          <div className="admissions-faq-list">
+            {faqItems.map((key) => (
+              <details key={key}>
+                <summary>{t(`faq.${key}.question`)}</summary>
+                <p>{t(`faq.${key}.answer`)}</p>
+              </details>
+            ))}
+          </div>
         </Container>
       </section>
 

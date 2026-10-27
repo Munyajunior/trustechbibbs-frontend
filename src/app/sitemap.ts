@@ -13,6 +13,7 @@ const STATIC_PATHS = [
   "", "/about", "/about/leadership", "/schools", "/programs",
   ...schools.map(({ key }) => `/schools/${key}`),
   "/admissions", "/news", "/events", "/gallery", "/contact",
+  "/research", "/careers", "/alumni", "/partnerships",
   "/privacy", "/terms", "/accessibility",
 ];
 

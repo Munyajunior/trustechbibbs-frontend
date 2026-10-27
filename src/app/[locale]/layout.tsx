@@ -51,16 +51,14 @@ export async function generateMetadata({
       siteName: tc("brand"),
       images: [
         {
-          url: "/images/trustech-shield.jpg",
-          width: 1273,
-          height: 1351,
+          url: "/site-media/logo",
           alt: tc("brand"),
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      images: ["/images/trustech-shield.jpg"],
+      images: ["/site-media/logo"],
     },
   };
 }

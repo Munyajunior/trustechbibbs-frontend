@@ -64,9 +64,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: description.slice(0, 160),
       images: [
         {
-          url: "/images/trustech-shield.jpg",
-          width: 1273,
-          height: 1351,
+          url: "/site-media/logo",
           alt: name,
         },
       ],
@@ -106,7 +104,9 @@ export default async function ProgramDetailPage({ params }: PageProps) {
     timeToComplete: `P${program.duration_years}Y`,
     provider: {
       "@type": "CollegeOrUniversity",
-      name: "TRUSTECH UNIVERSITY INSTITUTE OF BUSINESS MANAGEMENT AND BIOMEDICAL SCIENCES",
+      name: locale === "fr"
+        ? "INSTITUT SUPÉRIEUR DE GESTION ET DE SCIENCE BIOMEDICAL"
+        : "TRUSTECH HIGHER INSTITUTE OF BUSINESS MANAGEMENT AND BIOMEDICAL SCIENCES",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Douala",

@@ -1,8 +1,8 @@
 {
   "common": {
-    "brand": "TRUSTECH UNIVERSITY INSTITUTE OF BUSINESS MANAGEMENT AND BIOMEDICAL SCIENCES",
+    "brand": "INSTITUT SUPÉRIEUR DE GESTION ET DE SCIENCE BIOMEDICAL",
     "brandShort": "THIBBS",
-    "brandType": "INSTITUT UNIVERSITAIRE",
+    "brandType": "INSTITUT SUPÉRIEUR",
     "brandTagline": "Sept écoles. Une communauté.",
     "skipToContent": "Aller au contenu principal",
     "loading": "Chargement…",
@@ -32,12 +32,79 @@
     "news": "Actualités",
     "events": "Événements",
     "gallery": "Galerie",
-    "contact": "Contact"
+    "contact": "Contact",
+    "research": "Recherche",
+    "careers": "Carrières",
+    "alumni": "Anciens étudiants",
+    "partnerships": "Partenariats"
+  },
+  "institutionalPages": {
+    "exploreSchools": "Découvrir les sept écoles",
+    "research": {
+      "meta": { "title": "Recherche et idées", "description": "Découvrez les échanges et demandes de projets de recherche au sein des sept écoles de Trustech." },
+      "eyebrow": "Recherche à Trustech", "title": "Des questions à explorer ensemble.",
+      "intro": "Les idées grandissent lorsque les disciplines se rencontrent. Échangez avec notre communauté académique sur vos centres d’intérêt, des projets étudiants et des questions concrètes.",
+      "contactCta": "Parler d’une idée de recherche", "note": "Pour connaître les projets, publications ou possibilités de collaboration actuels, contactez directement l’institut.",
+      "imageCaption": "La curiosité entre disciplines", "focusEyebrow": "Des idées qui se rencontrent", "focusTitle": "Tout commence par un échange.",
+      "focusIntro": "Nos sept écoles apportent des perspectives différentes aux questions académiques et pratiques. Voici des pistes de dialogue, et non une liste de programmes de recherche annoncés.",
+      "items": {
+        "first": { "title": "Questions académiques", "body": "Présentez un sujet à l’école concernée et renseignez-vous sur ses domaines d’intérêt actuels." },
+        "second": { "title": "Projets étudiants", "body": "Explorez comment réunir apprentissage, recherche et pratique autour d’un projet." },
+        "third": { "title": "Collaboration extérieure", "body": "Proposez un échange entre Trustech et votre organisation autour d’une question à étudier." }
+      },
+      "bottomEyebrow": "Engageons le dialogue", "bottomTitle": "Parlez-nous de votre question.",
+      "bottomBody": "Précisez le sujet, l’école ou la discipline concernée et la collaboration que vous imaginez."
+    },
+    "careers": {
+      "meta": { "title": "Carrières", "description": "Contactez Trustech pour connaître les possibilités professionnelles et académiques actuelles." },
+      "eyebrow": "Travailler avec Trustech", "title": "Construisons la suite.",
+      "intro": "L’éducation repose sur des personnes aux compétences diverses. Si l’enseignement, l’accompagnement des étudiants, les opérations ou une collaboration spécialisée vous intéressent, renseignez-vous auprès de nous.",
+      "contactCta": "Demander les possibilités", "note": "Les postes ouverts et les conditions de candidature sont confirmés directement par l’institut.",
+      "imageCaption": "L’apprentissage est une aventure humaine", "focusEyebrow": "Contribuer à notre mission", "focusTitle": "Des compétences variées. Un objectif commun.",
+      "focusIntro": "Les domaines ci-dessous décrivent le travail d’un institut ; ils ne constituent pas des offres d’emploi publiées.",
+      "items": {
+        "first": { "title": "Enseignement et apprentissage", "body": "Échangez avec une école sur l’enseignement, le tutorat et votre expertise disciplinaire." },
+        "second": { "title": "Services aux étudiants et au campus", "body": "Découvrez les métiers et opérations qui soutiennent l’expérience étudiante." },
+        "third": { "title": "Expertise spécialisée", "body": "Expliquez comment votre expérience professionnelle pourrait contribuer à un domaine précis." }
+      },
+      "bottomEyebrow": "Votre prochain échange", "bottomTitle": "Vous souhaitez travailler avec nous ?",
+      "bottomBody": "Contactez Trustech pour connaître les postes actuels, les conditions et la procédure officielle de candidature."
+    },
+    "alumni": {
+      "meta": { "title": "Anciens étudiants", "description": "Restez en lien avec la communauté Trustech après vos études." },
+      "eyebrow": "La communauté Trustech", "title": "Votre parcours continue.",
+      "intro": "L’apprentissage ouvre des portes bien au-delà du campus. Si vous avez étudié à Trustech, racontez-nous votre parcours et la manière dont vous souhaitez garder le contact.",
+      "contactCta": "Rester en contact", "note": "Contactez l’institut pour connaître les activités actuelles des anciens étudiants et les possibilités de participation.",
+      "imageCaption": "Des liens au-delà du campus", "focusEyebrow": "Gardons le lien", "focusTitle": "Une communauté, plusieurs parcours.",
+      "focusIntro": "Les anciens étudiants peuvent rester proches de leur communauté académique de plusieurs façons. Demandez-nous quelles activités sont proposées actuellement.",
+      "items": {
+        "first": { "title": "Renouer le contact", "body": "Mettez vos coordonnées à jour et demandez comment recevoir les nouvelles et annonces d’événements." },
+        "second": { "title": "Partager votre parcours", "body": "Racontez votre chemin après Trustech et ce que vous aimeriez transmettre." },
+        "third": { "title": "Accompagner les étudiants", "body": "Échangez sur le mentorat, votre expérience du métier ou d’autres façons d’aider les étudiants." }
+      },
+      "bottomEyebrow": "Restons liés", "bottomTitle": "Donnez-nous de vos nouvelles.",
+      "bottomBody": "Contactez l’institut pour connaître les activités des anciens ou partager un souvenir de votre passage à Trustech."
+    },
+    "partnerships": {
+      "meta": { "title": "Partenariats", "description": "Explorez les collaborations académiques, professionnelles et communautaires avec Trustech." },
+      "eyebrow": "Agir ensemble", "title": "Le progrès se construit ensemble.",
+      "intro": "Nous accueillons les échanges avec les organisations engagées pour l’apprentissage et les résultats concrets. Présentez-nous votre projet et la manière dont une collaboration avec Trustech pourrait y contribuer.",
+      "contactCta": "Proposer un échange", "note": "Les partenariats sont discutés et confirmés directement avec l’institut ; cette page ne constitue pas un accord formel.",
+      "imageCaption": "Des possibilités grâce aux liens", "focusEyebrow": "Des pistes à explorer", "focusTitle": "Différents partenaires. Des questions communes.",
+      "focusIntro": "Commencez par le résultat que vous espérez créer. Notre équipe orientera votre demande vers l’école ou le service concerné.",
+      "items": {
+        "first": { "title": "Entreprises et pratique", "body": "Échangez sur les compétences, la formation pratique et la découverte du monde professionnel." },
+        "second": { "title": "Initiatives communautaires", "body": "Présentez un défi local ou une idée qui pourrait bénéficier d’un échange académique." },
+        "third": { "title": "Échanges académiques", "body": "Explorez le partage de connaissances ou des activités communes avec l’école concernée." }
+      },
+      "bottomEyebrow": "Prenons contact", "bottomTitle": "Parlez-nous de votre idée.",
+      "bottomBody": "Décrivez votre organisation, votre projet et l’école ou le domaine avec lequel vous aimeriez collaborer."
+    }
   },
   "home": {
     "meta": {
-      "title": "TRUSTECH UNIVERSITY INSTITUTE OF BUSINESS MANAGEMENT AND BIOMEDICAL SCIENCES",
-      "description": "Découvrez les sept écoles et les programmes de Trustech University Institute à Douala, au Cameroun."
+      "title": "INSTITUT SUPÉRIEUR DE GESTION ET DE SCIENCE BIOMEDICAL",
+      "description": "Découvrez les sept écoles et les programmes de l’Institut supérieur de gestion et de science biomedical à Douala, au Cameroun."
     },
     "hero": {
       "eyebrow": "L’enseignement supérieur pour un avenir plus prometteur",
@@ -201,7 +268,7 @@
   "programs": {
     "meta": {
       "title": "Programmes académiques",
-      "description": "Découvrez les programmes académiques des sept écoles de Trustech University Institute."
+      "description": "Découvrez les programmes académiques des sept écoles de l’Institut supérieur de gestion et de science biomedical."
     },
     "title": "Programmes académiques",
     "subtitle": "Explorez sept écoles tournées vers les compétences, les idées et les métiers qui comptent pour vous.",
@@ -273,14 +340,14 @@
     "subtitle": "Qui nous sommes et ce que nous défendons.",
     "eyebrow": "À propos de notre institut",
     "heroTitle": "Un savoir qui ouvre des voies.",
-    "heroIntro": "Trustech est un institut universitaire bilingue à Douala, réunissant sept écoles autour d’un même engagement : un apprentissage qui va au-delà de la salle de cours.",
+    "heroIntro": "Trustech est un institut supérieur bilingue à Douala, réunissant sept écoles autour d’un même engagement : un apprentissage qui va au-delà de la salle de cours.",
     "heroWord": "Apprendre. Devenir. Contribuer.",
     "schoolsCta": "Découvrir nos écoles",
     "contactCta": "Nous contacter",
     "identityEyebrow": "Qui nous sommes",
     "identityTitle": "Un institut. De nombreuses voies d’avenir.",
     "history": "Notre histoire",
-    "historyBody": "L’INSTITUT UNIVERSITAIRE TRUSTECH DE GESTION DES ENTREPRISES ET DES SCIENCES BIOMÉDICALES est établi à Douala, au Cameroun. Notre communauté académique bilingue réunit sept écoles couvrant des domaines professionnels, scientifiques, créatifs et techniques.",
+    "historyBody": "L’INSTITUT SUPÉRIEUR DE GESTION ET DE SCIENCE BIOMEDICAL est établi à Douala, au Cameroun. Notre communauté académique bilingue réunit sept écoles couvrant des domaines professionnels, scientifiques, créatifs et techniques.",
     "identityBody": "Nous associons les études aux compétences pratiques pour aider chaque personne à découvrir ses forces et à contribuer dans le domaine de son choix.",
     "leadershipCta": "Découvrir notre direction",
     "factsLabel": "Trustech en bref",
@@ -311,7 +378,7 @@
     "finalBody": "Notre équipe répond à vos questions sur les études, les admissions et les informations institutionnelles actuelles."
   },
   "leadership": {
-    "meta": { "title": "Direction et gouvernance", "description": "Découvrez les profils publiés de la direction et l’organisation de l’Institut universitaire Trustech." },
+    "meta": { "title": "Direction et gouvernance", "description": "Découvrez les profils publiés de la direction et l’organisation de l’Institut supérieur Trustech." },
     "back": "À propos de Trustech", "eyebrow": "À propos de notre institut", "title": "Direction et gouvernance", "intro": "Découvrez les personnes dont les profils publiés guident les activités académiques et administratives de l’institut.",
     "searchLabel": "Rechercher une personne ou une fonction", "searchPlaceholder": "Nom, fonction ou département", "departmentLabel": "Département", "allDepartments": "Tous les départements", "results": "Profils affichés : {count}", "noResults": "Aucun profil ne correspond à ces filtres.",
     "governanceTitle": "L’organisation de nos équipes", "governanceIntro": "Cette structure suit les profils de direction actuellement publiés.",
@@ -370,6 +437,16 @@
     "helpTitle": "Besoin d’aide pour votre admission ?",
     "helpBody": "Notre équipe des admissions peut vous aider à comprendre le processus et à vous préparer avant le dépôt de votre candidature.",
     "helpCta": "Contacter les admissions",
+    "faqEyebrow": "À savoir",
+    "faqTitle": "Vos questions sur l’admission",
+    "faqIntro": "Les détails varient selon le programme et la rentrée. Notre équipe des admissions peut confirmer les informations propres à votre choix.",
+    "faq": {
+      "save": { "question": "Puis-je enregistrer ma candidature et y revenir ?", "answer": "Oui. Créez un compte candidat, commencez votre dossier et enregistrez-le comme brouillon. Connectez-vous à nouveau pour le poursuivre avant de le soumettre." },
+      "documents": { "question": "Quels diplômes et documents faut-il fournir ?", "answer": "Les conditions dépendent du programme et de la rentrée. Le formulaire vous guide pour les informations scolaires et les pièces justificatives ; contactez les admissions pour confirmer la liste actuelle." },
+      "fees": { "question": "Comment connaître les frais et les bourses ?", "answer": "Contactez les admissions pour connaître les frais de scolarité, les autres frais éventuels et les conditions des bourses disponibles. Aucun montant n’est publié sur ce site." },
+      "status": { "question": "Comment suivre ma candidature ?", "answer": "Après l’envoi, connectez-vous à votre compte ou consultez la page de suivi de candidature pour voir son état et les mises à jour." },
+      "help": { "question": "Qui peut m’aider à choisir un programme ?", "answer": "Explorez les sept écoles et leurs programmes, puis contactez les admissions pour être conseillé sur les conditions d’entrée, les formules d’études et la prochaine étape." }
+    },
     "finalEyebrow": "Passez à l’étape suivante",
     "readyTitle": "Prêt à commencer ?",
     "readyBody": "Créez un compte candidat pour préparer votre candidature en ligne et conserver vos informations au même endroit.",
@@ -389,6 +466,22 @@
     "needsAccount": "Vous souhaitez candidater à Trustech ?",
     "loginLink": "Se connecter",
     "registerLink": "Créer un compte",
+    "forgotPassword": "Mot de passe oublié ?",
+    "recovery": {
+      "email": "Adresse e-mail",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le nouveau mot de passe",
+      "passwordRule": "Utilisez au moins 12 caractères avec une majuscule, une minuscule, un chiffre et un caractère spécial.",
+      "passwordMismatch": "Les mots de passe ne correspondent pas.",
+      "missingLink": "Le lien ne contient pas de jeton. Demandez un nouveau lien.",
+      "serviceUnavailable": "La récupération du mot de passe est temporairement indisponible. Réessayez plus tard.",
+      "unexpectedError": "Impossible de traiter cette demande. Veuillez réessayer.",
+      "working": "Veuillez patienter…",
+      "signIn": "Retour à la connexion",
+      "newLink": "Demander un nouveau lien",
+      "request": { "title": "Réinitialiser votre mot de passe", "intro": "Saisissez l’adresse e-mail de votre compte. Si ce compte existe, nous vous enverrons un lien.", "submit": "Envoyer le lien", "success": "Si un compte existe pour cette adresse, un lien de récupération a été envoyé. Vérifiez votre boîte de réception." },
+      "reset": { "title": "Choisir un nouveau mot de passe", "intro": "Saisissez un mot de passe robuste pour votre compte.", "submit": "Enregistrer le mot de passe", "success": "Votre mot de passe a été modifié. Vous pouvez maintenant vous connecter." }
+    },
     "login": {
       "meta": { "title": "Connexion", "description": "Connectez-vous à votre compte Trustech." },
       "title": "Connexion à Trustech",
@@ -670,7 +763,7 @@
   "news": {
     "meta": {
       "title": "Actualités",
-      "description": "Lisez les actualités officielles et les récits de l’Institut universitaire Trustech."
+      "description": "Lisez les actualités officielles et les récits de l’Institut supérieur Trustech."
     },
     "eyebrow": "Le journal Trustech",
     "title": "Actualités et perspectives",
@@ -703,7 +796,7 @@
   "events": {
     "meta": {
       "title": "Événements",
-      "description": "Consultez les dates et événements publiés par l’Institut universitaire Trustech."
+      "description": "Consultez les dates et événements publiés par l’Institut supérieur Trustech."
     },
     "eyebrow": "Le calendrier Trustech",
     "title": "Événements et rencontres",
@@ -746,7 +839,7 @@
     "saveDraft": "Enregistrer le brouillon", "working": "En cours…", "publish": "Publier", "unpublish": "Dépublier", "live": "Publié", "draft": "Brouillon", "savedDraft": "Brouillon enregistré. Publiez-le lorsque les deux langues sont complètes.", "published": "Publication réussie.", "unpublished": "Retiré de la galerie publique.", "uploadReady": "Média téléversé. Enregistrez le brouillon pour l’utiliser.", "viewPublic": "Voir l’album public", "albumPublishHint": "La publication exige une couverture et des titres et descriptions complets en anglais et en français. Toute modification enregistrée remet l’album en brouillon.", "itemPublishHint": "La publication exige une légende en anglais et en français. Les photos et panoramas nécessitent aussi une description de l’image dans les deux langues."
   },
   "gallery": {
-    "meta": { "title": "Galerie", "description": "Découvrez les photos, vidéos et vues panoramiques publiées par l’Institut universitaire Trustech." },
+    "meta": { "title": "Galerie", "description": "Découvrez les photos, vidéos et vues panoramiques publiées par l’Institut supérieur Trustech." },
     "eyebrow": "La vie à Trustech", "title": "Découvrez notre communauté de plus près.", "intro": "Explorez les moments et les espaces partagés par notre équipe autour du campus, de l’apprentissage et des événements.",
     "albumsEyebrow": "La collection", "albumsTitle": "Parcourir les albums", "albumsIntro": "Chaque collection est préparée et publiée par l’équipe Trustech.", "openAlbum": "Ouvrir l’album",
     "emptyTitle": "Aucun album publié pour le moment.", "emptyBody": "Revenez découvrir les photos et vidéos de l’institut.", "unavailableTitle": "La galerie est temporairement indisponible.", "unavailableBody": "Nous ne pouvons pas charger les albums pour le moment. Veuillez réessayer plus tard.", "aboutCta": "À propos de Trustech",
@@ -756,7 +849,7 @@
   "contact": {
     "meta": {
       "title": "Nous contacter",
-      "description": "Contactez l’Institut universitaire Trustech de gestion des entreprises et des sciences biomédicales."
+      "description": "Contactez l’Institut supérieur de gestion et de science biomedical."
     },
     "title": "Parlons de votre projet.",
     "subtitle": "Une question sur les programmes, les candidatures ou les dossiers académiques ? Dites-nous ce dont vous avez besoin pour orienter votre demande vers la bonne équipe.",
@@ -893,7 +986,8 @@
     "eyebrow": "Vue administrative", "welcome": "Bon retour, {name}.", "colleague": "collègue", "intro": "Votre centre de pilotage des admissions, de l’enseignement et du site Trustech. Gardez une vue claire sur les priorités du jour.", "refresh": "Actualiser", "partialData": "Certaines données en direct n’ont pas pu être chargées. Réessayez ; les sections disponibles restent utilisables.", "partialStatus": "Certaines données indisponibles", "updatedAt": "Actualisé à {time}",
     "pulse": "Activité de l’institut", "atGlance": "En un coup d’œil", "liveData": "Données de l’espace en direct", "metrics": { "submitted": "Candidatures à examiner", "enquiries": "Nouvelles demandes", "students": "Étudiants actifs", "transcripts": "Nouvelles demandes de relevé", "programs": "Programmes au catalogue", "courses": "Cours au catalogue", "news": "Actualités enregistrées", "events": "Événements enregistrés" },
     "analytics": "Analyse en direct", "admissionsPipeline": "Parcours des candidatures", "studentsByProgram": "Étudiants par programme", "unassigned": "Non attribué", "noStudentData": "Aucun dossier d’étudiant actif n’est encore disponible.", "pipelineNote": "Nombre actuel de candidatures par statut ; il ne s’agit pas de taux de conversion.", "programNote": "Principaux programmes selon le nombre d’étudiants actifs.", "pipeline": { "SUBMITTED": "Soumises", "UNDER_REVIEW": "En examen", "SHORTLISTED": "Présélectionnées", "INTERVIEW": "Entretien", "ADMITTED": "Admis" },
-    "workbench": "Travail simplifié", "quickActions": "Accès rapides", "shortcuts": { "review": "Examiner les candidatures", "reply": "Répondre aux demandes", "transcripts": "Examiner les demandes de relevé", "managePrograms": "Gérer les programmes", "manageCourses": "Gérer les cours", "grades": "Gérer les notes", "schedule": "Planifier un semestre", "publish": "Créer une actualité ou un événement", "gallery": "Organiser la galerie", "audit": "Consulter le journal d’audit", "staffUsers": "Gérer les accès du personnel" },
+    "websitePulse": "Gestion du site", "publicationOverview": "État des publications", "publicationNote": "Consultez les brouillons, les publications planifiées et les contenus en ligne. Ouvrez l’atelier pour les examiner et publier.", "publicationArchiveNote": "Les contenus archivés ne figurent pas dans ces états de publication actifs.", "publication": { "news": "Actualités", "events": "Événements", "draft": "Brouillons", "scheduled": "Planifiés", "published": "Publiés" },
+    "workbench": "Travail simplifié", "quickActions": "Accès rapides", "shortcuts": { "review": "Examiner les candidatures", "reply": "Répondre aux demandes", "transcripts": "Examiner les demandes de relevé", "managePrograms": "Gérer les programmes", "manageCourses": "Gérer les cours", "grades": "Gérer les notes", "schedule": "Planifier un semestre", "publish": "Créer une actualité ou un événement", "gallery": "Organiser la galerie", "media": "Mettre à jour les images", "banners": "Gérer les bannières d’accueil", "leadership": "Mettre à jour la direction", "audit": "Consulter le journal d’audit", "staffUsers": "Gérer les accès du personnel" },
     "priority": "À traiter", "actionCentre": "Vos priorités", "actionCentreHint": "Ouvrez une file pour traiter les éléments en attente de votre équipe.", "knownPending": "{count} éléments à examiner", "allCaughtUp": "Toutes les files suivies sont vides.", "admissionsQueue": "File des admissions", "yourWorkspace": "Votre espace", "awaitingReview": "Soumise", "loading": "Chargement des données…", "unavailable": "La file est momentanément indisponible.", "queueClear": "Aucune candidature en attente d’examen.", "openQueue": "Ouvrir la file des admissions", "workspaceHint": "Utilisez les accès rapides pour gérer les domaines autorisés par votre rôle.", "startWorking": "Commencer"
   },
   "staffPassword": {
@@ -929,6 +1023,7 @@
     "email": "Adresse courriel",
     "temporaryPassword": "Mot de passe provisoire",
     "passwordRule": "Au moins 12 caractères, avec majuscule, minuscule, chiffre et symbole.",
+    "passwordInvalid": "Choisissez un mot de passe de 12 à 128 caractères avec des majuscules, des minuscules, un chiffre et un caractère spécial (par exemple ! ou @).",
     "create": "Créer le compte",
     "created": "Compte créé. Transmettez le mot de passe provisoire de façon sécurisée.",
     "edit": "Modifier",
@@ -1076,16 +1171,17 @@
     "contactLink": "contactez Trustech"
   },
   "footer": {
-    "brand": "INSTITUT UNIVERSITAIRE TRUSTECH DE GESTION DES ENTREPRISES ET DES SCIENCES BIOMÉDICALES",
+    "brand": "INSTITUT SUPÉRIEUR DE GESTION ET DE SCIENCE BIOMEDICAL",
     "tagline": "Sept écoles, une communauté d’apprentissage à Douala, au Cameroun.",
     "explore": "Explorer",
+    "community": "Communauté et activités",
     "connect": "Nous suivre",
     "legal": "Mentions légales",
     "privacy": "Politique de confidentialité",
     "terms": "Conditions d'utilisation",
     "accessibility": "Accessibilité",
     "address": "Douala, Cameroun",
-    "rights": "© {year} Institut universitaire Trustech de gestion des entreprises et des sciences biomédicales. Tous droits réservés."
+    "rights": "© {year} Institut supérieur de gestion et de science biomedical. Tous droits réservés."
   },
   "notifications": {
     "meta": { "title": "Notifications", "description": "Les notifications de votre compte Trustech." },
