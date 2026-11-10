@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
-  ArrowRight, BarChart3, BookOpen, CalendarDays, CheckCircle2, ClipboardList,
-  FileCheck2, FileText, GraduationCap, Image, Images, Inbox, Megaphone, RefreshCw, ShieldCheck,
+  ArrowRight, Banknote, BarChart3, BookOpen, CalendarDays, CheckCircle2, ClipboardList,
+  FileCheck2, FileText, GraduationCap, Image, Images, Inbox, Megaphone, Receipt, RefreshCw, ShieldCheck,
   Users, type LucideIcon,
 } from "lucide-react";
 
@@ -44,6 +44,8 @@ const empty: DashboardData = {
 
 export function StaffDashboard({ locale }: { locale: Locale }) {
   const t = useTranslations("staffDashboard");
+  const tf = useTranslations("finance");
+  const shortcutLabel = (key: string) => (key === "payments" || key === "fees" ? tf(`nav.${key}`) : t(`shortcuts.${key}`));
   const token = useAuthStore((state) => state.accessToken);
   const user = useAuthStore((state) => state.user);
   const roles = user?.roles ?? [];
@@ -124,6 +126,8 @@ export function StaffDashboard({ locale }: { locale: Locale }) {
     canReview && { key: "review", href: "/staff/admissions", icon: ClipboardList },
     canReview && { key: "reply", href: "/staff/enquiries", icon: Inbox },
     canReview && { key: "transcripts", href: "/staff/transcripts", icon: FileCheck2 },
+    canReview && { key: "payments", href: "/staff/payments", icon: Receipt },
+    canReview && { key: "fees", href: "/staff/fees", icon: Banknote },
     canPrograms && { key: "managePrograms", href: "/staff/programs", icon: GraduationCap },
     canCourses && { key: "manageCourses", href: "/staff/courses", icon: BookOpen },
     canReview && { key: "grades", href: "/staff/grades", icon: BarChart3 },
@@ -168,7 +172,7 @@ export function StaffDashboard({ locale }: { locale: Locale }) {
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-blue-100 sm:text-base">{t("intro")}</p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            {actions.slice(0, 2).map((action) => <Link key={action.key} href={action.href} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-[#092c80] shadow-sm transition hover:-translate-y-0.5 hover:bg-amber-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{t(`shortcuts.${action.key}`)}<ArrowRight className="size-4" aria-hidden="true" /></Link>)}
+            {actions.slice(0, 2).map((action) => <Link key={action.key} href={action.href} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-[#092c80] shadow-sm transition hover:-translate-y-0.5 hover:bg-amber-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{shortcutLabel(action.key)}<ArrowRight className="size-4" aria-hidden="true" /></Link>)}
             <button type="button" onClick={() => setRefresh((value) => value + 1)} disabled={loading} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/30 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10 disabled:opacity-60"><RefreshCw className={`size-4 ${loading ? "animate-spin" : ""}`} aria-hidden="true" />{t("refresh")}</button>
           </div>
         </div>
@@ -223,7 +227,7 @@ export function StaffDashboard({ locale }: { locale: Locale }) {
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1.4fr)_minmax(300px,1fr)]">
         <section aria-labelledby="staff-actions-heading" className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm sm:p-7">
           <SectionHeading eyebrow={t("workbench")} title={t("quickActions")} id="staff-actions-heading" />
-          <div className="mt-5 grid gap-2.5 sm:grid-cols-2">{actions.map((action) => <Link key={action.key} href={action.href} className="group flex min-h-16 items-center gap-3 rounded-xl border border-slate-200 bg-[#f8faff] p-3.5 transition hover:-translate-y-0.5 hover:border-[#b7c9f5] hover:bg-white hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"><span className="grid size-10 shrink-0 place-items-center rounded-lg bg-white text-[#123ca8] shadow-sm"><action.icon className="size-[19px]" aria-hidden="true" /></span><span className="min-w-0 flex-1 text-sm font-semibold text-slate-800">{t(`shortcuts.${action.key}`)}</span><ArrowRight className="size-4 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-primary" aria-hidden="true" /></Link>)}</div>
+          <div className="mt-5 grid gap-2.5 sm:grid-cols-2">{actions.map((action) => <Link key={action.key} href={action.href} className="group flex min-h-16 items-center gap-3 rounded-xl border border-slate-200 bg-[#f8faff] p-3.5 transition hover:-translate-y-0.5 hover:border-[#b7c9f5] hover:bg-white hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"><span className="grid size-10 shrink-0 place-items-center rounded-lg bg-white text-[#123ca8] shadow-sm"><action.icon className="size-[19px]" aria-hidden="true" /></span><span className="min-w-0 flex-1 text-sm font-semibold text-slate-800">{shortcutLabel(action.key)}</span><ArrowRight className="size-4 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-primary" aria-hidden="true" /></Link>)}</div>
         </section>
         <section aria-labelledby="staff-queue-heading" className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm sm:p-7">
           <SectionHeading eyebrow={t("priority")} title={canReview ? t("admissionsQueue") : t("yourWorkspace")} id="staff-queue-heading" />

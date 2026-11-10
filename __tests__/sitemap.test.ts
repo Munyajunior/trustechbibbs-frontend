@@ -1,7 +1,7 @@
 import sitemap from "@/app/sitemap";
 import { getEvents, getGalleryAlbums, getNews, getPrograms } from "@/lib/api/public";
 
-jest.mock("@/i18n/routing", () => ({ routing: { locales: ["en", "fr"] } }));
+jest.mock("@/i18n/routing", () => ({ routing: { locales: ["en", "fr"], defaultLocale: "en" } }));
 jest.mock("@/lib/api/public", () => ({
   getPrograms: jest.fn(),
   getNews: jest.fn(),

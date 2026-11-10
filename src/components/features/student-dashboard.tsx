@@ -10,10 +10,11 @@ import { getMyStudentProfile, type StudentProfile } from "@/lib/api/students";
 import type { Locale } from "@/lib/api/types";
 import { useAuthStore } from "@/stores/auth-store";
 
-const sections = ["profile", "courses", "results"] as const;
+const sections = ["profile", "courses", "results", "fees"] as const;
 
 export function StudentDashboard({ locale }: { locale: Locale }) {
   const t = useTranslations("student");
+  const tf = useTranslations("finance");
   const token = useAuthStore((state) => state.accessToken);
   const user = useAuthStore((state) => state.user);
   const isStudent = user?.roles.includes("student") ?? false;
@@ -58,8 +59,8 @@ export function StudentDashboard({ locale }: { locale: Locale }) {
           {sections.map((section) => (
             <li key={section}>
               <Link href={`/student/${section}`} className="block h-full rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-primary-light hover:shadow-md">
-                <h2 className="font-display text-xl font-semibold text-gray-900">{t(`dashboard.sections.${section}.title`)}</h2>
-                <p className="mt-2 text-sm leading-6 text-gray-600">{t(`dashboard.sections.${section}.body`)}</p>
+                <h2 className="font-display text-xl font-semibold text-gray-900">{section === "fees" ? tf("card.title") : t(`dashboard.sections.${section}.title`)}</h2>
+                <p className="mt-2 text-sm leading-6 text-gray-600">{section === "fees" ? tf("card.body") : t(`dashboard.sections.${section}.body`)}</p>
               </Link>
             </li>
           ))}
