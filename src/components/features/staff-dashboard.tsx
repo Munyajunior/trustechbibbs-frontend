@@ -129,6 +129,7 @@ export function StaffDashboard({ locale }: { locale: Locale }) {
     canReview && { key: "grades", href: "/staff/grades", icon: BarChart3 },
     canReview && { key: "schedule", href: "/staff/scheduling", icon: CalendarDays },
     canEdit && { key: "publish", href: "/staff/content", icon: FileText },
+    canEdit && { key: "pages", href: "/staff/pages", icon: FileText },
     canEdit && { key: "gallery", href: "/staff/gallery", icon: Images },
     canEdit && { key: "media", href: "/staff/media", icon: Image },
     canEdit && { key: "banners", href: "/staff/banners", icon: Megaphone },

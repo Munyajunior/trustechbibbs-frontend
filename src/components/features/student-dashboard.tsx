@@ -10,7 +10,7 @@ import { getMyStudentProfile, type StudentProfile } from "@/lib/api/students";
 import type { Locale } from "@/lib/api/types";
 import { useAuthStore } from "@/stores/auth-store";
 
-const sections = ["profile", "courses", "results", "fees"] as const;
+const sections = ["profile", "courses", "results"] as const;
 
 export function StudentDashboard({ locale }: { locale: Locale }) {
   const t = useTranslations("student");

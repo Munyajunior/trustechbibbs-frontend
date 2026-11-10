@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "admissions.meta" });
   return { title: t("title"), description: t("description"), alternates: {
-    canonical: `/${locale}/admissions`, languages: { en: "/en/admissions", fr: "/fr/admissions" },
+    canonical: `/${locale}/admissions`, languages: { en: "/en/admissions", "x-default": "/en/admissions", fr: "/fr/admissions" },
   } };
 }
 

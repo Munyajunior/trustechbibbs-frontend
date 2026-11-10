@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "programs.meta" });
   return { title: t("title"), description: t("description"), alternates: {
-    canonical: `/${locale}/programs`, languages: { en: "/en/programs", fr: "/fr/programs" },
+    canonical: `/${locale}/programs`, languages: { en: "/en/programs", "x-default": "/en/programs", fr: "/fr/programs" },
   } };
 }
 

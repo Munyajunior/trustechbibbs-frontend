@@ -8,7 +8,7 @@ type PageProps = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "accessibility.meta" });
-  return { title: t("title"), description: t("description"), alternates: { canonical: `/${locale}/accessibility`, languages: { en: "/en/accessibility", fr: "/fr/accessibility" } } };
+  return { title: t("title"), description: t("description"), alternates: { canonical: `/${locale}/accessibility`, languages: { en: "/en/accessibility", "x-default": "/en/accessibility", fr: "/fr/accessibility" } } };
 }
 
 export default async function AccessibilityPage({ params }: PageProps) {

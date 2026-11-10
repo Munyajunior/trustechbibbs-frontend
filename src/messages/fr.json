@@ -36,7 +36,23 @@
     "research": "Recherche",
     "careers": "Carrières",
     "alumni": "Anciens étudiants",
-    "partnerships": "Partenariats"
+    "partnerships": "Partenariats",
+    "pages": "Pages de l’institut"
+  },
+  "pageEditor": {
+    "eyebrow": "Gestion du site", "title": "Pages de l’institut", "intro": "Créez des pages bilingues avec du texte et des images, enregistrez les brouillons et publiez le contenu approuvé.",
+    "access": "Un compte éditeur est nécessaire pour gérer les pages.", "signIn": "Se connecter", "pages": "Pages", "new": "Nouvelle page", "editor": "Éditeur de page", "loading": "Chargement des pages…", "empty": "Aucune page pour le moment.", "loadError": "Impossible de charger les pages.", "saveError": "Impossible d’enregistrer cette page.", "required": "Ajoutez une adresse de page et un titre anglais.", "previous": "Précédent", "next": "Suivant", "view": "Voir la page publique",
+    "slug": "Adresse de la page", "titleEn": "Titre anglais", "titleFr": "Titre français", "summaryEn": "Résumé anglais", "summaryFr": "Résumé français", "cover": "Adresse de l’image de couverture", "uploadCover": "Téléverser une couverture", "blocks": "Sections de la page", "blocksHint": "Ajoutez les sections dans les deux langues. Les images nécessitent des descriptions bilingues avant publication.", "block": { "heading": "Titre", "paragraph": "Paragraphe", "image": "Image", "callout": "Encadré" },
+    "textEn": "Texte anglais", "textFr": "Texte français", "imageUrl": "Adresse de l’image", "uploadImage": "Téléverser une image", "altEn": "Description de l’image en anglais", "altFr": "Description de l’image en français", "moveUp": "Monter la section", "moveDown": "Descendre la section", "removeBlock": "Retirer la section",
+    "working": "En cours…", "save": "Enregistrer le brouillon", "publish": "Publier la page", "archive": "Archiver la page", "uploaded": "Image téléversée. Enregistrez la page pour la conserver.", "saved": "Brouillon enregistré.", "published": "Page publiée.", "archived": "Page archivée.", "status": { "draft": "Brouillon", "published": "Publiée", "archived": "Archivée" }
+  },
+  "sitePages": {
+    "eyebrow": "Pages de l’institut",
+    "title": "Explorez Trustech",
+    "intro": "Consultez les informations publiées par l’institut, préparées par notre équipe en français et en anglais.",
+    "empty": "Aucune page supplémentaire n’a encore été publiée. Découvrez nos écoles et nos programmes, ou contactez-nous.",
+    "readMore": "Lire la page",
+    "back": "Toutes les pages de l’institut"
   },
   "institutionalPages": {
     "exploreSchools": "Découvrir les sept écoles",
@@ -857,6 +873,8 @@
     "writeCta": "Nous écrire",
     "location": "Tradex, Logpom, Douala, Cameroun",
     "callUs": "Nous appeler",
+    "whatsappLabel": "WhatsApp",
+    "phoneLabel": "Téléphone",
     "topicsEyebrow": "Trouvez la bonne équipe",
     "topicsTitle": "Comment pouvons-nous vous aider ?",
     "topicsIntro": "Choisissez le sujet le plus proche de votre question lorsque vous nous écrivez. Cela nous aidera à orienter votre demande.",
@@ -982,12 +1000,12 @@
     "workspace": "Espace Trustech", "navigation": "Navigation du personnel", "searchNavigation": "Rechercher une section…", "navigationShortcut": "Ctrl/⌘ K pour rechercher une section", "noNavigationResults": "Aucune section correspondante dans votre espace.", "viewSite": "Voir le site public", "openMenu": "Ouvrir la navigation", "closeMenu": "Fermer la navigation",
     "accessTitle": "Connexion du personnel requise", "accessBody": "Connectez-vous avec un compte du personnel autorisé pour accéder à l’espace administratif.", "signIn": "Se connecter",
     "groups": { "overview": "Vue d’ensemble", "operations": "Opérations académiques", "website": "Site et médias", "governance": "Gouvernance" },
-    "nav": { "dashboard": "Tableau de bord", "admissions": "Admissions", "enquiries": "Demandes", "programs": "Programmes", "courses": "Catalogue des cours", "scheduling": "Planification", "grades": "Registre des notes", "transcripts": "Demandes de relevé", "content": "Actualités et événements", "gallery": "Galerie", "media": "Médiathèque", "banners": "Bannières d’accueil", "leadership": "Direction", "users": "Comptes du personnel", "audit": "Journal d’audit" },
+    "nav": { "dashboard": "Tableau de bord", "admissions": "Admissions", "enquiries": "Demandes", "programs": "Programmes", "courses": "Catalogue des cours", "scheduling": "Planification", "grades": "Registre des notes", "transcripts": "Demandes de relevé", "content": "Actualités et événements", "pages": "Pages de l’institut", "gallery": "Galerie", "media": "Médiathèque", "banners": "Bannières d’accueil", "leadership": "Direction", "users": "Comptes du personnel", "audit": "Journal d’audit" },
     "eyebrow": "Vue administrative", "welcome": "Bon retour, {name}.", "colleague": "collègue", "intro": "Votre centre de pilotage des admissions, de l’enseignement et du site Trustech. Gardez une vue claire sur les priorités du jour.", "refresh": "Actualiser", "partialData": "Certaines données en direct n’ont pas pu être chargées. Réessayez ; les sections disponibles restent utilisables.", "partialStatus": "Certaines données indisponibles", "updatedAt": "Actualisé à {time}",
     "pulse": "Activité de l’institut", "atGlance": "En un coup d’œil", "liveData": "Données de l’espace en direct", "metrics": { "submitted": "Candidatures à examiner", "enquiries": "Nouvelles demandes", "students": "Étudiants actifs", "transcripts": "Nouvelles demandes de relevé", "programs": "Programmes au catalogue", "courses": "Cours au catalogue", "news": "Actualités enregistrées", "events": "Événements enregistrés" },
     "analytics": "Analyse en direct", "admissionsPipeline": "Parcours des candidatures", "studentsByProgram": "Étudiants par programme", "unassigned": "Non attribué", "noStudentData": "Aucun dossier d’étudiant actif n’est encore disponible.", "pipelineNote": "Nombre actuel de candidatures par statut ; il ne s’agit pas de taux de conversion.", "programNote": "Principaux programmes selon le nombre d’étudiants actifs.", "pipeline": { "SUBMITTED": "Soumises", "UNDER_REVIEW": "En examen", "SHORTLISTED": "Présélectionnées", "INTERVIEW": "Entretien", "ADMITTED": "Admis" },
     "websitePulse": "Gestion du site", "publicationOverview": "État des publications", "publicationNote": "Consultez les brouillons, les publications planifiées et les contenus en ligne. Ouvrez l’atelier pour les examiner et publier.", "publicationArchiveNote": "Les contenus archivés ne figurent pas dans ces états de publication actifs.", "publication": { "news": "Actualités", "events": "Événements", "draft": "Brouillons", "scheduled": "Planifiés", "published": "Publiés" },
-    "workbench": "Travail simplifié", "quickActions": "Accès rapides", "shortcuts": { "review": "Examiner les candidatures", "reply": "Répondre aux demandes", "transcripts": "Examiner les demandes de relevé", "managePrograms": "Gérer les programmes", "manageCourses": "Gérer les cours", "grades": "Gérer les notes", "schedule": "Planifier un semestre", "publish": "Créer une actualité ou un événement", "gallery": "Organiser la galerie", "media": "Mettre à jour les images", "banners": "Gérer les bannières d’accueil", "leadership": "Mettre à jour la direction", "audit": "Consulter le journal d’audit", "staffUsers": "Gérer les accès du personnel" },
+    "workbench": "Travail simplifié", "quickActions": "Accès rapides", "shortcuts": { "review": "Examiner les candidatures", "reply": "Répondre aux demandes", "transcripts": "Examiner les demandes de relevé", "managePrograms": "Gérer les programmes", "manageCourses": "Gérer les cours", "grades": "Gérer les notes", "schedule": "Planifier un semestre", "publish": "Créer une actualité ou un événement", "pages": "Gérer les pages de l’institut", "gallery": "Organiser la galerie", "media": "Mettre à jour les images", "banners": "Gérer les bannières d’accueil", "leadership": "Mettre à jour la direction", "audit": "Consulter le journal d’audit", "staffUsers": "Gérer les accès du personnel" },
     "priority": "À traiter", "actionCentre": "Vos priorités", "actionCentreHint": "Ouvrez une file pour traiter les éléments en attente de votre équipe.", "knownPending": "{count} éléments à examiner", "allCaughtUp": "Toutes les files suivies sont vides.", "admissionsQueue": "File des admissions", "yourWorkspace": "Votre espace", "awaitingReview": "Soumise", "loading": "Chargement des données…", "unavailable": "La file est momentanément indisponible.", "queueClear": "Aucune candidature en attente d’examen.", "openQueue": "Ouvrir la file des admissions", "workspaceHint": "Utilisez les accès rapides pour gérer les domaines autorisés par votre rôle.", "startWorking": "Commencer"
   },
   "staffPassword": {

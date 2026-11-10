@@ -81,7 +81,6 @@ export function Header() {
           <Link
             href="/"
             className="flex shrink-0 items-center gap-2"
-            aria-label={tc("brand")}
           >
             <BrandMark />
           </Link>

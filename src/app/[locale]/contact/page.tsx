@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact.meta" });
   return { title: t("title"), description: t("description"), alternates: {
-    canonical: `/${locale}/contact`, languages: { en: "/en/contact", fr: "/fr/contact" },
+    canonical: `/${locale}/contact`, languages: { en: "/en/contact", "x-default": "/en/contact", fr: "/fr/contact" },
   } };
 }
 
@@ -62,8 +62,8 @@ export default async function ContactPage({ params }: PageProps) {
               <Phone aria-hidden="true" size={24} strokeWidth={1.6} />
               <div>
                 <strong>{t("callUs")}</strong>
-                <a href="tel:+237640481078">+237 640 481 078</a>
-                <a href="tel:+237675502969">+237 675 502 969</a>
+                <a href="https://wa.me/237640481078" rel="noopener noreferrer" target="_blank">{t("whatsappLabel")}: +237 640 481 078</a>
+                <a href="tel:+237675502969">{t("phoneLabel")}: +237 675 502 969</a>
               </div>
             </div>
           </div>

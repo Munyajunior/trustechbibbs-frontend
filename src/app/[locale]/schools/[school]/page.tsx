@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: details(`profiles.${key}.intro`),
     alternates: {
       canonical: `/${locale}/schools/${key}`,
-      languages: { en: `/en/schools/${key}`, fr: `/fr/schools/${key}` },
+      languages: { en: `/en/schools/${key}`, "x-default": `/en/schools/${key}`, fr: `/fr/schools/${key}` },
     },
   };
 }

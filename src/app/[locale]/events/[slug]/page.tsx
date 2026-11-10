@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   try {
     const event = await getEvent(slug, { locale: locale as Locale });
     return { title: localizedField(event, "title", locale as Locale), description: localizedField(event, "description", locale as Locale) ?? undefined,
-      alternates: { canonical: `/${locale}/events/${slug}`, languages: { en: `/en/events/${slug}`, fr: `/fr/events/${slug}` } } };
+      alternates: { canonical: `/${locale}/events/${slug}`, languages: { en: `/en/events/${slug}`, "x-default": `/en/events/${slug}`, fr: `/fr/events/${slug}` } } };
   } catch { return {}; }
 }
 

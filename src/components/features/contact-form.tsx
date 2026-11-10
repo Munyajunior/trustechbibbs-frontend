@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { Providers } from "@/components/providers";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Textarea } from "@/components/ui/input";
 import { ApiError, ApiUnreachableError } from "@/lib/api/client";
@@ -62,7 +63,12 @@ declare global {
   }
 }
 
+/** Query client is scoped to this form so the rest of the public site ships without TanStack Query. */
 export function ContactForm() {
+  return <Providers><ContactFormInner /></Providers>;
+}
+
+function ContactFormInner() {
   const t = useTranslations("contact.form");
   const tv = useTranslations("contact.validation");
   const locale = useLocale() as Locale;
@@ -70,6 +76,8 @@ export function ContactForm() {
   const requiresCaptcha = ["staging", "production"].includes(process.env.NEXT_PUBLIC_ENV ?? "development");
   const captchaContainer = useRef<HTMLDivElement>(null);
   const captchaWidget = useRef<number | null>(null);
+  // reCAPTCHA is third-party JS: load it only once the visitor engages with the form.
+  const [loadCaptcha, setLoadCaptcha] = useState(false);
   const [captchaError, setCaptchaError] = useState<string | null>(null);
   const [attachment, setAttachment] = useState<File | null>(null);
   const [attachmentError, setAttachmentError] = useState<string | null>(null);
@@ -134,6 +142,8 @@ export function ContactForm() {
   return (
     <form
       noValidate
+      onFocusCapture={() => { if (siteKey) setLoadCaptcha(true); }}
+      onPointerDownCapture={() => { if (siteKey) setLoadCaptcha(true); }}
       onSubmit={(event) => { void handleSubmit(submit)(event); }}
       className="contact-form space-y-5"
     >
@@ -262,7 +272,7 @@ export function ContactForm() {
 
       {siteKey && <>
         <div ref={captchaContainer} aria-label={t("captchaLabel")} />
-        <Script
+        {loadCaptcha && <Script
           src={`https://www.google.com/recaptcha/api.js?render=explicit&hl=${locale}`}
           strategy="afterInteractive"
           onReady={() => {
@@ -275,7 +285,7 @@ export function ContactForm() {
             }
           }}
           onError={() => setCaptchaError(t("captchaUnavailable"))}
-        />
+        />}
       </>}
       {requiresCaptcha && !siteKey && <p role="alert" className="text-sm text-error">{t("captchaUnavailable")}</p>}
       {captchaError && <p role="alert" className="text-sm text-error">{captchaError}</p>}

@@ -36,7 +36,23 @@
     "research": "Research",
     "careers": "Careers",
     "alumni": "Alumni",
-    "partnerships": "Partnerships"
+    "partnerships": "Partnerships",
+    "pages": "Institute pages"
+  },
+  "pageEditor": {
+    "eyebrow": "Website management", "title": "Institute pages", "intro": "Create bilingual pages with text and images, save drafts, and publish approved content.",
+    "access": "An editor account is required to manage pages.", "signIn": "Sign in", "pages": "Pages", "new": "New page", "editor": "Page editor", "loading": "Loading pages…", "empty": "No pages yet.", "loadError": "Could not load pages.", "saveError": "Could not save this page.", "required": "Add a page URL and English title.", "previous": "Previous", "next": "Next", "view": "View public page",
+    "slug": "Page URL", "titleEn": "English title", "titleFr": "French title", "summaryEn": "English summary", "summaryFr": "French summary", "cover": "Cover image URL", "uploadCover": "Upload cover image", "blocks": "Page sections", "blocksHint": "Add sections in both languages. Images need descriptions in both languages before publication.", "block": { "heading": "Heading", "paragraph": "Paragraph", "image": "Image", "callout": "Highlight" },
+    "textEn": "English text", "textFr": "French text", "imageUrl": "Image URL", "uploadImage": "Upload image", "altEn": "English image description", "altFr": "French image description", "moveUp": "Move section up", "moveDown": "Move section down", "removeBlock": "Remove section",
+    "working": "Working…", "save": "Save draft", "publish": "Publish page", "archive": "Archive page", "uploaded": "Image uploaded. Save the page to keep it.", "saved": "Draft saved.", "published": "Page published.", "archived": "Page archived.", "status": { "draft": "Draft", "published": "Published", "archived": "Archived" }
+  },
+  "sitePages": {
+    "eyebrow": "Institute pages",
+    "title": "Explore more at Trustech",
+    "intro": "Read the latest published information from the institute, prepared by our team in English and French.",
+    "empty": "No additional pages have been published yet. Explore our schools and programs, or contact us for details.",
+    "readMore": "Read page",
+    "back": "All institute pages"
   },
   "institutionalPages": {
     "exploreSchools": "Explore the seven schools",
@@ -133,10 +149,10 @@
         "body": "Study health and life sciences with a focus on people and communities."
       },
       "engineering": { "title": "School of Engineering and Technology", "body": "Connect technical thinking with real-world challenges and emerging tools." },
-      "education": { "title": "School of Education, Arts & Culture", "body": "Explore learning, creativity and the cultural life of our communities." },
-      "communication": { "title": "School of Communication & Legal Careers", "body": "Develop your voice and explore communication and legal career pathways." },
-      "tourism": { "title": "School of Tourism & Hotel Management", "body": "Discover hospitality, travel and service-focused career pathways." },
-      "agriculture": { "title": "School of Agriculture & Food Sciences", "body": "Explore agriculture, food systems and their role in a sustainable future." }
+      "education": { "title": "School of Education, Arts and Culture", "body": "Explore learning, creativity and the cultural life of our communities." },
+      "communication": { "title": "School of Communication and Legal Careers", "body": "Develop your voice and explore communication and legal career pathways." },
+      "tourism": { "title": "School of Tourism and Hotel Management", "body": "Discover hospitality, travel and service-focused career pathways." },
+      "agriculture": { "title": "School of Agriculture and Food Sciences", "body": "Explore agriculture, food systems and their role in a sustainable future." }
     },
     "featured": {
       "eyebrow": "Featured fields",
@@ -857,6 +873,8 @@
     "writeCta": "Write to us",
     "location": "Tradex, Logpom, Douala, Cameroon",
     "callUs": "Call us",
+    "whatsappLabel": "WhatsApp",
+    "phoneLabel": "Phone",
     "topicsEyebrow": "Find the right team",
     "topicsTitle": "What can we help with?",
     "topicsIntro": "Choose the subject closest to your question when you send a message. We will use it to direct your enquiry.",
@@ -982,12 +1000,12 @@
     "workspace": "Trustech workspace", "navigation": "Staff navigation", "searchNavigation": "Find a section…", "navigationShortcut": "Press Ctrl/⌘ K to find a section", "noNavigationResults": "No matching section in your workspace.", "viewSite": "View public website", "openMenu": "Open staff navigation", "closeMenu": "Close staff navigation",
     "accessTitle": "Staff sign in required", "accessBody": "Sign in with an authorized staff account to access the administrative workspace.", "signIn": "Sign in",
     "groups": { "overview": "Overview", "operations": "Academic operations", "website": "Website & media", "governance": "Governance" },
-    "nav": { "dashboard": "Dashboard", "admissions": "Admissions", "enquiries": "Enquiries", "programs": "Programs", "courses": "Course catalogue", "scheduling": "Scheduling", "grades": "Gradebook", "transcripts": "Transcript requests", "content": "News & events", "gallery": "Gallery", "media": "Media library", "banners": "Homepage banners", "leadership": "Leadership", "users": "Staff accounts", "audit": "Audit trail" },
+    "nav": { "dashboard": "Dashboard", "admissions": "Admissions", "enquiries": "Enquiries", "programs": "Programs", "courses": "Course catalogue", "scheduling": "Scheduling", "grades": "Gradebook", "transcripts": "Transcript requests", "content": "News & events", "pages": "Institute pages", "gallery": "Gallery", "media": "Media library", "banners": "Homepage banners", "leadership": "Leadership", "users": "Staff accounts", "audit": "Audit trail" },
     "eyebrow": "Administrative overview", "welcome": "Welcome back, {name}.", "colleague": "colleague", "intro": "Your command centre for admissions, academics and the Trustech website. Stay on top of what needs attention today.", "refresh": "Refresh", "partialData": "Some live figures could not be loaded. Use Refresh to try again; available sections remain usable.", "partialStatus": "Some data unavailable", "updatedAt": "Updated at {time}",
     "pulse": "Institution pulse", "atGlance": "At a glance", "liveData": "Live from your workspace", "metrics": { "submitted": "Applications awaiting review", "enquiries": "New enquiries", "students": "Active students", "transcripts": "New transcript requests", "programs": "Programs in catalogue", "courses": "Courses in catalogue", "news": "News records", "events": "Event records" },
     "analytics": "Live analytics", "admissionsPipeline": "Admissions pipeline", "studentsByProgram": "Students by program", "unassigned": "Unassigned", "noStudentData": "No active student records are available yet.", "pipelineNote": "Current application counts by status; these are not conversion rates.", "programNote": "Top programs by active student count.", "pipeline": { "SUBMITTED": "Submitted", "UNDER_REVIEW": "Under review", "SHORTLISTED": "Shortlisted", "INTERVIEW": "Interview", "ADMITTED": "Admitted" },
     "websitePulse": "Website operations", "publicationOverview": "Publication overview", "publicationNote": "See what is in draft, scheduled, or currently live. Open the content studio to review and publish.", "publicationArchiveNote": "Archived records are excluded from these active publication counts.", "publication": { "news": "News", "events": "Events", "draft": "Draft", "scheduled": "Scheduled", "published": "Published" },
-    "workbench": "Work smarter", "quickActions": "Quick actions", "shortcuts": { "review": "Review applications", "reply": "Respond to enquiries", "transcripts": "Review transcript requests", "managePrograms": "Manage programs", "manageCourses": "Manage courses", "grades": "Manage gradebook", "schedule": "Plan a semester", "publish": "Create news or event", "gallery": "Curate gallery", "media": "Update site images", "banners": "Manage homepage banners", "leadership": "Update leadership", "audit": "Review audit trail", "staffUsers": "Manage staff access" },
+    "workbench": "Work smarter", "quickActions": "Quick actions", "shortcuts": { "review": "Review applications", "reply": "Respond to enquiries", "transcripts": "Review transcript requests", "managePrograms": "Manage programs", "manageCourses": "Manage courses", "grades": "Manage gradebook", "schedule": "Plan a semester", "publish": "Create news or event", "pages": "Manage institute pages", "gallery": "Curate gallery", "media": "Update site images", "banners": "Manage homepage banners", "leadership": "Update leadership", "audit": "Review audit trail", "staffUsers": "Manage staff access" },
     "priority": "Needs attention", "actionCentre": "Your action centre", "actionCentreHint": "Open a queue to work through the items waiting for your team.", "knownPending": "{count} items to review", "allCaughtUp": "All tracked queues are clear.", "admissionsQueue": "Admissions queue", "yourWorkspace": "Your workspace", "awaitingReview": "Submitted", "loading": "Loading live data…", "unavailable": "The queue is temporarily unavailable.", "queueClear": "No applications are awaiting review.", "openQueue": "Open admissions queue", "workspaceHint": "Use the shortcuts to manage the areas available to your role.", "startWorking": "Start working"
   },
   "staffPassword": {

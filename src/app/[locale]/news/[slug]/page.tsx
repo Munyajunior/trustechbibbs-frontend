@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   try {
     const article = await getNewsArticle(slug, { locale: locale as Locale });
     return { title: localizedField(article, "title", locale as Locale), description: localizedField(article, "excerpt", locale as Locale) ?? undefined,
-      alternates: { canonical: `/${locale}/news/${slug}`, languages: { en: `/en/news/${slug}`, fr: `/fr/news/${slug}` } } };
+      alternates: { canonical: `/${locale}/news/${slug}`, languages: { en: `/en/news/${slug}`, "x-default": `/en/news/${slug}`, fr: `/fr/news/${slug}` } } };
   } catch { return {}; }
 }
 

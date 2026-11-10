@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "events.meta" });
   return { title: t("title"), description: t("description"), alternates: {
-    canonical: `/${locale}/events`, languages: { en: "/en/events", fr: "/fr/events" },
+    canonical: `/${locale}/events`, languages: { en: "/en/events", "x-default": "/en/events", fr: "/fr/events" },
   } };
 }
 

@@ -4,6 +4,7 @@ import { routing } from "@/i18n/routing";
 import { getEvents, getGalleryAlbums, getNews, getPrograms } from "@/lib/api/public";
 import type { CampusEvent, NewsArticle, Paginated, Program } from "@/lib/api/types";
 import { schools } from "@/lib/schools";
+import { listPublicPages } from "@/lib/api/pages";
 
 // A temporarily unavailable API must not freeze an empty sitemap at build time.
 export const dynamic = "force-dynamic";
@@ -13,7 +14,7 @@ const STATIC_PATHS = [
   "", "/about", "/about/leadership", "/schools", "/programs",
   ...schools.map(({ key }) => `/schools/${key}`),
   "/admissions", "/news", "/events", "/gallery", "/contact",
-  "/research", "/careers", "/alumni", "/partnerships",
+  "/research", "/careers", "/alumni", "/partnerships", "/pages",
   "/privacy", "/terms", "/accessibility",
 ];
 
@@ -33,9 +34,10 @@ async function allPublished<T extends Slugged>(
 }
 
 function localizedEntries(path: string, priority = 0.7): MetadataRoute.Sitemap {
-  const languages = Object.fromEntries(
+  const languages: Record<string, string> = Object.fromEntries(
     routing.locales.map((locale) => [locale, `${SITE_URL}/${locale}${path}`]),
   );
+  languages["x-default"] = `${SITE_URL}/${routing.defaultLocale}${path}`;
   return routing.locales.map((locale) => ({
     url: `${SITE_URL}/${locale}${path}`,
     priority,
@@ -50,8 +52,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     allPublished<NewsArticle>((page) => getNews({ page, per_page: 100 })),
     allPublished<CampusEvent>((page) => getEvents({ page, per_page: 100 })),
     getGalleryAlbums(),
+    listPublicPages("en"),
   ]);
-  const sections = ["programs", "news", "events", "gallery"] as const;
+  const sections = ["programs", "news", "events", "gallery", "pages"] as const;
 
   results.forEach((result, index) => {
     if (result.status === "rejected") {

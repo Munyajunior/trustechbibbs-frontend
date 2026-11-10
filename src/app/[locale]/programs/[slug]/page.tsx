@@ -56,6 +56,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `/${locale}/programs/${slug}`,
       languages: {
         en: `/en/programs/${slug}`,
+        "x-default": `/en/programs/${slug}`,
         fr: `/fr/programs/${slug}`,
       },
     },

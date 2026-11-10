@@ -1,2 +1,6 @@
-import { StudentModulePlaceholder } from "@/components/features/student-module-placeholder";
-export default function StudentFeesPage() { return <StudentModulePlaceholder module="fees" />; }
+import { notFound } from "next/navigation";
+
+// Fees module is not public yet; hidden from navigation and unreachable.
+export default function StudentFeesPage() {
+  notFound();
+}

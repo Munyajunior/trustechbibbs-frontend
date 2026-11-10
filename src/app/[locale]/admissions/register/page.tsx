@@ -9,7 +9,7 @@ type PageProps = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "auth.register.meta" });
-  return { title: t("title"), description: t("description"), alternates: { canonical: `/${locale}/admissions/register`, languages: { en: "/en/admissions/register", fr: "/fr/admissions/register" } } };
+  return { title: t("title"), description: t("description"), alternates: { canonical: `/${locale}/admissions/register`, languages: { en: "/en/admissions/register", "x-default": "/en/admissions/register", fr: "/fr/admissions/register" } } };
 }
 
 export default async function AdmissionsRegisterPage({ params }: PageProps) {

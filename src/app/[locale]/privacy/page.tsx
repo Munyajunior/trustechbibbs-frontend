@@ -8,7 +8,7 @@ type PageProps = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "privacy.meta" });
-  return { title: t("title"), description: t("description"), alternates: { canonical: `/${locale}/privacy`, languages: { en: "/en/privacy", fr: "/fr/privacy" } } };
+  return { title: t("title"), description: t("description"), alternates: { canonical: `/${locale}/privacy`, languages: { en: "/en/privacy", "x-default": "/en/privacy", fr: "/fr/privacy" } } };
 }
 
 export default async function PrivacyPage({ params }: PageProps) {

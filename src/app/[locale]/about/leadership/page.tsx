@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const t = await getTranslations({ locale, namespace: "leadership.meta" });
   return { title: t("title"), description: t("description"), alternates: {
     canonical: `/${locale}/about/leadership`,
-    languages: { en: "/en/about/leadership", fr: "/fr/about/leadership" },
+    languages: { en: "/en/about/leadership", "x-default": "/en/about/leadership", fr: "/fr/about/leadership" },
   } };
 }
 

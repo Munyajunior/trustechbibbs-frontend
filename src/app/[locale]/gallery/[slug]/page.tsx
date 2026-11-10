@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   try {
     const { album } = await getGalleryAlbum(slug, { locale: locale as Locale });
     return { title: localizedField(album, "title", locale as Locale), description: localizedField(album, "description", locale as Locale) ?? undefined,
-      alternates: { canonical: `/${locale}/gallery/${slug}`, languages: { en: `/en/gallery/${slug}`, fr: `/fr/gallery/${slug}` } } };
+      alternates: { canonical: `/${locale}/gallery/${slug}`, languages: { en: `/en/gallery/${slug}`, "x-default": `/en/gallery/${slug}`, fr: `/fr/gallery/${slug}` } } };
   } catch { return {}; }
 }
 

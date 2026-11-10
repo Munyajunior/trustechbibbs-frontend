@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: t("description"),
     alternates: {
       canonical: `/${locale}/schools`,
-      languages: { en: "/en/schools", fr: "/fr/schools" },
+      languages: { en: "/en/schools", "x-default": "/en/schools", fr: "/fr/schools" },
     },
   };
 }

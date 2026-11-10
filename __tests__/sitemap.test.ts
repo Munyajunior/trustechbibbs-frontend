@@ -53,6 +53,7 @@ test("includes all published slugs in both locales and excludes private admissio
   expect(urls.some((url) => /\/admissions\/(application|login|register|status)/.test(url))).toBe(false);
   expect(entries.find((entry) => entry.url.endsWith("/en/news/campus-update"))?.alternates?.languages).toEqual({
     en: "http://localhost:3000/en/news/campus-update",
+    "x-default": "http://localhost:3000/en/news/campus-update",
     fr: "http://localhost:3000/fr/news/campus-update",
   });
   expect(getPrograms).toHaveBeenCalledTimes(2);

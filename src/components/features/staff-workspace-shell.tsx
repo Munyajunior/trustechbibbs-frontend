@@ -36,6 +36,7 @@ const groups: { key: string; items: NavItem[] }[] = [
   ] },
   { key: "website", items: [
     { href: "/staff/content", key: "content", icon: FileText, roles: E },
+    { href: "/staff/pages", key: "pages", icon: FileText, roles: E },
     { href: "/staff/gallery", key: "gallery", icon: Images, roles: E },
     { href: "/staff/media", key: "media", icon: Image, roles: E },
     { href: "/staff/banners", key: "banners", icon: Megaphone, roles: E },

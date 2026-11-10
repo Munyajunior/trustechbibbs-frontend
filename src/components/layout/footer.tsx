@@ -14,6 +14,7 @@ const EXPLORE_LINKS = [
   { href: "/news", key: "news" },
   { href: "/events", key: "events" },
   { href: "/gallery", key: "gallery" },
+  { href: "/pages", key: "pages" },
 ] as const;
 const COMMUNITY_LINKS = [
   { href: "/research", key: "research" },
