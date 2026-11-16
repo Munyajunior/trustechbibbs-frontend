@@ -12,6 +12,8 @@ import { createBanner, listStaffBanners, setBannerPublication, updateBanner, typ
 import { uploadCmsCover } from "@/lib/api/media";
 import type { HomeBanner, Locale } from "@/lib/api/types";
 import { useAuthStore } from "@/stores/auth-store";
+import "@/styles/shared-banner-editor-cms-editor-90ca.css";
+import "@/styles/shared-banner-editor-program-editor.css";
 
 const text = (data: FormData, key: string) => String(data.get(key) ?? "").trim();
 const optional = (data: FormData, key: string) => text(data, key) || null;

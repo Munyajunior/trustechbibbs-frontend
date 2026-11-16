@@ -10,6 +10,7 @@ import { localizedField } from "@/lib/i18n-field";
 import { publicMediaSrc } from "@/lib/public-media";
 
 import { PanoramaViewer } from "./panorama-viewer";
+import "@/styles/shared-gallery-viewer-gallery.css";
 
 export function GalleryViewer({ items, locale }: { items: GalleryItem[]; locale: Locale }) {
   const t = useTranslations("gallery");

@@ -1,10 +1,11 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Container } from "@/components/shared/container";
 import { Link } from "@/i18n/navigation";
+import { SiteImage } from "@/components/shared/site-image";
+import "@/styles/institutional-landing.css";
 
 export type InstitutionalPage = "research" | "careers" | "alumni" | "partnerships";
 
@@ -55,7 +56,7 @@ export async function InstitutionalLanding({
           <p className="institutional-hero-footnote">{t(`${page}.note`)}</p>
         </div>
         <div className="institutional-hero-image">
-          <Image src={`/site-media/${imageSlots[page]}`} unoptimized alt="" fill priority sizes="(max-width: 760px) 100vw, 48vw" className="object-cover" />
+          <SiteImage src={`/site-media/${imageSlots[page]}`} priority className="object-cover" />
           <div className="institutional-image-label"><span>TRUSTECH / {t(`${page}.eyebrow`)}</span><strong>{t(`${page}.imageCaption`)}</strong></div>
         </div>
       </Container>

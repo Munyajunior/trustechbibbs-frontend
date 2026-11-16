@@ -1,14 +1,11 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import Script from "next/script";
 import { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { useForm, type Resolver } from "react-hook-form";
 
-import { Providers } from "@/components/providers";
+import type { ContactFormValues } from "@/components/features/contact-schema";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Textarea } from "@/components/ui/input";
 import { ApiError, ApiUnreachableError } from "@/lib/api/client";
@@ -23,29 +20,6 @@ import type { Locale } from "@/lib/api/types";
  * locale. The admissions wizard should follow the same shape.
  */
 
-/** Build the schema with translated messages so errors respect the locale. */
-function buildSchema(t: (key: string) => string) {
-  return z.object({
-    full_name: z.string().trim().min(1, t("fullNameRequired")),
-    // Zod v4: `z.email()` is the top-level validator; `.string().email()` is
-    // deprecated. Piping keeps "required" and "invalid" as distinct messages.
-    email: z
-      .string()
-      .trim()
-      .min(1, t("emailRequired"))
-      .pipe(z.email(t("emailInvalid"))),
-    phone: z.string().trim().optional(),
-    department: z.string().trim().min(1, t("departmentRequired")),
-    subject: z.string().trim().min(1, t("subjectRequired")),
-    message: z
-      .string()
-      .trim()
-      .min(1, t("messageRequired"))
-      .min(20, t("messageTooShort")),
-  });
-}
-
-type ContactFormValues = z.infer<ReturnType<typeof buildSchema>>;
 const MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024;
 const ATTACHMENT_EXTENSIONS = new Set(["pdf", "docx", "txt", "jpg", "jpeg", "png"]);
 
@@ -63,12 +37,11 @@ declare global {
   }
 }
 
-/** Query client is scoped to this form so the rest of the public site ships without TanStack Query. */
+/**
+ * Validation (zod) is loaded on first submit and the request is a plain async call, so the
+ * public contact page ships only the form UI in its first-load JavaScript.
+ */
 export function ContactForm() {
-  return <Providers><ContactFormInner /></Providers>;
-}
-
-function ContactFormInner() {
   const t = useTranslations("contact.form");
   const tv = useTranslations("contact.validation");
   const locale = useLocale() as Locale;
@@ -83,7 +56,13 @@ function ContactFormInner() {
   const [attachmentError, setAttachmentError] = useState<string | null>(null);
   const [fileInputKey, setFileInputKey] = useState(0);
 
-  const schema = buildSchema(tv);
+  const resolver: Resolver<ContactFormValues> = async (values, context, options) => {
+    const [{ zodResolver }, { buildSchema }] = await Promise.all([
+      import("@hookform/resolvers/zod"),
+      import("@/components/features/contact-schema"),
+    ]);
+    return zodResolver(buildSchema(tv))(values, context, options) as ReturnType<Resolver<ContactFormValues>>;
+  };
 
   const {
     register,
@@ -91,18 +70,34 @@ function ContactFormInner() {
     reset,
     formState: { errors },
   } = useForm<ContactFormValues>({
-    resolver: zodResolver(schema),
+    resolver,
     defaultValues: { full_name: "", email: "", phone: "", department: "", subject: "", message: "" },
   });
 
-  const mutation = useMutation({
-    mutationFn: ({ values, file }: { values: ContactFormValues & { captcha_token?: string }; file: File | null }) =>
-      file ? submitContactWithAttachment(values, file, { locale }) : submitContact(values, { locale }),
-    onSuccess: () => { reset(); setAttachment(null); setAttachmentError(null); setFileInputKey((key) => key + 1); },
-    onSettled: () => {
+  const [request, setRequest] = useState<{ status: "idle" | "pending" | "success" | "error"; reference?: string; error?: unknown }>({ status: "idle" });
+  const mutation = {
+    isPending: request.status === "pending",
+    isSuccess: request.status === "success",
+    isError: request.status === "error",
+    error: request.error,
+    data: request.reference ? { reference: request.reference } : undefined,
+  };
+
+  async function send(values: ContactFormValues & { captcha_token?: string }, file: File | null) {
+    setRequest({ status: "pending" });
+    try {
+      const result = file ? await submitContactWithAttachment(values, file, { locale }) : await submitContact(values, { locale });
+      reset();
+      setAttachment(null);
+      setAttachmentError(null);
+      setFileInputKey((key) => key + 1);
+      setRequest({ status: "success", reference: result?.reference });
+    } catch (error) {
+      setRequest({ status: "error", error });
+    } finally {
       if (captchaWidget.current !== null) window.grecaptcha?.reset(captchaWidget.current);
-    },
-  });
+    }
+  }
 
   function submit(values: ContactFormValues) {
     if (attachmentError) return;
@@ -117,7 +112,7 @@ function ContactFormInner() {
       return;
     }
     setCaptchaError(null);
-    mutation.mutate({ values: { ...values, captcha_token: captchaToken }, file: attachment });
+    void send({ ...values, captcha_token: captchaToken }, attachment);
   }
 
   function selectAttachment(file: File | null) {
@@ -271,7 +266,7 @@ function ContactFormInner() {
       </div>
 
       {siteKey && <>
-        <div ref={captchaContainer} aria-label={t("captchaLabel")} />
+        <div ref={captchaContainer} role="group" aria-label={t("captchaLabel")} />
         {loadCaptcha && <Script
           src={`https://www.google.com/recaptcha/api.js?render=explicit&hl=${locale}`}
           strategy="afterInteractive"

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useLocale } from "next-intl";
 
 /** Keep the supplied shield artwork; localize the adjacent official name. */
@@ -10,14 +9,17 @@ export function BrandMark({ compact = false }: { compact?: boolean }) {
 
   return (
     <span className="inline-flex min-w-0 items-center gap-2">
-      <Image
+      {/* Plain <img>: a fixed 64px asset, so next/image's client runtime would add nothing. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src="/site-media/logo"
-        unoptimized
         alt=""
         width={64}
         height={64}
+        decoding="async"
+        loading={compact ? "lazy" : "eager"}
+        style={{ color: "transparent" }}
         className={compact ? "size-12 shrink-0 object-contain" : "size-[58px] shrink-0 object-contain"}
-        priority={!compact}
       />
       <span className={compact ? "block min-w-0 max-w-[190px] leading-none" : "block min-w-0 max-w-[210px] leading-none sm:max-w-[240px]"}>
         <span className="block text-[25px] font-black leading-[.96] tracking-[-.035em] text-[#092775]">TRUSTECH</span>

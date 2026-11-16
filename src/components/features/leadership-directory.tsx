@@ -8,6 +8,7 @@ import { useMemo, useState } from "react";
 import type { LeadershipProfile, Locale } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
 import { publicMediaSrc } from "@/lib/public-media";
+import "@/styles/leadership-directory.css";
 
 export function LeadershipDirectory({ profiles, locale }: { profiles: LeadershipProfile[]; locale: Locale }) {
   const t = useTranslations("leadership");

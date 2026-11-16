@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { useTransition } from "react";
 
 import { usePathname, useRouter } from "@/i18n/navigation";
@@ -13,8 +13,9 @@ import { cn } from "@/lib/utils";
  * Swaps the locale segment while keeping the current pathname and route params,
  * so the user stays on the page they were reading.
  */
-export function LanguageSwitcher({ className }: { className?: string }) {
-  const t = useTranslations("common");
+export type LanguageSwitcherLabels = { label: string; french: string; english: string };
+
+export function LanguageSwitcher({ className, labels }: { className?: string; labels: LanguageSwitcherLabels }) {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -42,7 +43,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
         className,
       )}
       role="group"
-      aria-label={t("language")}
+      aria-label={labels.label}
     >
       {routing.locales.map((code) => {
         const active = code === locale;
@@ -52,7 +53,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
             type="button"
             onClick={() => switchTo(code)}
             aria-current={active ? "true" : undefined}
-            aria-label={code === "fr" ? t("switchToFrench") : t("switchToEnglish")}
+            aria-label={code === "fr" ? labels.french : labels.english}
             className={cn(
               "rounded-full px-2.5 py-1 text-xs font-semibold uppercase transition-colors",
               active

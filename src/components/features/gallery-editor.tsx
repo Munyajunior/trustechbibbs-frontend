@@ -13,6 +13,7 @@ import {
 import { uploadCmsCover, uploadCmsPanorama, uploadCmsVideo } from "@/lib/api/media";
 import type { GalleryAlbum, GalleryItem, Locale } from "@/lib/api/types";
 import { useAuthStore } from "@/stores/auth-store";
+import "@/styles/shared-gallery-editor-leadership-editor.css";
 
 const emptyAlbum: GalleryAlbumInput = {
   slug: "", title_en: "", title_fr: "", description_en: "", description_fr: "",

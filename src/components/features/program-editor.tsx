@@ -22,6 +22,10 @@ import {
 import type { Locale, Pagination } from "@/lib/api/types";
 import { schools } from "@/lib/schools";
 import { useAuthStore } from "@/stores/auth-store";
+import "@/styles/program-editor.css";
+import "@/styles/shared-banner-editor-cms-editor-90ca.css";
+import "@/styles/shared-banner-editor-program-editor.css";
+import "@/styles/shared-cms-editor-program-editor.css";
 
 type Props = { locale: Locale };
 

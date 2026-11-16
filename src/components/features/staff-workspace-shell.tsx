@@ -32,6 +32,7 @@ const groups: { key: string; items: NavItem[] }[] = [
     { href: "/staff/courses", key: "courses", icon: BookOpen, roles: C },
     { href: "/staff/scheduling", key: "scheduling", icon: CalendarDays, roles: R },
     { href: "/staff/grades", key: "grades", icon: BarChart3, roles: R },
+    { href: "/staff/students", key: "students", icon: Users, roles: R },
     { href: "/staff/transcripts", key: "transcripts", icon: FileCheck2, roles: R },
     { href: "/staff/payments", key: "payments", icon: Receipt, roles: R },
     { href: "/staff/fees", key: "fees", icon: Banknote, roles: R },

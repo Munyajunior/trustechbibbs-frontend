@@ -1,11 +1,10 @@
-"use client";
-
 import { MapPin } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Container } from "@/components/shared/container";
 import { BrandMark } from "@/components/layout/brand-mark";
-import { Link, usePathname } from "@/i18n/navigation";
+import { FooterGate } from "@/components/layout/footer-gate";
+import { Link } from "@/i18n/navigation";
 
 const EXPLORE_LINKS = [
   { href: "/schools", key: "schools" },
@@ -26,11 +25,8 @@ const COMMUNITY_LINKS = [
 export function Footer() {
   const t = useTranslations("footer");
   const tn = useTranslations("nav");
-  const pathname = usePathname();
-
-  if (pathname.startsWith("/staff")) return null;
-
   return (
+    <FooterGate>
     <footer className="mt-auto border-t border-[#e7eaf0] bg-[#f8faff]">
       <Container className="py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
@@ -105,5 +101,6 @@ export function Footer() {
         </div>
       </Container>
     </footer>
+    </FooterGate>
   );
 }

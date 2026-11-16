@@ -15,6 +15,8 @@ import { uploadCmsCover } from "@/lib/api/media";
 import type { LeadershipProfile, Locale } from "@/lib/api/types";
 import { publicMediaSrc } from "@/lib/public-media";
 import { useAuthStore } from "@/stores/auth-store";
+import "@/styles/shared-gallery-editor-leadership-editor.css";
+import "@/styles/leadership-editor.css";
 
 const blank: LeadershipInput = {
   name: "", title_en: "", title_fr: "", department_en: "", department_fr: "",

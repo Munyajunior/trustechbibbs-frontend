@@ -18,6 +18,9 @@ import {
 } from "@/lib/api/cms";
 import type { Locale, Pagination } from "@/lib/api/types";
 import { useAuthStore } from "@/stores/auth-store";
+import "@/styles/shared-banner-editor-cms-editor-90ca.css";
+import "@/styles/cms-editor.css";
+import "@/styles/shared-cms-editor-program-editor.css";
 
 type Kind = "news" | "events";
 type EditorRecord = EditorNewsArticle | EditorCampusEvent;

@@ -1,13 +1,16 @@
 "use client";
 
-import Image from "next/image";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Container } from "@/components/shared/container";
+import { SiteImage } from "@/components/shared/site-image";
 import { Link } from "@/i18n/navigation";
 import type { HomeBanner, Locale } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
+import "@/styles/editorial.css";
+import "@/styles/shared-home-hero-home.css";
+import "@/styles/home-hero.css";
 
 type Fallback = {
   title: string;
@@ -52,7 +55,7 @@ export function HomeHero({ locale, banners, fallback, labels }: Props) {
         <p className="home-hero-signoff">{labels.signoff}</p>
       </div>
       <div className="home-hero-visual">
-        <Image key={banner?.id ?? "fallback"} src={banner?.image_url ?? "/site-media/hero"} unoptimized alt={imageAlt} fill priority sizes="(max-width: 900px) 100vw, 55vw" className="object-cover object-center" />
+        <SiteImage key={banner?.id ?? "fallback"} src={banner?.image_url ?? "/site-media/hero"} alt={imageAlt} priority className="object-cover object-center" />
         <p className="home-visual-caption">{labels.caption}</p>
         {banners.length > 1 && <div className="home-hero-controls" role="group" aria-label={labels.controls}>
           <button type="button" aria-label={labels.previous} onClick={() => setIndex((current) => (current - 1 + banners.length) % banners.length)}><ChevronLeft aria-hidden="true" size={20} /></button>

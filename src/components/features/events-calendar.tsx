@@ -1,6 +1,8 @@
 import { Link } from "@/i18n/navigation";
 import type { CampusEvent, Locale } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
+import "@/styles/shared-events-calendar-events.css";
+import "@/styles/events-calendar.css";
 
 function localDay(instant: string): string {
   const parts = new Intl.DateTimeFormat("en-GB", {

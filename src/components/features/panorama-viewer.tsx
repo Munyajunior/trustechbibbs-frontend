@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import "@/styles/panorama-viewer.css";
 
 const vertexShaderSource = `
 attribute vec2 aPosition;

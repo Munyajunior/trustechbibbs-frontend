@@ -1,11 +1,12 @@
 "use client";
 
 import { LogOut, Menu, X } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { useState } from "react";
 
-import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { LanguageSwitcher, type LanguageSwitcherLabels } from "@/components/layout/language-switcher";
 import { BrandMark } from "@/components/layout/brand-mark";
+import { NAV_ITEMS, type NavKey } from "@/components/layout/nav-items";
 import { NotificationBell } from "@/components/layout/notification-bell";
 import { Container } from "@/components/shared/container";
 import { buttonVariants } from "@/components/ui/button";
@@ -16,22 +17,21 @@ import type { Locale } from "@/lib/api/types";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/stores/auth-store";
 
-const NAV_ITEMS = [
-  { href: "/", key: "home" },
-  { href: "/about", key: "about" },
-  { href: "/schools", key: "schools" },
-  { href: "/programs", key: "programs" },
-  { href: "/admissions", key: "admissions" },
-  { href: "/news", key: "news" },
-  { href: "/events", key: "events" },
-  { href: "/gallery", key: "gallery" },
-  { href: "/contact", key: "contact" },
-] as const;
+/**
+ * Strings are resolved on the server and passed in, so the header never runs the
+ * client-side ICU message formatter during hydration.
+ */
+export type HeaderLabels = {
+  nav: Record<NavKey, string>;
+  common: Record<"myAccount" | "signIn" | "apply" | "closeMenu" | "openMenu" | "signOut" | "signOutFailed", string>;
+  language: LanguageSwitcherLabels;
+  staff: Record<"workspace" | "viewSite", string>;
+};
 
-export function Header() {
-  const t = useTranslations("nav");
-  const tc = useTranslations("common");
-  const ts = useTranslations("staffDashboard");
+export function Header({ labels }: { labels: HeaderLabels }) {
+  const t = (key: NavKey) => labels.nav[key];
+  const tc = (key: keyof HeaderLabels["common"]) => labels.common[key];
+  const ts = (key: keyof HeaderLabels["staff"]) => labels.staff[key];
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
@@ -71,7 +71,7 @@ export function Header() {
     }
   }
 
-  if (pathname.startsWith("/staff")) return <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur-md"><div className="mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-3 px-4 sm:px-7"><Link href="/staff" aria-label={ts("workspace")}><BrandMark compact /></Link><div className="flex items-center gap-3"><span className="hidden text-xs font-bold uppercase tracking-[.16em] text-slate-500 sm:block">{ts("workspace")}</span><LanguageSwitcher /><NotificationBell /><Link href="/" className="hidden text-xs font-semibold text-primary hover:underline sm:block">{ts("viewSite")}</Link>{token && user && <button type="button" onClick={handleSignOut} disabled={signOutBusy} className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"><LogOut aria-hidden="true" size={15} />{tc("signOut")}</button>}</div></div>{signOutError && <p role="alert" className="border-t border-red-100 bg-red-50 px-4 py-2 text-center text-sm text-red-700">{tc("signOutFailed")}</p>}</header>;
+  if (pathname.startsWith("/staff")) return <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur-md"><div className="mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-3 px-4 sm:px-7"><Link href="/staff" aria-label={ts("workspace")}><BrandMark compact /></Link><div className="flex items-center gap-3"><span className="hidden text-xs font-bold uppercase tracking-[.16em] text-slate-500 sm:block">{ts("workspace")}</span><LanguageSwitcher labels={labels.language} /><NotificationBell /><Link href="/" className="hidden text-xs font-semibold text-primary hover:underline sm:block">{ts("viewSite")}</Link>{token && user && <button type="button" onClick={handleSignOut} disabled={signOutBusy} className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"><LogOut aria-hidden="true" size={15} />{tc("signOut")}</button>}</div></div>{signOutError && <p role="alert" className="border-t border-red-100 bg-red-50 px-4 py-2 text-center text-sm text-red-700">{tc("signOutFailed")}</p>}</header>;
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#e8e9ee] bg-white/95 backdrop-blur-md">
@@ -115,7 +115,7 @@ export function Header() {
 
           {/* Desktop actions */}
           <div className="hidden items-center gap-2 xl:flex">
-            <LanguageSwitcher />
+            <LanguageSwitcher labels={labels.language} />
             <NotificationBell />
             <Link href={accountHref} className="hidden rounded-md px-3 py-2 text-sm font-medium text-primary hover:bg-primary-subtle 2xl:block">{accountLabel}</Link>
             {token && user && <button type="button" onClick={handleSignOut} disabled={signOutBusy} className="inline-flex items-center gap-1.5 rounded-md px-2 py-2 text-xs font-medium text-gray-600 hover:bg-primary-subtle hover:text-primary disabled:opacity-50"><LogOut aria-hidden="true" size={15} />{tc("signOut")}</button>}
@@ -163,7 +163,7 @@ export function Header() {
               </ul>
             </nav>
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-4">
-              <LanguageSwitcher />
+              <LanguageSwitcher labels={labels.language} />
               <Link href={accountHref} onClick={() => setOpen(false)} className="text-sm font-semibold text-primary">{accountLabel}</Link>
               {token && user && <button type="button" onClick={handleSignOut} disabled={signOutBusy} className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary disabled:opacity-50"><LogOut aria-hidden="true" size={16} />{tc("signOut")}</button>}
               <Link
