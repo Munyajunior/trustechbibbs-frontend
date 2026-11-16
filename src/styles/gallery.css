@@ -1,0 +1,8 @@
+.gallery-hero { padding: clamp(72px, 9vw, 135px) 0; background: radial-gradient(circle at 85% 15%, #2258b8 0, transparent 34%), linear-gradient(135deg, #061d58 0%, #0b3a90 65%, #082b73 100%); color: #fff; }
+.gallery-hero .home-kicker { color: #ffd25d; }
+.gallery-hero h1 { max-width: 850px; margin: 18px 0 20px; font-size: clamp(45px, 7vw, 92px); line-height: .99; letter-spacing: -.045em; }
+.gallery-hero p:last-child { max-width: 620px; color: #d9e6ff; font-size: clamp(17px, 2vw, 21px); line-height: 1.6; }
+.gallery-album-copy { display: flex; min-height: 180px; flex-direction: column; gap: 12px; padding: 24px; }
+.gallery-album-copy strong { color: #172f58; font-size: clamp(21px, 2vw, 28px); line-height: 1.15; }
+.gallery-album-copy > span:not(.home-text-link) { display: -webkit-box; overflow: hidden; color: #65758b; font-size: 14px; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.gallery-album-copy .home-text-link { margin-top: auto; }

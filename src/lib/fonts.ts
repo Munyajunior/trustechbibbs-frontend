@@ -26,6 +26,8 @@ export const jetbrainsMono = localFont({
   weight: "400 500",
   variable: "--font-jetbrains-mono",
   display: "swap",
+  // Only staff/applicant data views use monospace; don't spend first-load bandwidth on it.
+  preload: false,
 });
 
 export const fontVariables = [

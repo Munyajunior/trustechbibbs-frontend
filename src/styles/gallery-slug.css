@@ -1,0 +1,6 @@
+.gallery-detail-hero { padding: 55px 0 82px; background: linear-gradient(135deg, #06215c, #0c429e); color: #fff; }
+.gallery-detail-hero .editorial-back { margin-bottom: 35px; color: #fff; }
+.gallery-detail-hero .home-kicker { color: #ffd25d; }
+.gallery-detail-hero h1 { max-width: 850px; margin: 14px 0; font-size: clamp(39px, 6vw, 72px); line-height: 1.05; }
+.gallery-detail-hero p:last-child { max-width: 760px; color: #dae7ff; font-size: 18px; line-height: 1.55; }
+.gallery-detail-cover { position: relative; height: clamp(240px, 45vw, 480px); margin-top: -37px; overflow: hidden; border-radius: 8px; box-shadow: 0 24px 55px #06215c36; }

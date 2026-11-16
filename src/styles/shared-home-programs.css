@@ -1,0 +1,102 @@
+.home-schools, .home-programs { padding: 68px 0 74px; }
+.home-section-heading-inline { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+.home-school-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; }
+.home-school-card {
+  position: relative;
+  grid-column: span 2;
+  min-height: 250px;
+  overflow: hidden;
+  border: 1px solid #e8e9ec;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 7px 25px #152f5b0b;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.home-school-card-image { grid-column: span 3; }
+.home-school-card-compact:nth-child(n + 6) { grid-column: span 3; }
+.home-school-image-wrap { position: relative; height: 170px; overflow: hidden; }
+.home-school-card-image .home-school-image-wrap { height: 215px; }
+.home-school-image-wrap img { transition: transform .7s ease; }
+.home-school-card:hover .home-school-image-wrap img { transform: scale(1.045); }
+.home-school-card-image .home-school-copy { display: flex; min-height: 230px; flex-direction: column; align-items: flex-start; }
+.home-school-card-image .home-text-link { margin-top: auto; }
+.home-school-card-compact .home-school-copy { display: flex; min-height: 250px; flex-direction: column; align-items: flex-start; }
+.home-school-card-compact h3 { font-size: clamp(20px, 1.8vw, 25px); }
+.home-school-card-compact p { max-width: 100%; margin-bottom: 22px; }
+.home-school-card-compact .home-text-link { margin-top: auto; }
+.home-school-card:hover, .home-program-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px #152f5b1c; }
+.home-school-copy { position: relative; z-index: 1; width: 100%; padding: 28px; }
+.home-school-icon { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 16px; border-radius: 50%; background: #e5ecff; color: var(--home-blue); }
+.home-school-icon-gold { background: #fff2ce; color: var(--home-ink); }
+.home-school-card h3 { font-size: clamp(22px, 2vw, 28px); line-height: 1.1; }
+.home-school-card p { max-width: 100%; margin: 10px 0 19px; color: #4b5970; font-size: 14px; line-height: 1.5; }
+.home-programs { border-top: 1px solid #f0eee8; background: #fffefc; }
+.home-program-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.home-program-card { overflow: hidden; border: 1px solid #e7e8ec; border-radius: 6px; background: #fff; box-shadow: 0 8px 24px #152f5b0b; transition: transform .25s ease, box-shadow .25s ease; }
+.home-program-image-wrap { position: relative; height: 170px; overflow: hidden; }
+.home-program-content { padding: 21px 22px 25px; }
+.home-program-content::before { content: ""; display: block; width: 38px; height: 2px; margin-bottom: 13px; background: var(--home-gold); }
+.home-program-content h3 { font-family: var(--font-sans); font-size: 19px; font-weight: 700; letter-spacing: -.02em; }
+.home-program-level { display: block; margin-bottom: 6px; color: #8a6500; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.home-program-content p { min-height: 54px; margin: 9px 0 17px; color: #4e5c71; font-size: 14px; line-height: 1.5; }
+.home-program-empty { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 28px 32px; border: 1px solid #e3e9f4; border-radius: 8px; background: #f5f8ff; color: #485b78; }
+.home-campus { padding: 70px 0 78px; border-top: 1px solid #e8edf7; background: #fff; }
+.home-campus-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(35px, 6vw, 90px); }
+.home-campus-heading { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 20px; }
+.home-campus-heading h2 { font-size: clamp(30px, 2.7vw, 42px); line-height: 1.12; }
+.home-campus-heading .home-kicker { margin-bottom: 8px; }
+.home-campus-column ul { list-style: none; border-top: 1px solid #e3e9f4; }
+.home-campus-item { display: flex; align-items: flex-start; gap: 18px; padding: 23px 0; border-bottom: 1px solid #e3e9f4; }
+.home-campus-icon { display: grid; flex: none; place-items: center; width: 44px; height: 44px; border-radius: 13px; background: #e7edff; color: var(--home-blue); }
+.home-campus-icon-gold { background: #fff2c8; color: #876200; }
+.home-campus-item time { color: #6b7790; font-size: 12px; font-weight: 700; }
+.home-campus-item h3 { margin: 6px 0 8px; font-family: var(--font-sans); font-size: 19px; line-height: 1.25; }
+.home-campus-item h3 a:hover { color: var(--home-blue); }
+.home-journey { padding: 66px 0; background: #edf4ff; }
+.home-journey-inner { display: grid; grid-template-columns: 280px 1fr; align-items: center; gap: 48px; }
+.home-journey-lead h2 { max-width: 270px; font-size: clamp(34px, 3vw, 43px); line-height: 1.07; }
+.home-journey-lead > p:not(.home-kicker) { max-width: 270px; margin-top: 12px; color: #506077; font-size: 15px; line-height: 1.5; }
+.home-journey-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; margin-top: 22px; }
+.home-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.home-steps li { position: relative; list-style: none; text-align: center; }
+.home-steps li:not(:last-child)::after { content: ""; position: absolute; top: 24px; left: calc(50% + 33px); width: calc(100% - 52px); height: 1px; background: #9db5df; }
+.home-step-number { display: grid; place-items: center; width: 50px; height: 50px; margin: 0 auto 17px; border: 2px solid #fff; border-radius: 50%; background: #dbe7ff; color: var(--home-ink); font-size: 17px; font-weight: 700; box-shadow: 0 2px 8px #21478115; }
+.home-steps li:first-child .home-step-number { background: var(--home-blue); color: #fff; }
+.home-steps h3 { font-family: var(--font-sans); font-size: 14px; font-weight: 700; letter-spacing: -.02em; }
+.home-steps p { margin-top: 8px; color: #54627a; font-size: 13px; line-height: 1.45; }
+.home-final { padding: 64px 0 78px; background: var(--home-paper); }
+.home-final-inner { display: grid; grid-template-columns: 1.5fr .5fr; align-items: center; gap: 48px; }
+.home-final h2 { font-size: clamp(36px, 3.6vw, 50px); line-height: 1.08; }
+.home-final p:not(.home-kicker):not(.home-final-script) { max-width: 590px; margin-top: 14px; color: #53617a; font-size: 15px; line-height: 1.6; }
+.home-final-script { color: var(--home-blue); font-family: Georgia, serif; font-size: clamp(30px, 3vw, 44px); font-style: italic; line-height: 1; text-align: center; transform: rotate(-8deg); }
+@media (max-width: 1000px) {
+.home-journey-inner { grid-template-columns: 1fr; gap: 30px; }
+.home-journey-lead h2, .home-journey-lead > p:not(.home-kicker) { max-width: none; }
+.home-journey-actions { flex-direction: row; align-items: center; }
+}
+@media (min-width: 701px) and (max-width: 1200px) {
+.home-schools { padding-top: 12px; padding-bottom: 28px; }
+.home-schools .home-kicker { margin-bottom: 4px; }
+.home-schools .home-section-heading { margin-bottom: 17px; }
+}
+@media (max-width: 700px) {
+.home-schools, .home-programs { padding: 52px 0; }
+.home-section-heading-inline { align-items: flex-start; flex-direction: column; gap: 14px; }
+.home-school-grid, .home-program-grid, .home-campus-grid { grid-template-columns: 1fr; }
+.home-program-empty { align-items: flex-start; flex-direction: column; }
+.home-school-card, .home-school-card-image, .home-school-card-compact:nth-child(n + 6) { grid-column: auto; }
+.home-school-card { min-height: 240px; }
+.home-program-image-wrap { height: 210px; }
+.home-program-content p { min-height: 0; }
+.home-steps { grid-template-columns: repeat(2, 1fr); row-gap: 30px; }
+.home-steps li:nth-child(2)::after { display: none; }
+.home-final-inner { grid-template-columns: 1fr; gap: 20px; }
+.home-final-script { text-align: left; }
+}
+@media (max-width: 440px) {
+.home-school-copy { width: 100%; padding: 21px; }
+.home-school-card h3 { max-width: 90%; font-size: 22px; }
+.home-school-card-image .home-school-image-wrap { height: 180px; }
+.home-journey-actions { align-items: stretch; flex-direction: column; }
+.home-journey-actions .home-text-link { align-self: flex-start; }
+}

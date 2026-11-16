@@ -1,0 +1,5 @@
+.school-breadcrumb { border-bottom: 1px solid #e9edf5; background: #f8faff; }
+.school-breadcrumb > div { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; padding-top: 15px; padding-bottom: 15px; color: #52627a; font-size: 14px; }
+.school-breadcrumb a { color: var(--home-blue); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; }
+.school-breadcrumb a:hover { text-decoration-color: currentColor; }
+.school-breadcrumb [aria-current] { color: #253750; font-weight: 700; }

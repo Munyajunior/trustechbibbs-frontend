@@ -1,0 +1,9 @@
+.events-calendar-weekdays, .events-calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(110px, 1fr)); min-width: 770px; }
+.events-calendar-weekdays { background: #0b398e; color: #fff; text-align: center; }
+.events-calendar-weekdays span { padding: 11px 4px; font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.events-calendar-grid { list-style: none; margin: 0; padding: 0; }
+.events-calendar-grid li { min-height: 118px; padding: 10px; border-right: 1px solid #e7ecf3; border-bottom: 1px solid #e7ecf3; }
+.events-calendar-day time { display: block; color: #4c5f7c; font-size: 13px; font-weight: 800; }
+.events-calendar-day-active { background: #f7f9fe; }
+.events-calendar-day a { display: block; overflow: hidden; margin-top: 8px; padding: 6px 7px; border-left: 3px solid #f4c513; border-radius: 2px; background: #eaf0fb; color: #133675; font-size: 12px; font-weight: 700; line-height: 1.25; text-overflow: ellipsis; white-space: nowrap; }
+.events-calendar-day a:hover { background: #d9e5fb; }

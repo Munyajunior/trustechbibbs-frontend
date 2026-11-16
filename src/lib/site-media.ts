@@ -34,3 +34,13 @@ export const siteMediaFallbacks = {
 
 export type SiteMediaSlot = keyof typeof siteMediaFallbacks;
 export const siteMediaSrc = (slot: SiteMediaSlot) => `/site-media/${slot}`;
+
+/** Width of the smaller bundled variant (`<name>-768.webp`) served to narrow screens. */
+export const SITE_MEDIA_SMALL_WIDTH = 768;
+
+/** Bundled fallback for a slot, swapped for its 768px sibling when a small width is requested. */
+export function siteMediaFallbackFor(fallback: string, width: number): string {
+  return width > 0 && width <= SITE_MEDIA_SMALL_WIDTH && fallback.endsWith(".webp") && !fallback.includes("trustech-shield")
+    ? fallback.replace(/\.webp$/, `-${SITE_MEDIA_SMALL_WIDTH}.webp`)
+    : fallback;
+}

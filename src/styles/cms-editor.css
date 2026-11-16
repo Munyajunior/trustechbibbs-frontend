@@ -1,0 +1,10 @@
+.cms-kind-switch { display: inline-flex; gap: 5px; margin-bottom: 22px; padding: 5px; border: 1px solid #dce4f0; border-radius: 7px; background: #e9eef7; }
+.cms-kind-switch button { display: inline-flex; align-items: center; gap: 9px; min-width: 128px; padding: 10px 16px; border-radius: 5px; color: #52627b; font-size: 15px; font-weight: 700; }
+.cms-kind-switch button[aria-pressed="true"] { background: #fff; color: #0523ac; box-shadow: 0 3px 10px #11244716; }
+.cms-status-heading { margin-bottom: 9px; background: #e9effb; color: #0523ac; }
+.cms-schedule { margin-top: 7px; padding: 19px 20px; border: 1px solid #e4e9f2; border-radius: 5px; background: #f7f9fd; }
+.cms-schedule input { max-width: 350px; }
+@media (max-width: 700px) {
+.cms-kind-switch { width: 100%; }
+.cms-kind-switch button { flex: 1; justify-content: center; min-width: 0; }
+}

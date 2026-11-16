@@ -1,0 +1,2 @@
+.editorial-back { display: inline-flex; align-items: center; gap: 8px; color: var(--home-blue); font-size: 14px; font-weight: 800; }
+.editorial-back:hover { text-decoration: underline; text-underline-offset: 4px; }

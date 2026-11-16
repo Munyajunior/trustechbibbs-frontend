@@ -1,0 +1,2 @@
+.editorial-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 35px; }
+.editorial-tags li { padding: 7px 12px; border-radius: 3px; background: #e9effb; color: var(--home-blue); font-size: 12px; font-weight: 700; }

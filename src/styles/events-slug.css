@@ -1,0 +1,8 @@
+.event-calendar-link { margin: 18px 0 22px; }
+.event-detail-facts { display: grid; gap: 17px; margin-bottom: 30px; padding: 24px 28px; border: 1px solid #dce5f2; border-radius: 6px; background: #f9fbfe; }
+.event-detail-facts > div { display: grid; grid-template-columns: 130px 1fr; gap: 16px; }
+.event-detail-facts dt { display: flex; align-items: center; gap: 8px; color: var(--home-blue); font-size: 14px; font-weight: 800; }
+.event-detail-facts dd { color: #34445d; font-size: 15px; }
+@media (max-width: 440px) {
+.event-detail-facts > div { grid-template-columns: 1fr; gap: 3px; }
+}

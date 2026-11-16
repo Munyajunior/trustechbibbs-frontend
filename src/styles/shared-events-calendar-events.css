@@ -1,0 +1,2 @@
+.events-calendar { overflow-x: auto; border: 1px solid #dce5f2; border-radius: 8px; background: #fff; }
+.events-calendar-more, .events-calendar-notice { display: block; margin: 11px 0 0; color: #566a86; font-size: 13px; }

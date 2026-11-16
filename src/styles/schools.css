@@ -1,0 +1,44 @@
+.schools-index { background: #fff; }
+.schools-index-hero { overflow: hidden; background: radial-gradient(circle at 82% 20%, #2856b5 0, #102f78 40%, #081d52 100%); color: #fff; }
+.schools-index-hero-inner { display: flex; min-height: 355px; align-items: center; justify-content: space-between; gap: 35px; padding-top: 57px; padding-bottom: 58px; }
+.schools-index-hero .home-kicker { color: #f3c947; }
+.schools-index-hero h1 { max-width: 790px; margin-top: 14px; font-size: clamp(46px, 5.4vw, 76px); line-height: 1.05; }
+.schools-index-hero p:not(.home-kicker) { max-width: 690px; margin-top: 20px; color: #e4ebfb; font-size: 18px; line-height: 1.6; }
+.schools-index-numeral { flex: none; color: #ffffff18; font-family: Georgia, "Times New Roman", serif; font-size: clamp(160px, 20vw, 290px); font-weight: 700; line-height: .7; letter-spacing: -.1em; }
+.schools-index-list { padding: 72px 0 88px; }
+.schools-index-list ol { display: grid; gap: 29px; list-style: none; }
+.schools-index-row { display: grid; grid-template-columns: minmax(0, 44%) minmax(0, 56%); min-height: 330px; overflow: hidden; border: 1px solid #dce5f3; border-radius: 8px; background: #f8faff; box-shadow: 0 14px 38px #1124470e; }
+.schools-index-row:nth-child(even) { grid-template-columns: minmax(0, 56%) minmax(0, 44%); background: #fffdf6; }
+.schools-index-row:nth-child(even) .schools-index-image { grid-column: 2; grid-row: 1; }
+.schools-index-row:nth-child(even) .schools-index-copy { grid-column: 1; grid-row: 1; }
+.schools-index-image { position: relative; display: block; min-height: 330px; overflow: hidden; background: #dce7f5; }
+.schools-index-image img { transition: transform .45s ease; }
+.schools-index-row:hover .schools-index-image img { transform: scale(1.045); }
+.schools-index-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(32px, 4vw, 62px); }
+.schools-index-number { display: inline-block; color: #a57900; font-size: 13px; font-weight: 800; letter-spacing: .14em; }
+.schools-index-copy h3 { max-width: 580px; margin-top: 13px; font-size: clamp(29px, 3vw, 43px); line-height: 1.12; }
+.schools-index-copy h3 a:hover { color: var(--home-blue); }
+.schools-index-copy p { max-width: 540px; margin-top: 17px; color: #4b5b72; font-size: 17px; line-height: 1.6; }
+.schools-index-copy .home-text-link { margin-top: 27px; }
+.schools-index-image-note { margin-top: 28px; color: #5a6880; font-size: 14px; line-height: 1.5; }
+.schools-index-contact { padding: 66px 0; background: #eaf1ff; }
+.schools-index-contact-inner { display: flex; align-items: center; justify-content: space-between; gap: 45px; }
+.schools-index-contact h2 { max-width: 680px; margin-top: 11px; font-size: clamp(35px, 3.5vw, 49px); line-height: 1.1; }
+.schools-index-contact p:last-child { max-width: 720px; margin-top: 14px; color: #4d5c74; font-size: 16px; line-height: 1.6; }
+.schools-index-contact .home-button { flex: none; }
+@media (max-width: 700px) {
+.schools-index-hero-inner { min-height: 300px; padding-top: 50px; padding-bottom: 53px; }
+.schools-index-hero p:not(.home-kicker) { font-size: 16px; }
+.schools-index-numeral { display: none; }
+.schools-index-list { padding: 46px 0 62px; }
+.schools-index-list ol { gap: 22px; }
+.schools-index-row, .schools-index-row:nth-child(even) { display: flex; flex-direction: column; }
+.schools-index-image { min-height: 250px; }
+.schools-index-copy { padding: 29px 25px 35px; }
+.schools-index-copy h3 { font-size: clamp(27px, 7vw, 38px); }
+.schools-index-copy p { font-size: 16px; }
+.schools-index-contact-inner { align-items: flex-start; flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+.schools-index-image img { transition: none; }
+}

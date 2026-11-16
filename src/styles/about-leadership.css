@@ -1,0 +1,7 @@
+.leadership-hero { padding: clamp(62px, 8vw, 116px) 0; color: #fff; background: radial-gradient(circle at 82% 18%, #1e56ae 0, transparent 35%), linear-gradient(135deg, #061c55, #0b367f); }
+.leadership-back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 38px; color: #e1ebff; font-size: 14px; font-weight: 700; }
+.leadership-back:hover { color: #ffd151; }
+.leadership-hero .home-kicker { color: #ffd151; }
+.leadership-hero h1 { max-width: 800px; margin: 15px 0 22px; font-size: clamp(44px, 7vw, 86px); line-height: 1.02; letter-spacing: -.045em; }
+.leadership-hero p:last-child { max-width: 680px; color: #dbe7ff; font-size: clamp(17px, 2vw, 21px); line-height: 1.55; }
+.leadership-content { padding: clamp(56px, 7vw, 95px) 0; background: #f7f9fe; }

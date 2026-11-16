@@ -1,0 +1,7 @@
+.gallery-sphere { position: relative; width: 100%; height: 100%; }
+.gallery-sphere-canvas { display: block; width: 100%; height: 100%; cursor: grab; touch-action: none; }
+.gallery-sphere-canvas:active { cursor: grabbing; }
+.gallery-sphere-canvas:focus-visible { outline: 3px solid #ffd151; outline-offset: -3px; }
+.gallery-sphere-canvas.hidden { display: none; }
+.gallery-panorama { width: 100%; height: 100%; overflow-x: auto; overflow-y: hidden; }
+.gallery-panorama img { width: auto; max-width: none; height: 100%; }

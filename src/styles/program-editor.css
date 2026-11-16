@@ -1,0 +1,4 @@
+.program-editor-featured { display: flex; align-items: flex-start; gap: 13px; padding: 17px 19px; border: 1px solid #dce5f3; border-radius: 8px; background: #f7f9ff; cursor: pointer; }
+.program-editor-featured input { width: 18px; height: 18px; margin-top: 2px; accent-color: #123cb4; }
+.program-editor-featured span { display: flex; flex-direction: column; gap: 3px; }
+.program-editor-featured small { color: #53637e; font-size: 12px; }

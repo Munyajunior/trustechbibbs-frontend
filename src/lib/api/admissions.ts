@@ -242,7 +242,7 @@ export function createApplicationDraft(
 
 export function updateApplicationDraft(
   applicationId: string,
-  payload: Pick<ApplicationDraftPayload, "academic_history">,
+  payload: Partial<Pick<ApplicationDraftPayload, "academic_history" | "personal_info" | "program_second_choice">>,
   token: string,
   locale: Locale,
 ): Promise<ApplicationDetail> {

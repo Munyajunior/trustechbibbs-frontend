@@ -1,0 +1,34 @@
+.leadership-filters { display: grid; grid-template-columns: minmax(0, 2fr) minmax(230px, 1fr); gap: 18px; max-width: 850px; }
+.leadership-filters label { display: grid; gap: 8px; color: #213e66; font-size: 14px; font-weight: 800; }
+.leadership-filters input, .leadership-filters select { width: 100%; min-height: 48px; padding: 10px 14px; border: 1px solid #cbd8e9; border-radius: 6px; background: #fff; color: #17365f; font-size: 16px; }
+.leadership-input-wrap { position: relative; display: block; }
+.leadership-input-wrap svg { position: absolute; left: 14px; top: 15px; color: #52739f; }
+.leadership-input-wrap input { padding-left: 44px; }
+.leadership-count { margin: 24px 0 18px; color: #536987; font-size: 14px; }
+.leadership-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.leadership-card { overflow: hidden; border: 1px solid #dde6f2; border-radius: 7px; background: #fff; box-shadow: 0 15px 37px #0a25520c; }
+.leadership-photo { position: relative; display: grid; place-items: center; height: 290px; background: #dce8f8; color: #0b367f; }
+.leadership-card-body { padding: 26px; }
+.leadership-department { color: #9e6b00; font-size: 13px; font-weight: 900; letter-spacing: .075em; text-transform: uppercase; }
+.leadership-card h2 { margin: 10px 0 5px; color: #092f73; font-size: 26px; line-height: 1.16; }
+.leadership-title { color: #31527c; font-size: 16px; font-weight: 700; }
+.leadership-bio { margin-top: 17px; color: #52647c; font-size: 15px; line-height: 1.65; white-space: pre-line; }
+.leadership-contact { display: grid; gap: 8px; margin-top: 20px; padding-top: 18px; border-top: 1px solid #e4eaf3; }
+.leadership-contact a { display: inline-flex; align-items: center; gap: 9px; width: fit-content; color: #0c419e; font-size: 14px; font-weight: 700; overflow-wrap: anywhere; }
+.leadership-contact a:hover { text-decoration: underline; }
+.leadership-no-results { padding: 28px 0; color: #4d617e; font-size: 16px; }
+.leadership-governance { margin-top: 72px; padding: clamp(28px, 5vw, 52px); border-radius: 7px; background: #e8f0fc; }
+.leadership-governance h2 { color: #0c367e; font-size: clamp(28px, 4vw, 42px); }
+.leadership-governance > p { margin: 10px 0 25px; color: #436083; font-size: 16px; }
+.leadership-tree { display: grid; gap: 15px; margin: 0; padding: 0; list-style: none; }
+.leadership-tree .leadership-tree { margin: 14px 0 0 18px; padding-left: 20px; border-left: 2px solid #c8a22c; }
+.leadership-tree-node { display: grid; gap: 3px; width: fit-content; min-width: min(100%, 250px); padding: 12px 17px; border: 1px solid #ccd9ed; border-radius: 5px; background: #fff; color: #0e3471; }
+.leadership-tree-node strong { font-size: 16px; }
+.leadership-tree-node span { color: #526987; font-size: 14px; }
+@media (max-width: 1000px) {
+.leadership-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 650px) {
+.leadership-grid, .leadership-filters { grid-template-columns: 1fr; }
+.leadership-photo { height: 320px; }
+}

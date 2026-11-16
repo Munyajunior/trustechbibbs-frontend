@@ -1,0 +1,42 @@
+.home-hero-inner {
+  min-height: 590px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: stretch;
+}
+.home-hero-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 64px 36px 54px 0;
+}
+.home-hero-intro { max-width: 500px; margin-top: 24px; color: #41516d; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.55; }
+.home-hero-signoff { margin-top: 76px; color: #495a78; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+.home-hero-visual { position: relative; min-height: 590px; margin-right: calc((min(100vw, 1280px) - 100vw) / 2); overflow: hidden; }
+.home-hero-visual img { transition: transform .7s ease; }
+.home-hero-visual:hover img { transform: scale(1.035); }
+.home-visual-caption { position: absolute; right: 26px; bottom: 24px; margin: 0; padding: 10px 18px; background: #0523acdf; color: #fff; font-family: Georgia, serif; font-size: 22px; font-style: italic; transform: rotate(-5deg); }
+.home-hero-controls { position: absolute; bottom: 25px; left: 25px; display: flex; align-items: center; gap: 11px; padding: 6px; border-radius: 999px; background: #071a42db; color: #fff; font-size: 12px; font-weight: 700; backdrop-filter: blur(12px); }
+.home-hero-controls button { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; }
+.home-hero-controls button:hover, .home-hero-controls button:focus-visible { background: #ffffff37; outline: 2px solid #fff; }
+@media (max-width: 1000px) {
+.home-hero-inner { grid-template-columns: 52% 48%; }
+.home-hero-copy { padding-right: 18px; }
+}
+@media (min-width: 701px) and (max-width: 1200px) {
+.home-hero-inner,
+  .home-hero-visual { min-height: 430px; }
+.home-hero-copy { padding-top: 28px; padding-bottom: 24px; }
+.home-hero-signoff { margin-top: 34px; }
+.home-hero-intro { margin-top: 16px; }
+}
+@media (max-width: 700px) {
+.home-hero-inner { display: flex; flex-direction: column; padding: 0; }
+.home-hero-copy { padding: 48px 20px 28px; }
+.home-hero-signoff { margin-top: 42px; }
+.home-hero-visual { width: 100%; min-height: 370px; margin: 0; }
+.home-hero-controls { top: 16px; bottom: auto; left: 16px; }
+}

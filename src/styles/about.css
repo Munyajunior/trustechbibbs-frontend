@@ -1,0 +1,76 @@
+.about-hero { overflow: hidden; background: #fffdf8; }
+.about-hero-inner { display: grid; grid-template-columns: 52% 48%; min-height: 610px; }
+.about-hero-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 68px 55px 72px 0; }
+.about-hero h1 { max-width: 660px; margin-top: 18px; font-size: clamp(47px, 4.8vw, 70px); line-height: 1.04; }
+.about-hero-copy > p:not(.home-kicker) { max-width: 540px; margin-top: 24px; color: #465872; font-size: 17px; line-height: 1.65; }
+.about-hero-copy .home-actions { margin-top: 30px; }
+.about-hero-art { position: relative; min-height: 610px; margin-right: calc((min(100vw, 1280px) - 100vw) / 2); background: #dae4f2; }
+.about-art-main { position: absolute; inset: 0 0 0 17%; overflow: hidden; }
+.about-art-small { position: absolute; left: 0; bottom: 54px; width: 42%; height: 265px; overflow: hidden; border: 8px solid #fffdf8; box-shadow: 0 15px 35px #091c4b55; }
+.about-art-word { position: absolute; right: 25px; bottom: 28px; padding: 14px 20px; background: var(--home-blue); color: #fff; font-family: Georgia, serif; font-size: 20px; font-style: italic; transform: rotate(-4deg); }
+.about-identity { padding: 85px 0; }
+.about-identity-inner { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(35px, 7vw, 115px); }
+.about-identity h2 { margin-top: 15px; font-size: clamp(38px, 4vw, 56px); line-height: 1.07; }
+.about-identity-text { display: grid; gap: 18px; color: #4a5a72; font-size: 17px; line-height: 1.7; }
+.about-facts { padding: 32px 0; background: #112447; color: #fff; }
+.about-facts-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.about-facts-grid > div { display: flex; align-items: center; gap: 14px; padding: 16px 28px; border-right: 1px solid #ffffff33; }
+.about-facts-grid > div:first-child { padding-left: 0; }
+.about-facts-grid > div:last-child { border-right: 0; }
+.about-facts-grid svg { flex: none; color: #f2c747; }
+.about-facts-grid strong { font-family: Georgia, serif; font-size: 31px; white-space: nowrap; }
+.about-facts-grid span { color: #dce6f6; font-size: 12px; line-height: 1.35; }
+.about-purpose { padding: 85px 0; background: #f7f9fc; }
+.about-purpose-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.about-purpose-grid article { min-height: 270px; padding: 35px 38px; border: 1px solid #e0e7f1; border-radius: 8px; background: #fff; box-shadow: 0 10px 26px #10244b0b; }
+.about-purpose-grid article > span { color: var(--home-blue); font-family: Georgia, serif; font-size: 45px; }
+.about-purpose-grid h3 { margin-top: 19px; font-size: 29px; }
+.about-purpose-grid p { max-width: 500px; margin-top: 12px; color: #52617a; font-size: 15px; line-height: 1.65; }
+.about-values { padding: 85px 0; }
+.about-values-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.about-values-grid article { padding: 27px 23px 30px; border-top: 3px solid var(--home-gold); background: #fffdf8; }
+.about-values-grid article:nth-child(even) { border-top-color: var(--home-blue); }
+.about-values-grid span { color: #a0abc0; font-family: Georgia, serif; font-size: 34px; }
+.about-values-grid h3 { margin-top: 25px; font-size: 22px; line-height: 1.12; }
+.about-values-grid p { margin-top: 11px; color: #53627a; font-size: 13px; line-height: 1.55; }
+.about-schools { background: #eef4ff; }
+.about-schools-inner { display: grid; grid-template-columns: 44% 56%; padding: 0; }
+.about-schools-visual { position: relative; min-height: 720px; margin-left: calc((min(100vw, 1280px) - 100vw) / 2); }
+.about-schools-copy { padding: 72px 20px 74px 70px; }
+.about-schools h2 { margin-top: 15px; font-size: clamp(38px, 3.8vw, 55px); line-height: 1.08; }
+.about-schools-copy > p:not(.home-kicker) { margin-top: 16px; color: #4d5e78; font-size: 15px; line-height: 1.6; }
+.about-schools ol { display: grid; gap: 0; margin: 24px 0 26px; list-style: none; }
+.about-schools li { display: flex; gap: 13px; padding: 11px 0; border-bottom: 1px solid #cbd9ec; font-size: 14px; font-weight: 700; line-height: 1.25; }
+.about-schools li span { flex: none; color: var(--home-blue); font-family: Georgia, serif; font-size: 16px; }
+.about-schools li a:hover { color: var(--home-blue); text-decoration: underline; text-underline-offset: 3px; }
+.about-final { padding: 70px 0; background: #fffdf8; }
+.about-final-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.about-final h2 { margin-top: 13px; font-size: clamp(39px, 4vw, 56px); }
+.about-final p:not(.home-kicker) { max-width: 670px; margin-top: 13px; color: #52627a; font-size: 15px; line-height: 1.6; }
+@media (max-width: 1000px) {
+.about-hero-copy { padding-right: 22px; }
+.about-facts-grid > div { flex-wrap: wrap; gap: 8px; }
+.about-values-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.about-schools-copy { padding-left: 40px; }
+}
+@media (max-width: 700px) {
+.about-hero-inner { display: flex; flex-direction: column; padding: 0; }
+.about-hero-copy { padding: 52px 20px 38px; }
+.about-hero h1 { font-size: clamp(44px, 10vw, 60px); }
+.about-hero-art { min-height: 380px; margin: 0; }
+.about-art-small { bottom: 25px; height: 160px; }
+.about-art-word { right: 15px; bottom: 14px; font-size: 16px; }
+.about-identity, .about-purpose, .about-values { padding: 58px 0; }
+.about-identity-inner, .about-purpose-grid { grid-template-columns: 1fr; }
+.about-facts-grid { grid-template-columns: 1fr; }
+.about-facts-grid > div, .about-facts-grid > div:first-child { padding: 14px 0; border-right: 0; border-bottom: 1px solid #ffffff33; }
+.about-facts-grid > div:last-child { border-bottom: 0; }
+.about-schools-inner { display: flex; flex-direction: column; }
+.about-schools-visual { min-height: 340px; margin: 0; }
+.about-schools-copy { padding: 52px 20px; }
+.about-final-inner { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 440px) {
+.about-values-grid { grid-template-columns: 1fr; }
+.about-final .home-button { width: 100%; }
+}
