@@ -6,6 +6,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/shared/container";
 import { Link } from "@/i18n/navigation";
 import { schools } from "@/lib/schools";
+import "@/styles/editorial.css";
+import "@/styles/schools.css";
 
 type PageProps = { params: Promise<{ locale: string }> };
 

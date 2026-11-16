@@ -1,11 +1,14 @@
-import Image from "next/image";
 import { ArrowRight, BookOpenText, ClipboardList, MapPin, MessageCircleMore, Phone, Wallet } from "lucide-react";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { ContactForm } from "@/components/features/contact-form";
 import { Container } from "@/components/shared/container";
+import { SiteImage } from "@/components/shared/site-image";
 import { Link } from "@/i18n/navigation";
+import "@/styles/editorial.css";
+import "@/styles/contact.css";
 
 type PageProps = { params: Promise<{ locale: string }> };
 const topics = [
@@ -39,12 +42,13 @@ export default async function ContactPage({ params }: PageProps) {
             <a className="home-button home-button-gold" href="#contact-form">{t("writeCta")}<ArrowRight aria-hidden="true" size={18} /></a>
           </div>
           <div className="contact-hero-image">
-            <Image src="/site-media/contact" unoptimized alt="" fill priority sizes="(max-width: 700px) 100vw, 48vw" className="object-cover" />
+            <SiteImage src="/site-media/contact" priority className="object-cover" />
             <span><MapPin aria-hidden="true" size={19} />{t("location")}</span>
           </div>
         </Container>
       </section>
 
+      <Suspense>
       <section className="contact-main" aria-labelledby="contact-main-title">
         <Container className="contact-main-inner">
           <div className="contact-information">
@@ -76,13 +80,16 @@ export default async function ContactPage({ params }: PageProps) {
           </div>
         </Container>
       </section>
+      </Suspense>
 
+      <Suspense>
       <section className="contact-next" aria-labelledby="contact-next-title">
         <Container className="contact-next-inner">
           <div><p className="home-kicker">{t("nextEyebrow")}</p><h2 id="contact-next-title">{t("nextTitle")}</h2><p>{t("nextBody")}</p></div>
           <div><Link className="home-button home-button-gold" href="/programs">{t("programsCta")}<ArrowRight aria-hidden="true" size={18} /></Link><Link className="contact-next-link" href="/admissions">{t("admissionsCta")}<ArrowRight aria-hidden="true" size={17} /></Link></div>
         </Container>
       </section>
+      </Suspense>
     </div>
   );
 }

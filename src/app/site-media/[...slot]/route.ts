@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import { API_BASE_URL } from "@/lib/api/client";
-import { siteMediaFallbacks, type SiteMediaSlot } from "@/lib/site-media";
+import { siteMediaFallbackFor, siteMediaFallbacks, type SiteMediaSlot } from "@/lib/site-media";
 
 export const dynamic = "force-dynamic";
 
@@ -44,7 +44,8 @@ export async function GET(request: NextRequest, context: { params: Promise<{ slo
   return fallback
     ? new NextResponse(null, {
         status: 307,
-        headers: { Location: fallback, "Cache-Control": "no-store" },
+        // `?w=` lets responsive callers pick the smaller bundled variant; uploaded media is unaffected.
+        headers: { Location: siteMediaFallbackFor(fallback, Number(request.nextUrl.searchParams.get("w"))), "Cache-Control": "no-store" },
       })
     : new NextResponse(null, { status: 404 });
 }

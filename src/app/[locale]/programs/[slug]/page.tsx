@@ -12,6 +12,9 @@ import { getProgram } from "@/lib/api/public";
 import type { Locale, Program } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
 import { jsonLdScript } from "@/lib/json-ld";
+import "@/styles/editorial.css";
+import "@/styles/shared-programs-slug-schools-school.css";
+import "@/styles/programs-slug.css";
 
 /** Mirrors `REVALIDATE.static`; must be a literal for Next to apply it. */
 export const revalidate = 86400;

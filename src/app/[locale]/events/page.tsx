@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Container } from "@/components/shared/container";
+import { SiteImage } from "@/components/shared/site-image";
 import { currentCameroonMonth, EventsCalendar, monthOffset } from "@/components/features/events-calendar";
 import { Link } from "@/i18n/navigation";
 import { getEventFilters, getEvents } from "@/lib/api/public";
@@ -12,6 +13,9 @@ import type { CampusEvent, Locale, Paginated } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
 import { publicMediaSrc } from "@/lib/public-media";
 import { formatEventDateTime } from "@/lib/utils";
+import "@/styles/editorial.css";
+import "@/styles/shared-events-news.css";
+import "@/styles/shared-events-calendar-events.css";
 
 export const revalidate = 3600;
 type PageProps = { params: Promise<{ locale: string }>; searchParams: Promise<{ page?: string; search?: string; category?: string; start_date?: string; end_date?: string; view?: string; month?: string }> };
@@ -103,7 +107,7 @@ export default async function EventsPage({ params, searchParams }: PageProps) {
       <section className="events-hero" aria-labelledby="events-title">
         <Container className="events-hero-inner">
           <div className="events-hero-copy"><p className="home-kicker">{t("eyebrow")}</p><h1 id="events-title">{t("title")}</h1><p>{t("subtitle")}</p><a className="home-button home-button-gold" href="#events-content">{t("exploreCta")}<ArrowRight aria-hidden="true" size={18} /></a></div>
-          <div className="events-hero-visual"><Image src="/site-media/events-hero" unoptimized alt="" fill priority sizes="(max-width: 700px) 100vw, 47vw" className="object-cover" /><span>{t("heroCaption")}</span></div>
+          <div className="events-hero-visual"><SiteImage src="/site-media/events-hero" priority className="object-cover" /><span>{t("heroCaption")}</span></div>
         </Container>
       </section>
 

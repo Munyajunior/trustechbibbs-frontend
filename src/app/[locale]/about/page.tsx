@@ -1,10 +1,12 @@
-import Image from "next/image";
 import { ArrowRight, BookOpenCheck, Globe2, MapPin } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Container } from "@/components/shared/container";
+import { SiteImage } from "@/components/shared/site-image";
 import { Link } from "@/i18n/navigation";
+import "@/styles/editorial.css";
+import "@/styles/about.css";
 
 export const revalidate = 86400;
 type PageProps = { params: Promise<{ locale: string }> };
@@ -39,8 +41,8 @@ export default async function AboutPage({ params }: PageProps) {
             </div>
           </div>
           <div className="about-hero-art" aria-hidden="true">
-            <div className="about-art-main"><Image src="/site-media/about-main" unoptimized alt="" fill priority sizes="(max-width: 700px) 100vw, 35vw" className="object-cover" /></div>
-            <div className="about-art-small"><Image src="/site-media/about-small" unoptimized alt="" fill sizes="(max-width: 700px) 44vw, 17vw" className="object-cover" /></div>
+            <div className="about-art-main"><SiteImage src="/site-media/about-main" priority className="object-cover" /></div>
+            <div className="about-art-small"><SiteImage src="/site-media/about-small" className="object-cover" /></div>
             <span className="about-art-word">{t("heroWord")}</span>
           </div>
         </Container>
@@ -88,7 +90,7 @@ export default async function AboutPage({ params }: PageProps) {
 
       <section className="about-schools" aria-labelledby="about-schools-title">
         <Container className="about-schools-inner">
-          <div className="about-schools-visual"><Image src="/site-media/about-schools" unoptimized alt="" fill sizes="(max-width: 700px) 100vw, 42vw" className="object-cover" /></div>
+          <div className="about-schools-visual"><SiteImage src="/site-media/about-schools" className="object-cover" /></div>
           <div className="about-schools-copy"><p className="home-kicker">{t("schoolsEyebrow")}</p><h2 id="about-schools-title">{t("schoolsTitle")}</h2><p>{t("schoolsIntro")}</p>
             <ol>{schools.map((key, index) => <li key={key}><span>{String(index + 1).padStart(2, "0")}</span><Link href={`/schools/${key}`}>{th(`${key}.title`)}</Link></li>)}</ol>
             <Link className="home-text-link" href="/schools">{t("schoolsCta")}<ArrowRight aria-hidden="true" size={17} /></Link>

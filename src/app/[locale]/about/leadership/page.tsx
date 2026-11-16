@@ -8,6 +8,8 @@ import { Link } from "@/i18n/navigation";
 import { getLeadershipProfiles } from "@/lib/api/public";
 import { safeFetch } from "@/lib/api/safe";
 import type { LeadershipProfile, Locale } from "@/lib/api/types";
+import "@/styles/editorial.css";
+import "@/styles/about-leadership.css";
 
 export const revalidate = 86400;
 type PageProps = { params: Promise<{ locale: string }> };

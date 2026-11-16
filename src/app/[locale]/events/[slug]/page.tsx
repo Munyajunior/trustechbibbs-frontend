@@ -12,6 +12,10 @@ import type { Locale } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
 import { publicMediaSrc } from "@/lib/public-media";
 import { formatEventDateTime } from "@/lib/utils";
+import "@/styles/editorial.css";
+import "@/styles/events-slug.css";
+import "@/styles/shared-events-slug-news-slug.css";
+import "@/styles/shared-events-slug-gallery-slug-aea2.css";
 
 type PageProps = { params: Promise<{ locale: string; slug: string }> };
 

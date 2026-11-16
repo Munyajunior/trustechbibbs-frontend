@@ -10,6 +10,10 @@ import { safeFetch } from "@/lib/api/safe";
 import type { GalleryAlbum, Locale } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
 import { publicMediaSrc } from "@/lib/public-media";
+import "@/styles/editorial.css";
+import "@/styles/gallery.css";
+import "@/styles/shared-gallery-gallery-slug.css";
+import "@/styles/shared-gallery-viewer-gallery.css";
 
 export const revalidate = 3600;
 type PageProps = { params: Promise<{ locale: string }> };

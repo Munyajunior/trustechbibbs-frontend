@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Container } from "@/components/shared/container";
+import { SiteImage } from "@/components/shared/site-image";
 import { Link } from "@/i18n/navigation";
 import { getNews, getNewsFilters } from "@/lib/api/public";
 import { safeFetch } from "@/lib/api/safe";
@@ -11,6 +12,8 @@ import type { Locale, NewsArticle, Paginated } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
 import { publicMediaSrc } from "@/lib/public-media";
 import { formatDate } from "@/lib/utils";
+import "@/styles/editorial.css";
+import "@/styles/shared-events-news.css";
 
 export const revalidate = 3600;
 type PageProps = { params: Promise<{ locale: string }>; searchParams: Promise<{ page?: string; search?: string; category?: string }> };
@@ -63,7 +66,7 @@ export default async function NewsPage({ params, searchParams }: PageProps) {
             <p>{t("subtitle")}</p>
             <a className="home-button home-button-gold" href="#journal-content">{t("exploreCta")}<ArrowRight aria-hidden="true" size={18} /></a>
           </div>
-          <div className="journal-hero-visual"><Image src="/site-media/news-hero" unoptimized alt="" fill priority sizes="(max-width: 700px) 100vw, 47vw" className="object-cover" /><span>{t("heroCaption")}</span></div>
+          <div className="journal-hero-visual"><SiteImage src="/site-media/news-hero" priority className="object-cover" /><span>{t("heroCaption")}</span></div>
         </Container>
       </section>
 

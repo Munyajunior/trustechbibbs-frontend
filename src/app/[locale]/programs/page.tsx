@@ -1,14 +1,18 @@
-import Image from "next/image";
 import { ArrowRight, BriefcaseBusiness, Cpu, GraduationCap, HeartPulse, Landmark, Leaf, Plane } from "lucide-react";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Container } from "@/components/shared/container";
+import { SiteImage } from "@/components/shared/site-image";
 import { Link } from "@/i18n/navigation";
 import { getProgramFilters, getPrograms } from "@/lib/api/public";
 import { safeFetch } from "@/lib/api/safe";
 import type { Locale, Paginated, Program } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
+import "@/styles/editorial.css";
+import "@/styles/shared-home-programs.css";
+import "@/styles/programs.css";
 
 // Do not freeze the empty fallback into a day-long static build if the API is
 // temporarily unavailable during deployment. Successful API reads still use
@@ -89,12 +93,13 @@ export default async function ProgramsPage({ params, searchParams }: PageProps) 
             </div>
           </div>
           <div className="catalogue-hero-visual">
-            <Image src="/site-media/programs-hero" unoptimized alt="" fill priority sizes="(max-width: 700px) 100vw, 48vw" className="object-cover" />
+            <SiteImage src="/site-media/programs-hero" priority className="object-cover" />
             <span className="catalogue-hero-stamp">{t("sevenSchools")}</span>
           </div>
         </Container>
       </section>
 
+      <Suspense>
       <section className="catalogue-schools" id="schools" aria-labelledby="catalogue-schools-heading">
         <Container>
           <div className="home-section-heading home-section-heading-split">
@@ -104,7 +109,7 @@ export default async function ProgramsPage({ params, searchParams }: PageProps) 
           <div className="home-school-grid">
             {schools.map(({ key, icon: Icon, image }, index) => (
               <article className={`home-school-card ${index < 2 ? "home-school-card-image" : "home-school-card-compact"}`} key={key}>
-                <div className="home-school-image-wrap"><Image src={image} unoptimized alt="" fill sizes={index < 2 ? "(max-width: 700px) 100vw, 50vw" : "(max-width: 700px) 100vw, 33vw"} className="object-cover" /></div>
+                <div className="home-school-image-wrap"><SiteImage src={image} className="object-cover" /></div>
                   <div className="home-school-copy">
                   <span className={`home-school-icon${index % 2 ? " home-school-icon-gold" : ""}`}><Icon aria-hidden="true" size={25} strokeWidth={1.7} /></span>
                   <h3>{th(`${key}.title`)}</h3><p>{th(`${key}.body`)}</p>
@@ -115,7 +120,9 @@ export default async function ProgramsPage({ params, searchParams }: PageProps) 
           </div>
         </Container>
       </section>
+      </Suspense>
 
+      <Suspense>
       <section className="catalogue-listing" id="catalogue" aria-labelledby="catalogue-listing-heading">
         <Container>
           <div className="home-section-heading home-section-heading-split">
@@ -177,6 +184,7 @@ export default async function ProgramsPage({ params, searchParams }: PageProps) 
           )}
         </Container>
       </section>
+      </Suspense>
     </div>
   );
 }

@@ -1,30 +1,20 @@
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 
 import { Footer } from "@/components/layout/footer";
-import { Header } from "@/components/layout/header";
+import { Header, type HeaderLabels } from "@/components/layout/header";
+import { NAV_ITEMS } from "@/components/layout/nav-items";
 import { AuthSessionBootstrap } from "@/components/features/auth-session-bootstrap";
 import { SkipLink } from "@/components/shared/skip-link";
 import { routing } from "@/i18n/routing";
+import { selectClientMessages } from "@/lib/client-messages";
 import { fontVariables } from "@/lib/fonts";
 import { jsonLdScript } from "@/lib/json-ld";
 
 import "../globals.css";
-
-/**
- * Message namespaces that are only read by server components. They are left out
- * of the client provider so they are not serialized into every page's HTML and
- * re-parsed during hydration. If a client component starts calling
- * `useTranslations("<one of these>")`, remove that namespace from this list.
- */
-const SERVER_ONLY_NAMESPACES = [
-  "sitePages", "institutionalPages", "schoolsIndex", "schoolDetail", "programs",
-  "about", "admissions", "news", "events", "privacy", "terms", "accessibility",
-  "notFound",
-];
 
 type LayoutProps = {
   children: ReactNode;
@@ -87,10 +77,23 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   setRequestLocale(locale);
 
   const tc = await getTranslations({ locale, namespace: "common" });
-  const allMessages = await getMessages();
-  const clientMessages = Object.fromEntries(
-    Object.entries(allMessages).filter(([namespace]) => !SERVER_ONLY_NAMESPACES.includes(namespace)),
-  );
+  const clientMessages = await selectClientMessages([]);
+  const tn = await getTranslations({ locale, namespace: "nav" });
+  const ts = await getTranslations({ locale, namespace: "staffDashboard" });
+  const headerLabels: HeaderLabels = {
+    nav: Object.fromEntries(NAV_ITEMS.map(({ key }) => [key, tn(key)])) as HeaderLabels["nav"],
+    common: {
+      myAccount: tc("myAccount"),
+      signIn: tc("signIn"),
+      apply: tc("apply"),
+      closeMenu: tc("closeMenu"),
+      openMenu: tc("openMenu"),
+      signOut: tc("signOut"),
+      signOutFailed: tc("signOutFailed"),
+    },
+    language: { label: tc("language"), french: tc("switchToFrench"), english: tc("switchToEnglish") },
+    staff: { workspace: ts("workspace"), viewSite: ts("viewSite") },
+  };
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const organizationJsonLd = {
     "@context": "https://schema.org",
@@ -113,11 +116,13 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
         <NextIntlClientProvider messages={clientMessages}>
           <AuthSessionBootstrap locale={locale} />
           <SkipLink />
-          <Header />
+          <Header labels={headerLabels} />
           <main id="main-content" className="flex-1">
             {children}
           </main>
-          <Footer />
+          <Suspense>
+            <Footer />
+          </Suspense>
         </NextIntlClientProvider>
       </body>
     </html>

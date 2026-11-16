@@ -1,10 +1,12 @@
-import Image from "next/image";
 import { ArrowRight, BookOpen, CircleCheck, ClipboardList, FilePenLine, LifeBuoy, UserRoundPlus } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Container } from "@/components/shared/container";
+import { SiteImage } from "@/components/shared/site-image";
 import { Link } from "@/i18n/navigation";
+import "@/styles/editorial.css";
+import "@/styles/admissions.css";
 
 type PageProps = { params: Promise<{ locale: string }> };
 export const revalidate = 86400;
@@ -47,7 +49,7 @@ export default async function AdmissionsPage({ params }: PageProps) {
             <p className="admissions-hero-note">{t("heroNote")}</p>
           </div>
           <div className="admissions-hero-visual">
-            <Image src="/site-media/admissions" unoptimized alt="" fill priority sizes="(max-width: 700px) 100vw, 48vw" className="object-cover" />
+            <SiteImage src="/site-media/admissions" priority className="object-cover" />
             <div className="admissions-hero-card"><span>01—04</span><strong>{t("heroCard")}</strong></div>
           </div>
         </Container>

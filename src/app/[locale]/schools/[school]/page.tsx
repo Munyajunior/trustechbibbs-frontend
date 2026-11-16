@@ -7,6 +7,9 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/shared/container";
 import { Link } from "@/i18n/navigation";
 import { schoolByKey, schools } from "@/lib/schools";
+import "@/styles/editorial.css";
+import "@/styles/schools-school.css";
+import "@/styles/shared-programs-slug-schools-school.css";
 
 type PageProps = { params: Promise<{ locale: string; school: string }> };
 

@@ -11,6 +11,10 @@ import { getGalleryAlbum } from "@/lib/api/public";
 import type { Locale } from "@/lib/api/types";
 import { localizedField } from "@/lib/i18n-field";
 import { publicMediaSrc } from "@/lib/public-media";
+import "@/styles/editorial.css";
+import "@/styles/shared-gallery-gallery-slug.css";
+import "@/styles/gallery-slug.css";
+import "@/styles/shared-events-slug-gallery-slug-aea2.css";
 
 type PageProps = { params: Promise<{ locale: string; slug: string }> };
 
