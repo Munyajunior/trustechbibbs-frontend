@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { StudentTimetable } from "@/components/features/student-timetable";
@@ -62,5 +62,18 @@ describe("student timetable", () => {
     renderTimetable();
     await waitFor(() => expect(screen.getByText(/Your timetable is empty/)).toBeInTheDocument());
     expect(screen.queryByRole("button", { name: "Print timetable" })).not.toBeInTheDocument();
+  });
+
+  it("shows the load error, not the empty state, when the fetch fails, then clears it on success", async () => {
+    jest.mocked(getMyTimetable).mockRejectedValueOnce(new Error("boom"));
+    const view = renderTimetable();
+    expect(await screen.findByRole("alert")).toHaveTextContent("We could not load your timetable. Please try again.");
+    expect(screen.queryByText(/Your timetable is empty/)).not.toBeInTheDocument();
+
+    jest.mocked(getMyTimetable).mockResolvedValue([entry()]);
+    act(() => { useAuthStore.setState({ accessToken: "tok2" }); });
+    view.rerender(<StudentTimetable locale="en" />);
+    expect(await screen.findByText("08:00–10:00 · CM · INF201 · Room A101 (Amphi A) · Dr X")).toBeInTheDocument();
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
 });

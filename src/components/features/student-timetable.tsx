@@ -23,7 +23,7 @@ export function StudentTimetable({ locale }: { locale: Locale }) {
     if (!token || !isStudent) return;
     let active = true;
     getMyTimetable(token, locale)
-      .then((result) => { if (active) setEntries(result); })
+      .then((result) => { if (active) { setEntries(result); setError(null); } })
       .catch((caught) => { if (active) setError(caught instanceof ApiError ? caught.localizedMessage(locale) : t("loadError")); });
     return () => { active = false; };
   }, [token, isStudent, locale, t]);
@@ -35,7 +35,7 @@ export function StudentTimetable({ locale }: { locale: Locale }) {
   };
   const summary = (entry: TimetableEntry) => [
     `${entry.starts_at.slice(0, 5)}–${entry.ends_at.slice(0, 5)}`,
-    entry.session_type,
+    t(`types.${entry.session_type}`),
     entry.course_code,
     room(entry),
     entry.lecturer_name,
