@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 
 import { Container } from "@/components/shared/container";
 import { StudentRegistrationPanel } from "@/components/features/student-registration-panel";
+import { StudentTimetable } from "@/components/features/student-timetable";
 import { Link } from "@/i18n/navigation";
 import { ApiError } from "@/lib/api/client";
 import {
@@ -60,6 +61,7 @@ export function StudentCurrentCourses({ locale }: { locale: Locale }) {
         </section>
         <p className="mt-5 rounded-xl border border-accent/30 bg-accent/10 p-4 text-sm text-gray-700">{t("notRegistered")}</p>
         <StudentRegistrationPanel locale={locale} />
+        <StudentTimetable locale={locale} />
       </>}
     </div></Container>
   );

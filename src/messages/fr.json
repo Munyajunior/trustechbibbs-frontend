@@ -649,6 +649,32 @@
       "required": "Obligatoire", "elective": "Optionnel", "credits": "{count} crédits", "notRegistered": "La liste ci-dessus représente le cursus du programme et non une inscription confirmée. Soumettez votre choix ci-dessous lorsque les inscriptions seront ouvertes.",
       "windowTitle": "Période d'inscription", "windowDates": "Ouverture le {start} ; clôture le {end} (heure du Cameroun)", "phases": { "NOT_SCHEDULED": "Aucune période d'inscription n'a été publiée pour votre semestre.", "UPCOMING": "Le registraire a publié une prochaine période d'inscription.", "OPEN": "La période d'inscription est ouverte. Consultez les sections disponibles ci-dessous.", "ADD_DROP": "La période d'ajout et de retrait est ouverte. Contactez le registraire pour tout changement." }
     },
+    "timetable": {
+      "title": "Mon emploi du temps",
+      "intro": "Vos cours de la semaine, avec la salle et l’enseignant de chaque séance.",
+      "loading": "Chargement de votre emploi du temps…",
+      "loadError": "Impossible de charger votre emploi du temps. Veuillez réessayer.",
+      "empty": "Votre emploi du temps est vide. Il apparaîtra ici dès que vous serez inscrit à des cours et que le registraire les aura planifiés.",
+      "print": "Imprimer l’emploi du temps",
+      "room": "Salle {code} ({name})",
+      "roomName": "Salle {name}",
+      "noRoom": "Salle à confirmer",
+      "section": "Section {code}",
+      "days": {
+        "1": "Lundi",
+        "2": "Mardi",
+        "3": "Mercredi",
+        "4": "Jeudi",
+        "5": "Vendredi",
+        "6": "Samedi",
+        "7": "Dimanche"
+      },
+      "types": {
+        "CM": "CM",
+        "TD": "TD",
+        "TP": "TP"
+      }
+    },
     "registration": {
       "title": "S'inscrire aux cours", "period": "{year} · semestre {semester}", "loading": "Chargement des options d'inscription…", "loadError": "Impossible de charger les options d'inscription.", "saveError": "L'inscription n'a pas pu être soumise.",
       "instructions": "Les cours obligatoires sont sélectionnés automatiquement lorsqu'une seule section est disponible. Choisissez une section pour les autres cours obligatoires et les options souhaitées.", "empty": "Aucune section n'est encore disponible pour votre programme.",

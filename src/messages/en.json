@@ -649,6 +649,32 @@
       "required": "Required", "elective": "Elective", "credits": "{count} credits", "notRegistered": "The list above is your programme curriculum, not a confirmed registration. Submit your course selection below when registration opens.",
       "windowTitle": "Registration period", "windowDates": "Opens {start}; closes {end} (Cameroon time)", "phases": { "NOT_SCHEDULED": "No registration period has been published for your semester.", "UPCOMING": "The registrar has published an upcoming registration period.", "OPEN": "The published registration period is open. Review your available sections below.", "ADD_DROP": "The published add/drop period is open. Contact the registrar for changes." }
     },
+    "timetable": {
+      "title": "My timetable",
+      "intro": "Your weekly classes, with the room and lecturer for each session.",
+      "loading": "Loading your timetable…",
+      "loadError": "We could not load your timetable. Please try again.",
+      "empty": "Your timetable is empty. It will appear here once you are registered for courses and the registrar has scheduled them.",
+      "print": "Print timetable",
+      "room": "Room {code} ({name})",
+      "roomName": "Room {name}",
+      "noRoom": "Room to be announced",
+      "section": "Section {code}",
+      "days": {
+        "1": "Monday",
+        "2": "Tuesday",
+        "3": "Wednesday",
+        "4": "Thursday",
+        "5": "Friday",
+        "6": "Saturday",
+        "7": "Sunday"
+      },
+      "types": {
+        "CM": "CM",
+        "TD": "TD",
+        "TP": "TP"
+      }
+    },
     "registration": {
       "title": "Register for courses", "period": "{year} · semester {semester}", "loading": "Loading registration options…", "loadError": "Could not load registration options.", "saveError": "Registration could not be submitted.",
       "instructions": "Required courses are selected automatically when they have one section. Choose a section for each other required course and any electives you want.", "empty": "No course sections are available for your programme yet.",

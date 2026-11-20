@@ -42,6 +42,27 @@ export interface RegistrationConfirmation {
   enrollments: Enrollment[];
 }
 
+export interface TimetableEntry {
+  day_of_week: number;
+  starts_at: string;
+  ends_at: string;
+  session_type: "CM" | "TD" | "TP";
+  course_code: string;
+  course_name_en: string;
+  course_name_fr: string | null;
+  section_code: string;
+  classroom_name: string | null;
+  classroom_code: string | null;
+  lecturer_name: string | null;
+}
+
+export function getMyTimetable(token: string, locale: Locale, termId?: string) {
+  const query = termId ? `?term_id=${encodeURIComponent(termId)}` : "";
+  return apiRequest<TimetableEntry[]>(`/students/me/timetable${query}`, {
+    token, locale, cache: "no-store",
+  });
+}
+
 export function getRegistrationOptions(token: string, locale: Locale) {
   return apiRequest<RegistrationOptions>("/students/me/registration-options", {
     token, locale, cache: "no-store",
