@@ -22,6 +22,13 @@ export const queryKeys = {
     all: ["events"] as const,
     list: (query: ListQuery = {}) => ["events", "list", query] as const,
   },
+  hr: {
+    all: ["hr"] as const,
+    lecturers: (query: Record<string, unknown> = {}) => ["hr", "lecturers", query] as const,
+    lecturer: (id: string) => ["hr", "lecturers", id] as const,
+    contracts: (lecturerId: string) => ["hr", "lecturers", lecturerId, "contracts"] as const,
+    contract: (id: string) => ["hr", "contracts", id] as const,
+  },
   search: (term: string) => ["search", term] as const,
 } as const;
 

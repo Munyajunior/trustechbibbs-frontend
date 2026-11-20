@@ -45,7 +45,7 @@ export function Header({ labels }: { labels: HeaderLabels }) {
     ? "/login"
     : user.roles.includes("student")
       ? "/student"
-      : user.roles.some((role) => ["registrar", "admin", "super_admin", "department_head", "editor"].includes(role))
+      : user.roles.some((role) => ["registrar", "admin", "super_admin", "department_head", "editor", "accountant", "finance_director", "discipline_master"].includes(role))
         ? "/staff"
         : "/admissions/status";
   const accountLabel = token && user ? tc("myAccount") : tc("signIn");

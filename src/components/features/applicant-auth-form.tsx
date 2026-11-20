@@ -53,7 +53,7 @@ export function ApplicantAuthForm({ locale, mode }: ApplicantAuthFormProps) {
         result.tokens.access_token,
       );
       if (result.user.roles.includes("student")) router.push("/student");
-      else if (result.user.roles.some((role) => ["registrar", "admin", "super_admin", "department_head", "editor"].includes(role))) router.push("/staff");
+      else if (result.user.roles.some((role) => ["registrar", "admin", "super_admin", "department_head", "editor", "accountant", "finance_director", "discipline_master"].includes(role))) router.push("/staff");
       else router.push("/admissions/status");
     } catch (caught) {
       if (caught instanceof ApiError) setError(caught.localizedMessage(locale));
