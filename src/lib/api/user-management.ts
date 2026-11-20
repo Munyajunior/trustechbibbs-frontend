@@ -1,7 +1,7 @@
 import { apiList, apiRequest } from "./client";
 import type { Locale, Paginated } from "./types";
 
-export type ManagedStaffRole = "editor" | "registrar" | "department_head" | "admin";
+export type ManagedStaffRole = "editor" | "registrar" | "department_head" | "lecturer" | "discipline_master" | "accountant" | "finance_director" | "admin";
 
 export interface ManagedUser {
   id: string;

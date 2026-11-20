@@ -18,7 +18,7 @@ import type { Locale, Paginated } from "@/lib/api/types";
 import { isValidStaffPassword } from "@/lib/staff-password-policy";
 import { useAuthStore } from "@/stores/auth-store";
 
-const staffRoles: ManagedStaffRole[] = ["editor", "registrar", "department_head", "admin"];
+const staffRoles: ManagedStaffRole[] = ["editor", "registrar", "department_head", "lecturer", "discipline_master", "accountant", "finance_director", "admin"];
 const initialCreate: StaffCreatePayload = {
   email: "", password: "", full_name_en: "", full_name_fr: "", role: "editor",
 };

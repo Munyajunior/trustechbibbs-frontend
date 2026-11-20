@@ -15,7 +15,7 @@ import type { Locale } from "@/lib/api/types";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/stores/auth-store";
 
-type StaffRole = "editor" | "registrar" | "department_head" | "admin" | "super_admin";
+type StaffRole = "editor" | "registrar" | "department_head" | "lecturer" | "discipline_master" | "accountant" | "finance_director" | "admin" | "super_admin";
 type NavItem = { href: string; key: string; icon: LucideIcon; roles: StaffRole[] };
 
 const A: StaffRole[] = ["admin", "super_admin"];

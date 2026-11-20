@@ -1151,7 +1151,7 @@
     "allStatuses": "Tous les statuts",
     "active": "Actif",
     "inactive": "Inactif",
-    "roles": { "applicant": "Candidat", "student": "Étudiant", "editor": "Éditeur de contenu", "registrar": "Responsable de la scolarité", "department_head": "Chef de département", "admin": "Administrateur", "super_admin": "Super administrateur" },
+    "roles": { "applicant": "Candidat", "student": "Étudiant", "editor": "Éditeur de contenu", "registrar": "Responsable de la scolarité", "department_head": "Chef de département", "lecturer": "Enseignant", "discipline_master": "Surveillant général", "accountant": "Comptable", "finance_director": "Directeur financier", "admin": "Administrateur", "super_admin": "Super administrateur" },
     "loading": "Chargement des comptes…",
     "loadError": "Impossible de charger les comptes.",
     "empty": "Aucun compte ne correspond à ces filtres.",

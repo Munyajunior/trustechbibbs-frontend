@@ -1151,7 +1151,7 @@
     "allStatuses": "All statuses",
     "active": "Active",
     "inactive": "Inactive",
-    "roles": { "applicant": "Applicant", "student": "Student", "editor": "Content editor", "registrar": "Registrar", "department_head": "Department head", "admin": "Administrator", "super_admin": "Super administrator" },
+    "roles": { "applicant": "Applicant", "student": "Student", "editor": "Content editor", "registrar": "Registrar", "department_head": "Department head", "lecturer": "Lecturer", "discipline_master": "Discipline Master", "accountant": "Accountant", "finance_director": "Finance Director", "admin": "Administrator", "super_admin": "Super administrator" },
     "loading": "Loading accounts…",
     "loadError": "Accounts could not be loaded.",
     "empty": "No accounts match these filters.",
