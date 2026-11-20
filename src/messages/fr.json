@@ -1182,7 +1182,11 @@
     "noDays": "Aucun jour sans cours pour ce semestre.",
     "dayAdded": "Jour sans cours ajouté.",
     "dayRemoved": "Jour sans cours supprimé.",
-    "dayExists": "Ce jour sans cours existe déjà."
+    "dayExists": "Ce jour sans cours existe déjà.",
+    "readinessLoadError": "Impossible de charger l’état de préparation de l’emploi du temps.",
+    "daysLoadError": "Impossible de charger les jours sans cours.",
+    "retry": "Réessayer",
+    "noActiveRoomsOnCampus": "Aucune salle active sur ce campus. Ajoutez ou activez une salle dans le panneau Salles de classe."
   },
   "staffDashboard": {
     "meta": { "title": "Tableau de bord du personnel", "description": "Espace administratif et aperçu opérationnel de Trustech." },

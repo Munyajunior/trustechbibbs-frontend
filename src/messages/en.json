@@ -1182,7 +1182,11 @@
     "noDays": "No non-teaching days in this term.",
     "dayAdded": "Non-teaching day added.",
     "dayRemoved": "Non-teaching day removed.",
-    "dayExists": "This non-teaching day already exists."
+    "dayExists": "This non-teaching day already exists.",
+    "readinessLoadError": "Could not load timetable readiness.",
+    "daysLoadError": "Could not load non-teaching days.",
+    "retry": "Retry",
+    "noActiveRoomsOnCampus": "No active classrooms on this campus. Add or activate one in the Classrooms panel."
   },
   "staffDashboard": {
     "meta": { "title": "Staff dashboard", "description": "Trustech administrative workspace and operational overview." },

@@ -1,4 +1,3 @@
-import { ApiError } from "@/lib/api/client";
 import {
   addMeeting,
   addNonTeachingDay,
@@ -104,6 +103,5 @@ describe("academic schedule api", () => {
     } as Response));
     await expect(addMeeting("s1", { day_of_week: 1, starts_at: "08:00", ends_at: "10:00", venue_name: null, session_type: "CM", classroom_id: "r1" }, "tok", "en"))
       .rejects.toMatchObject({ code: "MEETING_CONFLICT" });
-    expect(ApiError).toBeDefined();
   });
 });
