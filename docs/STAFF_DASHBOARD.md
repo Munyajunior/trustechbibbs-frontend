@@ -40,3 +40,16 @@ production Docker image builds successfully and the English/French home,
 staff, and schools entry routes returned 200 in a healthy container during the
 October 2026 smoke check; this is not a substitute for authenticated workflow
 testing.
+
+## Lecturers and scheduling additions
+
+The sidebar has a **Lecturers** entry (`/staff/lecturers`) for accountant,
+finance director, admin and department-head roles. It lists lecturers, creates
+them from lecturer-role users, assigns department heads (admins), and manages
+teaching contracts through draft, lines, activation, closing and voiding, in
+English and French. Payout details are hidden from department heads. The
+accountant, finance director and discipline master roles are now admitted to
+`/staff`. The scheduling page gained classroom, non-teaching-day and timetable
+readiness panels, and the meeting form requires a classroom and a CM/TD/TP
+type. Students see **My timetable** on their course page. Lecturer sign-in and
+payroll are not built yet; see the backend `docs/HR_LECTURERS.md`.
