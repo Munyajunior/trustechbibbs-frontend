@@ -337,6 +337,27 @@ describe("StaffLecturers", () => {
     expect(screen.getByRole("button", { name: "Add lecturer" })).toBeInTheDocument();
   });
 
+  it("offers department heads no department filter, so they can never pick a department that is refused", async () => {
+    signIn(["department_head"]);
+    jest.mocked(listDepartments).mockResolvedValue([department, { ...department, id: "d2", code: "MAT", name_en: "Maths", name_fr: "Maths" }]);
+    jest.mocked(listLecturers).mockResolvedValue(page([lecturer]));
+    render(<StaffLecturers locale="en" />);
+    expect(await screen.findByText("S-001")).toBeInTheDocument();
+    expect(screen.queryByLabelText("Department")).not.toBeInTheDocument();
+    expect(jest.mocked(listLecturers).mock.calls.every(([query]) => query.department_id === undefined)).toBe(true);
+    expect(screen.queryByRole("heading", { name: "Department heads" })).not.toBeInTheDocument();
+  });
+
+  it("keeps the department filter for payroll staff and shows no department-heads panel to them", async () => {
+    signIn(["accountant"]);
+    jest.mocked(listDepartments).mockResolvedValue([department]);
+    jest.mocked(listTerms).mockResolvedValue([term]);
+    jest.mocked(listLecturers).mockResolvedValue(page([lecturer]));
+    render(<StaffLecturers locale="en" />);
+    expect(await screen.findByLabelText("Department")).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Department heads" })).not.toBeInTheDocument();
+  });
+
   it("refuses a user without a lecturer-workspace role", () => {
     signIn(["registrar"]);
     render(<StaffLecturers locale="en" />);

@@ -45,9 +45,21 @@ testing.
 
 The sidebar has a **Lecturers** entry (`/staff/lecturers`) for accountant,
 finance director, admin and department-head roles. It lists lecturers, creates
-them from lecturer-role users, assigns department heads (admins), and manages
-teaching contracts through draft, lines, activation, closing and voiding, in
-English and French. Payout details are hidden from department heads. The
+them from lecturer-role users, and manages teaching contracts through draft,
+lines, activation, closing and voiding, in English and French. Nobody can
+handle a contract for their own lecturer record (`SELF_CONTRACT_FORBIDDEN`).
+Payout details are hidden from department heads. Department heads see only
+the departments they head, so they get no department filter.
+
+Admins and super admins also see a **Department heads** panel there. It lists
+current and ended assignments, assigns a person who holds the department-head
+role to a department from a start date, and ends an assignment on a chosen
+date. A department can have several current heads.
+
+In **Staff accounts**, an admin can tick **Also lectures** to add the lecturer
+role to one primary staff role, for example a department head who also
+teaches. The option is not offered for the lecturer role itself, nor for
+accountants and finance directors (separation of duties). The
 accountant, finance director and discipline master roles are now admitted to
 `/staff`. The scheduling page gained classroom, non-teaching-day and timetable
 readiness panels, and the meeting form requires a classroom and a CM/TD/TP

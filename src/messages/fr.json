@@ -1258,7 +1258,25 @@
     "loadingSections": "Chargement des sections…",
     "sectionRequired": "Sélectionnez une section.",
     "hoursInvalid": "Saisissez un nombre d'heures entre 0,01 et 999,99, avec au plus 2 décimales.",
-    "amountInvalid": "Saisissez un montant entier en XAF supérieur à zéro."
+    "amountInvalid": "Saisissez un montant entier en XAF supérieur à zéro.",
+    "headsTitle": "Chefs de département",
+    "headsIntro": "Affectez à un département le personnel qui a le rôle de chef de département, et terminez l’affectation quand elle prend fin. Un département peut avoir plusieurs chefs en poste.",
+    "headsLoadError": "Impossible de charger les chefs de département.",
+    "headPerson": "Chef de département",
+    "selectHeadPerson": "Choisir un chef de département",
+    "headStartsOn": "Début",
+    "headEndsOn": "Fin",
+    "headCurrent": "En poste",
+    "assignHead": "Affecter le chef",
+    "headFieldsRequired": "Choisissez une personne, un département et une date de début.",
+    "headAssigned": "Chef de département affecté.",
+    "noHeads": "Aucun chef de département n’a encore été affecté.",
+    "noHeadPeople": "Aucun compte actif n’a le rôle de chef de département. Attribuez-le d’abord dans Comptes du personnel.",
+    "endHead": "Terminer l’affectation",
+    "endHeadFor": "Terminer l’affectation de {name}",
+    "headEndDateFor": "Date de fin pour {name}",
+    "headEndRequired": "Choisissez d’abord une date de fin.",
+    "headEnded": "Affectation terminée."
   },
   "scheduleEditor": {
     "meta": { "title": "Planification académique", "description": "Gérer les périodes d'inscription, les sections et les horaires hebdomadaires de Trustech." },
@@ -1373,7 +1391,9 @@
     "confirmReactivate": "Réactiver {name} ? Cette personne pourra de nouveau se connecter.",
     "deactivated": "Compte désactivé.",
     "reactivated": "Compte réactivé.",
-    "saveError": "Impossible d'enregistrer la modification du compte."
+    "saveError": "Impossible d'enregistrer la modification du compte.",
+    "alsoLecturer": "Enseigne aussi",
+    "alsoLecturerHint": "Ajoute le rôle d’enseignant, par exemple pour un chef de département qui enseigne aussi. Non disponible pour les comptables et les directeurs financiers."
   },
   "transcriptReview": {
     "meta": { "title": "Examen des demandes de relevé", "description": "Examiner les demandes de relevé de notes des étudiants Trustech." },

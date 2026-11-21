@@ -1258,7 +1258,25 @@
     "loadingSections": "Loading sections…",
     "sectionRequired": "Select a section.",
     "hoursInvalid": "Enter planned hours between 0.01 and 999.99, with at most 2 decimals.",
-    "amountInvalid": "Enter a whole course amount in XAF greater than zero."
+    "amountInvalid": "Enter a whole course amount in XAF greater than zero.",
+    "headsTitle": "Department heads",
+    "headsIntro": "Assign staff who hold the department head role to a department, and end an assignment when it stops. A department may have several current heads.",
+    "headsLoadError": "Could not load department heads.",
+    "headPerson": "Department head",
+    "selectHeadPerson": "Select a department head",
+    "headStartsOn": "Starts on",
+    "headEndsOn": "Ends on",
+    "headCurrent": "Current",
+    "assignHead": "Assign head",
+    "headFieldsRequired": "Choose a person, a department and a start date.",
+    "headAssigned": "Department head assigned.",
+    "noHeads": "No department heads have been assigned yet.",
+    "noHeadPeople": "No active accounts hold the department head role. Grant it under Staff accounts first.",
+    "endHead": "End assignment",
+    "endHeadFor": "End assignment for {name}",
+    "headEndDateFor": "End date for {name}",
+    "headEndRequired": "Choose an end date first.",
+    "headEnded": "Assignment ended."
   },
   "scheduleEditor": {
     "meta": { "title": "Academic scheduling", "description": "Manage Trustech semester windows, course sections and weekly meetings." },
@@ -1373,7 +1391,9 @@
     "confirmReactivate": "Reactivate {name}? They will be able to sign in again.",
     "deactivated": "Account deactivated.",
     "reactivated": "Account reactivated.",
-    "saveError": "The account change could not be saved."
+    "saveError": "The account change could not be saved.",
+    "alsoLecturer": "Also lectures",
+    "alsoLecturerHint": "Adds the lecturer role, for example a department head who also teaches. Not available for accountants or finance directors."
   },
   "transcriptReview": {
     "meta": { "title": "Transcript request review", "description": "Review student transcript requests at Trustech." },

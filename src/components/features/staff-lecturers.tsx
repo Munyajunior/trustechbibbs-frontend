@@ -4,6 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 
 import { Container } from "@/components/shared/container";
+import { StaffDepartmentHeadsPanel } from "@/components/features/staff-department-heads-panel";
 import { StaffLecturerDetail } from "@/components/features/staff-lecturer-detail";
 import { StaffLecturerForm } from "@/components/features/staff-lecturer-form";
 import { Button } from "@/components/ui/button";
@@ -22,6 +23,7 @@ export function StaffLecturers({ locale }: { locale: Locale }) {
   const roles = user?.roles ?? [];
   const authorized = !!token && roles.some((role) => LECTURER_READER_ROLES.includes(role));
   const canWrite = roles.some((role) => PAYROLL_ROLES.includes(role));
+  const isAdmin = roles.some((role) => role === "admin" || role === "super_admin");
 
   const [departments, setDepartments] = useState<Department[]>([]);
   const [terms, setTerms] = useState<AcademicTerm[]>([]);
@@ -96,9 +98,10 @@ export function StaffLecturers({ locale }: { locale: Locale }) {
     {adding && canWrite && !refError && !refLoading && <div className="mb-6"><StaffLecturerForm departments={departments} token={token} locale={locale} onCancel={() => setAdding(false)} onCreated={(created) => { setAdding(false); setNotice(t("lecturerCreated")); setSelectedId(created.id); setListRetry((value) => value + 1); }} /></div>}
 
     <section aria-label={t("listTitle")} className="rounded-2xl border border-gray-200 bg-white p-5">
-      <form onSubmit={applySearch} role="search" aria-label={t("filters")} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:items-end">
+      <form onSubmit={applySearch} role="search" aria-label={t("filters")} className={`grid gap-4 sm:grid-cols-2 lg:items-end ${canWrite ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
         <div><Label htmlFor="lecturer-search">{t("search")}</Label><Input id="lecturer-search" type="search" value={searchDraft} onChange={(event) => setSearchDraft(event.target.value)} /></div>
-        <div><Label htmlFor="lecturer-filter-department">{t("department")}</Label><select id="lecturer-filter-department" value={departmentId} onChange={(event) => { setDepartmentId(event.target.value); resetPage(); }} className="h-11 w-full rounded-md border border-gray-300 bg-white px-3"><option value="">{t("allDepartments")}</option>{departments.map((row) => <option key={row.id} value={row.id}>{departmentName(row.id)}</option>)}</select></div>
+        {/* Department heads only see their own departments; any other choice would 403, so they get no filter. */}
+        {canWrite && <div><Label htmlFor="lecturer-filter-department">{t("department")}</Label><select id="lecturer-filter-department" value={departmentId} onChange={(event) => { setDepartmentId(event.target.value); resetPage(); }} className="h-11 w-full rounded-md border border-gray-300 bg-white px-3"><option value="">{t("allDepartments")}</option>{departments.map((row) => <option key={row.id} value={row.id}>{departmentName(row.id)}</option>)}</select></div>}
         <div><Label htmlFor="lecturer-filter-status">{t("employmentStatus")}</Label><select id="lecturer-filter-status" value={status} onChange={(event) => { setStatus(event.target.value as EmploymentStatus | ""); resetPage(); }} className="h-11 w-full rounded-md border border-gray-300 bg-white px-3"><option value="">{t("allStatuses")}</option>{(["ACTIVE", "SUSPENDED", "LEFT"] as const).map((value) => <option key={value} value={value}>{t(`employment.${value}`)}</option>)}</select></div>
         <Button type="submit" variant="outline">{t("search")}</Button>
       </form>
@@ -111,6 +114,8 @@ export function StaffLecturers({ locale }: { locale: Locale }) {
         </table></div>}
       {pagination && pagination.total_pages > 1 && !listError && <nav aria-label={t("pagination")} className="mt-4 flex items-center justify-between text-sm"><Button type="button" variant="outline" disabled={!pagination.has_previous || listLoading} onClick={() => setPage((value) => Math.max(1, value - 1))}>{t("previous")}</Button><span>{t("pageOf", { page: pagination.page, total: pagination.total_pages })}</span><Button type="button" variant="outline" disabled={!pagination.has_next || listLoading} onClick={() => setPage((value) => value + 1)}>{t("next")}</Button></nav>}
     </section>
+
+    {isAdmin && !refError && !refLoading && <StaffDepartmentHeadsPanel departments={departments} token={token} locale={locale} />}
 
     {selected && !refError && !refLoading && <div className="mt-6"><StaffLecturerDetail key={selected.id} lecturer={selected} departments={departments} terms={terms} canWrite={canWrite} onUpdated={replaceLecturer} token={token} locale={locale} /></div>}
   </Container>;

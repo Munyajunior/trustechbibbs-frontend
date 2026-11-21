@@ -46,6 +46,22 @@ export interface LecturerCandidate {
   full_name_fr: string | null;
 }
 
+/** A department-head assignment; `ends_on` null means it is still open. */
+export interface DepartmentHead {
+  id: string;
+  user_id: string;
+  department_id: string;
+  starts_on: string;
+  ends_on: string | null;
+  created_at: string;
+}
+
+export interface DepartmentHeadInput {
+  user_id: string;
+  department_id: string;
+  starts_on: string;
+}
+
 export interface Contract {
   id: string;
   lecturer_id: string;
@@ -145,6 +161,18 @@ export function createLecturer(input: LecturerInput, token: string, locale: Loca
 
 export function updateLecturer(id: string, patch: LecturerPatch, token: string, locale: Locale) {
   return apiRequest<Lecturer>(`/hr/lecturers/${id}`, send("PATCH", token, locale, patch));
+}
+
+export function listDepartmentHeads(token: string, locale: Locale) {
+  return apiRequest<DepartmentHead[]>("/hr/department-heads", options(token, locale));
+}
+
+export function assignDepartmentHead(input: DepartmentHeadInput, token: string, locale: Locale) {
+  return apiRequest<DepartmentHead>("/hr/department-heads", send("POST", token, locale, input));
+}
+
+export function endDepartmentHead(id: string, endsOn: string, token: string, locale: Locale) {
+  return apiRequest<DepartmentHead>(`/hr/department-heads/${id}/end`, send("POST", token, locale, { ends_on: endsOn }));
 }
 
 export function listContracts(lecturerId: string, token: string, locale: Locale) {
