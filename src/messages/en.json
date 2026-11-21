@@ -1257,7 +1257,7 @@
     "sectionsLoadError": "Could not load the term's sections.",
     "loadingSections": "Loading sections…",
     "sectionRequired": "Select a section.",
-    "hoursInvalid": "Enter planned hours between 0.01 and 999.99.",
+    "hoursInvalid": "Enter planned hours between 0.01 and 999.99, with at most 2 decimals.",
     "amountInvalid": "Enter a whole course amount in XAF greater than zero."
   },
   "scheduleEditor": {

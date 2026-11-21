@@ -77,7 +77,7 @@ export function StaffLecturers({ locale }: { locale: Locale }) {
   const pagination = result?.pagination;
   const departmentName = (id: string) => {
     const row = departments.find((item) => item.id === id);
-    return row ? (locale === "fr" ? row.name_fr || row.name_en : row.name_en) : id;
+    return row ? (locale === "fr" ? row.name_fr || row.name_en : row.name_en) : "—";
   };
   const resetPage = () => setPage(1);
 

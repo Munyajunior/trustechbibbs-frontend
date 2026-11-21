@@ -38,6 +38,14 @@ export interface LecturerQuery {
   employment_status?: EmploymentStatus | "";
 }
 
+/** An active lecturer-role user who has no lecturer record yet. */
+export interface LecturerCandidate {
+  user_id: string;
+  email: string;
+  full_name_en: string;
+  full_name_fr: string | null;
+}
+
 export interface Contract {
   id: string;
   lecturer_id: string;
@@ -115,6 +123,15 @@ export function listLecturers(params: LecturerQuery, token: string, locale: Loca
       page: params.page ?? 1, per_page: params.per_page ?? 20, search: params.search,
       department_id: params.department_id, employment_status: params.employment_status,
     },
+  });
+}
+
+export function listLecturerCandidates(
+  params: { search?: string; page?: number; per_page?: number }, token: string, locale: Locale,
+): Promise<Paginated<LecturerCandidate>> {
+  return apiList<LecturerCandidate>("/hr/lecturer-candidates", {
+    ...options(token, locale),
+    query: { page: params.page ?? 1, per_page: params.per_page ?? 20, search: params.search },
   });
 }
 

@@ -9,6 +9,7 @@ import { Link, useRouter } from "@/i18n/navigation";
 import { ApiError, ApiUnreachableError } from "@/lib/api/client";
 import { loginApplicant, registerApplicant } from "@/lib/api/auth";
 import type { Locale } from "@/lib/api/types";
+import { hasStaffWorkspaceRole } from "@/lib/staff-roles";
 import { useAuthStore } from "@/stores/auth-store";
 
 type ApplicantAuthFormProps = {
@@ -53,7 +54,7 @@ export function ApplicantAuthForm({ locale, mode }: ApplicantAuthFormProps) {
         result.tokens.access_token,
       );
       if (result.user.roles.includes("student")) router.push("/student");
-      else if (result.user.roles.some((role) => ["registrar", "admin", "super_admin", "department_head", "editor", "accountant", "finance_director", "discipline_master"].includes(role))) router.push("/staff");
+      else if (hasStaffWorkspaceRole(result.user.roles)) router.push("/staff");
       else router.push("/admissions/status");
     } catch (caught) {
       if (caught instanceof ApiError) setError(caught.localizedMessage(locale));

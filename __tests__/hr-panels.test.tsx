@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import { StaffLecturerForm } from "@/components/features/staff-lecturer-form";
 import { StaffContractEditor } from "@/components/features/staff-contract-editor";
 import { StaffLecturerDetail } from "@/components/features/staff-lecturer-detail";
 import { StaffLecturers } from "@/components/features/staff-lecturers";
@@ -8,7 +9,7 @@ import { listAllCourses, listDepartments, type Department } from "@/lib/api/acad
 import { listSections, listTerms, type AcademicTerm } from "@/lib/api/academic-schedule";
 import { ApiError } from "@/lib/api/client";
 import {
-  activateContract, addContractLine, createContract, getContract, listContracts, listLecturers,
+  activateContract, addContractLine, createContract, createLecturer, getContract, listContracts, listLecturerCandidates, listLecturers,
   updateContract, voidContract, type ContractDetail, type Lecturer,
 } from "@/lib/api/hr";
 import { useAuthStore } from "@/stores/auth-store";
@@ -25,7 +26,6 @@ jest.mock("next-intl", () => ({
 jest.mock("@/lib/api/hr");
 jest.mock("@/lib/api/academic-schedule", () => ({ listSections: jest.fn(), listTerms: jest.fn() }));
 jest.mock("@/lib/api/academic-catalogue", () => ({ listAllCourses: jest.fn(), listDepartments: jest.fn() }));
-jest.mock("@/lib/api/user-management", () => ({ listManagedUsers: jest.fn() }));
 
 const term: AcademicTerm = {
   id: "t1", academic_year: "2026/2027", semester: 1, starts_on: "2026-09-01", ends_on: "2027-01-31",
@@ -175,6 +175,27 @@ describe("StaffContractEditor", () => {
     await waitFor(() => expect(addContractLine).toHaveBeenCalledWith("c1", { section_id: "s2", planned_hours: 20 }, "tok", "en"));
   });
 
+  it("rejects planned hours with more than two decimals", async () => {
+    jest.mocked(listSections).mockResolvedValue([
+      { id: "s2", term_id: "t1", course_id: "co1", code: "B", capacity: 30, lecturer_name: null, delivery_mode: "ON_CAMPUS", is_published: true },
+    ]);
+    renderEditor(contract({ lines: [] }));
+    await userEvent.selectOptions(await screen.findByLabelText("Section"), "s2");
+    await userEvent.type(screen.getByLabelText("Planned hours"), "12.345");
+    await userEvent.click(screen.getByRole("button", { name: "Add section" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent("at most 2 decimals");
+    expect(addContractLine).not.toHaveBeenCalled();
+  });
+
+  it("focuses the void reason on open, closes on Escape and returns focus to the Void button", async () => {
+    renderEditor(contract({ status: "ACTIVE" }));
+    await userEvent.click(screen.getByRole("button", { name: "Void contract" }));
+    expect(screen.getByLabelText("Reason for voiding")).toHaveFocus();
+    await userEvent.keyboard("{Escape}");
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Void contract" })).toHaveFocus();
+  });
+
   it("requires a course amount on PER_COURSE lines", async () => {
     jest.mocked(listSections).mockResolvedValue([
       { id: "s2", term_id: "t1", course_id: "co1", code: "B", capacity: 30, lecturer_name: null, delivery_mode: "ON_CAMPUS", is_published: true },
@@ -198,11 +219,13 @@ describe("StaffContractEditor", () => {
 
 describe("StaffLecturerDetail", () => {
   it("hides payout details and contracts from a department head", () => {
-    render(<StaffLecturerDetail lecturer={{ ...lecturer, payout_details: null }} departments={[department]} terms={[]} canWrite={false} onUpdated={jest.fn()} token="tok" locale="en" />);
+    render(<StaffLecturerDetail lecturer={lecturer} departments={[department]} terms={[]} canWrite={false} onUpdated={jest.fn()} token="tok" locale="en" />);
     expect(screen.getByText("Ada Lovelace")).toBeInTheDocument();
     expect(screen.getByText("S-001")).toBeInTheDocument();
     expect(screen.queryByText("Payout details")).not.toBeInTheDocument();
     expect(screen.queryByLabelText("Payout details")).not.toBeInTheDocument();
+    expect(screen.queryByText(/MoMo 677000000/)).not.toBeInTheDocument();
+    expect(screen.queryByDisplayValue(/MoMo 677000000/)).not.toBeInTheDocument();
     expect(screen.queryByText("Teaching contracts")).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Save profile" })).not.toBeInTheDocument();
     expect(listContracts).not.toHaveBeenCalled();
@@ -215,6 +238,29 @@ describe("StaffLecturerDetail", () => {
     expect(await screen.findByText("This lecturer has no contracts yet.")).toBeInTheDocument();
   });
 
+  it("shows a dash, not a raw id, when departments could not be resolved", () => {
+    render(<StaffLecturerDetail lecturer={lecturer} departments={[]} terms={[]} canWrite={false} onUpdated={jest.fn()} token="tok" locale="en" />);
+    expect(screen.queryByText("d1")).not.toBeInTheDocument();
+    expect(screen.getAllByText("—").length).toBeGreaterThan(0);
+  });
+
+  it("keeps the created notice after the editor remounts and does not refetch the new contract", async () => {
+    jest.mocked(listContracts).mockResolvedValue([]);
+    jest.mocked(createContract).mockResolvedValue(contract({ lines: [] }));
+    render(<StaffLecturerDetail lecturer={lecturer} departments={[department]} terms={[term]} canWrite onUpdated={jest.fn()} token="tok" locale="en" />);
+    await screen.findByText("This lecturer has no contracts yet.");
+    await userEvent.click(screen.getByRole("button", { name: "New contract" }));
+    await userEvent.selectOptions(screen.getByLabelText("Term"), "t1");
+    await userEvent.type(screen.getByLabelText("Contract number"), "C-001");
+    await userEvent.type(screen.getByLabelText("CM rate per hour (XAF)"), "5000");
+    await userEvent.type(screen.getByLabelText("TD rate per hour (XAF)"), "4000");
+    await userEvent.type(screen.getByLabelText("TP rate per hour (XAF)"), "3000");
+    await userEvent.click(screen.getByRole("button", { name: "Create draft contract" }));
+    expect(await screen.findByText("Draft contract created.")).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Contract C-001" })).toBeInTheDocument();
+    expect(getContract).not.toHaveBeenCalled();
+  });
+
   it("shows an error with Retry when contracts fail to load, never an empty list", async () => {
     jest.mocked(listContracts).mockRejectedValueOnce(new Error("boom")).mockResolvedValue([]);
     render(<StaffLecturerDetail lecturer={lecturer} departments={[department]} terms={[term]} canWrite onUpdated={jest.fn()} token="tok" locale="en" />);
@@ -222,6 +268,38 @@ describe("StaffLecturerDetail", () => {
     expect(screen.queryByText("This lecturer has no contracts yet.")).not.toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: "Retry" }));
     expect(await screen.findByText("This lecturer has no contracts yet.")).toBeInTheDocument();
+  });
+});
+
+describe("StaffLecturerForm", () => {
+  it("picks from the lecturer-candidates endpoint and creates the record", async () => {
+    jest.mocked(listLecturerCandidates).mockResolvedValue({
+      items: [{ user_id: "u7", email: "grace@example.org", full_name_en: "Grace Hopper", full_name_fr: null }],
+      pagination: { page: 1, per_page: 20, total: 1, total_pages: 1, has_next: false, has_previous: false },
+    });
+    jest.mocked(createLecturer).mockResolvedValue(lecturer);
+    const onCreated = jest.fn();
+    render(<StaffLecturerForm departments={[department]} onCreated={onCreated} onCancel={jest.fn()} token="tok" locale="en" />);
+    await screen.findByRole("option", { name: "Grace Hopper (grace@example.org)" });
+    expect(listLecturerCandidates).toHaveBeenCalledWith({ search: undefined }, "tok", "en");
+    await userEvent.selectOptions(screen.getByLabelText("Staff account"), "u7");
+    await userEvent.type(screen.getByLabelText("Staff number"), "S-009");
+    await userEvent.selectOptions(screen.getByLabelText("Department"), "d1");
+    await userEvent.click(screen.getByRole("button", { name: "Save lecturer" }));
+    await waitFor(() => expect(createLecturer).toHaveBeenCalledWith(
+      { user_id: "u7", staff_number: "S-009", primary_department_id: "d1", phone: null, payout_details: null }, "tok", "en",
+    ));
+    expect(onCreated).toHaveBeenCalled();
+  });
+
+  it("shows a localized error with Retry when candidates fail to load", async () => {
+    jest.mocked(listLecturerCandidates).mockRejectedValueOnce(new Error("boom")).mockResolvedValue({
+      items: [], pagination: { page: 1, per_page: 20, total: 0, total_pages: 0, has_next: false, has_previous: false },
+    });
+    render(<StaffLecturerForm departments={[department]} onCreated={jest.fn()} onCancel={jest.fn()} token="tok" locale="en" />);
+    expect(await screen.findByText("Could not load staff accounts.")).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: "Retry" }));
+    expect(await screen.findByText(/No active lecturer accounts match/)).toBeInTheDocument();
   });
 });
 
@@ -235,12 +313,13 @@ describe("StaffLecturers", () => {
   it("gives a department head a read-only view with no add button and no payout", async () => {
     signIn(["department_head"]);
     jest.mocked(listDepartments).mockResolvedValue([department]);
-    jest.mocked(listLecturers).mockResolvedValue(page([{ ...lecturer, payout_details: null }]));
+    jest.mocked(listLecturers).mockResolvedValue(page([lecturer]));
     render(<StaffLecturers locale="en" />);
     await userEvent.click(await screen.findByRole("button", { name: "Open Ada Lovelace" }));
     expect(await screen.findByRole("region", { name: "Lecturer Ada Lovelace" })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Add lecturer" })).not.toBeInTheDocument();
     expect(screen.queryByText("Payout details")).not.toBeInTheDocument();
+    expect(screen.queryByText(/MoMo 677000000/)).not.toBeInTheDocument();
     expect(listTerms).not.toHaveBeenCalled();
     expect(listContracts).not.toHaveBeenCalled();
   });

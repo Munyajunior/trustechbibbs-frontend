@@ -1257,7 +1257,7 @@
     "sectionsLoadError": "Impossible de charger les sections du semestre.",
     "loadingSections": "Chargement des sections…",
     "sectionRequired": "Sélectionnez une section.",
-    "hoursInvalid": "Saisissez un nombre d'heures entre 0,01 et 999,99.",
+    "hoursInvalid": "Saisissez un nombre d'heures entre 0,01 et 999,99, avec au plus 2 décimales.",
     "amountInvalid": "Saisissez un montant entier en XAF supérieur à zéro."
   },
   "scheduleEditor": {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 
 import { StaffContractEditor, termLabel } from "@/components/features/staff-contract-editor";
@@ -48,6 +48,8 @@ export function StaffLecturerDetail({ lecturer, departments, terms, canWrite, on
   const [opened, setOpened] = useState<ContractDetail | null>(null);
   const [openError, setOpenError] = useState<string | null>(null);
   const [openRetry, setOpenRetry] = useState(0);
+  const [flash, setFlash] = useState<string | null>(null);
+  const openedRef = useRef<ContractDetail | null>(null);
   const contractsRequest = `${token}:${locale}:${lecturer.id}:${contractsRetry}`;
   const contractsLoading = canWrite && contractsKey !== contractsRequest && !contractsError;
   const openId = editing?.kind === "open" ? editing.id : null;
@@ -61,8 +63,11 @@ export function StaffLecturerDetail({ lecturer, departments, terms, canWrite, on
     return () => { active = false; };
   }, [canWrite, lecturer.id, token, locale, contractsRequest, t]);
 
+  useEffect(() => { openedRef.current = opened; }, [opened]);
+
   useEffect(() => {
-    if (!openId) return;
+    // A contract just returned by create/save/activate is already current: do not refetch it.
+    if (!openId || openedRef.current?.id === openId) return;
     let active = true;
     getContract(openId, token, locale)
       .then((detail) => { if (active) { setOpened(detail); setOpenError(null); } })
@@ -72,7 +77,7 @@ export function StaffLecturerDetail({ lecturer, departments, terms, canWrite, on
 
   const departmentName = (id: string) => {
     const row = departments.find((item) => item.id === id);
-    return row ? (locale === "fr" ? row.name_fr || row.name_en : row.name_en) : id;
+    return row ? (locale === "fr" ? row.name_fr || row.name_en : row.name_en) : "—";
   };
   const name = locale === "fr" ? lecturer.full_name_fr || lecturer.full_name_en : lecturer.full_name_en;
 
@@ -89,14 +94,15 @@ export function StaffLecturerDetail({ lecturer, departments, terms, canWrite, on
     } catch (caught) { setError(hrErrorMessage(caught, locale, t("saveError"))); } finally { setBusy(false); }
   }
 
-  function contractChanged(detail: ContractDetail) {
+  function contractChanged(detail: ContractDetail, message?: string) {
     setOpened(detail);
+    setFlash(message ?? null);
     setEditing({ kind: "open", id: detail.id });
     const summary: Contract = detail;
     setContracts((rows) => rows.some((row) => row.id === detail.id) ? rows.map((row) => row.id === detail.id ? summary : row) : [summary, ...rows]);
   }
 
-  const closeEditor = () => { setEditing(null); setOpened(null); setOpenError(null); };
+  const closeEditor = () => { setEditing(null); setOpened(null); setOpenError(null); setFlash(null); };
 
   return <section aria-label={t("detailTitle", { name })} className="rounded-2xl border border-gray-200 bg-white p-5">
     <h2 className="font-display text-xl font-semibold">{name}</h2>
@@ -119,15 +125,15 @@ export function StaffLecturerDetail({ lecturer, departments, terms, canWrite, on
         <div><Button type="submit" disabled={busy}>{t("saveProfile")}</Button></div>
       </form>
 
-      <div className="mt-8 flex flex-wrap items-center justify-between gap-3"><h3 className="font-display text-lg font-semibold">{t("contractsTitle")}</h3><Button type="button" onClick={() => { setOpened(null); setEditing({ kind: "new" }); }}>{t("newContract")}</Button></div>
+      <div className="mt-8 flex flex-wrap items-center justify-between gap-3"><h3 className="font-display text-lg font-semibold">{t("contractsTitle")}</h3><Button type="button" onClick={() => { setOpened(null); setFlash(null); setEditing({ kind: "new" }); }}>{t("newContract")}</Button></div>
       {contractsError ? <div role="alert" className="mt-3 rounded-md bg-error-light p-3 text-error"><p>{contractsError}</p><Button type="button" variant="outline" className="mt-2" onClick={() => { setContractsError(null); setContractsRetry((value) => value + 1); }}>{t("retry")}</Button></div>
         : contractsLoading ? <p role="status" className="mt-3 text-sm text-gray-600">{t("loading")}</p>
         : contracts.length === 0 ? <p className="mt-3 text-sm text-gray-600">{t("noContracts")}</p>
-        : <ul className="mt-3 divide-y divide-gray-100">{contracts.map((row) => <li key={row.id} className="flex flex-wrap items-center justify-between gap-3 py-2"><span>{row.contract_number} · {termLabel(terms.find((term) => term.id === row.term_id), row.term_id)} · {t(`basis.${row.pay_basis}`)} · {t(`status.${row.status}`)}</span><Button type="button" variant="outline" aria-label={t("openContract", { number: row.contract_number })} onClick={() => { setOpened(null); setOpenError(null); setEditing({ kind: "open", id: row.id }); }}>{t("open")}</Button></li>)}</ul>}
+        : <ul className="mt-3 divide-y divide-gray-100">{contracts.map((row) => <li key={row.id} className="flex flex-wrap items-center justify-between gap-3 py-2"><span>{row.contract_number} · {termLabel(terms.find((term) => term.id === row.term_id), row.term_id)} · {t(`basis.${row.pay_basis}`)} · {t(`status.${row.status}`)}</span><Button type="button" variant="outline" aria-label={t("openContract", { number: row.contract_number })} onClick={() => { setOpened(null); setOpenError(null); setFlash(null); setEditing({ kind: "open", id: row.id }); }}>{t("open")}</Button></li>)}</ul>}
 
       {editing?.kind === "new" && <StaffContractEditor key="new" lecturer={lecturer} contract={null} terms={terms} onChange={contractChanged} onClose={closeEditor} token={token} locale={locale} />}
       {editing?.kind === "open" && (openError ? <div role="alert" className="mt-4 rounded-md bg-error-light p-3 text-error"><p>{openError}</p><Button type="button" variant="outline" className="mt-2" onClick={() => { setOpenError(null); setOpenRetry((value) => value + 1); }}>{t("retry")}</Button></div>
-        : opened && opened.id === editing.id ? <StaffContractEditor key={opened.id} lecturer={lecturer} contract={opened} terms={terms} onChange={contractChanged} onClose={closeEditor} token={token} locale={locale} />
+        : opened && opened.id === editing.id ? <StaffContractEditor key={opened.id} lecturer={lecturer} contract={opened} initialNotice={flash} terms={terms} onChange={contractChanged} onClose={closeEditor} token={token} locale={locale} />
         : <p role="status" className="mt-4 text-sm text-gray-600">{t("loading")}</p>)}
     </>}
   </section>;

@@ -1,7 +1,7 @@
 import { ApiError } from "@/lib/api/client";
 import {
   activateContract, addContractLine, closeContract, createContract, createLecturer, getContract,
-  listContracts, listLecturers, removeContractLine, updateContract, updateLecturer, voidContract,
+  listContracts, listLecturerCandidates, listLecturers, removeContractLine, updateContract, updateLecturer, voidContract,
   type ContractInput,
 } from "@/lib/api/hr";
 
@@ -35,6 +35,15 @@ describe("hr api", () => {
     expect(search.get("department_id")).toBe("d1");
     expect(search.get("employment_status")).toBe("ACTIVE");
     expect(search.get("page")).toBe("2");
+  });
+
+  it("lists lecturer candidates from the dedicated endpoint", async () => {
+    fetchMock.mockReturnValue(ok([]));
+    await listLecturerCandidates({ search: "ada" }, "tok", "en");
+    const { path, search } = call();
+    expect(path).toBe("/api/v1/hr/lecturer-candidates");
+    expect(search.get("search")).toBe("ada");
+    expect(search.get("page")).toBe("1");
   });
 
   it("createLecturer POSTs and updateLecturer PATCHes", async () => {

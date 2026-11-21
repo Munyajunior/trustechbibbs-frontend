@@ -63,8 +63,9 @@ export function StaffContractLines({ contract, editable, onChanged, token, local
   async function add(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const plannedHours = Number(hours);
+    const twoDecimals = /^\d+(\.\d{1,2})?$/.test(hours.trim());
     if (!sectionId) { setError(t("sectionRequired")); return; }
-    if (!(plannedHours > 0 && plannedHours <= 999.99)) { setError(t("hoursInvalid")); return; }
+    if (!twoDecimals || !(plannedHours > 0 && plannedHours <= 999.99)) { setError(t("hoursInvalid")); return; }
     const courseAmount = perCourse ? parseAmount(amount) : null;
     if (perCourse && courseAmount === null) { setError(t("amountInvalid")); return; }
     setBusy(true); setError(null);
@@ -95,7 +96,7 @@ export function StaffContractLines({ contract, editable, onChanged, token, local
       <thead><tr className="border-b border-gray-200 text-xs uppercase tracking-wider text-gray-600"><th scope="col" className="py-2 pr-3">{t("course")}</th><th scope="col" className="py-2 pr-3">{t("section")}</th><th scope="col" className="py-2 pr-3">{t("plannedHours")}</th>{perCourse && <th scope="col" className="py-2 pr-3">{t("courseAmount")}</th>}{editable && <th scope="col" className="py-2"><span className="sr-only">{t("actions")}</span></th>}</tr></thead>
       <tbody>{contract.lines.map((line) => <tr key={line.id} className="border-b border-gray-100"><td className="py-2 pr-3">{lineName(line)}</td><td className="py-2 pr-3">{line.section_code}</td><td className="py-2 pr-3">{Number(line.planned_hours)}</td>{perCourse && <td className="py-2 pr-3">{line.course_amount === null ? "—" : formatXaf(line.course_amount, locale)}</td>}{editable && <td className="py-2"><Button type="button" variant="outline" disabled={busy} aria-label={t("removeLine", { course: lineName(line) })} onClick={() => void remove(line)}>{t("remove")}</Button></td>}</tr>)}</tbody>
     </table></div>}
-    {editable && (loadError ? <div role="alert" className="mt-4 rounded-md bg-error-light p-3 text-error"><p>{loadError}</p><Button type="button" variant="outline" className="mt-2" onClick={() => { setLoadError(null); setRetry((value) => value + 1); }}>{t("retry")}</Button></div> : loading ? <p role="status" className="mt-4 text-sm text-gray-600">{t("loadingSections")}</p> : <form onSubmit={(event) => void add(event)} className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:items-end">
+    {editable && (loadError ? <div role="alert" className="mt-4 rounded-md bg-error-light p-3 text-error"><p>{loadError}</p><Button type="button" variant="outline" className="mt-2" onClick={() => { setLoadError(null); setRetry((value) => value + 1); }}>{t("retry")}</Button></div> : loading ? <p role="status" className="mt-4 text-sm text-gray-600">{t("loadingSections")}</p> : <form noValidate onSubmit={(event) => void add(event)} className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:items-end">
       <div><Label htmlFor="line-section">{t("section")}</Label><select id="line-section" value={sectionId} onChange={(event) => setSectionId(event.target.value)} className="h-11 w-full rounded-md border border-gray-300 bg-white px-3"><option value="">{t("selectSection")}</option>{available.map((section) => <option key={section.id} value={section.id}>{sectionLabel(section)}</option>)}</select></div>
       <div><Label htmlFor="line-hours">{t("plannedHours")}</Label><Input id="line-hours" type="number" min={0.01} max={999.99} step="0.01" value={hours} onChange={(event) => setHours(event.target.value)} /></div>
       {perCourse && <div><Label htmlFor="line-amount">{t("courseAmountXaf")}</Label><Input id="line-amount" type="number" min={1} step={1} value={amount} onChange={(event) => setAmount(event.target.value)} /></div>}

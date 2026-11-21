@@ -6,9 +6,8 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Textarea } from "@/components/ui/input";
 import type { Department } from "@/lib/api/academic-catalogue";
-import { createLecturer, type Lecturer } from "@/lib/api/hr";
+import { createLecturer, listLecturerCandidates, type Lecturer, type LecturerCandidate } from "@/lib/api/hr";
 import type { Locale } from "@/lib/api/types";
-import { listManagedUsers, type ManagedUser } from "@/lib/api/user-management";
 import { hrErrorMessage } from "@/lib/hr-ui";
 
 interface Props {
@@ -23,7 +22,7 @@ export function StaffLecturerForm({ departments, onCreated, onCancel, token, loc
   const t = useTranslations("staffLecturers");
   const [searchDraft, setSearchDraft] = useState("");
   const [search, setSearch] = useState("");
-  const [users, setUsers] = useState<ManagedUser[]>([]);
+  const [users, setUsers] = useState<LecturerCandidate[]>([]);
   const [loadedKey, setLoadedKey] = useState("");
   const [loadError, setLoadError] = useState<string | null>(null);
   const [retry, setRetry] = useState(0);
@@ -39,13 +38,13 @@ export function StaffLecturerForm({ departments, onCreated, onCancel, token, loc
 
   useEffect(() => {
     let active = true;
-    listManagedUsers(token, locale, { role: "lecturer", is_active: true, search: search || undefined })
+    listLecturerCandidates({ search: search || undefined }, token, locale)
       .then((result) => { if (active) { setUsers(result.items); setLoadError(null); setLoadedKey(requestKey); } })
       .catch((caught) => { if (active) setLoadError(hrErrorMessage(caught, locale, t("usersLoadError"))); });
     return () => { active = false; };
   }, [token, locale, search, requestKey, t]);
 
-  const userName = (user: ManagedUser) => `${locale === "fr" ? user.full_name_fr || user.full_name_en : user.full_name_en} (${user.email})`;
+  const userName = (user: LecturerCandidate) => `${locale === "fr" ? user.full_name_fr || user.full_name_en : user.full_name_en} (${user.email})`;
   const departmentName = (row: Department) => locale === "fr" ? row.name_fr || row.name_en : row.name_en;
 
   async function submit(event: FormEvent<HTMLFormElement>) {
@@ -70,7 +69,7 @@ export function StaffLecturerForm({ departments, onCreated, onCancel, token, loc
     </form>
     {loadError ? <div role="alert" className="mt-4 rounded-md bg-error-light p-3 text-error"><p>{loadError}</p><Button type="button" variant="outline" className="mt-2" onClick={() => { setLoadError(null); setRetry((value) => value + 1); }}>{t("retry")}</Button></div>
       : <form onSubmit={(event) => void submit(event)} className="mt-4 grid gap-4 sm:grid-cols-2">
-        <div className="sm:col-span-2"><Label htmlFor="lecturer-user">{t("staffUser")}</Label><select id="lecturer-user" value={userId} disabled={loading} onChange={(event) => setUserId(event.target.value)} className="h-11 w-full rounded-md border border-gray-300 bg-white px-3"><option value="">{loading ? t("loading") : t("selectUser")}</option>{users.map((user) => <option key={user.id} value={user.id}>{userName(user)}</option>)}</select>{!loading && users.length === 0 && <p className="mt-1 text-sm text-gray-600">{t("noLecturerUsers")}</p>}</div>
+        <div className="sm:col-span-2"><Label htmlFor="lecturer-user">{t("staffUser")}</Label><select id="lecturer-user" value={userId} disabled={loading} onChange={(event) => setUserId(event.target.value)} className="h-11 w-full rounded-md border border-gray-300 bg-white px-3"><option value="">{loading ? t("loading") : t("selectUser")}</option>{users.map((user) => <option key={user.user_id} value={user.user_id}>{userName(user)}</option>)}</select>{!loading && users.length === 0 && <p className="mt-1 text-sm text-gray-600">{t("noLecturerUsers")}</p>}</div>
         <div><Label htmlFor="lecturer-staff-number">{t("staffNumber")}</Label><Input id="lecturer-staff-number" maxLength={32} value={staffNumber} onChange={(event) => setStaffNumber(event.target.value)} /></div>
         <div><Label htmlFor="lecturer-department">{t("department")}</Label><select id="lecturer-department" value={departmentId} onChange={(event) => setDepartmentId(event.target.value)} className="h-11 w-full rounded-md border border-gray-300 bg-white px-3"><option value="">{t("selectDepartment")}</option>{departments.filter((row) => row.is_active).map((row) => <option key={row.id} value={row.id}>{departmentName(row)}</option>)}</select></div>
         <div><Label htmlFor="lecturer-phone">{t("phone")}</Label><Input id="lecturer-phone" maxLength={32} value={phone} onChange={(event) => setPhone(event.target.value)} /></div>

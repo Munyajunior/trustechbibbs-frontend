@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import { useTranslations } from "next-intl";
 
 import { StaffContractLines } from "@/components/features/staff-contract-lines";
@@ -19,7 +19,9 @@ interface Props {
   /** null = a new contract being drafted. */
   contract: ContractDetail | null;
   terms: AcademicTerm[];
-  onChange: (contract: ContractDetail) => void;
+  onChange: (contract: ContractDetail, message?: string) => void;
+  /** Shown on mount, so a notice survives the remount that follows creating a contract. */
+  initialNotice?: string | null;
   onClose: () => void;
   token: string;
   locale: Locale;
@@ -33,7 +35,7 @@ const BADGE: Record<string, string> = {
 
 export const termLabel = (term: AcademicTerm | undefined, fallback: string) => term ? `${term.academic_year} · S${term.semester}` : fallback;
 
-export function StaffContractEditor({ lecturer, contract, terms, onChange, onClose, token, locale }: Props) {
+export function StaffContractEditor({ lecturer, contract, terms, onChange, initialNotice = null, onClose, token, locale }: Props) {
   const t = useTranslations("staffLecturers");
   const [termId, setTermId] = useState(contract?.term_id ?? "");
   const [number, setNumber] = useState(contract?.contract_number ?? "");
@@ -49,7 +51,9 @@ export function StaffContractEditor({ lecturer, contract, terms, onChange, onClo
   const [reasonError, setReasonError] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [notice, setNotice] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(initialNotice);
+  const reasonRef = useRef<HTMLTextAreaElement>(null);
+  const voidButtonRef = useRef<HTMLButtonElement>(null);
   const status = contract?.status ?? "DRAFT";
   const editable = status === "DRAFT";
   const term = terms.find((row) => row.id === (contract?.term_id ?? termId));
@@ -58,7 +62,7 @@ export function StaffContractEditor({ lecturer, contract, terms, onChange, onClo
     setBusy(true); setError(null); setNotice(null);
     try {
       const next = await action();
-      onChange({ ...next, lines: next.lines ?? contract?.lines ?? [] });
+      onChange({ ...next, lines: next.lines ?? contract?.lines ?? [] }, message);
       setNotice(message);
       return true;
     } catch (caught) {
@@ -103,6 +107,11 @@ export function StaffContractEditor({ lecturer, contract, terms, onChange, onClo
     setReasonError(false);
     if (await run(() => voidContract(contract.id, trimmed, token, locale), t("contractVoided"))) { setVoiding(false); setReason(""); }
   }
+
+  useEffect(() => { if (voiding) reasonRef.current?.focus(); }, [voiding]);
+
+  const dismissVoid = () => { setVoiding(false); setReason(""); setReasonError(false); voidButtonRef.current?.focus(); };
+  const onVoidKeyDown = (event: KeyboardEvent<HTMLDivElement>) => { if (event.key === "Escape") { event.stopPropagation(); dismissVoid(); } };
 
   const refresh = async () => { if (contract) onChange(await getContract(contract.id, token, locale)); };
 
@@ -149,15 +158,15 @@ export function StaffContractEditor({ lecturer, contract, terms, onChange, onClo
     {contract && (status === "DRAFT" || status === "ACTIVE") && <div className="mt-6 flex flex-wrap gap-3 border-t border-gray-100 pt-4">
       {status === "DRAFT" && <Button type="button" disabled={busy} onClick={() => void run(() => activateContract(contract.id, token, locale), t("contractActivated"))}>{t("activate")}</Button>}
       {status === "ACTIVE" && <Button type="button" variant="outline" disabled={busy} onClick={() => void run(() => closeContract(contract.id, token, locale), t("contractClosed"))}>{t("closeContract")}</Button>}
-      <Button type="button" variant="outline" disabled={busy} onClick={() => { setVoiding(true); setReasonError(false); }}>{t("void")}</Button>
+      <Button ref={voidButtonRef} type="button" variant="outline" disabled={busy} onClick={() => { setVoiding(true); setReasonError(false); }}>{t("void")}</Button>
     </div>}
 
-    {contract && voiding && <div role="dialog" aria-modal="true" aria-labelledby="void-title" className="mt-4 rounded-xl border border-error bg-error-light/40 p-4">
+    {contract && voiding && <div role="dialog" aria-labelledby="void-title" onKeyDown={onVoidKeyDown} className="mt-4 rounded-xl border border-error bg-error-light/40 p-4">
       <h4 id="void-title" className="font-semibold">{t("voidTitle")}</h4>
       <p className="mt-1 text-sm text-gray-700">{t("voidIntro")}</p>
-      <div className="mt-3"><Label htmlFor="void-reason">{t("voidReasonLabel")}</Label><Textarea id="void-reason" rows={3} maxLength={1000} value={reason} invalid={reasonError} aria-describedby={reasonError ? "void-reason-error" : undefined} onChange={(event) => setReason(event.target.value)} /></div>
+      <div className="mt-3"><Label htmlFor="void-reason">{t("voidReasonLabel")}</Label><Textarea ref={reasonRef} id="void-reason" rows={3} maxLength={1000} value={reason} invalid={reasonError} aria-describedby={reasonError ? "void-reason-error" : undefined} onChange={(event) => setReason(event.target.value)} /></div>
       {reasonError && <p id="void-reason-error" role="alert" className="mt-2 text-sm text-error">{t("voidReasonRequired", { min: MIN_REASON })}</p>}
-      <div className="mt-3 flex gap-3"><Button type="button" disabled={busy} onClick={() => void confirmVoid()}>{t("confirmVoid")}</Button><Button type="button" variant="outline" disabled={busy} onClick={() => { setVoiding(false); setReason(""); setReasonError(false); }}>{t("cancel")}</Button></div>
+      <div className="mt-3 flex gap-3"><Button type="button" disabled={busy} onClick={() => void confirmVoid()}>{t("confirmVoid")}</Button><Button type="button" variant="outline" disabled={busy} onClick={dismissVoid}>{t("cancel")}</Button></div>
     </div>}
   </section>;
 }

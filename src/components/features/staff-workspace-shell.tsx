@@ -12,6 +12,7 @@ import { BrandMark } from "@/components/layout/brand-mark";
 import { StaffPasswordChange } from "@/components/features/staff-password-change";
 import { Link, usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/lib/api/types";
+import { hasStaffWorkspaceRole } from "@/lib/staff-roles";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/stores/auth-store";
 
@@ -67,7 +68,7 @@ export function StaffWorkspaceShell({ children }: { children: ReactNode }) {
   const user = useAuthStore((state) => state.user);
   const roles = user?.roles ?? [];
   const navLabel = (key: string) => (FINANCE_KEYS.includes(key) ? tf(`nav.${key}`) : t(`nav.${key}`));
-  const authorized = !!token && roles.some((role) => ["editor", "registrar", "department_head", "accountant", "finance_director", "discipline_master", "admin", "super_admin"].includes(role));
+  const authorized = !!token && hasStaffWorkspaceRole(roles);
   const currentItem = groups.flatMap((group) => group.items).find((item) =>
     (pathname === item.href || (item.href !== "/staff" && pathname.startsWith(`${item.href}/`))) &&
     item.roles.some((role) => roles.includes(role)),
