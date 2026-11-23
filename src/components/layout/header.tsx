@@ -14,6 +14,7 @@ import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { logoutSession } from "@/lib/api/auth";
 import { ApiError } from "@/lib/api/client";
 import type { Locale } from "@/lib/api/types";
+import { hasStaffWorkspaceRole } from "@/lib/staff-roles";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/stores/auth-store";
 
@@ -45,7 +46,7 @@ export function Header({ labels }: { labels: HeaderLabels }) {
     ? "/login"
     : user.roles.includes("student")
       ? "/student"
-      : user.roles.some((role) => ["registrar", "admin", "super_admin", "department_head", "editor"].includes(role))
+      : hasStaffWorkspaceRole(user.roles)
         ? "/staff"
         : "/admissions/status";
   const accountLabel = token && user ? tc("myAccount") : tc("signIn");

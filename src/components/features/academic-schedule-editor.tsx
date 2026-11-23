@@ -6,12 +6,17 @@ import { useTranslations } from "next-intl";
 import { Container } from "@/components/shared/container";
 import { Button } from "@/components/ui/button";
 import { Input, Label } from "@/components/ui/input";
+import { ScheduleClassroomsPanel } from "@/components/features/schedule-classrooms-panel";
+import { ScheduleMeetingForm } from "@/components/features/schedule-meeting-form";
+import { ScheduleNonTeachingDaysPanel } from "@/components/features/schedule-non-teaching-days-panel";
+import { ScheduleReadinessCard } from "@/components/features/schedule-readiness-card";
 import { Link } from "@/i18n/navigation";
-import { listAllCourses, type Course } from "@/lib/api/academic-catalogue";
+import { listAllCourses, listDepartments, listSchools, type Course, type Department, type School } from "@/lib/api/academic-catalogue";
 import {
-  addMeeting, createSection, createTerm, listMeetings, listSections, listTerms,
+  addMeeting, createSection, createTerm, listCampuses, listClassrooms, listMeetings, listSections, listTerms,
   removeMeeting, updateSection, updateTerm,
-  type AcademicTerm, type CourseSection, type SectionMeeting, type TermInput,
+  type AcademicTerm, type Campus, type Classroom, type CourseSection, type MeetingInput,
+  type SectionMeeting, type TermInput,
 } from "@/lib/api/academic-schedule";
 import { ApiError } from "@/lib/api/client";
 import type { Locale } from "@/lib/api/types";
@@ -33,6 +38,11 @@ export function AcademicScheduleEditor({ locale }: { locale: Locale }) {
   const [courses, setCourses] = useState<Course[]>([]);
   const [sections, setSections] = useState<CourseSection[]>([]);
   const [meetings, setMeetings] = useState<SectionMeeting[]>([]);
+  const [campuses, setCampuses] = useState<Campus[]>([]);
+  const [schools, setSchools] = useState<School[]>([]);
+  const [departments, setDepartments] = useState<Department[]>([]);
+  const [classrooms, setClassrooms] = useState<Classroom[]>([]);
+  const [readinessKey, setReadinessKey] = useState(0);
   const [termId, setTermId] = useState("");
   const [sectionId, setSectionId] = useState("");
   const [editingTerm, setEditingTerm] = useState<AcademicTerm | null>(null);
@@ -46,8 +56,15 @@ export function AcademicScheduleEditor({ locale }: { locale: Locale }) {
   useEffect(() => {
     if (!token || !authorized) return;
     let active = true;
-    Promise.all([listTerms(token, locale), listAllCourses(token, locale)])
-      .then(([termRows, courseRows]) => { if (active) { setTerms(termRows); setCourses(courseRows); } })
+    Promise.all([
+      listTerms(token, locale), listAllCourses(token, locale), listCampuses(token, locale),
+      listSchools(token, locale), listDepartments(token, locale), listClassrooms({ include_inactive: true }, token, locale),
+    ])
+      .then(([termRows, courseRows, campusRows, schoolRows, departmentRows, classroomRows]) => {
+        if (!active) return;
+        setTerms(termRows); setCourses(courseRows); setCampuses(campusRows);
+        setSchools(schoolRows); setDepartments(departmentRows); setClassrooms(classroomRows);
+      })
       .catch((caught) => { if (active) setError(caught instanceof ApiError ? caught.localizedMessage(locale) : t("loadError")); })
       .finally(() => { if (active) setLoading(false); });
     return () => { active = false; };
@@ -75,6 +92,18 @@ export function AcademicScheduleEditor({ locale }: { locale: Locale }) {
     const course = courses.find((row) => row.id === id);
     return course ? `${course.course_code} · ${locale === "fr" ? course.name_fr || course.name_en : course.name_en}` : id;
   };
+  const refreshReadiness = () => setReadinessKey((value) => value + 1);
+  const classroomLabel = (id: string | null) => {
+    const room = classrooms.find((row) => row.id === id);
+    return room ? `${room.code} (${room.name})` : null;
+  };
+  // section -> course -> department -> school -> campus
+  const sectionCampusId = (section: CourseSection | undefined) => {
+    const course = courses.find((row) => row.id === section?.course_id);
+    const department = departments.find((row) => row.id === course?.department_id);
+    return schools.find((row) => row.id === department?.school_id)?.campus_id ?? null;
+  };
+  const meetingCampusId = sectionCampusId(selectedSection);
   const fail = (caught: unknown) => setError(caught instanceof ApiError ? caught.localizedMessage(locale) : t("saveError"));
 
   async function saveTerm(event: FormEvent<HTMLFormElement>) {
@@ -129,6 +158,7 @@ export function AcademicScheduleEditor({ locale }: { locale: Locale }) {
         is_published: false,
       }, token, locale);
       setSections((current) => [...current, saved]); setSectionId(saved.id); setMeetings([]); form.reset();
+      refreshReadiness();
       setNotice(t("sectionSaved"));
     } catch (caught) { fail(caught); } finally { setBusy(false); }
   }
@@ -143,19 +173,12 @@ export function AcademicScheduleEditor({ locale }: { locale: Locale }) {
     } catch (caught) { fail(caught); } finally { setBusy(false); }
   }
 
-  async function saveMeeting(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function addMeetingRow(input: MeetingInput) {
     if (!token || !sectionId) return;
-    const form = event.currentTarget;
-    const data = new FormData(form);
-    setBusy(true); setError(null); setNotice(null);
-    try {
-      const saved = await addMeeting(sectionId, {
-        day_of_week: Number(data.get("day_of_week")), starts_at: field(data, "starts_at"),
-        ends_at: field(data, "ends_at"), venue_name: field(data, "venue_name") || null,
-      }, token, locale);
-      setMeetings((current) => [...current, saved]); form.reset(); setNotice(t("meetingSaved"));
-    } catch (caught) { fail(caught); } finally { setBusy(false); }
+    setError(null); setNotice(null);
+    const saved = await addMeeting(sectionId, input, token, locale);
+    setMeetings((current) => [...current, saved]); setNotice(t("meetingSaved"));
+    refreshReadiness();
   }
 
   async function deleteMeeting(meetingId: string) {
@@ -164,7 +187,7 @@ export function AcademicScheduleEditor({ locale }: { locale: Locale }) {
     try {
       await removeMeeting(sectionId, meetingId, token, locale);
       setMeetings((current) => current.filter((row) => row.id !== meetingId));
-      setNotice(t("meetingRemoved"));
+      setNotice(t("meetingRemoved")); refreshReadiness();
     } catch (caught) { fail(caught); } finally { setBusy(false); }
   }
 
@@ -190,10 +213,13 @@ export function AcademicScheduleEditor({ locale }: { locale: Locale }) {
         </form><p className="mt-3 text-xs text-gray-600">{t("timezoneNote")}</p>
       </section>
       <section className="rounded-2xl border border-gray-200 bg-white p-5"><h2 className="font-display text-xl font-semibold">{t("terms")}</h2>{terms.length === 0 ? <p className="mt-3 text-gray-600">{t("noTerms")}</p> : <ul className="mt-3 divide-y divide-gray-100">{terms.map((term) => <li key={term.id} className="flex flex-wrap items-center justify-between gap-3 py-3"><div><p className="font-semibold">{term.academic_year} · {t("semester")} {term.semester}</p><p className="text-sm text-gray-600">{t(term.is_published ? "published" : "draft")} · {t("creditRange", { min: term.min_credits, max: term.max_credits })}</p></div><div className="flex gap-2"><Button type="button" variant="outline" onClick={() => { setTermId(term.id); setSections([]); setSectionId(""); setMeetings([]); }}>{t("open")}</Button><Button type="button" variant="outline" onClick={() => setEditingTerm(term)}>{t("edit")}</Button><Button type="button" variant="ghost" disabled={busy} onClick={() => void toggleTerm(term)}>{t(term.is_published ? "unpublish" : "publish")}</Button></div></li>)}</ul>}</section>
+      {token && <ScheduleClassroomsPanel campuses={campuses} classrooms={classrooms} onChange={setClassrooms} token={token} locale={locale} />}
+      {selectedTerm && token && <ScheduleReadinessCard key={`readiness-${selectedTerm.id}`} termId={selectedTerm.id} token={token} locale={locale} refreshKey={readinessKey} />}
+      {selectedTerm && token && <ScheduleNonTeachingDaysPanel key={`days-${selectedTerm.id}`} term={selectedTerm} campuses={campuses} token={token} locale={locale} />}
       {selectedTerm && <section className="rounded-2xl border border-gray-200 bg-white p-5"><h2 className="font-display text-xl font-semibold">{t("sectionsTitle", { year: selectedTerm.academic_year, semester: selectedTerm.semester })}</h2><form onSubmit={(event) => void saveSection(event)} className="mt-4 grid gap-4 md:grid-cols-3 lg:grid-cols-6"><div className="lg:col-span-2"><Label htmlFor="section-course">{t("course")}</Label><select id="section-course" name="course_id" required className="h-11 w-full rounded-md border border-gray-300 bg-white px-3"><option value="">{t("selectCourse")}</option>{courses.filter((course) => course.status === "ACTIVE").map((course) => <option key={course.id} value={course.id}>{courseName(course.id)}</option>)}</select></div><div><Label htmlFor="section-code">{t("sectionCode")}</Label><Input id="section-code" name="code" required maxLength={20} placeholder="A" /></div><div><Label htmlFor="section-capacity">{t("capacity")}</Label><Input id="section-capacity" name="capacity" type="number" min={1} max={1000} required defaultValue={30} /></div><div><Label htmlFor="section-lecturer">{t("lecturer")}</Label><Input id="section-lecturer" name="lecturer_name" /></div><div><Label htmlFor="section-mode">{t("mode")}</Label><select id="section-mode" name="delivery_mode" className="h-11 w-full rounded-md border border-gray-300 bg-white px-3"><option value="ON_CAMPUS">{t("modes.ON_CAMPUS")}</option><option value="ONLINE">{t("modes.ONLINE")}</option><option value="HYBRID">{t("modes.HYBRID")}</option></select></div><Button type="submit" disabled={busy} className="md:col-span-3 lg:col-span-6">{t("addSection")}</Button></form>
         {sections.length === 0 ? <p className="mt-5 text-gray-600">{t("noSections")}</p> : <ul className="mt-5 divide-y divide-gray-100">{sections.map((section) => <li key={section.id} className="flex flex-wrap items-center justify-between gap-3 py-3"><div><p className="font-semibold">{courseName(section.course_id)} · {section.code}</p><p className="text-sm text-gray-600">{t("capacityCount", { count: section.capacity })} · {t(section.is_published ? "published" : "draft")}</p></div><div className="flex gap-2"><Button type="button" variant="outline" onClick={() => { setSectionId(section.id); setMeetings([]); }}>{t("meetings")}</Button><Button type="button" variant="ghost" disabled={busy} onClick={() => void toggleSection(section)}>{t(section.is_published ? "unpublish" : "publish")}</Button></div></li>)}</ul>}
       </section>}
-      {selectedSection && <section className="rounded-2xl border border-gray-200 bg-white p-5"><h2 className="font-display text-xl font-semibold">{t("meetingTitle", { section: selectedSection.code })}</h2><form onSubmit={(event) => void saveMeeting(event)} className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:items-end"><div><Label htmlFor="meeting-day">{t("day")}</Label><select id="meeting-day" name="day_of_week" className="h-11 w-full rounded-md border border-gray-300 bg-white px-3">{[1, 2, 3, 4, 5, 6, 7].map((day) => <option key={day} value={day}>{t(`days.${day}`)}</option>)}</select></div><div><Label htmlFor="meeting-start">{t("startTime")}</Label><Input id="meeting-start" name="starts_at" type="time" required /></div><div><Label htmlFor="meeting-end">{t("endTime")}</Label><Input id="meeting-end" name="ends_at" type="time" required /></div><div><Label htmlFor="meeting-venue">{t("venue")}</Label><Input id="meeting-venue" name="venue_name" /></div><Button type="submit" disabled={busy}>{t("addMeeting")}</Button></form>{meetings.length === 0 ? <p className="mt-4 text-gray-600">{t("noMeetings")}</p> : <ul className="mt-4 divide-y divide-gray-100">{meetings.map((meeting) => <li key={meeting.id} className="flex items-center justify-between gap-3 py-3"><span>{t(`days.${meeting.day_of_week}`)} · {meeting.starts_at.slice(0, 5)}–{meeting.ends_at.slice(0, 5)}{meeting.venue_name ? ` · ${meeting.venue_name}` : ""}</span><Button type="button" variant="outline" disabled={busy} onClick={() => void deleteMeeting(meeting.id)}>{t("remove")}</Button></li>)}</ul>}</section>}
+      {selectedSection && <section className="rounded-2xl border border-gray-200 bg-white p-5"><h2 className="font-display text-xl font-semibold">{t("meetingTitle", { section: selectedSection.code })}</h2><div className="mt-4"><ScheduleMeetingForm key={selectedSection.id} campusId={meetingCampusId} campuses={campuses} classrooms={classrooms} locale={locale} busy={busy} onAdd={addMeetingRow} /></div>{meetings.length === 0 ? <p className="mt-4 text-gray-600">{t("noMeetings")}</p> : <ul className="mt-4 divide-y divide-gray-100">{meetings.map((meeting) => <li key={meeting.id} className="flex items-center justify-between gap-3 py-3"><span>{t(`days.${meeting.day_of_week}`)} · {meeting.starts_at.slice(0, 5)}–{meeting.ends_at.slice(0, 5)}{" · "}{t(`sessionTypes.${meeting.session_type}`)}{" · "}{classroomLabel(meeting.classroom_id) ?? meeting.venue_name ?? t("noClassroom")}</span><Button type="button" variant="outline" disabled={busy} onClick={() => void deleteMeeting(meeting.id)}>{t("remove")}</Button></li>)}</ul>}</section>}
     </>}
   </div></Container>;
 }

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import {
   BarChart3, BookOpen, CalendarDays, ClipboardList, FileCheck2, FileText, GraduationCap,
-  Banknote, Image, Images, Inbox, LayoutDashboard, Menu, Megaphone, Receipt, Search, ShieldCheck, Users, X,
+  Banknote, Image, Images, Inbox, LayoutDashboard, Menu, Megaphone, Receipt, Search, ShieldCheck, UserCog, Users, X,
   type LucideIcon,
 } from "lucide-react";
 
@@ -12,10 +12,11 @@ import { BrandMark } from "@/components/layout/brand-mark";
 import { StaffPasswordChange } from "@/components/features/staff-password-change";
 import { Link, usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/lib/api/types";
+import { hasStaffWorkspaceRole } from "@/lib/staff-roles";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/stores/auth-store";
 
-type StaffRole = "editor" | "registrar" | "department_head" | "admin" | "super_admin";
+type StaffRole = "editor" | "registrar" | "department_head" | "lecturer" | "discipline_master" | "accountant" | "finance_director" | "admin" | "super_admin";
 type NavItem = { href: string; key: string; icon: LucideIcon; roles: StaffRole[] };
 
 const A: StaffRole[] = ["admin", "super_admin"];
@@ -23,14 +24,16 @@ const R: StaffRole[] = ["registrar", ...A];
 const E: StaffRole[] = ["editor", ...A];
 const C: StaffRole[] = ["registrar", "department_head", ...A];
 const P: StaffRole[] = ["editor", "registrar", ...A];
+const L: StaffRole[] = ["accountant", "finance_director", "department_head", ...A];
 const groups: { key: string; items: NavItem[] }[] = [
-  { key: "overview", items: [{ href: "/staff", key: "dashboard", icon: LayoutDashboard, roles: ["editor", "registrar", "department_head", ...A] }] },
+  { key: "overview", items: [{ href: "/staff", key: "dashboard", icon: LayoutDashboard, roles: ["editor", "registrar", "department_head", "accountant", "finance_director", "discipline_master", ...A] }] },
   { key: "operations", items: [
     { href: "/staff/admissions", key: "admissions", icon: ClipboardList, roles: R },
     { href: "/staff/enquiries", key: "enquiries", icon: Inbox, roles: R },
     { href: "/staff/programs", key: "programs", icon: GraduationCap, roles: P },
     { href: "/staff/courses", key: "courses", icon: BookOpen, roles: C },
     { href: "/staff/scheduling", key: "scheduling", icon: CalendarDays, roles: R },
+    { href: "/staff/lecturers", key: "lecturers", icon: UserCog, roles: L },
     { href: "/staff/grades", key: "grades", icon: BarChart3, roles: R },
     { href: "/staff/students", key: "students", icon: Users, roles: R },
     { href: "/staff/transcripts", key: "transcripts", icon: FileCheck2, roles: R },
@@ -65,7 +68,7 @@ export function StaffWorkspaceShell({ children }: { children: ReactNode }) {
   const user = useAuthStore((state) => state.user);
   const roles = user?.roles ?? [];
   const navLabel = (key: string) => (FINANCE_KEYS.includes(key) ? tf(`nav.${key}`) : t(`nav.${key}`));
-  const authorized = !!token && roles.some((role) => ["editor", "registrar", "department_head", "admin", "super_admin"].includes(role));
+  const authorized = !!token && hasStaffWorkspaceRole(roles);
   const currentItem = groups.flatMap((group) => group.items).find((item) =>
     (pathname === item.href || (item.href !== "/staff" && pathname.startsWith(`${item.href}/`))) &&
     item.roles.some((role) => roles.includes(role)),
