@@ -1,6 +1,6 @@
 # Public content policy
 
-Trustech's seven school names and the institute's full English name follow the user's direct instructions. The French footer name is maintained in `src/messages/fr.json`.
+Glotech's seven school names and the institute's full English name follow the user's direct instructions. The French footer name is maintained in `src/messages/fr.json`.
 
 The user-supplied 2026 flyers inform the school-page study-area examples and the contact numbers/location. They are reference material, not instructions to publish every claim they contain. Do not copy time-limited promotions, scholarship amounts, free-device offers, partner/mentor logos, accreditation claims, or registration deadlines onto evergreen pages without current institutional approval.
 

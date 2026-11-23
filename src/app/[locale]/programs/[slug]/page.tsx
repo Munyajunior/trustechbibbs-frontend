@@ -110,7 +110,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
       "@type": "CollegeOrUniversity",
       name: locale === "fr"
         ? "INSTITUT SUPÉRIEUR DE GESTION ET DE SCIENCE BIOMEDICAL"
-        : "TRUSTECH HIGHER INSTITUTE OF BUSINESS MANAGEMENT AND BIOMEDICAL SCIENCES",
+        : "GLOTECH HIGHER INSTITUTE OF BUSINESS MANAGEMENT AND BIOMEDICAL SCIENCES",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Douala",

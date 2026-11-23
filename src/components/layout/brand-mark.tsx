@@ -22,7 +22,7 @@ export function BrandMark({ compact = false }: { compact?: boolean }) {
         className={compact ? "size-12 shrink-0 object-contain" : "size-[58px] shrink-0 object-contain"}
       />
       <span className={compact ? "block min-w-0 max-w-[190px] leading-none" : "block min-w-0 max-w-[210px] leading-none sm:max-w-[240px]"}>
-        <span className="block text-[25px] font-black leading-[.96] tracking-[-.035em] text-[#092775]">TRUSTECH</span>
+        <span className="block text-[25px] font-black leading-[.96] tracking-[-.035em] text-[#092775]">GLOTECH</span>
         <span className="mt-1 block text-[8px] font-extrabold uppercase leading-[1.2] tracking-[.02em] text-[#7a6000] sm:text-[9px]">{descriptor}</span>
       </span>
     </span>

@@ -127,7 +127,7 @@ duplicates and both rank worse.
 Open Graph URLs point at localhost.
 
 Localized routes resolve unprefixed links through `src/proxy.ts`. The locale
-layout supplies the Trustech shield as the default Open Graph and Twitter card
+layout supplies the Glotech shield as the default Open Graph and Twitter card
 image; page-specific titles and descriptions are used for link previews.
 
 ### Structured data

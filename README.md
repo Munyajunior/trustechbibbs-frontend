@@ -1,6 +1,6 @@
 # THIBBS Frontend — Digital Campus Platform
 
-Next.js frontend for TRUSTECH HIGHER INSTITUTE OF BUSINESS MANAGEMENT AND
+Next.js frontend for GLOTECH HIGHER INSTITUTE OF BUSINESS MANAGEMENT AND
 BIOMEDICAL SCIENCES (internal project code: THIBBS) — the bilingual (EN/FR) public website
 and, in later phases, the student and staff portals.
 
@@ -25,7 +25,7 @@ Talks to the FastAPI backend in [`../trustechbibbs-backend`](../trustechbibbs-ba
 | Animation    | motion (Framer Motion)                    |
 | Testing      | Jest + React Testing Library              |
 
-Design system: **Trustech Design Language (TDL v1.0)** — see
+Design system: **Glotech Design Language (TDL v1.0)** — see
 [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md).
 
 ---

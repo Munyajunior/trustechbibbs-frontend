@@ -24,7 +24,7 @@ export default async function SitePagesIndex({ params }: PageProps) {
   let pages = [] as Awaited<ReturnType<typeof listPublicPages>>;
   try { pages = await listPublicPages(locale as Locale); } catch { /* Show the service message below. */ }
   return <div className="bg-[#f8faff] py-16 sm:py-24"><Container>
-    <p className="text-xs font-bold uppercase tracking-[.22em] text-[#a78200]">TRUSTECH / {t("eyebrow")}</p>
+    <p className="text-xs font-bold uppercase tracking-[.22em] text-[#a78200]">GLOTECH / {t("eyebrow")}</p>
     <h1 className="mt-4 max-w-3xl font-display text-4xl font-bold tracking-tight text-[#092775] sm:text-6xl">{t("title")}</h1>
     <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">{t("intro")}</p>
     {pages.length === 0 ? <p className="mt-12 rounded-2xl border border-slate-200 bg-white p-8 text-slate-600">{t("empty")}</p>

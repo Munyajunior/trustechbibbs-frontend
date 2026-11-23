@@ -48,7 +48,7 @@
   },
   "sitePages": {
     "eyebrow": "Pages de l’institut",
-    "title": "Explorez Trustech",
+    "title": "Explorez Glotech",
     "intro": "Consultez les informations publiées par l’institut, préparées par notre équipe en français et en anglais.",
     "empty": "Aucune page supplémentaire n’a encore été publiée. Découvrez nos écoles et nos programmes, ou contactez-nous.",
     "readMore": "Lire la page",
@@ -57,8 +57,8 @@
   "institutionalPages": {
     "exploreSchools": "Découvrir les sept écoles",
     "research": {
-      "meta": { "title": "Recherche et idées", "description": "Découvrez les échanges et demandes de projets de recherche au sein des sept écoles de Trustech." },
-      "eyebrow": "Recherche à Trustech", "title": "Des questions à explorer ensemble.",
+      "meta": { "title": "Recherche et idées", "description": "Découvrez les échanges et demandes de projets de recherche au sein des sept écoles de Glotech." },
+      "eyebrow": "Recherche à Glotech", "title": "Des questions à explorer ensemble.",
       "intro": "Les idées grandissent lorsque les disciplines se rencontrent. Échangez avec notre communauté académique sur vos centres d’intérêt, des projets étudiants et des questions concrètes.",
       "contactCta": "Parler d’une idée de recherche", "note": "Pour connaître les projets, publications ou possibilités de collaboration actuels, contactez directement l’institut.",
       "imageCaption": "La curiosité entre disciplines", "focusEyebrow": "Des idées qui se rencontrent", "focusTitle": "Tout commence par un échange.",
@@ -66,14 +66,14 @@
       "items": {
         "first": { "title": "Questions académiques", "body": "Présentez un sujet à l’école concernée et renseignez-vous sur ses domaines d’intérêt actuels." },
         "second": { "title": "Projets étudiants", "body": "Explorez comment réunir apprentissage, recherche et pratique autour d’un projet." },
-        "third": { "title": "Collaboration extérieure", "body": "Proposez un échange entre Trustech et votre organisation autour d’une question à étudier." }
+        "third": { "title": "Collaboration extérieure", "body": "Proposez un échange entre Glotech et votre organisation autour d’une question à étudier." }
       },
       "bottomEyebrow": "Engageons le dialogue", "bottomTitle": "Parlez-nous de votre question.",
       "bottomBody": "Précisez le sujet, l’école ou la discipline concernée et la collaboration que vous imaginez."
     },
     "careers": {
-      "meta": { "title": "Carrières", "description": "Contactez Trustech pour connaître les possibilités professionnelles et académiques actuelles." },
-      "eyebrow": "Travailler avec Trustech", "title": "Construisons la suite.",
+      "meta": { "title": "Carrières", "description": "Contactez Glotech pour connaître les possibilités professionnelles et académiques actuelles." },
+      "eyebrow": "Travailler avec Glotech", "title": "Construisons la suite.",
       "intro": "L’éducation repose sur des personnes aux compétences diverses. Si l’enseignement, l’accompagnement des étudiants, les opérations ou une collaboration spécialisée vous intéressent, renseignez-vous auprès de nous.",
       "contactCta": "Demander les possibilités", "note": "Les postes ouverts et les conditions de candidature sont confirmés directement par l’institut.",
       "imageCaption": "L’apprentissage est une aventure humaine", "focusEyebrow": "Contribuer à notre mission", "focusTitle": "Des compétences variées. Un objectif commun.",
@@ -84,27 +84,27 @@
         "third": { "title": "Expertise spécialisée", "body": "Expliquez comment votre expérience professionnelle pourrait contribuer à un domaine précis." }
       },
       "bottomEyebrow": "Votre prochain échange", "bottomTitle": "Vous souhaitez travailler avec nous ?",
-      "bottomBody": "Contactez Trustech pour connaître les postes actuels, les conditions et la procédure officielle de candidature."
+      "bottomBody": "Contactez Glotech pour connaître les postes actuels, les conditions et la procédure officielle de candidature."
     },
     "alumni": {
-      "meta": { "title": "Anciens étudiants", "description": "Restez en lien avec la communauté Trustech après vos études." },
-      "eyebrow": "La communauté Trustech", "title": "Votre parcours continue.",
-      "intro": "L’apprentissage ouvre des portes bien au-delà du campus. Si vous avez étudié à Trustech, racontez-nous votre parcours et la manière dont vous souhaitez garder le contact.",
+      "meta": { "title": "Anciens étudiants", "description": "Restez en lien avec la communauté Glotech après vos études." },
+      "eyebrow": "La communauté Glotech", "title": "Votre parcours continue.",
+      "intro": "L’apprentissage ouvre des portes bien au-delà du campus. Si vous avez étudié à Glotech, racontez-nous votre parcours et la manière dont vous souhaitez garder le contact.",
       "contactCta": "Rester en contact", "note": "Contactez l’institut pour connaître les activités actuelles des anciens étudiants et les possibilités de participation.",
       "imageCaption": "Des liens au-delà du campus", "focusEyebrow": "Gardons le lien", "focusTitle": "Une communauté, plusieurs parcours.",
       "focusIntro": "Les anciens étudiants peuvent rester proches de leur communauté académique de plusieurs façons. Demandez-nous quelles activités sont proposées actuellement.",
       "items": {
         "first": { "title": "Renouer le contact", "body": "Mettez vos coordonnées à jour et demandez comment recevoir les nouvelles et annonces d’événements." },
-        "second": { "title": "Partager votre parcours", "body": "Racontez votre chemin après Trustech et ce que vous aimeriez transmettre." },
+        "second": { "title": "Partager votre parcours", "body": "Racontez votre chemin après Glotech et ce que vous aimeriez transmettre." },
         "third": { "title": "Accompagner les étudiants", "body": "Échangez sur le mentorat, votre expérience du métier ou d’autres façons d’aider les étudiants." }
       },
       "bottomEyebrow": "Restons liés", "bottomTitle": "Donnez-nous de vos nouvelles.",
-      "bottomBody": "Contactez l’institut pour connaître les activités des anciens ou partager un souvenir de votre passage à Trustech."
+      "bottomBody": "Contactez l’institut pour connaître les activités des anciens ou partager un souvenir de votre passage à Glotech."
     },
     "partnerships": {
-      "meta": { "title": "Partenariats", "description": "Explorez les collaborations académiques, professionnelles et communautaires avec Trustech." },
+      "meta": { "title": "Partenariats", "description": "Explorez les collaborations académiques, professionnelles et communautaires avec Glotech." },
       "eyebrow": "Agir ensemble", "title": "Le progrès se construit ensemble.",
-      "intro": "Nous accueillons les échanges avec les organisations engagées pour l’apprentissage et les résultats concrets. Présentez-nous votre projet et la manière dont une collaboration avec Trustech pourrait y contribuer.",
+      "intro": "Nous accueillons les échanges avec les organisations engagées pour l’apprentissage et les résultats concrets. Présentez-nous votre projet et la manière dont une collaboration avec Glotech pourrait y contribuer.",
       "contactCta": "Proposer un échange", "note": "Les partenariats sont discutés et confirmés directement avec l’institut ; cette page ne constitue pas un accord formel.",
       "imageCaption": "Des possibilités grâce aux liens", "focusEyebrow": "Des pistes à explorer", "focusTitle": "Différents partenaires. Des questions communes.",
       "focusIntro": "Commencez par le résultat que vous espérez créer. Notre équipe orientera votre demande vers l’école ou le service concerné.",
@@ -176,7 +176,7 @@
       "decision": { "title": "Recevez la décision", "body": "Suivez votre statut et les prochaines étapes." }
     },
     "stats": {
-      "title": "Trustech en bref",
+      "title": "Glotech en bref",
       "intake": "Communauté académique",
       "schools": "Écoles académiques",
       "programs": "Programmes académiques",
@@ -207,13 +207,13 @@
     }
   },
   "schoolsIndex": {
-    "meta": { "title": "Nos sept écoles", "description": "Découvrez les sept écoles de Trustech, de l’ingénierie et la santé au tourisme et aux sciences alimentaires." },
-    "eyebrow": "Étudier à Trustech",
+    "meta": { "title": "Nos sept écoles", "description": "Découvrez les sept écoles de Glotech, de l’ingénierie et la santé au tourisme et aux sciences alimentaires." },
+    "eyebrow": "Étudier à Glotech",
     "title": "Sept écoles. De multiples voies d’avenir.",
     "intro": "Chaque école offre une approche distincte de l’apprentissage. Trouvez le domaine qui vous intéresse, découvrez ses filières et renseignez-vous auprès des admissions sur les programmes actuels.",
     "listTitle": "Découvrir nos sept écoles",
     "explore": "Découvrir cette école",
-    "imageNote": "Les images des écoles sont illustratives et ne représentent pas un cours ou une installation particulière de Trustech.",
+    "imageNote": "Les images des écoles sont illustratives et ne représentent pas un cours ou une installation particulière de Glotech.",
     "nextEyebrow": "Parlons de votre projet",
     "nextTitle": "Besoin d’aide pour choisir votre voie ?",
     "nextBody": "Le service des admissions peut confirmer les programmes actuels, les conditions d’entrée, les modalités d’études et les frais de chaque école.",
@@ -288,7 +288,7 @@
     },
     "title": "Programmes académiques",
     "subtitle": "Explorez sept écoles tournées vers les compétences, les idées et les métiers qui comptent pour vous.",
-    "eyebrow": "Étudier à Trustech",
+    "eyebrow": "Étudier à Glotech",
     "exploreSchools": "Découvrir nos écoles",
     "admissionsCta": "Guide d’admission",
     "sevenSchools": "Sept écoles. Un avenir.",
@@ -350,13 +350,13 @@
   "about": {
     "meta": {
       "title": "À propos",
-      "description": "Découvrez la mission, les valeurs et les sept écoles de Trustech à Douala, au Cameroun."
+      "description": "Découvrez la mission, les valeurs et les sept écoles de Glotech à Douala, au Cameroun."
     },
-    "title": "À propos de Trustech",
+    "title": "À propos de Glotech",
     "subtitle": "Qui nous sommes et ce que nous défendons.",
     "eyebrow": "À propos de notre institut",
     "heroTitle": "Un savoir qui ouvre des voies.",
-    "heroIntro": "Trustech est un institut supérieur bilingue à Douala, réunissant sept écoles autour d’un même engagement : un apprentissage qui va au-delà de la salle de cours.",
+    "heroIntro": "Glotech est un institut supérieur bilingue à Douala, réunissant sept écoles autour d’un même engagement : un apprentissage qui va au-delà de la salle de cours.",
     "heroWord": "Apprendre. Devenir. Contribuer.",
     "schoolsCta": "Découvrir nos écoles",
     "contactCta": "Nous contacter",
@@ -366,7 +366,7 @@
     "historyBody": "L’INSTITUT SUPÉRIEUR DE GESTION ET DE SCIENCE BIOMEDICAL est établi à Douala, au Cameroun. Notre communauté académique bilingue réunit sept écoles couvrant des domaines professionnels, scientifiques, créatifs et techniques.",
     "identityBody": "Nous associons les études aux compétences pratiques pour aider chaque personne à découvrir ses forces et à contribuer dans le domaine de son choix.",
     "leadershipCta": "Découvrir notre direction",
-    "factsLabel": "Trustech en bref",
+    "factsLabel": "Glotech en bref",
     "factSchools": "écoles académiques",
     "factLanguages": "communauté d’apprentissage bilingue",
     "factLocation": "Cameroun",
@@ -388,17 +388,17 @@
     },
     "schoolsEyebrow": "Nos domaines d’études",
     "schoolsTitle": "Sept écoles. Une communauté.",
-    "schoolsIntro": "Découvrez les disciplines qui composent Trustech et trouvez la voie qui vous correspond.",
+    "schoolsIntro": "Découvrez les disciplines qui composent Glotech et trouvez la voie qui vous correspond.",
     "finalEyebrow": "Échangeons",
     "finalTitle": "Une conversation peut ouvrir la voie.",
     "finalBody": "Notre équipe répond à vos questions sur les études, les admissions et les informations institutionnelles actuelles."
   },
   "leadership": {
-    "meta": { "title": "Direction et gouvernance", "description": "Découvrez les profils publiés de la direction et l’organisation de l’Institut supérieur Trustech." },
-    "back": "À propos de Trustech", "eyebrow": "À propos de notre institut", "title": "Direction et gouvernance", "intro": "Découvrez les personnes dont les profils publiés guident les activités académiques et administratives de l’institut.",
+    "meta": { "title": "Direction et gouvernance", "description": "Découvrez les profils publiés de la direction et l’organisation de l’Institut supérieur Glotech." },
+    "back": "À propos de Glotech", "eyebrow": "À propos de notre institut", "title": "Direction et gouvernance", "intro": "Découvrez les personnes dont les profils publiés guident les activités académiques et administratives de l’institut.",
     "searchLabel": "Rechercher une personne ou une fonction", "searchPlaceholder": "Nom, fonction ou département", "departmentLabel": "Département", "allDepartments": "Tous les départements", "results": "Profils affichés : {count}", "noResults": "Aucun profil ne correspond à ces filtres.",
     "governanceTitle": "L’organisation de nos équipes", "governanceIntro": "Cette structure suit les profils de direction actuellement publiés.",
-    "emptyTitle": "Coordonnées de la direction", "emptyBody": "Pour obtenir les coordonnées actuelles de la direction et de la gouvernance, contactez directement l’institut.", "unavailableTitle": "Informations temporairement indisponibles", "unavailableBody": "Contactez l’institut pour obtenir les informations actuelles sur la direction.", "contactCta": "Contacter Trustech"
+    "emptyTitle": "Coordonnées de la direction", "emptyBody": "Pour obtenir les coordonnées actuelles de la direction et de la gouvernance, contactez directement l’institut.", "unavailableTitle": "Informations temporairement indisponibles", "unavailableBody": "Contactez l’institut pour obtenir les informations actuelles sur la direction.", "contactCta": "Contacter Glotech"
   },
   "leadershipEditor": {
     "meta": { "title": "Atelier de la direction" }, "eyebrow": "Gestion du contenu", "title": "Annuaire de la direction", "intro": "Créez des profils bilingues vérifiés, ajoutez les photos, organisez les liens hiérarchiques et publiez uniquement les informations approuvées.", "back": "Retour au studio de contenu", "access": "Connectez-vous avec un compte éditeur pour gérer les profils de direction.", "signIn": "Se connecter", "loadError": "Impossible de charger les profils de direction.", "saveError": "Impossible d’enregistrer cette modification.",
@@ -408,11 +408,11 @@
   "admissions": {
     "meta": {
       "title": "Admissions",
-      "description": "Comprenez le parcours d’admission et préparez votre candidature à Trustech."
+      "description": "Comprenez le parcours d’admission et préparez votre candidature à Glotech."
     },
     "title": "Admissions",
     "subtitle": "Un parcours clair, de la découverte de votre école au suivi de la décision concernant votre candidature.",
-    "eyebrow": "Votre parcours vers Trustech",
+    "eyebrow": "Votre parcours vers Glotech",
     "explorePrograms": "Découvrir les programmes",
     "heroNote": "Sept écoles. Un parcours clair pour candidater.",
     "heroCard": "Votre avenir, étape par étape",
@@ -479,7 +479,7 @@
     "serviceUnavailable": "Le service de comptes est indisponible. Veuillez réessayer dans quelques instants.",
     "unexpectedError": "Nous n’avons pas pu traiter cette demande. Veuillez réessayer.",
     "hasAccount": "Vous avez déjà un compte candidat ?",
-    "needsAccount": "Vous souhaitez candidater à Trustech ?",
+    "needsAccount": "Vous souhaitez candidater à Glotech ?",
     "loginLink": "Se connecter",
     "registerLink": "Créer un compte",
     "forgotPassword": "Mot de passe oublié ?",
@@ -499,20 +499,20 @@
       "reset": { "title": "Choisir un nouveau mot de passe", "intro": "Saisissez un mot de passe robuste pour votre compte.", "submit": "Enregistrer le mot de passe", "success": "Votre mot de passe a été modifié. Vous pouvez maintenant vous connecter." }
     },
     "login": {
-      "meta": { "title": "Connexion", "description": "Connectez-vous à votre compte Trustech." },
-      "title": "Connexion à Trustech",
+      "meta": { "title": "Connexion", "description": "Connectez-vous à votre compte Glotech." },
+      "title": "Connexion à Glotech",
       "subtitle": "Utilisez l’adresse e-mail et le mot de passe de votre compte.",
       "submit": "Se connecter"
     },
     "register": {
-      "meta": { "title": "Créer un compte candidat", "description": "Créez un compte candidat Trustech pour commencer à préparer votre candidature." },
+      "meta": { "title": "Créer un compte candidat", "description": "Créez un compte candidat Glotech pour commencer à préparer votre candidature." },
       "title": "Créez votre compte candidat",
       "subtitle": "Votre compte vous permet de préparer et de suivre votre candidature aux admissions.",
       "submit": "Créer un compte"
     }
   },
   "application": {
-    "meta": { "title": "Commencer la candidature", "description": "Commencez et enregistrez votre candidature aux admissions Trustech." },
+    "meta": { "title": "Commencer la candidature", "description": "Commencez et enregistrez votre candidature aux admissions Glotech." },
     "accountTitle": "Connectez-vous pour commencer votre candidature",
     "accountBody": "Créez un compte candidat ou connectez-vous pour commencer un brouillon de candidature et enregistrer votre progression.",
     "signIn": "Se connecter",
@@ -594,7 +594,7 @@
   },
   "student": {
     "dashboard": {
-      "meta": { "title": "Portail étudiant", "description": "Votre profil étudiant et vos services académiques Trustech." },
+      "meta": { "title": "Portail étudiant", "description": "Votre profil étudiant et vos services académiques Glotech." },
       "title": "Portail étudiant",
       "welcome": "Bon retour",
       "loading": "Chargement de votre dossier étudiant…",
@@ -609,7 +609,7 @@
       }
     },
     "profile": {
-      "meta": { "title": "Profil étudiant", "description": "Consultez et mettez à jour vos coordonnées étudiantes Trustech." },
+      "meta": { "title": "Profil étudiant", "description": "Consultez et mettez à jour vos coordonnées étudiantes Glotech." },
       "title": "Profil étudiant",
       "back": "Retour au portail étudiant",
       "accessTitle": "Connexion étudiante requise",
@@ -641,7 +641,7 @@
       "medicalConditions": "Informations médicales à communiquer à l’établissement"
     },
     "courses": {
-      "meta": { "title": "Mes cours", "description": "Consultez les cours prévus pour votre semestre actuel à Trustech." },
+      "meta": { "title": "Mes cours", "description": "Consultez les cours prévus pour votre semestre actuel à Glotech." },
       "back": "Retour au portail étudiant", "eyebrow": "Parcours académique", "title": "Mes cours", "intro": "Consultez les cours associés à votre programme et à votre niveau actuel.",
       "accessTitle": "Connexion étudiante requise", "accessBody": "Connectez-vous avec votre compte d’étudiant inscrit pour consulter vos cours.", "signIn": "Se connecter",
       "loading": "Chargement de vos cours…", "loadError": "Impossible de charger vos cours. Veuillez réessayer.",
@@ -658,7 +658,7 @@
       "days": { "1": "Lun", "2": "Mar", "3": "Mer", "4": "Jeu", "5": "Ven", "6": "Sam", "7": "Dim" }
     },
     "results": {
-      "meta": { "title": "Mes résultats", "description": "Consultez vos résultats académiques publiés par Trustech." },
+      "meta": { "title": "Mes résultats", "description": "Consultez vos résultats académiques publiés par Glotech." },
       "back": "Retour au portail étudiant", "eyebrow": "Dossier académique", "title": "Mes résultats", "intro": "Vos notes publiées et votre progression globale.",
       "accessTitle": "Connexion étudiante requise", "accessBody": "Connectez-vous avec votre compte d’étudiant inscrit pour voir vos résultats.", "signIn": "Se connecter",
       "loading": "Chargement des résultats publiés…", "loadError": "Impossible de charger vos résultats.", "empty": "Aucun résultat n’a encore été publié pour votre compte.",
@@ -679,7 +679,7 @@
     }
   },
   "tracker": {
-    "meta": { "title": "Statut de candidature", "description": "Consultez le statut et la chronologie de vos candidatures d’admission Trustech." },
+    "meta": { "title": "Statut de candidature", "description": "Consultez le statut et la chronologie de vos candidatures d’admission Glotech." },
     "accountTitle": "Connectez-vous pour consulter le statut de votre candidature",
     "accountBody": "Utilisez votre compte candidat pour consulter vos candidatures enregistrées et les mises à jour d’admission.",
     "signIn": "Se connecter",
@@ -873,7 +873,7 @@
     "page": "Page {page} sur {total}"
   },
   "enquiryInbox": {
-    "meta": { "title": "Demandes de contact", "description": "Consulter et gérer les messages du formulaire de contact de Trustech." },
+    "meta": { "title": "Demandes de contact", "description": "Consulter et gérer les messages du formulaire de contact de Glotech." },
     "accessTitle": "Accès du personnel requis",
     "accessBody": "Connectez-vous avec un compte de registraire ou d’administrateur autorisé pour consulter les demandes.",
     "eyebrow": "Espace du personnel",
@@ -903,15 +903,15 @@
   "news": {
     "meta": {
       "title": "Actualités",
-      "description": "Lisez les actualités officielles et les récits de l’Institut supérieur Trustech."
+      "description": "Lisez les actualités officielles et les récits de l’Institut supérieur Glotech."
     },
-    "eyebrow": "Le journal Trustech",
+    "eyebrow": "Le journal Glotech",
     "title": "Actualités et perspectives",
     "subtitle": "Informations officielles, idées et points de vue de notre communauté d’apprentissage.",
     "exploreCta": "Découvrir le journal",
     "heroCaption": "Des idées en mouvement",
     "listingEyebrow": "De notre communauté",
-    "listingTitle": "Les dernières nouvelles de Trustech",
+    "listingTitle": "Les dernières nouvelles de Glotech",
     "listingIntro": "Lisez les récits et annonces publiés par l’institut.",
     "searchLabel": "Rechercher des articles", "searchPlaceholder": "Rechercher par titre ou sujet", "categoryLabel": "Catégorie", "allCategories": "Toutes les catégories", "filterAction": "Rechercher", "clearFilters": "Effacer les filtres",
     "noResultsTitle": "Aucun article ne correspond à ces filtres.", "noResultsBody": "Essayez un autre sujet ou terme de recherche pour découvrir les actualités publiées.",
@@ -923,7 +923,7 @@
     "next": "Suivant",
     "pageNumber": "Page {page}",
     "emptyTitle": "Aucun article publié à afficher pour le moment.",
-    "emptyBody": "Pour les informations actuelles sur les études à Trustech, découvrez nos écoles ou contactez notre équipe.",
+    "emptyBody": "Pour les informations actuelles sur les études à Glotech, découvrez nos écoles ou contactez notre équipe.",
     "programsCta": "Découvrir nos écoles",
     "nextEyebrow": "Restons en lien",
     "nextTitle": "Découvrez ce qui se passe.",
@@ -936,9 +936,9 @@
   "events": {
     "meta": {
       "title": "Événements",
-      "description": "Consultez les dates et événements publiés par l’Institut supérieur Trustech."
+      "description": "Consultez les dates et événements publiés par l’Institut supérieur Glotech."
     },
-    "eyebrow": "Le calendrier Trustech",
+    "eyebrow": "Le calendrier Glotech",
     "title": "Événements et rencontres",
     "subtitle": "Retrouvez les dates publiées, les échanges et les occasions de rencontrer notre communauté.",
     "exploreCta": "Découvrir le calendrier",
@@ -957,8 +957,8 @@
     "pageNumber": "Page {page}",
     "emptyTitle": "Aucun événement n’est répertorié pour le moment.",
     "emptyBody": "Contactez notre équipe pour les informations actuelles sur les visites ou les admissions.",
-    "contactCta": "Contacter Trustech",
-    "nextEyebrow": "À travers Trustech",
+    "contactCta": "Contacter Glotech",
+    "nextEyebrow": "À travers Glotech",
     "nextTitle": "Bien plus que des dates dans un calendrier.",
     "nextBody": "Lisez nos récits et les informations officielles de la communauté d’apprentissage.",
     "newsCta": "Lire les actualités",
@@ -979,10 +979,10 @@
     "saveDraft": "Enregistrer le brouillon", "working": "En cours…", "publish": "Publier", "unpublish": "Dépublier", "live": "Publié", "draft": "Brouillon", "savedDraft": "Brouillon enregistré. Publiez-le lorsque les deux langues sont complètes.", "published": "Publication réussie.", "unpublished": "Retiré de la galerie publique.", "uploadReady": "Média téléversé. Enregistrez le brouillon pour l’utiliser.", "viewPublic": "Voir l’album public", "albumPublishHint": "La publication exige une couverture et des titres et descriptions complets en anglais et en français. Toute modification enregistrée remet l’album en brouillon.", "itemPublishHint": "La publication exige une légende en anglais et en français. Les photos et panoramas nécessitent aussi une description de l’image dans les deux langues."
   },
   "gallery": {
-    "meta": { "title": "Galerie", "description": "Découvrez les photos, vidéos et vues panoramiques publiées par l’Institut supérieur Trustech." },
-    "eyebrow": "La vie à Trustech", "title": "Découvrez notre communauté de plus près.", "intro": "Explorez les moments et les espaces partagés par notre équipe autour du campus, de l’apprentissage et des événements.",
-    "albumsEyebrow": "La collection", "albumsTitle": "Parcourir les albums", "albumsIntro": "Chaque collection est préparée et publiée par l’équipe Trustech.", "openAlbum": "Ouvrir l’album",
-    "emptyTitle": "Aucun album publié pour le moment.", "emptyBody": "Revenez découvrir les photos et vidéos de l’institut.", "unavailableTitle": "La galerie est temporairement indisponible.", "unavailableBody": "Nous ne pouvons pas charger les albums pour le moment. Veuillez réessayer plus tard.", "aboutCta": "À propos de Trustech",
+    "meta": { "title": "Galerie", "description": "Découvrez les photos, vidéos et vues panoramiques publiées par l’Institut supérieur Glotech." },
+    "eyebrow": "La vie à Glotech", "title": "Découvrez notre communauté de plus près.", "intro": "Explorez les moments et les espaces partagés par notre équipe autour du campus, de l’apprentissage et des événements.",
+    "albumsEyebrow": "La collection", "albumsTitle": "Parcourir les albums", "albumsIntro": "Chaque collection est préparée et publiée par l’équipe Glotech.", "openAlbum": "Ouvrir l’album",
+    "emptyTitle": "Aucun album publié pour le moment.", "emptyBody": "Revenez découvrir les photos et vidéos de l’institut.", "unavailableTitle": "La galerie est temporairement indisponible.", "unavailableBody": "Nous ne pouvons pas charger les albums pour le moment. Veuillez réessayer plus tard.", "aboutCta": "À propos de Glotech",
     "backToAlbums": "Retour à la galerie", "albumEyebrow": "Depuis la galerie", "momentsEyebrow": "Dans cet album", "momentsTitle": "Explorer la collection", "albumEmptyTitle": "Aucun média n’est encore publié dans cet album.", "albumEmptyBody": "Revenez consulter les mises à jour.",
     "viewItem": "Voir {title}", "viewerLabel": "Visionneuse de galerie", "share": "Partager", "copied": "Lien copié", "close": "Fermer la visionneuse", "previousItem": "Élément précédent", "nextItem": "Élément suivant", "panoramaLabel": "Panorama", "panoramaHint": "Faites glisser l’image ou utilisez les flèches pour regarder autour de vous. Faites défiler pour zoomer."
   },
@@ -993,7 +993,7 @@
     },
     "title": "Parlons de votre projet.",
     "subtitle": "Une question sur les programmes, les candidatures ou les dossiers académiques ? Dites-nous ce dont vous avez besoin pour orienter votre demande vers la bonne équipe.",
-    "eyebrow": "Contacter Trustech",
+    "eyebrow": "Contacter Glotech",
     "writeCta": "Nous écrire",
     "location": "Tradex, Logpom, Douala, Cameroun",
     "callUs": "Nous appeler",
@@ -1051,7 +1051,7 @@
     }
   },
   "programEditor": {
-    "meta": { "title": "Catalogue des programmes", "description": "Gérer les brouillons et la publication des programmes Trustech." },
+    "meta": { "title": "Catalogue des programmes", "description": "Gérer les brouillons et la publication des programmes Glotech." },
     "eyebrow": "Espace du personnel",
     "title": "Catalogue des programmes",
     "subtitle": "Vérifiez les informations bilingues avant de publier un programme sur le site et dans les candidatures en ligne.",
@@ -1093,7 +1093,7 @@
   },
   "courseEditor": {
     "meta": { "title": "Catalogue des cours", "description": "Gérer les départements, les cours et les cursus des programmes." },
-    "eyebrow": "Espace académique", "title": "Départements et cours", "subtitle": "Constituez le catalogue académique des sept écoles de Trustech et associez les cours aux programmes.",
+    "eyebrow": "Espace académique", "title": "Départements et cours", "subtitle": "Constituez le catalogue académique des sept écoles de Glotech et associez les cours aux programmes.",
     "programEditorLink": "Gérer les programmes", "schedulingLink": "Semestres et sections", "accessTitle": "Accès réservé au personnel", "accessBody": "Connectez-vous avec un compte du registraire, de chef de département ou d'administrateur.",
     "unavailable": "Le catalogue académique est indisponible pour le moment.", "unexpectedError": "Impossible d'enregistrer cette modification.",
     "departmentSaved": "Département créé.", "courseSaved": "Cours enregistré.", "programLinked": "Programme associé au département.", "curriculumSaved": "Cours ajouté au cursus.", "loading": "Chargement du catalogue académique…",
@@ -1110,7 +1110,7 @@
     "prerequisites": { "title": "Conditions pour {course}", "intro": "Ajoutez les prérequis et les cours à suivre en parallèle. Les dépendances circulaires sont refusées.", "loadError": "Impossible de charger les conditions du cours.", "saveError": "Impossible d'enregistrer la condition du cours.", "course": "Cours exigé", "selectCourse": "Choisir un cours", "minimumGrade": "Note minimale", "noMinimum": "Toute note de réussite", "corequisite": "Cours concomitant", "prerequisite": "Prérequis", "add": "Ajouter la condition", "remove": "Supprimer" }
   },
   "scheduleEditor": {
-    "meta": { "title": "Planification académique", "description": "Gérer les périodes d'inscription, les sections et les horaires hebdomadaires de Trustech." },
+    "meta": { "title": "Planification académique", "description": "Gérer les périodes d'inscription, les sections et les horaires hebdomadaires de Glotech." },
     "eyebrow": "Espace du registraire", "title": "Planification académique", "intro": "Définissez les périodes d'inscription et les limites de crédits, créez les sections et planifiez les horaires sans conflit.", "catalogueLink": "Retour au catalogue des cours", "gradebookLink": "Ouvrir le registre des notes",
     "accessTitle": "Accès réservé au registraire", "accessBody": "Connectez-vous avec un compte du registraire ou d'administrateur pour gérer les horaires.", "signIn": "Se connecter",
     "loading": "Chargement des horaires…", "loadError": "Impossible de charger la planification académique.", "saveError": "Impossible d'enregistrer cette modification.",
@@ -1120,12 +1120,12 @@
     "meetingTitle": "Horaires hebdomadaires · section {section}", "day": "Jour", "days": { "1": "Lundi", "2": "Mardi", "3": "Mercredi", "4": "Jeudi", "5": "Vendredi", "6": "Samedi", "7": "Dimanche" }, "startTime": "Début", "endTime": "Fin", "venue": "Salle", "addMeeting": "Ajouter l'horaire", "noMeetings": "Aucun horaire hebdomadaire.", "meetingSaved": "Horaire ajouté.", "meetingRemoved": "Horaire supprimé.", "remove": "Supprimer"
   },
   "staffDashboard": {
-    "meta": { "title": "Tableau de bord du personnel", "description": "Espace administratif et aperçu opérationnel de Trustech." },
-    "workspace": "Espace Trustech", "navigation": "Navigation du personnel", "searchNavigation": "Rechercher une section…", "navigationShortcut": "Ctrl/⌘ K pour rechercher une section", "noNavigationResults": "Aucune section correspondante dans votre espace.", "viewSite": "Voir le site public", "openMenu": "Ouvrir la navigation", "closeMenu": "Fermer la navigation",
+    "meta": { "title": "Tableau de bord du personnel", "description": "Espace administratif et aperçu opérationnel de Glotech." },
+    "workspace": "Espace Glotech", "navigation": "Navigation du personnel", "searchNavigation": "Rechercher une section…", "navigationShortcut": "Ctrl/⌘ K pour rechercher une section", "noNavigationResults": "Aucune section correspondante dans votre espace.", "viewSite": "Voir le site public", "openMenu": "Ouvrir la navigation", "closeMenu": "Fermer la navigation",
     "accessTitle": "Connexion du personnel requise", "accessBody": "Connectez-vous avec un compte du personnel autorisé pour accéder à l’espace administratif.", "signIn": "Se connecter",
     "groups": { "overview": "Vue d’ensemble", "operations": "Opérations académiques", "website": "Site et médias", "governance": "Gouvernance" },
     "nav": { "dashboard": "Tableau de bord", "admissions": "Admissions", "enquiries": "Demandes", "programs": "Programmes", "courses": "Catalogue des cours", "scheduling": "Planification", "grades": "Registre des notes", "transcripts": "Demandes de relevé", "students": "Recherche d'étudiants", "content": "Actualités et événements", "pages": "Pages de l’institut", "gallery": "Galerie", "media": "Médiathèque", "banners": "Bannières d’accueil", "leadership": "Direction", "users": "Comptes du personnel", "audit": "Journal d’audit" },
-    "eyebrow": "Vue administrative", "welcome": "Bon retour, {name}.", "colleague": "collègue", "intro": "Votre centre de pilotage des admissions, de l’enseignement et du site Trustech. Gardez une vue claire sur les priorités du jour.", "refresh": "Actualiser", "partialData": "Certaines données en direct n’ont pas pu être chargées. Réessayez ; les sections disponibles restent utilisables.", "partialStatus": "Certaines données indisponibles", "updatedAt": "Actualisé à {time}",
+    "eyebrow": "Vue administrative", "welcome": "Bon retour, {name}.", "colleague": "collègue", "intro": "Votre centre de pilotage des admissions, de l’enseignement et du site Glotech. Gardez une vue claire sur les priorités du jour.", "refresh": "Actualiser", "partialData": "Certaines données en direct n’ont pas pu être chargées. Réessayez ; les sections disponibles restent utilisables.", "partialStatus": "Certaines données indisponibles", "updatedAt": "Actualisé à {time}",
     "pulse": "Activité de l’institut", "atGlance": "En un coup d’œil", "liveData": "Données de l’espace en direct", "metrics": { "submitted": "Candidatures à examiner", "enquiries": "Nouvelles demandes", "students": "Étudiants actifs", "transcripts": "Nouvelles demandes de relevé", "programs": "Programmes au catalogue", "courses": "Cours au catalogue", "news": "Actualités enregistrées", "events": "Événements enregistrés" },
     "analytics": "Analyse en direct", "admissionsPipeline": "Parcours des candidatures", "studentsByProgram": "Étudiants par programme", "unassigned": "Non attribué", "noStudentData": "Aucun dossier d’étudiant actif n’est encore disponible.", "pipelineNote": "Nombre actuel de candidatures par statut ; il ne s’agit pas de taux de conversion.", "programNote": "Principaux programmes selon le nombre d’étudiants actifs.", "pipeline": { "SUBMITTED": "Soumises", "UNDER_REVIEW": "En examen", "SHORTLISTED": "Présélectionnées", "INTERVIEW": "Entretien", "ADMITTED": "Admis" },
     "websitePulse": "Gestion du site", "publicationOverview": "État des publications", "publicationNote": "Consultez les brouillons, les publications planifiées et les contenus en ligne. Ouvrez l’atelier pour les examiner et publier.", "publicationArchiveNote": "Les contenus archivés ne figurent pas dans ces états de publication actifs.", "publication": { "news": "Actualités", "events": "Événements", "draft": "Brouillons", "scheduled": "Planifiés", "published": "Publiés" },
@@ -1136,7 +1136,7 @@
     "eyebrow": "Protection du compte", "title": "Définissez votre propre mot de passe", "intro": "Votre compte a été créé par un administrateur. Remplacez le mot de passe initial avant d’accéder à l’espace du personnel.", "current": "Mot de passe initial", "new": "Nouveau mot de passe", "confirm": "Confirmer le nouveau mot de passe", "requirements": "Au moins 12 caractères, avec majuscules et minuscules, un chiffre et un symbole.", "mismatch": "Les nouveaux mots de passe ne correspondent pas.", "saveError": "Le mot de passe n’a pas pu être modifié. Veuillez réessayer.", "saving": "Enregistrement sécurisé…", "submit": "Changer le mot de passe et continuer", "privacy": "Votre nouveau mot de passe n’est jamais montré à l’administrateur. Gardez-le confidentiel."
   },
   "staffUsers": {
-    "meta": { "title": "Comptes du personnel", "description": "Gérer les accès et comptes du personnel Trustech." },
+    "meta": { "title": "Comptes du personnel", "description": "Gérer les accès et comptes du personnel Glotech." },
     "eyebrow": "Gouvernance",
     "title": "Comptes du personnel",
     "intro": "Retrouvez les comptes, attribuez les accès nécessaires et conservez la trace des modifications.",
@@ -1182,13 +1182,13 @@
     "saveError": "Impossible d'enregistrer la modification du compte."
   },
   "transcriptReview": {
-    "meta": { "title": "Examen des demandes de relevé", "description": "Examiner les demandes de relevé de notes des étudiants Trustech." },
+    "meta": { "title": "Examen des demandes de relevé", "description": "Examiner les demandes de relevé de notes des étudiants Glotech." },
     "eyebrow": "Espace du registraire", "title": "Demandes de relevé de notes", "intro": "Examinez les demandes des étudiants et consignez une décision. La génération et la vérification du document officiel constituent une étape distincte.", "approvalNote": "L’approbation autorise seulement la préparation. Ne présentez pas une demande comme un relevé délivré avant la génération effective d’un document signé et vérifiable.",
     "accessTitle": "Accès réservé au registraire", "accessBody": "Connectez-vous avec un compte de registraire ou d’administrateur.", "loading": "Chargement des demandes…", "loadError": "Impossible de charger les demandes de relevé.", "saveError": "Impossible d’enregistrer cette décision.", "saved": "Statut mis à jour.", "empty": "Aucune demande avec ce statut.", "filterLabel": "Filtrer les demandes par statut", "action": "Statut suivant", "decisionNote": "Note de décision", "reasonHint": "Obligatoire en cas de refus", "decision": "Note de décision", "save": "Enregistrer la décision", "saving": "Enregistrement…", "previous": "Précédent", "next": "Suivant", "page": "Page {page} sur {pages}", "copies": "{count, plural, one {# copie} other {# copies}}",
     "types": { "OFFICIAL": "Relevé officiel", "STUDENT_COPY": "Copie étudiant" }, "methods": { "PICKUP": "Retrait sur le campus", "EMAIL": "Courriel" }, "statuses": { "REQUESTED": "Demandé", "IN_REVIEW": "En examen", "APPROVED": "Approuvé pour préparation", "REJECTED": "Non approuvé", "CANCELLED": "Annulé" }
   },
   "gradebookEditor": {
-    "meta": { "title": "Registre des notes", "description": "Saisir, approuver et publier les résultats des cours Trustech." },
+    "meta": { "title": "Registre des notes", "description": "Saisir, approuver et publier les résultats des cours Glotech." },
     "eyebrow": "Dossiers académiques", "title": "Registre des notes", "intro": "Saisissez les notes, faites-les approuver par une autre personne, puis publiez-les.", "schedulingLink": "Retour à la planification académique",
     "accessTitle": "Accès réservé au personnel", "accessBody": "Connectez-vous avec un compte du registraire ou d’administrateur pour gérer les notes.", "signIn": "Se connecter", "loading": "Chargement des notes…", "loadError": "Impossible de charger le registre des notes.", "saveError": "Impossible d’enregistrer cette note.",
     "term": "Semestre académique", "selectTerm": "Choisir un semestre", "semester": "semestre", "course": "Cours", "selectCourse": "Choisir un cours", "enrollments": "Étudiants inscrits", "empty": "Aucun étudiant inscrit à ce cours pour ce semestre.",
@@ -1228,7 +1228,7 @@
     "working": "Traitement…", "save": "Enregistrer le brouillon", "publish": "Publier la bannière", "unpublish": "Dépublier la bannière", "saved": "Bannière enregistrée comme brouillon.", "published": "Bannière publiée.", "unpublished": "Bannière retirée de l’accueil."
   },
   "cmsEditor": {
-    "meta": { "title": "Studio de contenu", "description": "Gérer les actualités et événements Trustech." },
+    "meta": { "title": "Studio de contenu", "description": "Gérer les actualités et événements Glotech." },
     "eyebrow": "Espace du personnel",
     "title": "Studio de contenu",
     "subtitle": "Préparez, publiez et archivez les actualités et événements du site public.",
@@ -1274,35 +1274,35 @@
     "status": { "draft": "Brouillon", "scheduled": "Programmé", "published": "Publié", "archived": "Archivé" }
   },
   "privacy": {
-    "meta": { "title": "Politique de confidentialité", "description": "La manière dont Trustech traite les informations partagées via son site et ses services d’admission." },
+    "meta": { "title": "Politique de confidentialité", "description": "La manière dont Glotech traite les informations partagées via son site et ses services d’admission." },
     "title": "Politique de confidentialité",
-    "subtitle": "La manière dont nous traitons les informations partagées via les services numériques de Trustech.",
+    "subtitle": "La manière dont nous traitons les informations partagées via les services numériques de Glotech.",
     "sections": {
       "purpose": { "title": "Informations que nous recueillons", "body": "Nous recueillons les informations que vous choisissez de fournir via les services de contact et d’admission, notamment vos coordonnées, vos informations académiques et les documents justificatifs lorsqu’une candidature les exige." },
       "commitment": { "title": "Utilisation des informations", "body": "Les informations servent à répondre aux demandes, traiter les candidatures, fournir les services aux étudiants et respecter les obligations institutionnelles de conservation des dossiers. Nous ne les utilisons pas à d’autres fins." },
       "yourRole": { "title": "Protection des informations", "body": "L’accès est limité au personnel et aux prestataires autorisés qui ont besoin de ces informations pour fournir le service concerné. Nous utilisons des accès par rôle, des connexions sécurisées et des contrôles opérationnels." },
       "contact": { "title": "Vos choix", "body": "Vous pouvez demander des informations sur vos données personnelles, demander une correction ou signaler une préoccupation de confidentialité via notre page de contact. Certains dossiers peuvent devoir être conservés pendant une candidature active ou une obligation institutionnelle." }
     },
-    "reviewNote": "Cette politique sera révisée à mesure que les services et obligations légales de Trustech évoluent. Pour une demande de confidentialité,",
-    "contactLink": "contactez Trustech"
+    "reviewNote": "Cette politique sera révisée à mesure que les services et obligations légales de Glotech évoluent. Pour une demande de confidentialité,",
+    "contactLink": "contactez Glotech"
   },
   "terms": {
-    "meta": { "title": "Conditions d’utilisation", "description": "Les conditions applicables à l’utilisation du site et des services numériques de Trustech." },
+    "meta": { "title": "Conditions d’utilisation", "description": "Les conditions applicables à l’utilisation du site et des services numériques de Glotech." },
     "title": "Conditions d’utilisation",
-    "subtitle": "Les conditions de base pour utiliser les services numériques de Trustech.",
+    "subtitle": "Les conditions de base pour utiliser les services numériques de Glotech.",
     "sections": {
-      "purpose": { "title": "Utilisation du site", "body": "Vous pouvez utiliser ce site pour découvrir Trustech, explorer les programmes et accéder aux services numériques disponibles à des fins légales, personnelles ou institutionnelles." },
-      "commitment": { "title": "Informations exactes", "body": "Lorsque vous soumettez une demande ou une candidature, vous êtes responsable de fournir des informations complètes et exactes. Trustech peut vous contacter pour clarifier ou vérifier les informations fournies." },
+      "purpose": { "title": "Utilisation du site", "body": "Vous pouvez utiliser ce site pour découvrir Glotech, explorer les programmes et accéder aux services numériques disponibles à des fins légales, personnelles ou institutionnelles." },
+      "commitment": { "title": "Informations exactes", "body": "Lorsque vous soumettez une demande ou une candidature, vous êtes responsable de fournir des informations complètes et exactes. Glotech peut vous contacter pour clarifier ou vérifier les informations fournies." },
       "yourRole": { "title": "Accès responsable", "body": "Ne tentez pas de perturber le site, d’obtenir un accès non autorisé, de soumettre un contenu trompeur, ou d’utiliser le compte ou les informations personnelles d’une autre personne sans autorisation." },
-      "contact": { "title": "Modifications et questions", "body": "Trustech peut mettre à jour ces conditions à mesure que ses services évoluent. Si vous avez une question sur l’utilisation du site ou d’un service numérique, contactez l’institution avant de poursuivre." }
+      "contact": { "title": "Modifications et questions", "body": "Glotech peut mettre à jour ces conditions à mesure que ses services évoluent. Si vous avez une question sur l’utilisation du site ou d’un service numérique, contactez l’institution avant de poursuivre." }
     },
     "reviewNote": "Ces conditions évolueront avec la mise en service de nouveaux outils. Pour toute question,",
-    "contactLink": "contactez Trustech"
+    "contactLink": "contactez Glotech"
   },
   "accessibility": {
-    "meta": { "title": "Accessibilité", "description": "L’engagement de Trustech en faveur de services numériques accessibles." },
+    "meta": { "title": "Accessibilité", "description": "L’engagement de Glotech en faveur de services numériques accessibles." },
     "title": "Accessibilité",
-    "subtitle": "Notre engagement pour rendre les services numériques de Trustech utilisables par davantage de personnes.",
+    "subtitle": "Notre engagement pour rendre les services numériques de Glotech utilisables par davantage de personnes.",
     "sections": {
       "purpose": { "title": "Notre engagement", "body": "Nous cherchons à rendre le site et les futurs services aux étudiants utilisables au clavier, avec les lecteurs d’écran, une structure de contenu claire et des mises en page adaptées aux appareils courants." },
       "commitment": { "title": "Notre conception", "body": "Nous utilisons une structure sémantique, un focus clavier visible, un texte lisible, des pages adaptées à la langue et des couleurs offrant un contraste clair. Nous testons les pages publiques sur mobile comme sur ordinateur." },
@@ -1310,7 +1310,7 @@
       "contact": { "title": "Signaler un obstacle", "body": "Si une fonctionnalité est difficile à utiliser, indiquez-nous ce que vous tentiez de faire, l’appareil ou la technologie d’assistance utilisée, ainsi que la page concernée. Nous utiliserons ce retour pour améliorer le service." }
     },
     "reviewNote": "Vos retours sur l’accessibilité nous aident à améliorer le service. Pour signaler un obstacle,",
-    "contactLink": "contactez Trustech"
+    "contactLink": "contactez Glotech"
   },
   "footer": {
     "brand": "INSTITUT SUPÉRIEUR DE GESTION ET DE SCIENCE BIOMEDICAL",
@@ -1326,13 +1326,13 @@
     "rights": "© {year} Institut supérieur de gestion et de science biomedical. Tous droits réservés."
   },
   "notifications": {
-    "meta": { "title": "Notifications", "description": "Les notifications de votre compte Trustech." },
+    "meta": { "title": "Notifications", "description": "Les notifications de votre compte Glotech." },
     "bellLabel": "Notifications, {count} non lues",
     "eyebrow": "Votre compte",
     "title": "Notifications",
     "intro": "Les actualités de vos candidatures, études et demandes, au même endroit.",
     "signInTitle": "Connectez-vous pour voir les notifications",
-    "signInBody": "Ces actualités sont privées et liées à votre compte Trustech.",
+    "signInBody": "Ces actualités sont privées et liées à votre compte Glotech.",
     "signIn": "Se connecter",
     "all": "Toutes",
     "unread": "Non lues",
@@ -1434,7 +1434,7 @@
     "fees": {
       "meta": {
         "title": "Barème des frais",
-        "description": "Définir les frais d'inscription et de scolarité des programmes Trustech."
+        "description": "Définir les frais d'inscription et de scolarité des programmes Glotech."
       },
       "eyebrow": "Finances",
       "title": "Barème des frais",

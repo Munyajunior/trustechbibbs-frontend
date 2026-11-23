@@ -35,8 +35,8 @@ export function NotificationBell() {
         .catch(() => { if (active) setPreviewError(true); });
     };
     refresh();
-    window.addEventListener("trustech:notifications-updated", refresh);
-    return () => { active = false; window.removeEventListener("trustech:notifications-updated", refresh); };
+    window.addEventListener("glotech:notifications-updated", refresh);
+    return () => { active = false; window.removeEventListener("glotech:notifications-updated", refresh); };
   }, [token, userId, locale, pathname, open]);
 
   useEffect(() => {

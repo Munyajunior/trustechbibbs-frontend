@@ -57,7 +57,7 @@ export function NotificationCentre({ locale }: { locale: Locale }) {
     setBusy(id);
     try {
       await markNotificationRead(id, token, locale);
-      window.dispatchEvent(new Event("trustech:notifications-updated"));
+      window.dispatchEvent(new Event("glotech:notifications-updated"));
       setRefresh((value) => value + 1);
     } catch (caught) {
       setError(caught instanceof ApiError ? caught.localizedMessage(locale) : t("updateError"));
@@ -71,7 +71,7 @@ export function NotificationCentre({ locale }: { locale: Locale }) {
     setBusy(id);
     try {
       await markNotificationUnread(id, token, locale);
-      window.dispatchEvent(new Event("trustech:notifications-updated"));
+      window.dispatchEvent(new Event("glotech:notifications-updated"));
       setRefresh((value) => value + 1);
     } catch (caught) {
       setError(caught instanceof ApiError ? caught.localizedMessage(locale) : t("updateError"));
@@ -85,7 +85,7 @@ export function NotificationCentre({ locale }: { locale: Locale }) {
     setBusy("all");
     try {
       await markAllNotificationsRead(token, locale);
-      window.dispatchEvent(new Event("trustech:notifications-updated"));
+      window.dispatchEvent(new Event("glotech:notifications-updated"));
       setRefresh((value) => value + 1);
     } catch (caught) {
       setError(caught instanceof ApiError ? caught.localizedMessage(locale) : t("updateError"));

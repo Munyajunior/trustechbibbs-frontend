@@ -57,7 +57,7 @@ export async function InstitutionalLanding({
         </div>
         <div className="institutional-hero-image">
           <SiteImage src={`/site-media/${imageSlots[page]}`} priority className="object-cover" />
-          <div className="institutional-image-label"><span>TRUSTECH / {t(`${page}.eyebrow`)}</span><strong>{t(`${page}.imageCaption`)}</strong></div>
+          <div className="institutional-image-label"><span>GLOTECH / {t(`${page}.eyebrow`)}</span><strong>{t(`${page}.imageCaption`)}</strong></div>
         </div>
       </Container>
     </section>

@@ -1,6 +1,6 @@
 /** Editable image slots and their bundled fallback assets. */
 export const siteMediaFallbacks = {
-  logo: "/images/trustech-shield.webp",
+  logo: "/images/glotech-shield.webp",
   hero: "/images/hero-student.webp",
   "about-main": "/images/school-business-management.webp",
   "about-small": "/images/school-health.webp",
@@ -40,7 +40,7 @@ export const SITE_MEDIA_SMALL_WIDTH = 768;
 
 /** Bundled fallback for a slot, swapped for its 768px sibling when a small width is requested. */
 export function siteMediaFallbackFor(fallback: string, width: number): string {
-  return width > 0 && width <= SITE_MEDIA_SMALL_WIDTH && fallback.endsWith(".webp") && !fallback.includes("trustech-shield")
+  return width > 0 && width <= SITE_MEDIA_SMALL_WIDTH && fallback.endsWith(".webp") && !fallback.includes("glotech-shield")
     ? fallback.replace(/\.webp$/, `-${SITE_MEDIA_SMALL_WIDTH}.webp`)
     : fallback;
 }

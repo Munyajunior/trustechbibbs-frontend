@@ -35,7 +35,7 @@ export default async function SitePageDetail({ params }: PageProps) {
   return <div className="bg-[#fbfcff] pb-24">
     <header className="bg-[#0c276e] py-16 text-white sm:py-24"><Container>
       <Link href="/pages" className="inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white"><ArrowLeft aria-hidden="true" size={17} />{t("back")}</Link>
-      <p className="mt-10 text-xs font-bold uppercase tracking-[.22em] text-[#f2c947]">TRUSTECH / {t("eyebrow")}</p>
+      <p className="mt-10 text-xs font-bold uppercase tracking-[.22em] text-[#f2c947]">GLOTECH / {t("eyebrow")}</p>
       <h1 className="mt-5 max-w-4xl font-display text-4xl font-bold tracking-tight sm:text-6xl">{localizedField(page, "title", loc)}</h1>
       {localizedField(page, "summary", loc) && <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">{localizedField(page, "summary", loc)}</p>}
     </Container></header>

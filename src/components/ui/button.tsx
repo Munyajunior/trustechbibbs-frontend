@@ -4,7 +4,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * Button — Trustech Design Language.
+ * Button — Glotech Design Language.
  *
  * Sizes map to the spec's fixed heights (sm 36 / md 44 / lg 52 / xl 60). The
  * 44px default is also the minimum comfortable tap target on mobile.

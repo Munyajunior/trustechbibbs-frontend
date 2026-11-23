@@ -1,4 +1,4 @@
-# Trustech Design Language (TDL v1.0)
+# Glotech Design Language (TDL v1.0)
 
 The visual contract for every surface — public website, portals, dashboards.
 
@@ -14,7 +14,7 @@ Tailwind v4's `@theme` block, which turns each into a real utility
 
 ## 1. Colour
 
-### Primary — Trustech blue
+### Primary — Glotech blue
 
 | Token             | Hex       | Use                                  |
 | ----------------- | --------- | ------------------------------------ |

@@ -37,7 +37,7 @@ export async function generateMetadata({
     title: {
       default: t("title"),
       // Child pages set their own title; this suffixes it.
-      template: `%s | Trustech`,
+      template: `%s | Glotech`,
     },
     description: t("description"),
     metadataBase: new URL(
@@ -100,7 +100,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     "@type": "CollegeOrUniversity",
     name: tc("brand"),
     url: `${siteUrl}/${locale}`,
-    logo: `${siteUrl}/images/trustech-shield.jpg`,
+    logo: `${siteUrl}/images/glotech-shield.jpg`,
     telephone: "+237675502969",
     address: { "@type": "PostalAddress", addressLocality: "Douala", addressCountry: "CM" },
   };

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   Trustech Design Language (TDL v1.0)
+   Glotech Design Language (TDL v1.0)
    --------------------------------------------------------------------------
    Tailwind v4 is CSS-first: tokens declared in `@theme` become real utilities
    (e.g. `--color-primary` -> `bg-primary`, `text-primary`, `border-primary`).
@@ -10,7 +10,7 @@
    ========================================================================== */
 
 @theme {
-  /* --- Brand: primary (Trustech blue) ----------------------------------- */
+  /* --- Brand: primary (Glotech blue) ----------------------------------- */
   --color-primary: #0523ac;
   --color-primary-hover: #041b8a;
   --color-primary-light: #7888d4;
@@ -44,7 +44,7 @@
   --radius-lg: 12px;
   --radius-xl: 16px;
 
-  /* --- Breakpoints (mobile-first; xs is Trustech-specific) -------------- */
+  /* --- Breakpoints (mobile-first; xs is Glotech-specific) -------------- */
   --breakpoint-xs: 375px;
 }
 
